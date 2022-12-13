@@ -48,6 +48,8 @@ function img(x){
     `
   })
   function reset(){
+//Chapter 1: Intro
+
     if(player.level==1){
         player.building=[
       [[null],["light","down",true],[null]],
@@ -189,8 +191,7 @@ function img(x){
       player.area=[6,7]
     }
 
-
-
+//Chapter 2: Portal
 
     else if(player.level==13){
         player.building=[
@@ -363,28 +364,28 @@ function img(x){
         
         if(["box","badbox","mirror"].includes(buildtouch[0])){
           if(e.code === "KeyD"||e.code==="ArrowRight"&&!((locat[1]+1)>=(player.area[1]-1))){
-            if(player.building[locat[0]][locat[1]+2][0]!=null)return player.location=[locat[0],locat[1]];
+            if(![null].includes(player.building[locat[0]][locat[1]+2][0]))return player.location=[locat[0],locat[1]];
             player.building[locat[0]][locat[1]+1]=[null]
             player.building[locat[0]][locat[1]+2]=buildtouch
             player.location=[locat[0],locat[1]+1]
             return;
           }
           if(e.code === "KeyS"||e.code==="ArrowDown"&&!((locat[0]+1)>=(player.area[0]-1))){
-            if(player.building[locat[0]+2][locat[1]][0]!=null)return player.location=[locat[0],locat[1]];
+            if(![null].includes(player.building[locat[0]+2][locat[1]][0]))return player.location=[locat[0],locat[1]];
             player.building[locat[0]+1][locat[1]]=[null]
             player.building[locat[0]+2][locat[1]]=buildtouch
             player.location=[locat[0]+1,locat[1]]
             return;
           }
           if(e.code === "KeyA"||e.code==="ArrowLeft"&&!((locat[1]-1)==0)){
-            if(player.building[locat[0]][locat[1]-2][0]!=null)return player.location=[locat[0],locat[1]];
+            if(![null].includes(player.building[locat[0]][locat[1]-2][0]))return player.location=[locat[0],locat[1]];
             player.building[locat[0]][locat[1]-1]=[null]
             player.building[locat[0]][locat[1]-2]=buildtouch
             player.location=[locat[0],locat[1]-1]
             return;
           }
           if(e.code === "KeyW"||e.code==="ArrowUp"&&!((locat[0]-1)==0)){
-            if(player.building[locat[0]-2][locat[1]][0]!=null)return player.location=[locat[0],locat[1]];
+            if(![null].includes(player.building[locat[0]-2][locat[1]][0]))return player.location=[locat[0],locat[1]];
             player.building[locat[0]-1][locat[1]]=[null]
             player.building[locat[0]-2][locat[1]]=buildtouch
             player.location=[locat[0]-1,locat[1]]
