@@ -19,6 +19,26 @@ function save() {
 }
 
 function load() {
+  if (!localStorage.getItem("player")) {
+    player={
+      building:[
+    [[null],["light","down","green"],[null]],
+    [[null],["box"],[null]],
+    [[null],["sun"],[null]],
+  ],
+  location:[0,0],
+  area:[3,3],
+  light:[[0,1]],
+  level:1,
+  levelbeaten:[0],
+          previous:[
+    
+  ]
+    }
+    save()
+    window.location.reload();
+  }
+
   player = JSON.parse(localStorage.getItem('player'));
 var app = new Vue({
       el: "#app",
@@ -48,7 +68,7 @@ window.onload=function(){
   level:1,
   levelbeaten:[0],
           previous:[
-    1
+    
   ]
     }
     save()
@@ -64,7 +84,7 @@ const el = document.createElement("textarea");
 el.value = str;	document.body.appendChild(el);	
 el.select();	el.setSelectionRange(0, 99999);
 document.execCommand("copy");
-document.body.removeChild(el); 
+document.body.removeChild(el);
 }
 
 
