@@ -26,7 +26,7 @@ Vue.component("selectmenu", {
   template: `
     <table style="background-color:#333333">
     <tr v-for="c in 1">
-    <td v-for="d in 3">
+    <td v-for="d in 4">
     <table v-show="(player.levelbeaten.filter(a=>a>((c*3+d-3)*12-24)&&a<=((c*3+d-3)*12-12)).length>=9)||((c*3+d-3)==1)" style="background-color:#333333">
     <tr><td colspan="4" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;">Chapter {{c*3+d-3}}</td></tr>
     <tr v-for="a in 3">
@@ -1194,7 +1194,13 @@ function reset() {
     player.area = [7, 7];
     player.level=36
     
-  } else if (player.level == "custom") {
+  } 
+  else if (player.level == 37) {
+    importL2(`W1tbImxvY2F0aW9uIl0sW251bGxdLFsibGlnaHQiLCJ1cCIsImdyZWVuIl0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sWyJyb3RhdGUxODAiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbWyJib3h3YWxsIl0sWyJib3h3YWxsIl0sWyJiYWRib3h3YWxsIl0sWyJzdW4iXSxbImJveHdhbGwiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbImxpZ2h0IiwicmlnaHQiLCJncmVlbiJdLFsicm90YXRlMTgwIl0sWyJtaXJyb3IiLCJsZWZ0LXVwIl0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dXQ==`,9,5)
+    player.area = [9, 5];
+    player.level=37
+  }
+  else if (player.level == "custom") {
     importL(tmp.store);
   } else {
     player.building = [
@@ -1262,6 +1268,7 @@ function light(win = false, withlight = false, withpass = false) {
           "greenpass",
           "yellowpass",
           "store",
+          
         ].includes(build)
       )
         break;
@@ -1373,7 +1380,7 @@ document.addEventListener("keydown", (e) => {
   if (player.building[player.location[0]][player.location[1]][0] != null) {
     let buildtouch = player.building[player.location[0]][player.location[1]];
 
-    if (["box", "badbox", "mirror", "store"].includes(buildtouch[0])) {
+    if (["box", "badbox", "mirror", "store","rotate180"].includes(buildtouch[0])) {
       let pos = [0, 0];
       let req = true;
       if (e.code === "KeyD" || e.code === "ArrowRight") {
@@ -1392,22 +1399,39 @@ document.addEventListener("keydown", (e) => {
         pos[0] = -1;
         req = !(locat[0] - 1 == 0);
       }
-      if (
-        !req ||
-        player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] != null
-      ) {
+      if (!req) {
         player.location = [locat[0], locat[1]];
         player.previous.pop();
         return;
       }
-
+      if ((player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] != null)&&buildtouch[0]!="rotate180") {
+        player.location = [locat[0], locat[1]];
+        player.previous.pop();
+        return;
+      }
+      if ((["mirror","light"].includes(player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0]=="rotate180") {
+        let a=player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2]
+        if(a[0]=="light"){
+          player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]= reverse(a[1])
+        }
+        if(a[0]=="mirror"){
+          let r=player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1].split("-")
+          r[0]=reverse(r[0])
+          r[1]=reverse(r[1])
+          player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]=r[0]+"-"+r[1]
+        }
+        player.building[locat[0] + pos[0]][locat[1] + pos[1]] = [null];
+        player.location = [locat[0] + pos[0], locat[1] + pos[1]];
+        return;
+      }
       player.building[locat[0] + pos[0]][locat[1] + pos[1]] = [null];
       player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2] =
         buildtouch;
       player.location = [locat[0] + pos[0], locat[1] + pos[1]];
+      calcolor();
       return;
     }
-
+    calcolor();
     if (["portal", "badportal"].includes(buildtouch[0])) return;
     player.location = [...locat];
   }
