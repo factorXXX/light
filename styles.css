@@ -1,0 +1,54 @@
+.gamezone {
+    background-color: #444444;
+    table-layout: fixed;
+    border: solid #AAAAAA 3px;
+  }
+.rows {
+    display:flex;
+    height: 70px;
+  }
+.columns {
+    padding: 0px;
+    width: 70px;
+    height: 70px;
+
+  
+  }
+.rows:nth-child(odd) .columns:nth-child(even), .rows:nth-child(even) .columns:nth-child(odd) {
+      background-color: #555555;
+    }
+  
+body {
+    background-color: #222222;
+    color: #dfdfdf;
+  }
+table  {
+    border-spacing: 0;
+    padding: 0%;
+    margin: 0px auto;
+  }
+.portalButton {
+  font-size:15px;
+  font-family:Arial;
+  width:160px;
+  height:40px;
+  border-width:2px;
+  border-color:#333029;
+  font-weight:bold;
+  border-radius: 6px;
+}
+
+.canportal {
+    color:#dfdfdf;
+  background:#444444;
+}
+.cantportal {
+    color:#333333;
+  background:#aa5555;
+}
+.portalButton:hover {
+  background:#565954;
+}
+.beaten {
+  background:#449944;
+}
