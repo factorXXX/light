@@ -1433,6 +1433,11 @@ document.addEventListener("keydown", (e) => {
         player.location = [locat[0] + pos[0], locat[1] + pos[1]];
         return;
       }
+      else if ((player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] != null)&&buildtouch[0]=="rotate180") {
+        player.location = [locat[0], locat[1]];
+        player.previous.pop();
+        return;
+      }
       player.building[locat[0] + pos[0]][locat[1] + pos[1]] = [null];
       player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2] =
         buildtouch;
