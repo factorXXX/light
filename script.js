@@ -6,7 +6,8 @@ var tmp = {
   store: "",
   where:[],
   where1:[],
-  where2:[]
+  where2:[],
+  diff:0
 };
 function img(x) {
   return (
@@ -24,8 +25,8 @@ function music(x) {
 }
 Vue.component("selectmenu", {
   template: `
-    <table style="background-color:#333333">
-    <tr v-for="c in 1">
+    <table style="background-color:#333333; margin:0px auto">
+    <tr v-for="c in 1" v-if="tmp.diff==0">
     <td v-for="d in 4">
     <table v-show="(player.levelbeaten.filter(a=>a>((c*3+d-3)*12-24)&&a<=((c*3+d-3)*12-12)).length>=9)||((c*3+d-3)==1)" style="background-color:#333333">
     <tr><td colspan="4" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;">Chapter {{c*3+d-3}}</td></tr>
@@ -38,11 +39,36 @@ Vue.component("selectmenu", {
     </tr>
     </table>
     <div v-show="!((player.levelbeaten.filter(a=>a>((c*3+d-3)*12-24)&&a<=((c*3+d-3)*12-12)).length>=9)||((c*3+d-3)==1))"  style="border-color:#aaaaaa;text-align:center;border-style:solid;height:226px;width:226px">
-    Req<br><br>9 Level beaten in Chapter {{c*3+d-4}}
+    Req<br><br>9 Level beaten in Chapter {{c*3+d-4}} Normal Mode
+    </div> 
+    </td>
+    </tr>
+
+    <tr v-for="c in 1" v-if="tmp.diff==1">
+    <td v-for="d in 4">
+    <table v-show="(player.levelbeaten.filter(a=>a>((c*3+d-3)*6+988)&&a<=((c*3+d-3)*6+994)).length>=9)||((c*3+d-3)==1)" style="background-color:#333333">
+    <tr><td colspan="4" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;">Chapter {{c*3+d-3}}</td></tr>
+    <tr v-for="a in 3">
+    <td v-for="b in 2" 
+    :class="{beaten:player.levelbeaten.includes(((c*3+d-3)*6+(a*2+b-2)+994))}"
+    style="border-color:#aaaaaa;text-align:center;border-style:solid;height:50px;width:108px" @click="player.level=((c*3+d-3)*6+(a*2+b-2)+994);reset();tmp.page=1">
+    {{a*2+b-2}}
+    </td>
+    </tr>
+    </table>
+    <div v-show="!((player.levelbeaten.filter(a=>a>((c*3+d-3)*6+988)&&a<=((c*3+d-3)*6+994)).length>=9)||((c*3+d-3)==1))"  style="border-color:#aaaaaa;text-align:center;border-style:solid;height:226px;width:226px">
+    Req<br><br>4 Level beaten in Chapter {{c*3+d-4}} Hard Mode
     </div>
     </td>
     </tr>
-    </table><br><br><button onclick="importL()">Import Level</button>
+
+
+    <tr >
+    <td colspan="4" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;background-color:#aa6464"
+    onclick="tmp.diff=(tmp.diff+1)%2"
+    >{{tmp.diff==1?'Hard Mode':'Normal Mode'}}</td>
+    </tr>
+    </table>
     `,
 });
 Vue.component("machine", {
@@ -71,7 +97,7 @@ Vue.component("level", {
     <td colspan="2"><machine></machine></td>
       </tr>
    <tr>
-     <td style="height: 32px;"><span style="font-size:20px; text-align:center">{{"Level "+Math.floor((player.level-1)/12+1).toString()+"-"+(player.level-Math.floor((player.level-1)/12)*12).toString()}}</span><br><br>
+     <td style="height: 32px;"><span style="font-size:20px; text-align:center">{{player.level>=1001?"Hard Mode Level "+Math.floor((player.level-1001)/12+1).toString()+"-"+(player.level+8-Math.floor((player.level+7)/12)*12).toString():"Level "+Math.floor((player.level-1)/12+1).toString()+"-"+(player.level-Math.floor((player.level-1)/12)*12).toString()}}</span><br><br>
       Arrows or WASD: Move the Character<br>
       P: Go to Previous level<br>
       E: Enter the Portal if you can<br>
@@ -1208,6 +1234,11 @@ function reset() {
     importL2(`W1tbImxvY2F0aW9uIl0sWyJyb3RhdGUxODAiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sWyJtaXJyb3IiLCJsZWZ0LXVwIl0sW251bGxdLFsibGlnaHQiLCJ1cCIsImdyZWVuIl0sWyJsaWdodCIsInVwIiwicmVkIl0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbWyJ5ZWxsb3dwYXNzIl0sW251bGxdLFsibWlycm9yIiwibGVmdC11cCJdLFsicm90YXRlMTgwIl0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1sic3VuIl0sWyJ5ZWxsb3dwYXNzIl0sW251bGxdLFsibWlycm9yIiwicmlnaHQtdXAiXSxbInJvdGF0ZTE4MCJdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1sieWVsbG93cGFzcyJdLFtudWxsXSxbbnVsbF0sW251bGxdLFsibWlycm9yIiwicmlnaHQtdXAiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV1d`,6,7)
     player.area = [6, 7];
     player.level=39
+  }
+  else if (player.level==1001){
+    importL2(`W1tbImJveCJdLFsiYm94Il0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbImJveCJdLFsiYm94Il1dLFtbImJveCJdLFtudWxsXSxbbnVsbF0sWyJsb2NhdGlvbiJdLFsibGlnaHQiLCJkb3duIiwiZ3JlZW4iXSxbbnVsbF0sW251bGxdLFtudWxsXSxbImJveCJdXSxbW251bGxdLFtudWxsXSxbImJveCJdLFsiYm94Il0sW251bGxdLFsiYm94Il0sWyJib3giXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFtudWxsXSxbImJveCJdLFtudWxsXSxbImJveCJdLFtudWxsXSxbImJveCJdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbImJveCJdLFtudWxsXSxbImJveCJdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFtudWxsXSxbImJveCJdLFtudWxsXSxbImJveCJdLFtudWxsXSxbImJveCJdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFsiYm94Il0sWyJib3giXSxbbnVsbF0sWyJib3giXSxbImJveCJdLFtudWxsXSxbbnVsbF1dLFtbImJveCJdLFtudWxsXSxbbnVsbF0sW251bGxdLFsic3VuIl0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJib3giXV0sW1siYm94Il0sWyJib3giXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFsiYm94Il0sWyJib3giXV1d`,9,9)
+    player.area = [9, 9];
+    player.level=1001
   }
   else if (player.level == "custom") {
     importL(tmp.store);
