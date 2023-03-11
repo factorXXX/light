@@ -52,3 +52,12 @@ table  {
 .beaten {
   background:#449944;
 }
+.trans3 {
+  transform: rotate(90deg);
+}
+.trans2 {
+  transform: rotate(180deg);
+}
+.trans1 {
+  transform: rotate(270deg);
+}

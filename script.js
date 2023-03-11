@@ -13,7 +13,7 @@ function img(x) {
   return (
     "https://cdn.glitch.global/1c628347-f3a3-4ff6-841d-e401a9fb21ec/" +
     x +
-    ".png?v=1671849935460"
+    ".png?v=1678540923983"
   );
 }
 function music(x) {
@@ -77,12 +77,13 @@ Vue.component("machine", {
     <tr class="rows" height="30px" v-for="a in player.area[0]">
     <td class="columns" v-for="b in player.area[1]"> 
     <img  width="70" height="70" v-bind:src="img((player.location[0]==(a-1)&&player.location[1]==(b-1))?'location':
-    player.building[a-1][b-1][0]=='light'?player.building[a-1][b-1][2]+player.building[a-1][b-1][0]+player.building[a-1][b-1][1]:
-    player.building[a-1][b-1][0]=='mirror'?player.building[a-1][b-1][1]+player.building[a-1][b-1][0]:
+    player.building[a-1][b-1][0]=='light'?player.building[a-1][b-1][2]+player.building[a-1][b-1][0]:
+    player.building[a-1][b-1][0]=='mirror'?'mirror'+(findLightPos(a-1, b-1, true,false,0,true)?tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[0][3]:''):
     player.building[a-1][b-1][0]=='store'?player.building[a-1][b-1][1]+player.building[a-1][b-1][0]:
     ((findLightPos(a-1,b-1,true))?findLightPos(a-1,b-1,false):
-    player.building[a-1][b-1][0]
-    ))">
+    player.building[a-1][b-1][0]))"
+    :class="{trans1:player.building[a-1][b-1][1]=='right'||player.building[a-1][b-1][1]=='left-down',trans2:player.building[a-1][b-1][1]=='up'||player.building[a-1][b-1][1]=='right-down',trans3:player.building[a-1][b-1][1]=='left'||player.building[a-1][b-1][1]=='right-up'}"
+    >
     <img width="70" height="70" style="position: relative; bottom: 74px" v-bind:src="img(findLightPos(a-1,b-1,false,true)>=2?findLightPos(a-1,b-1,false,false,1):'null')">
     </td>
     </tr>
@@ -1257,9 +1258,11 @@ function reset() {
   calcolor();
   player.previous = [];
 }
-function findLightPos(a, b, bool = false, amt = false, layer = 0) {
-  if (tmp.where == 0) return;
-  let res = tmp.where.filter((element) => element[0] == a && element[1] == b);
+function findLightPos(a, b, bool = false, amt = false, layer = 0,M=false) {
+  let a1=tmp.where
+  if(M)a1=tmp.where2
+  if (a1.length==0){if(bool)return false;return};
+  let res =a1.filter((element) => element[0] == a && element[1] == b);
   if (amt) return res.length;
   if (bool) return res[0] != undefined;
   if (!findLightPos(a, b, true)) return;
@@ -1268,7 +1271,7 @@ function findLightPos(a, b, bool = false, amt = false, layer = 0) {
   if (["right", "down"].includes(pos)) pos = reverse(pos);
   return color + pos + "line";
 }
-function light(win = false, withlight = false, withpass = false) {
+function light(win = false, withlight = false, withM = false) {
   let lightL = [];
   for (let i = 0; i <= player.light.length - 1; i++) {
     let pos = player.building[player.light[i][0]][player.light[i][1]][1];
@@ -1324,9 +1327,13 @@ function light(win = false, withlight = false, withpass = false) {
       )
         lightL.pop();
       if (build == "mirror") {
-        lightL.pop();
+       if(!withM) lightL.pop();
         let posamt = player.building[locat[0]][locat[1]][1].split("-");
-        if (!posamt.includes(pos)) break;
+
+        if (!posamt.includes(pos)) {
+          if(withM)lightL.pop();
+          break;
+        }
         if (pos == posamt[0]) pos = reverse(posamt[1]);
         else pos = reverse(posamt[0]);
       } else if (build == "portal") {
@@ -1357,7 +1364,7 @@ function light(win = false, withlight = false, withpass = false) {
   }
   if (win) return false;
   if(withlight)return tmp.where1=lightL;
-  else if(withpass)return tmp.where2=lightL;
+  else if(withM)return tmp.where2=lightL;
   else return tmp.where=lightL;
 }
 function calcolor() {
