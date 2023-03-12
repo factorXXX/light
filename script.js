@@ -13,7 +13,7 @@ function img(x) {
   return (
     "https://cdn.glitch.global/1c628347-f3a3-4ff6-841d-e401a9fb21ec/" +
     x +
-    ".png?v=1678540923983"
+    ".png?v=1678585656022"
   );
 }
 function music(x) {
