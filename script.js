@@ -134,7 +134,7 @@ function findLightPos(a, b, bool = false, amt = false, layer = 0,M=false) {
   if (["right", "down"].includes(pos)) pos = reverse(pos);
   return color + pos + "line";
 }
-function light(win = false, withlight = false, withM = false, change=false) {
+function light(win = false, withlight = false, withM = false) {
   let lightL = [];
   for (let i = 0; i <= player.light.length - 1; i++) {
     let pos = player.building[player.light[i][0]][player.light[i][1]][1];
@@ -148,8 +148,7 @@ function light(win = false, withlight = false, withM = false, change=false) {
       if (player.building[locat[0]] == null) break;
       if (player.building[locat[0]][locat[1]] == null) break;
       let build = player.building[locat[0]][locat[1]][0];
-      
-      if(change){if (build == "sun" && win) return true;
+      if (build == "sun" && win) return true;
       if (["badbox", "badboxwall"].includes(build))
         player.building[locat[0]][locat[1]] = [null];
       if (["store"].includes(build)) {
@@ -159,7 +158,7 @@ function light(win = false, withlight = false, withM = false, change=false) {
         if (player.building[locat[0]][locat[1]][1] != null) {
           if (player.building[locat[0]][locat[1]][1] != color) color = "yellow";
         }
-      }}
+      }
       if (build == "light" && try1 != 1) {
         if (withlight) lightL.push([...locat, pos, color]);
         break;
@@ -386,8 +385,7 @@ setInterval(function () {
   light(false, true);
   light(false, false, true);
   calcolor();
-  light(false, false, true, true);
-  light()
+  light();
    
   
 }, 50);
