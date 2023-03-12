@@ -95,7 +95,7 @@ Vue.component("level", {
   template: `
         <table>
     <tr>
-    <td colspan="2"><machine></machine></td>
+    <td colspan="2"><machine></machine></td><br>
       </tr>
    <tr>
      <td style="height: 32px;"><span style="font-size:20px; text-align:center">{{player.level>=1001?"Hard Mode Level "+Math.floor((player.level-1001)/12+1).toString()+"-"+(player.level+8-Math.floor((player.level+7)/12)*12).toString():"Level "+Math.floor((player.level-1)/12+1).toString()+"-"+(player.level-Math.floor((player.level-1)/12)*12).toString()}}</span><br><br>
@@ -116,7 +116,14 @@ Vue.component("level", {
         Enter the Portal
     </button>
     </td>
-  </tr>  
+  </tr><br><br>
+
+<tr>
+<td colspan="2">
+<table style="margin:0px auto; text-align:center"><tr><td class="control" onclick="reset()">R</td><td class="control" onclick="doSomething('KeyW',false)">W</td><td class="control" onclick="doSomething('KeyU',false)">U</td></tr>
+<tr><td class="control" onclick="doSomething('KeyA',false)">A</td><td class="control" onclick="doSomething('KeyS',false)">S</td><td class="control" onclick="doSomething('KeyD',false)">D</td></tr></table>
+</td>
+</tr>
    </table>  
     `,
 });
@@ -247,13 +254,18 @@ function calcolor() {
   return (tmp.color = b);
 }
 document.addEventListener("keydown", (e) => {
+  
   let isShift = !!window.event.shiftKey;
-  if (e.code === "KeyD" && isShift)
+  doSomething(e.code,isShift)
+
+});
+function doSomething(a,b){
+  if (a === "KeyD" && b)
     document.location.href = "https://discord.gg/MXyXdXrC5H";
-  if (e.code === "KeyR") reset();
-  if (e.code === "KeyH") hardReset();
-  if (e.code === "KeyI" && isShift) importL();
-  if (e.code === "KeyU") {
+  if (a === "KeyR") reset();
+  if (a === "KeyH") hardReset();
+  if (a === "KeyI" && b) importL();
+  if (a === "KeyU") {
     if (player.previous.length == 0) return;
     player.building = player.previous[player.previous.length - 1].building;
     player.location = player.previous[player.previous.length - 1].location;
@@ -263,19 +275,19 @@ document.addEventListener("keydown", (e) => {
   player.previous.push([{}]);
   let locat = [parseInt(player.location[0]), parseInt(player.location[1])];
   if (
-    e.code === "KeyE" &&
+   a === "KeyE" &&
     player.building[player.location[0]][player.location[1]][0] == "portal"
   ) {
     enter();
   }
 
-  if (e.code === "KeyW" || e.code === "ArrowUp")
+  if (a === "KeyW" || a === "ArrowUp")
     Vue.set(player.location, 0, Math.max(locat[0] - 1, 0));
-  else if (e.code === "KeyS" || e.code === "ArrowDown")
+  else if (a === "KeyS" || a === "ArrowDown")
     Vue.set(player.location, 0, Math.min(player.area[0] - 1, locat[0] + 1));
-  else if (e.code === "KeyA" || e.code === "ArrowLeft")
+  else if (a === "KeyA" || a === "ArrowLeft")
     Vue.set(player.location, 1, Math.max(locat[1] - 1, 0));
-  else if (e.code === "KeyD" || e.code === "ArrowRight")
+  else if (a === "KeyD" || a === "ArrowRight")
     Vue.set(player.location, 1, Math.min(player.area[1] - 1, locat[1] + 1));
   if (locat[0] == player.location[0] && locat[1] == player.location[1]) {
     player.previous.pop();
@@ -293,19 +305,19 @@ document.addEventListener("keydown", (e) => {
     if (["box", "badbox", "mirror", "store","rotate180","rotate90","rotate270"].includes(buildtouch[0])) {
       let pos = [0, 0];
       let req = true;
-      if (e.code === "KeyD" || e.code === "ArrowRight") {
+      if (a === "KeyD" || a === "ArrowRight") {
         pos[1] = 1;
         req = !(locat[1] + 1 >= player.area[1] - 1);
       }
-      if (e.code === "KeyS" || e.code === "ArrowDown") {
+      if (a === "KeyS" || a === "ArrowDown") {
         pos[0] = 1;
         req = !(locat[0] + 1 >= player.area[0] - 1);
       }
-      if (e.code === "KeyA" || e.code === "ArrowLeft") {
+      if (a === "KeyA" || a === "ArrowLeft") {
         pos[1] = -1;
         req = !(locat[1] - 1 == 0);
       }
-      if (e.code === "KeyW" || e.code === "ArrowUp") {
+      if (a === "KeyW" || a === "ArrowUp") {
         pos[0] = -1;
         req = !(locat[0] - 1 == 0);
       }
@@ -356,7 +368,7 @@ document.addEventListener("keydown", (e) => {
     if (["portal", "badportal"].includes(buildtouch[0])) return;
     player.location = [...locat];
   }
-});
+}
 setInterval(function () {
   if (player.location[0] < 0) player.location[0] = 0;
   if (player.location[1] < 0) player.location[1] = 0;
