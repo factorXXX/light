@@ -382,10 +382,12 @@ setInterval(function () {
       player.previous = [];
     }, 1000);
   }
+  light(false, true);
+  light(false, false, true);
   calcolor();
-  light()
-  light(false,true) 
-  light(false,false,true)
+  light();
+   
+  
 }, 50);
 
 function enter() {
