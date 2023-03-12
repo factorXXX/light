@@ -109,6 +109,9 @@ Vue.component("level", {
     </td> 
 
     <td style="text-align: right; width:180px">
+    <button :class="{portalButton: true, canportal: true}" onclick="reset()">
+        Reset
+    </button><br><br>
     <button :class="{portalButton: true, canportal: true}" onclick="tmp.page=2">
         Go to Menu
     </button><br><br>
@@ -120,7 +123,7 @@ Vue.component("level", {
 
 <tr>
 <td colspan="2">
-<table style="margin:0px auto; text-align:center"><tr><td class="control" onclick="reset()">R</td><td class="control" onclick="doSomething('KeyW',false)">W</td><td class="control" onclick="doSomething('KeyU',false)">U</td></tr>
+<table style="margin:0px auto; text-align:center"><tr><td class="control"></td><td class="control" onclick="doSomething('KeyW',false)">W</td><td class="control" onclick="doSomething('KeyU',false)">U</td></tr>
 <tr><td class="control" onclick="doSomething('KeyA',false)">A</td><td class="control" onclick="doSomething('KeyS',false)">S</td><td class="control" onclick="doSomething('KeyD',false)">D</td></tr></table>
 </td>
 </tr>
