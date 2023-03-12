@@ -64,9 +64,12 @@ Vue.component("selectmenu", {
 
 
     <tr >
-    <td colspan="4" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;background-color:#aa6464"
+    <td colspan="2" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;background-color:#aa6464"
     onclick="tmp.diff=(tmp.diff+1)%2"
     >{{tmp.diff==1?'Hard Mode':'Normal Mode'}}</td>
+    <td colspan="2" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid"
+    onclick="tmp.page=3"
+    >Options</td>
     </tr>
     </table>
     `,
@@ -90,7 +93,14 @@ Vue.component("machine", {
     </table>
     `,
 });
+Vue.component("options", {
+  template: `
+    <table>
+    <tr><td onclick="tmp.page=2" class="control">Back</td><td onclick="exportSave()" class="control">Export</td><td onclick="importSave()" class="control">Import</td></tr>
 
+    </table>
+    `,
+});
 Vue.component("level", {
   template: `
         <table>
