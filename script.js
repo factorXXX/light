@@ -13,7 +13,7 @@ function img(x) {
   return (
     "https://cdn.glitch.global/1c628347-f3a3-4ff6-841d-e401a9fb21ec/" +
     x +
-    ".png?v=1678585656022"
+    ".png?v=1678609082279"
   );
 }
 function music(x) {
@@ -290,7 +290,7 @@ document.addEventListener("keydown", (e) => {
   if (player.building[player.location[0]][player.location[1]][0] != null) {
     let buildtouch = player.building[player.location[0]][player.location[1]];
 
-    if (["box", "badbox", "mirror", "store","rotate180"].includes(buildtouch[0])) {
+    if (["box", "badbox", "mirror", "store","rotate180","rotate90","rotate270"].includes(buildtouch[0])) {
       let pos = [0, 0];
       let req = true;
       if (e.code === "KeyD" || e.code === "ArrowRight") {
@@ -314,27 +314,33 @@ document.addEventListener("keydown", (e) => {
         player.previous.pop();
         return;
       }
-      if ((player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] != null)&&buildtouch[0]!="rotate180") {
+      if ((player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] != null)&&buildtouch[0][0]!="r") {
         player.location = [locat[0], locat[1]];
         player.previous.pop();
         return;
       }
-      if ((["mirror","light"].includes(player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0]=="rotate180") {
+      if ((["mirror","light"].includes(player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0][0]=="r") {
+
         let a=player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2]
         if(a[0]=="light"){
-          player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]= reverse(a[1])
+          player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]= numToPos((posToNum(a[1])+buildtouch[0].split("rotate")[1]/90)%4)
         }
         if(a[0]=="mirror"){
           let r=player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1].split("-")
-          r[0]=reverse(r[0])
-          r[1]=reverse(r[1])
+          r[0]=numToPos((posToNum(r[0])+buildtouch[0].split("rotate")[1]/90)%4)
+          r[1]=numToPos((posToNum(r[1])+buildtouch[0].split("rotate")[1]/90)%4)
+          if(posToNum(r[0])%2==0){
+            let tmp=r[0]
+       r[0]=r[1]
+       r[1]=tmp
+          }
           player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]=r[0]+"-"+r[1]
         }
         player.building[locat[0] + pos[0]][locat[1] + pos[1]] = [null];
         player.location = [locat[0] + pos[0], locat[1] + pos[1]];
         return;
       }
-      else if ((player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] != null)&&buildtouch[0]=="rotate180") {
+      else if ((player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] != null)&&buildtouch[0][0]=="r") {
         player.location = [locat[0], locat[1]];
         player.previous.pop();
         return;
@@ -390,18 +396,32 @@ function enter() {
   ];
 }
 function reverse(x) {
+  return numToPos((posToNum(x)+2)%4)
+}
+function posToNum(x){
   switch (x) {
     case "up":
-      return "down";
-    case "down":
-      return "up";
-    case "left":
-      return "right";
+      return 0;
     case "right":
+      return 1;
+    case "down":
+      return 2;
+    case "left":
+      return 3;
+  }
+}
+function numToPos(x){
+  switch (x) {
+    case 0:
+      return "up";
+    case 1:
+      return "right";
+    case 2:
+      return "down";
+    case 3:
       return "left";
   }
 }
-
 function importL(imported = undefined) {
   if (imported === undefined) imported = prompt("paste your save here");
   player.building = JSON.parse(atob(imported));
