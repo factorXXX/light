@@ -78,7 +78,7 @@ Vue.component("machine", {
     <td class="columns" v-for="b in player.area[1]"> 
     <img  width="70" height="70" v-bind:src="img((player.location[0]==(a-1)&&player.location[1]==(b-1))?'location':
     player.building[a-1][b-1][0]=='light'?player.building[a-1][b-1][2]+player.building[a-1][b-1][0]:
-    player.building[a-1][b-1][0]=='mirror'?'mirror'+(findLightPos(a-1, b-1, true,false,0,true)?tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[0][3]:''):
+    player.building[a-1][b-1][0]=='mirror'?'mirror'+(findLightPos(a-1, b-1, true,false,0,true)?tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length-1][3]:''):
     player.building[a-1][b-1][0]=='store'?player.building[a-1][b-1][1]+player.building[a-1][b-1][0]:
     ((findLightPos(a-1,b-1,true))?findLightPos(a-1,b-1,false):
     player.building[a-1][b-1][0]))"
