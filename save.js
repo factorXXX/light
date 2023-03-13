@@ -12,6 +12,7 @@ var player={
   previous:[
     1
   ],
+  key:true,
   
 }
 function save() {
@@ -33,7 +34,8 @@ function load() {
   levelbeaten:[0],
           previous:[
     
-  ]
+  ],
+  key:true,
     }
     save()
     window.location.reload();
@@ -69,7 +71,8 @@ window.onload=function(){
   levelbeaten:[0],
           previous:[
     
-  ]
+  ],
+  key:true,
     }
     save()
     window.location.reload();

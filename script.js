@@ -97,7 +97,6 @@ Vue.component("options", {
   template: `
     <table>
     <tr><td onclick="tmp.page=2" class="control">Back</td><td onclick="exportSave()" class="control">Export</td><td onclick="importSave()" class="control">Import</td></tr>
-
     </table>
     `,
 });
@@ -131,7 +130,7 @@ Vue.component("level", {
     </td>
   </tr><br><br>
 
-<tr>
+<tr v-if="player.key">
 <td colspan="2">
 <table style="margin:0px auto; text-align:center"><tr><td class="control"></td><td class="control" onclick="doSomething('KeyW',false)">W</td><td class="control" onclick="doSomething('KeyU',false)">U</td></tr>
 <tr><td class="control" onclick="doSomething('KeyA',false)">A</td><td class="control" onclick="doSomething('KeyS',false)">S</td><td class="control" onclick="doSomething('KeyD',false)">D</td></tr></table>
@@ -249,6 +248,9 @@ function light(win = false, withlight = false, withM = false) {
   if(withlight)return tmp.where1=lightL;
   else if(withM)return tmp.where2=lightL;
   else return tmp.where=lightL;
+
+
+ 
 }
 function calcolor() {
   let b = [];
@@ -412,7 +414,7 @@ setInterval(function () {
   calcolor();
   light();
    
-  
+  if(player.key==undefined)player.key=true
 }, 50);
 
 function enter() {
