@@ -1,69 +1,69 @@
 function reset() {
     //Chapter 1: Basic
   
-    if (player.level == 1) {
-      player.building = [
+    if (tmp.level == 1) {
+      tmp.building = [
         [[null], ["light", "down", "green"], [null]],
         [[null], ["box"], [null]],
         [[null], ["sun"], [null]],
       ];
-      (player.location = [0, 0]),
-        (player.light = [[0, 1]]),
-        (player.area = [3, 3]);
-    } else if (player.level == 2) {
-      player.building = [
+      (tmp.location = [0, 0]),
+        (tmp.light = [[0, 1]]),
+        (tmp.area = [3, 3]);
+    } else if (tmp.level == 2) {
+      tmp.building = [
         [[null], ["light", "down", "green"], [null], ["box"]],
         [[null], ["box"], ["box"], [null]],
         [[null], ["sun"], [null], ["box"]],
         [[null], [null], ["box"], [null]],
       ];
-      player.location = [0, 0];
-      player.light = [[0, 1]];
-      player.area = [4, 4];
-    } else if (player.level == 3) {
-      player.building = [
+      tmp.location = [0, 0];
+      tmp.light = [[0, 1]];
+      tmp.area = [4, 4];
+    } else if (tmp.level == 3) {
+      tmp.building = [
         [[null], ["light", "down", "green"], [null]],
         [[null], [null], [null], [null]],
         [[null], ["box"], ["box"]],
         [[null], [null], [null]],
         [[null], ["sun"], [null]],
       ];
-      player.location = [0, 0];
-      player.light = [[0, 1]];
-      player.area = [5, 3];
-    } else if (player.level == 4) {
-      player.building = [
+      tmp.location = [0, 0];
+      tmp.light = [[0, 1]];
+      tmp.area = [5, 3];
+    } else if (tmp.level == 4) {
+      tmp.building = [
         [[null], [null], ["box"], [null], [null]],
         [[null], ["box"], [null], [null], [null]],
         [["light", "right", "green"], ["box"], ["box"], [null], ["sun"]],
         [[null], [null], [null], [null], [null]],
         [[null], [null], [null], [null], [null]],
       ];
-      player.location = [0, 0];
-      player.light = [[2, 0]];
-      player.area = [5, 5];
-    } else if (player.level == 5) {
-      player.building = [
+      tmp.location = [0, 0];
+      tmp.light = [[2, 0]];
+      tmp.area = [5, 5];
+    } else if (tmp.level == 5) {
+      tmp.building = [
         [[null], ["light", "down", "green"], [null], [null]],
         [[null], ["box"], [null], [null]],
         [[null], ["mirror", "left-down"], [null], ["sun"]],
       ];
-      player.location = [0, 0];
-      player.light = [[0, 1]];
-      player.area = [3, 4];
-    } else if (player.level == 6) {
-      player.building = [
+      tmp.location = [0, 0];
+      tmp.light = [[0, 1]];
+      tmp.area = [3, 4];
+    } else if (tmp.level == 6) {
+      tmp.building = [
         [[null], [null], [null], [null], [null]],
         [[null], ["light", "down", "green"], [null], [null], ["sun"]],
         [[null], ["mirror", "left-down"], [null], [null], [null]],
         [[null], [null], [null], ["mirror", "right-down"], [null]],
         [[null], [null], ["box"], [null], [null]],
       ];
-      player.location = [0, 0];
-      player.light = [[1, 1]];
-      player.area = [4, 5];
-    } else if (player.level == 7) {
-      player.building = [
+      tmp.location = [0, 0];
+      tmp.light = [[1, 1]];
+      tmp.area = [4, 5];
+    } else if (tmp.level == 7) {
+      tmp.building = [
         [[null], [null], ["light", "down", "green"], [null], [null]],
         [["sun"], [null], [null], [null], [null]],
         [
@@ -75,11 +75,11 @@ function reset() {
         ],
         [[null], [null], [null], [null], ["box"]],
       ];
-      player.location = [0, 0];
-      player.light = [[0, 2]];
-      player.area = [4, 5];
-    } else if (player.level == 8) {
-      player.building = [
+      tmp.location = [0, 0];
+      tmp.light = [[0, 2]];
+      tmp.area = [4, 5];
+    } else if (tmp.level == 8) {
+      tmp.building = [
         [[null], [null], [null], [null], [null], ["box"]],
         [
           [null],
@@ -100,31 +100,31 @@ function reset() {
         ],
         [[null], [null], [null], [null], [null], ["sun"]],
       ];
-      player.location = [2, 0];
-      player.light = [[1, 2]];
-      player.area = [5, 6];
-    } else if (player.level == 9) {
-      player.building = [
+      tmp.location = [2, 0];
+      tmp.light = [[1, 2]];
+      tmp.area = [5, 6];
+    } else if (tmp.level == 9) {
+      tmp.building = [
         [[null], [null], [null], ["sun"]],
         [[null], [null], [null], ["badbox"]],
         [["light", "right", "green"], [null], ["mirror", "right-down"], [null]],
       ];
-      player.location = [0, 0];
-      player.light = [[2, 0]];
-      player.area = [3, 4];
-    } else if (player.level == 10) {
-      player.building = [
+      tmp.location = [0, 0];
+      tmp.light = [[2, 0]];
+      tmp.area = [3, 4];
+    } else if (tmp.level == 10) {
+      tmp.building = [
         [["box"], [null], [null], [null]],
         [["box"], [null], ["mirror", "right-up"], [null]],
         [["box"], [null], ["badbox"], [null]],
         [["light", "right", "green"], [null], [null], ["mirror", "right-down"]],
         [[null], [null], ["sun"], [null]],
       ];
-      player.location = [2, 1];
-      player.light = [[3, 0]];
-      player.area = [5, 4];
-    } else if (player.level == 11) {
-      player.building = [
+      tmp.location = [2, 1];
+      tmp.light = [[3, 0]];
+      tmp.area = [5, 4];
+    } else if (tmp.level == 11) {
+      tmp.building = [
         [
           ["mirror", "left-up"],
           [null],
@@ -140,11 +140,11 @@ function reset() {
         [[null], [null], [null], [null], [null], [null]],
         [["sun"], ["light", "right", "green"], [null], [null], [null], [null]],
       ];
-      player.location = [2, 0];
-      player.light = [[6, 1]];
-      player.area = [7, 6];
-    } else if (player.level == 12) {
-      player.building = [
+      tmp.location = [2, 0];
+      tmp.light = [[6, 1]];
+      tmp.area = [7, 6];
+    } else if (tmp.level == 12) {
+      tmp.building = [
         [
           ["boxwall"],
           ["boxwall"],
@@ -184,25 +184,25 @@ function reset() {
         [[null], ["box"], [null], [null], ["mirror", "right-up"], [null], [null]],
         [[null], [null], [null], [null], [null], [null], [null]],
       ];
-      player.location = [5, 6];
-      player.light = [[1, 2]];
-      player.area = [6, 7];
+      tmp.location = [5, 6];
+      tmp.light = [[1, 2]];
+      tmp.area = [6, 7];
     }
   
     //Chapter 2: Portal
-    else if (player.level == 13) {
-      player.building = [
+    else if (tmp.level == 13) {
+      tmp.building = [
         [[null], ["sun"], [null]],
         [["portal", [3, 0]], [null], [null]],
         [["badboxwall"], ["badboxwall"], ["badboxwall"]],
         [["portal", [1, 0]], ["box"], [null]],
         [[null], ["light", "up", "green"], [null]],
       ];
-      player.location = [0, 0];
-      player.light = [[4, 1]];
-      player.area = [5, 3];
-    } else if (player.level == 14) {
-      player.building = [
+      tmp.location = [0, 0];
+      tmp.light = [[4, 1]];
+      tmp.area = [5, 3];
+    } else if (tmp.level == 14) {
+      tmp.building = [
         [[null], [null], [null], [null]],
         [[null], [null], [null], [null]],
         [["light", "down", "green"], ["mirror", "right-down"], [null], [null]],
@@ -210,11 +210,11 @@ function reset() {
         [["sun"], ["mirror", "right-up"], [null], [null]],
         [[null], [null], [null], [null]],
       ];
-      player.location = [0, 0];
-      player.light = [[2, 0]];
-      player.area = [6, 4];
-    } else if (player.level == 15) {
-      player.building = [
+      tmp.location = [0, 0];
+      tmp.light = [[2, 0]];
+      tmp.area = [6, 4];
+    } else if (tmp.level == 15) {
+      tmp.building = [
         [[null], [null], [null], [null], [null]],
         [["sun"], [null], ["portal", [3, 2]], ["mirror", "right-down"], [null]],
         [["boxwall"], ["boxwall"], ["boxwall"], [null], [null]],
@@ -227,22 +227,22 @@ function reset() {
         ],
         [["light", "up", "green"], [null], [null], [null], [null]],
       ];
-      player.location = [0, 0];
-      player.light = [[4, 0]];
-      player.area = [5, 5];
-    } else if (player.level == 16) {
-      player.building = [
+      tmp.location = [0, 0];
+      tmp.light = [[4, 0]];
+      tmp.area = [5, 5];
+    } else if (tmp.level == 16) {
+      tmp.building = [
         [[null], ["light", "down", "green"], [null], [null], ["sun"]],
         [[null], ["portal", [3, 0]], ["mirror", "left-up"], [null], [null]],
         [["boxwall"], ["boxwall"], [null], ["boxwall"], ["boxwall"]],
         [["portal", [1, 1]], [null], ["mirror", "right-down"], [null], [null]],
         [[null], ["mirror", "left-down"], [null], [null], [null]],
       ];
-      player.location = [0, 0];
-      player.light = [[0, 1]];
-      player.area = [5, 5];
-    } else if (player.level == 17) {
-      player.building = [
+      tmp.location = [0, 0];
+      tmp.light = [[0, 1]];
+      tmp.area = [5, 5];
+    } else if (tmp.level == 17) {
+      tmp.building = [
         [[null], [null], [null], [null]],
         [[null], ["mirror", "right-up"], ["mirror", "left-up"], [null]],
         [["portal", [4, 3]], [null], [null], ["portal", [4, 0]]],
@@ -250,11 +250,11 @@ function reset() {
         [["portal", [2, 3]], [null], [null], ["portal", [2, 0]]],
         [["light", "up", "green"], [null], [null], ["sun"]],
       ];
-      player.location = [5, 2];
-      player.light = [[5, 0]];
-      player.area = [6, 4];
-    } else if (player.level == 18) {
-      player.building = [
+      tmp.location = [5, 2];
+      tmp.light = [[5, 0]];
+      tmp.area = [6, 4];
+    } else if (tmp.level == 18) {
+      tmp.building = [
         [
           [null],
           [null],
@@ -319,11 +319,11 @@ function reset() {
           ["boxwall"],
         ],
       ];
-      player.location = [2, 2];
-      player.light = [[2, 1]];
-      player.area = [7, 7];
-    } else if (player.level == 19) {
-      player.building = [
+      tmp.location = [2, 2];
+      tmp.light = [[2, 1]];
+      tmp.area = [7, 7];
+    } else if (tmp.level == 19) {
+      tmp.building = [
         [[null], ["sun"], [null], [null], [null], [null], [null]],
         [
           [null],
@@ -371,11 +371,11 @@ function reset() {
           [null],
         ],
       ];
-      player.location = [0, 0];
-      player.light = [[1, 2]];
-      player.area = [6, 7];
-    } else if (player.level == 20) {
-      player.building = [
+      tmp.location = [0, 0];
+      tmp.light = [[1, 2]];
+      tmp.area = [6, 7];
+    } else if (tmp.level == 20) {
+      tmp.building = [
         [
           [null],
           [null],
@@ -424,11 +424,11 @@ function reset() {
         ],
         [["portal", [0, 3]], [null], [null], [null], [null], [null], [null]],
       ];
-      player.location = [3, 4];
-      player.light = [[1, 3]];
-      player.area = [7, 7];
-    } else if (player.level == 21) {
-      player.building = [
+      tmp.location = [3, 4];
+      tmp.light = [[1, 3]];
+      tmp.area = [7, 7];
+    } else if (tmp.level == 21) {
+      tmp.building = [
         [[null], [null], [null], ["boxwall"], [null], [null], [null]],
         [
           [null],
@@ -453,11 +453,11 @@ function reset() {
         ],
         [[null], [null], [null], ["boxwall"], [null], [null], [null]],
       ];
-      player.location = [0, 1];
-      player.light = [[5, 1]];
-      player.area = [7, 7];
-    } else if (player.level == 22) {
-      player.building = [
+      tmp.location = [0, 1];
+      tmp.light = [[5, 1]];
+      tmp.area = [7, 7];
+    } else if (tmp.level == 22) {
+      tmp.building = [
         [[null], [null], [null], ["boxwall"], [null], [null], [null]],
         [
           ["light", "down", "green"],
@@ -490,11 +490,11 @@ function reset() {
         [[null], [null], ["boxwall"], [null], ["boxwall"], [null], [null]],
         [[null], [null], [null], ["badboxwall"], [null], [null], [null]],
       ];
-      player.location = [3, 3];
-      player.light = [[1, 0]];
-      player.area = [7, 7];
-    } else if (player.level == 23) {
-      player.building = [
+      tmp.location = [3, 3];
+      tmp.light = [[1, 0]];
+      tmp.area = [7, 7];
+    } else if (tmp.level == 23) {
+      tmp.building = [
         [
           [null],
           ["mirror", "left-up"],
@@ -551,14 +551,14 @@ function reset() {
           [null],
         ],
       ];
-      player.location = [6, 6];
-      player.light = [
+      tmp.location = [6, 6];
+      tmp.light = [
         [6, 5],
         [2, 6],
       ];
-      player.area = [7, 7];
-    } else if (player.level == 24) {
-      player.building = [
+      tmp.area = [7, 7];
+    } else if (tmp.level == 24) {
+      tmp.building = [
         [
           [null],
           [null],
@@ -659,14 +659,14 @@ function reset() {
           ["portal", [4, 4]],
         ],
       ];
-      player.location = [8, 0];
-      player.light = [[7, 1]];
-      player.area = [9, 9];
+      tmp.location = [8, 0];
+      tmp.light = [[7, 1]];
+      tmp.area = [9, 9];
     }
   
     //Chapter 3: Colour
-    else if (player.level == 25) {
-      player.building = [
+    else if (tmp.level == 25) {
+      tmp.building = [
         [
           [null],
           ["light", "down", "green"],
@@ -686,14 +686,14 @@ function reset() {
         [[null], [null], [null], [null], [null]],
         [[null], [null], ["sun"], [null], [null]],
       ];
-      player.location = [0, 0];
-      player.light = [
+      tmp.location = [0, 0];
+      tmp.light = [
         [0, 1],
         [0, 3],
       ];
-      player.area = [6, 5];
-    } else if (player.level == 26) {
-      player.building = [
+      tmp.area = [6, 5];
+    } else if (tmp.level == 26) {
+      tmp.building = [
         [
           [null],
           ["light", "down", "green"],
@@ -750,14 +750,14 @@ function reset() {
           [null],
         ],
       ];
-      player.location = [0, 3];
-      player.light = [
+      tmp.location = [0, 3];
+      tmp.light = [
         [0, 1],
         [0, 5],
       ];
-      player.area = [7, 7];
-    } else if (player.level == 27) {
-      player.building = [
+      tmp.area = [7, 7];
+    } else if (tmp.level == 27) {
+      tmp.building = [
         [[null], [null], [null], [null], [null], [null], [null]],
         [[null], [null], [null], [null], [null], [null], [null]],
         [
@@ -790,14 +790,14 @@ function reset() {
         [[null], ["badboxwall"], ["redpass"], [null], [null], [null], [null]],
         [[null], [null], [null], [null], [null], [null], [null]],
       ];
-      player.location = [3, 3];
-      player.light = [
+      tmp.location = [3, 3];
+      tmp.light = [
         [3, 2],
         [3, 4],
       ];
-      player.area = [7, 7];
-    } else if (player.level == 28) {
-      player.building = [
+      tmp.area = [7, 7];
+    } else if (tmp.level == 28) {
+      tmp.building = [
         [
           ["badportal"],
           [null],
@@ -862,14 +862,14 @@ function reset() {
           [null],
         ],
       ];
-      player.location = [1, 0];
-      player.light = [
+      tmp.location = [1, 0];
+      tmp.light = [
         [4, 0],
         [2, 0],
       ];
-      player.area = [7, 7];
-    } else if (player.level == 29) {
-      player.building = [
+      tmp.area = [7, 7];
+    } else if (tmp.level == 29) {
+      tmp.building = [
         [[null], ["light", "down", "green"], [null]],
         [[null], ["box"], [null]],
         [[null], ["box"], [null]],
@@ -878,14 +878,14 @@ function reset() {
         [[null], [null], [null]],
         [[null], ["sun"], [null]],
       ];
-      (player.location = [0, 0]),
-        (player.light = [
+      (tmp.location = [0, 0]),
+        (tmp.light = [
           [0, 1],
           [3, 1],
         ]),
-        (player.area = [7, 3]);
-    } else if (player.level == 30) {
-      player.building = [
+        (tmp.area = [7, 3]);
+    } else if (tmp.level == 30) {
+      tmp.building = [
         [
           [null],
           ["portal", [0, 3]],
@@ -916,14 +916,14 @@ function reset() {
         [[null], [null], ["yellowpass"], [null], [null], [null], ["boxwall"]],
         [[null], ["boxwall"], ["sun"], ["boxwall"], [null], [null], ["boxwall"]],
       ];
-      (player.location = [2, 3]),
-        (player.light = [
+      (tmp.location = [2, 3]),
+        (tmp.light = [
           [1, 1],
           [1, 3],
         ]),
-        (player.area = [5, 7]);
-    } else if (player.level == 31) {
-      player.building = [
+        (tmp.area = [5, 7]);
+    } else if (tmp.level == 31) {
+      tmp.building = [
         [
           [null],
           [null],
@@ -968,15 +968,15 @@ function reset() {
         [[null], [null], [null], [null], [null], ["boxwall"], ["sun"], [null]],
         [[null], [null], [null], ["boxwall"], [null], [null], [null], [null]],
       ];
-      (player.location = [0, 0]),
-        (player.light = [
+      (tmp.location = [0, 0]),
+        (tmp.light = [
           [2, 1],
           [3, 1],
           [0, 6],
         ]),
-        (player.area = [7, 8]);
-    } else if (player.level == 32) {
-      player.building = [
+        (tmp.area = [7, 8]);
+    } else if (tmp.level == 32) {
+      tmp.building = [
         [
           ["portal", [6, 3]],
           [null],
@@ -1044,14 +1044,14 @@ function reset() {
           [null],
         ],
       ];
-      (player.location = [3, 4]),
-        (player.light = [
+      (tmp.location = [3, 4]),
+        (tmp.light = [
           [4, 3],
           [4, 5],
         ]),
-        (player.area = [7, 8]);
-    } else if (player.level == 33) {
-      player.building = [
+        (tmp.area = [7, 8]);
+    } else if (tmp.level == 33) {
+      tmp.building = [
         [[null], [null], ["light", "down", "green"], ["light", "down", "red"]],
         [[null], [null], [null], [null]],
         [[null], ["store", null], [null], [null]],
@@ -1059,14 +1059,14 @@ function reset() {
         [[null], [null], [null], ["yellowpass"]],
         [[null], [null], [null], ["sun"]],
       ];
-      player.location = [0, 0];
-      player.light = [
+      tmp.location = [0, 0];
+      tmp.light = [
         [0, 2],
         [0, 3],
       ];
-      player.area = [6, 4];
-    } else if (player.level == 34) {
-      player.building = [
+      tmp.area = [6, 4];
+    } else if (tmp.level == 34) {
+      tmp.building = [
         [
           [null],
           [null],
@@ -1080,65 +1080,63 @@ function reset() {
         [[null], [null], ["yellowpass"], [null], [null]],
         [[null], [null], ["sun"], [null], [null]],
       ];
-      player.location = [0, 0];
-      player.light = [
+      tmp.location = [0, 0];
+      tmp.light = [
         [0, 2],
         [0, 3],
       ];
-      player.area = [6, 5];
+      tmp.area = [6, 5];
     } 
-     else if (player.level == 35) {
+     else if (tmp.level == 35) {
       importL2(`W1tbImJveHdhbGwiXSxbImJveHdhbGwiXSxbImJveHdhbGwiXSxbImJveHdhbGwiXSxbImJveHdhbGwiXSxbImJveHdhbGwiXSxbbnVsbF0sWyJsaWdodCIsImRvd24iLCJncmVlbiJdLFtudWxsXV0sW1sibGlnaHQiLCJyaWdodCIsImdyZWVuIl0sWyJncmVlbnBhc3MiXSxbbnVsbF0sWyJ5ZWxsb3dwYXNzIl0sW251bGxdLFsiYmFkYm94d2FsbCJdLFtudWxsXSxbImJveCJdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbImJhZGJveHdhbGwiXSxbImJveHdhbGwiXSxbImJveHdhbGwiXSxbInN1biJdLFsiYm94d2FsbCJdXSxbW251bGxdLFtudWxsXSxbImxvY2F0aW9uIl0sWyJib3h3YWxsIl0sW251bGxdLFsibGlnaHQiLCJyaWdodCIsImdyZWVuIl0sW251bGxdLFsiYm94d2FsbCJdLFtudWxsXV0sW1sicG9ydGFsIixbNCw4XV0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJ5ZWxsb3dwYXNzIl0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJwb3J0YWwiLFs0LDBdXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFsic3RvcmUiLG51bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFsibWlycm9yIiwicmlnaHQtdXAiXSxbbnVsbF1dLFtbImxpZ2h0IiwicmlnaHQiLCJyZWQiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbInJlZHBhc3MiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFsibWlycm9yIiwibGVmdC1kb3duIl0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFsibWlycm9yIiwicmlnaHQtZG93biJdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbImxpZ2h0IiwidXAiLCJyZWQiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dXQ==`,9,9) 
-      player.area = [9, 9];
-      player.level=35
+      tmp.area = [9, 9];
+      tmp.level=35
       
     }
-    else if (player.level == 36) {
+    else if (tmp.level == 36) {
       importL2(`W1tbImxpZ2h0IiwiZG93biIsImdyZWVuIl0sW251bGxdLFsibGlnaHQiLCJsZWZ0IiwicmVkIl0sWyJtaXJyb3IiLCJsZWZ0LXVwIl0sW251bGxdLFsicG9ydGFsIixbMywwXV0sW251bGxdXSxbW251bGxdLFtudWxsXSxbIm1pcnJvciIsInJpZ2h0LXVwIl0sW251bGxdLFsic3RvcmUiLG51bGxdLFsieWVsbG93cGFzcyJdLFsic3VuIl1dLFtbIm1pcnJvciIsImxlZnQtZG93biJdLFsibWlycm9yIiwibGVmdC11cCJdLFsieWVsbG93cGFzcyJdLFsibWlycm9yIiwicmlnaHQtZG93biJdLFtudWxsXSxbbnVsbF0sWyJncmVlbnBhc3MiXV0sW1sicG9ydGFsIixbMCw1XV0sW251bGxdLFsibG9jYXRpb24iXSxbIm1pcnJvciIsInJpZ2h0LXVwIl0sWyJiYWRib3h3YWxsIl0sWyJib3h3YWxsIl0sW251bGxdXSxbWyJzdW4iXSxbInJlZHBhc3MiXSxbImJhZGJveHdhbGwiXSxbImJhZGJveHdhbGwiXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1sibWlycm9yIiwibGVmdC11cCJdLFtudWxsXSxbIm1pcnJvciIsImxlZnQtZG93biJdLFsieWVsbG93cGFzcyJdLFtudWxsXSxbIm1pcnJvciIsInJpZ2h0LWRvd24iXSxbbnVsbF1dLFtbIm1pcnJvciIsImxlZnQtZG93biJdLFtudWxsXSxbbnVsbF0sWyJtaXJyb3IiLCJsZWZ0LWRvd24iXSxbbnVsbF0sW251bGxdLFsiYm94d2FsbCJdXV0=`)
-      player.area = [7, 7];
-      player.level=36
+      tmp.area = [7, 7];
+      tmp.level=36
       
     } 
-    else if (player.level == 37) {
+    else if (tmp.level == 37) {
       importL2(`W1tbImxvY2F0aW9uIl0sW251bGxdLFsibGlnaHQiLCJ1cCIsImdyZWVuIl0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sWyJyb3RhdGUxODAiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbWyJib3h3YWxsIl0sWyJib3h3YWxsIl0sWyJiYWRib3h3YWxsIl0sWyJzdW4iXSxbImJveHdhbGwiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbImxpZ2h0IiwicmlnaHQiLCJncmVlbiJdLFsicm90YXRlMTgwIl0sWyJtaXJyb3IiLCJsZWZ0LXVwIl0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dXQ==`,9,5)
-      player.area = [9, 5];
-      player.level=37
+      tmp.area = [9, 5];
+      tmp.level=37
     }
-     else if (player.level == 38) {
+     else if (tmp.level == 38) {
       importL2(`W1tbbnVsbF0sWyJwb3J0YWwiLFszLDJdXSxbbnVsbF0sWyJsaWdodCIsImRvd24iLCJncmVlbiJdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sWyJyb3RhdGUxODAiXSxbImJveCJdLFsibWlycm9yIiwibGVmdC11cCJdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sWyJib3giXSxbbnVsbF0sWyJtaXJyb3IiLCJsZWZ0LXVwIl0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1sic3VuIl0sW251bGxdLFsicG9ydGFsIixbMCwxXV0sW251bGxdLFsibG9jYXRpb24iXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdXV0=`,4,5)
-      player.area = [4, 5];
-      player.level=38
+      tmp.area = [4, 5];
+      tmp.level=38
     }
-    else if (player.level==39){
+    else if (tmp.level==39){
       importL2(`W1tbImxvY2F0aW9uIl0sWyJyb3RhdGUxODAiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sWyJtaXJyb3IiLCJsZWZ0LXVwIl0sW251bGxdLFsibGlnaHQiLCJ1cCIsImdyZWVuIl0sWyJsaWdodCIsInVwIiwicmVkIl0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbWyJ5ZWxsb3dwYXNzIl0sW251bGxdLFsibWlycm9yIiwibGVmdC11cCJdLFsicm90YXRlMTgwIl0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1sic3VuIl0sWyJ5ZWxsb3dwYXNzIl0sW251bGxdLFsibWlycm9yIiwicmlnaHQtdXAiXSxbInJvdGF0ZTE4MCJdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1sieWVsbG93cGFzcyJdLFtudWxsXSxbbnVsbF0sW251bGxdLFsibWlycm9yIiwicmlnaHQtdXAiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV1d`,6,7)
-      player.area = [6, 7];
-      player.level=39
+      tmp.area = [6, 7];
+      tmp.level=39
     }
-    else if(player.level==41){
+    else if(tmp.level==41){
     importL2(`W1tbInN1biJdLFsiYmFkYm94d2FsbCJdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJtaXJyb3IiLCJyaWdodC1kb3duIl0sW251bGxdXSxbWyJib3h3YWxsIl0sWyJsaWdodCIsImRvd24iLCJncmVlbiJdLFsiYm94d2FsbCJdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFtudWxsXSxbImxvY2F0aW9uIl0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJyb3RhdGU5MCJdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFsicm90YXRlOTAiXSxbInJvdGF0ZTE4MCJdLFsicm90YXRlMjcwIl0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJyb3RhdGUyNzAiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1siYm94d2FsbCJdLFsibWlycm9yIiwibGVmdC11cCJdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJtaXJyb3IiLCJsZWZ0LWRvd24iXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV1d`,8,8)
-     player.area = [8, 8];
-      player.level=41
+     tmp.area = [8, 8];
+      tmp.level=41
     }
-    else if (player.level==1001){
+    else if (tmp.level==1001){
       importL2(`W1tbImJveCJdLFsiYm94Il0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbImJveCJdLFsiYm94Il1dLFtbImJveCJdLFtudWxsXSxbbnVsbF0sWyJsb2NhdGlvbiJdLFsibGlnaHQiLCJkb3duIiwiZ3JlZW4iXSxbbnVsbF0sW251bGxdLFtudWxsXSxbImJveCJdXSxbW251bGxdLFtudWxsXSxbImJveCJdLFsiYm94Il0sW251bGxdLFsiYm94Il0sWyJib3giXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFtudWxsXSxbImJveCJdLFtudWxsXSxbImJveCJdLFtudWxsXSxbImJveCJdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbImJveCJdLFtudWxsXSxbImJveCJdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFtudWxsXSxbImJveCJdLFtudWxsXSxbImJveCJdLFtudWxsXSxbImJveCJdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFsiYm94Il0sWyJib3giXSxbbnVsbF0sWyJib3giXSxbImJveCJdLFtudWxsXSxbbnVsbF1dLFtbImJveCJdLFtudWxsXSxbbnVsbF0sW251bGxdLFsic3VuIl0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJib3giXV0sW1siYm94Il0sWyJib3giXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFsiYm94Il0sWyJib3giXV1d`,9,9)
-      player.area = [9, 9];
-      player.level=1001
+      tmp.area = [9, 9];
+      tmp.level=1001
     }
-    else if (player.level == "custom") {
+    else if (tmp.level == "custom") {
       importL(tmp.store);
     } else {
-      player.building = [
+      tmp.building = [
         [[null], ["light", "down", "green"], [null]],
         [["light", "right", "green"], ["end"], ["light", "left", "green"]],
         [[null], [null], [null]],
       ];
-      (player.location = [0, 0]),
-        (player.light = [[0, 1]]),
-        (player.area = [3, 3]);
+      (tmp.location = [0, 0]),
+        (tmp.light = [[0, 1]]),
+        (tmp.area = [3, 3]);
     }
-  
-    save();
+    
     calculation2()
-    player.previous = [];
-    calculation2()
+    tmp.previous = [];
   }

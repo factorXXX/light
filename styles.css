@@ -2,6 +2,7 @@
     background-color: #444444;
     table-layout: fixed;
     border: solid #AAAAAA 3px;
+    user-select: none
   }
 .rows {
     display:flex;
@@ -11,13 +12,10 @@
     padding: 0px;
     width: 70px;
     height: 70px;
-
-  
   }
 .rows:nth-child(odd) .columns:nth-child(even), .rows:nth-child(even) .columns:nth-child(odd) {
       background-color: #555555;
     }
-  
 body {
     background-color: #222222;
     color: #dfdfdf;
@@ -49,9 +47,7 @@ table  {
 .portalButton:hover {
   background:#565954;
 }
-.beaten {
-  background:#449944;
-}
+
 .trans3 {
   transform: rotate(90deg);
 }
@@ -61,6 +57,81 @@ table  {
 .trans1 {
   transform: rotate(270deg);
 }
-.control {
-  border-color:#aaaaaa;text-align:center;border-style:solid;height:50px;width:50px
+.control td{
+  box-sizing: border-box;
+  border-color:#aaaaaa;
+  text-align:center;
+  user-select: none;
+  touch-action: manipulation;
+  display: none;
+}
+@media (pointer:none), (pointer:coarse){
+  .control td{
+    width: 25vw;
+    height: 200px;
+    font-size: 150px;
+    display:inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid #aaaaaa;
+  }
+  .control tr:nth-child(1) td:nth-child(1){
+    border: none !important;
+  }
+}
+
+
+
+.selectmenu div {
+  background:#333333; 
+  margin:2px;
+  min-width: 220px;
+  width: 220px;
+  height: 220px;
+  user-select: none;
+}
+.locked {
+  text-align: center;
+  max-height: 220px;
+  min-height: 220px;
+  height: 220px;
+  border:2px solid #aaaaaa;
+  box-sizing: border-box;
+}
+.unlocked {
+  min-width: max-content !important ;
+}
+.selectmenu div tr:nth-child(1) td{
+  box-sizing: border-box;
+  width: 220px;
+  height: 55px;
+  font-weight: 500;
+  font-size: 24px;
+  text-align: center;
+  border:2px solid #aaaaaa;
+  border-bottom: none;
+}
+
+.selectmenu div tr:nth-child(n+2) td {
+  width: 55px;
+  height: 55px;
+  box-sizing: border-box;
+  border:2px solid #aaaaaa;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.selectmenu div tr:nth-child(n+2) td:hover {
+  filter: brightness(120%);
+  transition-duration: .15s;
+}
+.unbeaten {
+  background: #333333;
+}
+.beaten {
+  background:#449944;
+}
+.wide {
+  width: 110px !important;
 }
