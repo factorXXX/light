@@ -1138,6 +1138,6 @@ function reset() {
     }
   
     save();
-    calcolor();
+    calculation2()
     player.previous = [];
   }
