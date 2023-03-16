@@ -1,5 +1,4 @@
 var tmp = {
-  win: false,
   color: [],
   a: false,
   b: false,
@@ -13,8 +12,9 @@ var tmp = {
 function img(x) {
   return (
     "https://cdn.glitch.global/1c628347-f3a3-4ff6-841d-e401a9fb21ec/" +
-    x +".png?v=1678609082279"
-);
+    x +
+    ".png?v=1678609082279"
+  );
 }
 function music(x) {
   return (
@@ -140,7 +140,7 @@ Vue.component("level", {
     `,
 });
 
-function findLightPos(a, b, bool = false, amt = false, layer = 0,M=false, times=1) {
+function findLightPos(a, b, bool = false, amt = false, layer = 0,M=false) {
   let a1=tmp.where
   if(M)a1=tmp.where2
   if (a1.length==0){if(bool)return false;return};
@@ -152,16 +152,6 @@ function findLightPos(a, b, bool = false, amt = false, layer = 0,M=false, times=
   let pos = res[layer][2];
   if (["right", "down"].includes(pos)) pos = reverse(pos);
   return color + pos + "line";
-}
-function calculation2() {
-  calcolor()
-  light(false, true);
-  calcolor();
-  light(false, false, true);
-  light(true);
-  calcolor();
-  light()
-  light(false, false, true);
 }
 function light(win = false, withlight = false, withM = false) {
   let lightL = [];
@@ -177,8 +167,8 @@ function light(win = false, withlight = false, withM = false) {
       if (player.building[locat[0]] == null) break;
       if (player.building[locat[0]][locat[1]] == null) break;
       let build = player.building[locat[0]][locat[1]][0];
-      if (build == "sun" && win) {tmp.win = true};
-      if (!withlight) {if (["badbox", "badboxwall"].includes(build))
+      if (build == "sun" && win) return true;
+      if (["badbox", "badboxwall"].includes(build))
         player.building[locat[0]][locat[1]] = [null];
       if (["store"].includes(build)) {
         if (player.building[locat[0]][locat[1]][1] == null) {
@@ -187,7 +177,7 @@ function light(win = false, withlight = false, withM = false) {
         if (player.building[locat[0]][locat[1]][1] != null) {
           if (player.building[locat[0]][locat[1]][1] != color) color = "yellow";
         }
-      }}
+      }
       if (build == "light" && try1 != 1) {
         if (withlight) lightL.push([...locat, pos, color]);
         break;
@@ -203,6 +193,7 @@ function light(win = false, withlight = false, withM = false) {
           "greenpass",
           "yellowpass",
           "store",
+          
         ].includes(build)
       )
         break;
@@ -257,6 +248,9 @@ function light(win = false, withlight = false, withM = false) {
   if(withlight)return tmp.where1=lightL;
   else if(withM)return tmp.where2=lightL;
   else return tmp.where=lightL;
+
+
+ 
 }
 function calcolor() {
   let b = [];
@@ -275,6 +269,7 @@ function calcolor() {
   return (tmp.color = b);
 }
 document.addEventListener("keydown", (e) => {
+  
   let isShift = !!window.event.shiftKey;
   doSomething(e.code,isShift)
 
@@ -290,7 +285,6 @@ function doSomething(a,b){
     player.building = player.previous[player.previous.length - 1].building;
     player.location = player.previous[player.previous.length - 1].location;
     player.previous.pop();
-    calculation2()
     return;
   }
   player.previous.push([{}]);
@@ -302,7 +296,6 @@ function doSomething(a,b){
     enter();
   }
 
-
   if (a === "KeyW" || a === "ArrowUp")
     Vue.set(player.location, 0, Math.max(locat[0] - 1, 0));
   else if (a === "KeyS" || a === "ArrowDown")
@@ -311,12 +304,6 @@ function doSomething(a,b){
     Vue.set(player.location, 1, Math.max(locat[1] - 1, 0));
   else if (a === "KeyD" || a === "ArrowRight")
     Vue.set(player.location, 1, Math.min(player.area[1] - 1, locat[1] + 1));
-    if (["wall","redpass","yellowpass","greenpass","light","badboxwall"].includes(player.building[player.location[0]][player.location[1]][0])){
-      player.location[0] = locat[0]
-      player.location[1] = locat[1]
-    };
-    //console.log(player.building[player.location[0]][player.location[1]][0])
-    //console.log("locat = ",locat[0],locat[1],"  of player =", player.location[0],player.location[1])
   if (locat[0] == player.location[0] && locat[1] == player.location[1]) {
     player.previous.pop();
     return;
@@ -329,6 +316,7 @@ function doSomething(a,b){
 
   if (player.building[player.location[0]][player.location[1]][0] != null) {
     let buildtouch = player.building[player.location[0]][player.location[1]];
+
     if (["box", "badbox", "mirror", "store","rotate180","rotate90","rotate270"].includes(buildtouch[0])) {
       let pos = [0, 0];
       let req = true;
@@ -351,13 +339,11 @@ function doSomething(a,b){
       if (!req) {
         player.location = [locat[0], locat[1]];
         player.previous.pop();
-        calculation2()
         return;
       }
       if ((player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] != null)&&buildtouch[0][0]!="r") {
         player.location = [locat[0], locat[1]];
         player.previous.pop();
-        calculation2()
         return;
       }
       if ((["mirror","light"].includes(player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0][0]=="r") {
@@ -390,14 +376,13 @@ function doSomething(a,b){
       player.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2] =
         buildtouch;
       player.location = [locat[0] + pos[0], locat[1] + pos[1]];
-      calculation2()
+      calcolor();
       return;
     }
-    calculation2()
+    calcolor();
     if (["portal", "badportal"].includes(buildtouch[0])) return;
     player.location = [...locat];
   }
-  calculation2()
 }
 setInterval(function () {
   if (player.location[0] < 0) player.location[0] = 0;
@@ -408,7 +393,7 @@ setInterval(function () {
     (player.bestlevel == undefined || player.level > player.bestlevel)
   )
     player.bestlevel = player.level;
-  if (!tmp.b && tmp.win) {
+  if (!tmp.b && light(true)) {
     tmp.b = true;
     new Audio(music("win")).play();
     setTimeout(function () {
@@ -421,12 +406,14 @@ setInterval(function () {
       } else tmp.page = 2;
       reset();
       tmp.b = false;
-      tmp.win = false
       player.previous = [];
     }, 1000);
   }
-
-  //calcolor()
+  light(false, true);
+  light(false, false, true);
+  calcolor();
+  light();
+   
   if(player.key==undefined)player.key=true
 }, 50);
 
