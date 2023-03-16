@@ -58,15 +58,21 @@ table  {
   transform: rotate(270deg);
 }
 .control td{
-  box-sizing: border-box;
-  border-color:#aaaaaa;
-  text-align:center;
-  user-select: none;
-  touch-action: manipulation;
   display: none;
+}
+.opts{
+    box-sizing: border-box;
+    border-color:#aaaaaa;
+    text-align:center;
+    user-select: none;
+    border: 2px solid #aaaaaa;
+    height: 55px;
+    width: 55px;
 }
 @media (pointer:none), (pointer:coarse){
   .control td{
+    box-sizing: border-box;
+    touch-action: manipulation;
     width: 25vw;
     height: 200px;
     font-size: 150px;

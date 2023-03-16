@@ -119,7 +119,7 @@ Vue.component("machine", {
 Vue.component("options", {
   template: `
     <table>
-    <tr><td onclick="tmp.page=2" class="control">Back</td><td onclick="exportSave()" class="control" id="export">Export</td><td onclick="importSave()" class="control">Import</td></tr>
+    <tr><td onclick="tmp.page=2" class="opts">Back</td><td onclick="exportSave()" class="opts" id="export">Export</td><td onclick="importSave()" class="opts">Import</td></tr>
     </table>
     `,
 });
