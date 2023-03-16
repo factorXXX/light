@@ -1140,4 +1140,5 @@ function reset() {
     save();
     calculation2()
     player.previous = [];
+    calculation2()
   }

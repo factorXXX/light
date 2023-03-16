@@ -509,4 +509,5 @@ function importL2(imported = undefined,a1=7,a2=7) {
   //tmp.page = 1;
   player.level = "custom";
   tmp.store = imported;
+calculation2()
 }
