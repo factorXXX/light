@@ -417,6 +417,7 @@ function doSomething(a,b){
         }
         tmp.building[locat[0] + pos[0]][locat[1] + pos[1]] = [null];
         tmp.location = [locat[0] + pos[0], locat[1] + pos[1]];
+        calculation2()
         return;
       }
       else if ((tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] != null)&&buildtouch[0][0]=="r") {
