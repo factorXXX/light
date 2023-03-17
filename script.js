@@ -119,7 +119,16 @@ Vue.component("machine", {
 Vue.component("options", {
   template: `
     <table>
-    <tr><td onclick="tmp.page=2" class="opts">Back</td><td onclick="exportSave()" class="opts" id="export">Export</td><td onclick="importSave()" class="opts">Import</td></tr>
+    <tr>
+      <td onclick="tmp.page=2" class="opts">Back</td>
+      <td onclick="exportSave()" class="opts" id="export">Export</td>
+      <td onclick="importSave()" class="opts">Import</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td @click="document.location.href = 'https://discord.gg/MXyXdXrC5H'" class="opts" style="background-color: #5865F2">Discord</td>
+      <td onclick="hardReset()" style="background-color: #b44949" class="opts">Hard Reset</td>
+    </tr>
     </table>
     `,
 });
@@ -132,12 +141,9 @@ Vue.component("level", {
    <tr>
      <td style="height: 32px;"><span style="font-size:20px; text-align:center">{{tmp.level>=1001?"Hard Mode Level "+Math.floor((tmp.level-1001)/12+1).toString()+"-"+(tmp.level+8-Math.floor((tmp.level+7)/12)*12).toString():"Level "+Math.floor((tmp.level-1)/12+1).toString()+"-"+(tmp.level-Math.floor((tmp.level-1)/12)*12).toString()}}</span><br><br>
       Arrows or WASD: Move the Character<br>
-      P: Go to Previous level<br>
-      E: Enter the Portal if you can<br>
-      R: Restart the Level<br>
+      <span v-if="tmp.level>=13">E: Enter the Portal if you can<br></span>
+      Shift + R: Restart the Level<br>
       U: Undo a move<br>
-      H: Hard Reset Once you confirm<br>
-      Shift + D: Go to my Discord
     </td> 
 
     <td style="text-align: right; width:180px">
@@ -155,8 +161,17 @@ Vue.component("level", {
 
 <tr v-if="player.key">
 <td colspan="2">
-<table class="control"><tr><td ></td><td onclick="doSomething('KeyW',false)">&#8593;</td><td onclick="doSomething('KeyU',false)">&#8617;</td></tr>
-<tr><td onclick="doSomething('KeyA',false)">&#8592;</td><td onclick="doSomething('KeyS',false)">&#8595;</td><td onclick="doSomething('KeyD',false)">&#8594;</td></tr></table>
+<table class="control">
+  <tr>
+  <td onclick="doSomething('KeyU',false)">U</td>
+  <td onclick="doSomething('KeyW',false)">&#8593;</td>
+  <td v-if="tmp.level>=13" onclick="doSomething('KeyE',false)">E</td>
+  </tr>
+  <tr>
+    <td onclick="doSomething('KeyA',false)">&#8592;</td>
+    <td onclick="doSomething('KeyS',false)">&#8595;</td>
+    <td onclick="doSomething('KeyD',false)">&#8594;</td>
+  </tr></table>
 </td>
 </tr>
    </table>  
@@ -254,7 +269,7 @@ function light(win = false, withlight = false, withM = false) {
         lightL.pop();
         locat = [...tmp.building[locat[0]][locat[1]][1]];
         if (JSON.stringify(tmp.location) == JSON.stringify(locat)) {
-          lightL.pop();
+          //lightL.pop();
           break;
         }
       }
@@ -305,8 +320,8 @@ document.addEventListener("keydown", (e) => {
 function doSomething(a,b){
   if (a === "KeyD" && b)
     document.location.href = "https://discord.gg/MXyXdXrC5H";
-  if (a === "KeyR") reset();
-  if (a === "KeyH") hardReset();
+  if (a === "KeyR" && b) reset();
+  //if (a === "KeyH") hardReset();
   if (a === "KeyI" && b) importL();
   if (a === "KeyU") {
     if (tmp.previous.length == 0) return;
@@ -334,7 +349,7 @@ function doSomething(a,b){
     Vue.set(tmp.location, 1, Math.max(locat[1] - 1, 0));
   else if (a === "KeyD" || a === "ArrowRight")
     Vue.set(tmp.location, 1, Math.min(tmp.area[1] - 1, locat[1] + 1));
-    if (["wall","redpass","yellowpass","greenpass","light","badboxwall"].includes(tmp.building[tmp.location[0]][tmp.location[1]][0])){
+    if (["wall","redpass","yellowpass","greenpass","light","badboxwall","wall","sun"].includes(tmp.building[tmp.location[0]][tmp.location[1]][0])){
       tmp.location[0] = locat[0]
       tmp.location[1] = locat[1]
     };
