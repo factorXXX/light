@@ -41,7 +41,7 @@ Vue.component("selectmenu", {
   <td v-for="d in 4" style="padding:0px">
     <table>
       <div class="unlocked" v-if="(player.levelbeaten.filter(a=>a>((c*3+d-3)*12-24)&&a<=((c*3+d-3)*12-12)).length>=9)||((c*3+d-3)==1)">
-      <tr><td colspan="4">Chapter {{c*3+d-3}}</td></tr>
+      <tr><td colspan="4" style='vertical-align: middle'>Chapter {{c*3+d-3}}</td></tr>
       <tr v-for="a in 3">
         <td v-for="b in 4" 
           :class="{
