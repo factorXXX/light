@@ -327,7 +327,7 @@ document.addEventListener("keydown", (e) => {
   doSomething(e.code,isShift)
 
 });
-function doSomething(a,b){
+function doSomething(a,b){ if (tmp.win == false) {
     if (a === "KeyR" && b) reset();
   if (a === "KeyI" && b) importL();
   if (a === "KeyU") {
@@ -447,7 +447,7 @@ function doSomething(a,b){
     tmp.location = [...locat];
   }
   calculation2()
-}
+}}
 setInterval(function () {
   if (tmp.location[0] < 0) tmp.location[0] = 0;
   if (tmp.location[1] < 0) tmp.location[1] = 0;
