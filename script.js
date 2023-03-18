@@ -45,6 +45,7 @@ Vue.component("selectmenu", {
       <tr v-for="a in 3">
         <td v-for="b in 4" 
           :class="{
+            perfect:player.perfectbeaten.includes(((c*3+d-3)*12+(a*4+b-4)-12)),
             beaten:player.levelbeaten.includes(((c*3+d-3)*12+(a*4+b-4)-12)),
             unbeaten:!player.levelbeaten.includes(((c*3+d-3)*12+(a*4+b-4)-12))
           }"
@@ -70,6 +71,7 @@ Vue.component("selectmenu", {
         <td v-for="b in 2"
           :class="{
             wide: true,
+            perfect:player.perfectbeaten.includes(((c*3+d-3)*6+(a*2+b-2)+994)),
             beaten:player.levelbeaten.includes(((c*3+d-3)*6+(a*2+b-2)+994)),
             unbeaten:!player.levelbeaten.includes(((c*3+d-3)*6+(a*2+b-2)+994))
           }"
@@ -162,7 +164,7 @@ Vue.component("level", {
 
 <tr v-if="player.key">
 <td colspan="2">
-Total moves: {{tmp.previous.length}}
+Total moves: {{tmp.previous.length}} Perfect requirement: {{perfect(tmp.level)}}
 </td>
 </tr>
    </table>  
@@ -448,6 +450,13 @@ setInterval(function () {
       if (tmp.level != "custom") {
         if (!player.levelbeaten.includes(tmp.level))
           player.levelbeaten.push(tmp.level);
+          if(perfect(tmp.level)!=undefined){
+            if(tmp.previous.length<=perfect(tmp.level)&&!player.perfectbeaten.includes(tmp.level)){
+              player.perfectbeaten.push(tmp.level);
+            }
+
+          }
+          
         if (!(tmp.level / 12 == Math.floor(tmp.level / 12)))
           tmp.level++;
         else tmp.page = 2;
@@ -461,6 +470,7 @@ setInterval(function () {
 
   //calcolor()
   if(player.key==undefined)player.key=true
+  if(player.perfectbeaten==undefined)player.perfectbeaten=[]
 }, 50);
 
 function enter() {
@@ -543,4 +553,8 @@ function importL2(imported = undefined,a1=7,a2=7) {
   //tmp.page = 1;
   tmp.level = "custom";
   tmp.store = imported;
+}
+function perfect(a){
+  return [null,3,9,6,7,3,14,15,17,5,7,24,31,4,24,23,24,21,15,25,46,24,24,27,90,32,21,110,59,6,39,58,23,4,14,72,44][a]
+
 }

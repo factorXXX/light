@@ -138,6 +138,9 @@ table  {
 .beaten {
   background:#449944;
 }
+.perfect {
+  background:#CCA43D;
+}
 .wide {
   width: 110px !important;
 }

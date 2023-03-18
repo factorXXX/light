@@ -1,5 +1,6 @@
 var player={
   levelbeaten:[0],
+  perfectbeaten:[],
   key:true,
 }
 function save() {
@@ -35,6 +36,7 @@ window.onload=function(){
     if(player==null){
   player={  
     levelbeaten:[0],
+    perfectbeaten:[],
     key:true,
       }
     save()
