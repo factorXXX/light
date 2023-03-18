@@ -277,7 +277,7 @@ function light(win = false, withlight = false, withM = false) {
         lightL.pop();
         locat = [...tmp.building[locat[0]][locat[1]][1]];
         if (JSON.stringify(tmp.location) == JSON.stringify(locat)) {
-          //lightL.pop();
+          lightL.pop();
           break;
         }
       }
