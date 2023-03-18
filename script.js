@@ -137,11 +137,19 @@ Vue.component("options", {
 Vue.component("level", {
   template: `
         <table>
-    <tr>
-    <td colspan="2"><machine></machine></td><br>
+      <tr>
+        <td colspan="2"><machine></machine></td><br>
       </tr>
    <tr>
-     <td style="height: 32px;"><span style="font-size:20px; text-align:center">{{tmp.level>=1001?"Hard Mode Level "+Math.floor((tmp.level-1001)/12+1).toString()+"-"+(tmp.level+8-Math.floor((tmp.level+7)/12)*12).toString():"Level "+Math.floor((tmp.level-1)/12+1).toString()+"-"+(tmp.level-Math.floor((tmp.level-1)/12)*12).toString()}}</span><br><br>
+     <td style="height: 32px;">
+      <span style="font-size:20px; text-align:center">
+      {{tmp.level>=1001?"Hard Mode Level "+Math.floor((tmp.level-1001)/12+1).toString()+"-"+(tmp.level+8-Math.floor((tmp.level+7)/12)*12).toString():"Level "+Math.floor((tmp.level-1)/12+1).toString()+"-"+(tmp.level-Math.floor((tmp.level-1)/12)*12).toString()}}</span>        <span style="font-size:20px"
+      :class="{
+        greenCounter:(tmp.previous.length<=perfect[tmp.level]),
+        redCounter:!(tmp.previous.length<=perfect[tmp.level])
+        }">
+      [{{tmp.previous.length}}/{{perfect[tmp.level]}}]</span>
+      <br><br>
       Arrows or WASD: Move the Character<br>
       <span v-if="tmp.level>=13">E: Enter the Portal if you can<br></span>
       Shift + R: Restart the Level<br>
@@ -175,12 +183,6 @@ Vue.component("level", {
     <td onclick="doSomething('KeyD',false)">&#8594;</td>
   </tr></table>
   </td>
-</tr>
-<br>
-<tr>
-<td colspan="2">
-Total moves: {{tmp.previous.length}} Perfect requirement: {{perfect[tmp.level]}}
-</td>
 </tr>
    </table>  
     `,
