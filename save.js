@@ -26,6 +26,7 @@ var app = new Vue({
         tmp,
       },
   })
+  if(player.perfectbeaten==undefined)player.perfectbeaten=[]
   app.$forceUpdate();
   
   
