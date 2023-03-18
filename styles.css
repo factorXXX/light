@@ -147,3 +147,11 @@ table  {
 .wide {
   width: 110px !important;
 }
+.redCounter{
+  float: right;
+  color: #aa5555
+}
+.greenCounter{
+  float: right;
+  color: #449944;
+}
