@@ -104,7 +104,7 @@ Vue.component("machine", {
     <table class="gamezone" >
     <tr class="rows" height="30px" v-for="a in tmp.area[0]">
     <td class="columns" v-for="b in tmp.area[1]"> 
-    <img  width="70" height="70" v-bind:src="img((tmp.location[0]==(a-1)&&tmp.location[1]==(b-1))?'location':
+    <img  width="60" height="60" v-bind:src="img((tmp.location[0]==(a-1)&&tmp.location[1]==(b-1))?'location':
     tmp.building[a-1][b-1][0]=='light'?tmp.building[a-1][b-1][2]+tmp.building[a-1][b-1][0]:
     tmp.building[a-1][b-1][0]=='mirror'?'mirror'+(findLightPos(a-1, b-1, true,false,0,true)?tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length-1][3]:''):
     tmp.building[a-1][b-1][0]=='store'?tmp.building[a-1][b-1][1]+tmp.building[a-1][b-1][0]:
@@ -112,7 +112,7 @@ Vue.component("machine", {
     tmp.building[a-1][b-1][0]))"
     :class="{trans1:tmp.building[a-1][b-1][1]=='right'||tmp.building[a-1][b-1][1]=='left-down',trans2:tmp.building[a-1][b-1][1]=='up'||tmp.building[a-1][b-1][1]=='right-down',trans3:tmp.building[a-1][b-1][1]=='left'||tmp.building[a-1][b-1][1]=='right-up'}"
     >
-    <img width="70" height="70" style="position: relative; bottom: 74px" v-bind:src="img(findLightPos(a-1,b-1,false,true)>=2?findLightPos(a-1,b-1,false,false,1):'null')">
+    <img width="60" height="60" style="position: relative; bottom: 74px" v-bind:src="img(findLightPos(a-1,b-1,false,true)>=2?findLightPos(a-1,b-1,false,false,1):'null')">
     </td>
     </tr>
     </table>

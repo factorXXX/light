@@ -6,12 +6,12 @@
   }
 .rows {
     display:flex;
-    height: 70px;
+    height: 60px;
   }
 .columns {
     padding: 0px;
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
   }
 .rows:nth-child(odd) .columns:nth-child(even), .rows:nth-child(even) .columns:nth-child(odd) {
       background-color: #555555;
