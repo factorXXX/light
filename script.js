@@ -112,7 +112,7 @@ Vue.component("machine", {
     tmp.building[a-1][b-1][0]))"
     :class="{trans1:tmp.building[a-1][b-1][1]=='right'||tmp.building[a-1][b-1][1]=='left-down',trans2:tmp.building[a-1][b-1][1]=='up'||tmp.building[a-1][b-1][1]=='right-down',trans3:tmp.building[a-1][b-1][1]=='left'||tmp.building[a-1][b-1][1]=='right-up'}"
     >
-    <img width="60" height="60" style="position: relative; bottom: 74px" v-bind:src="img(findLightPos(a-1,b-1,false,true)>=2?findLightPos(a-1,b-1,false,false,1):'null')">
+    <img width="60" height="60" style="position: relative; bottom: 64px" v-bind:src="img(findLightPos(a-1,b-1,false,true)>=2?findLightPos(a-1,b-1,false,false,1):'null')">
     </td>
     </tr>
     </table>
