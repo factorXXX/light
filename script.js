@@ -326,8 +326,6 @@ document.addEventListener("keydown", (e) => {
 
 });
 function doSomething(a,b){
-  if (a === "KeyD" && b)
-    document.location.href = "https://discord.gg/MXyXdXrC5H";
     if (a === "KeyR" && b) reset();
   if (a === "KeyI" && b) importL();
   if (a === "KeyU") {
