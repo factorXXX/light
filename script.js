@@ -544,6 +544,7 @@ function importL(imported = undefined) {
   tmp.page = 1;
   tmp.level = "custom";
   tmp.store = imported;
+  calculation2()
 }
 function importL2(imported = undefined,a1=7,a2=7) {
   if (imported === undefined) imported = prompt("paste your save here");
@@ -567,5 +568,6 @@ function importL2(imported = undefined,a1=7,a2=7) {
   //tmp.page = 1;
   tmp.level = "custom";
   tmp.store = imported;
+  calculation2()
 }
 const perfect= [null,3,9,6,7,3,14,15,17,5,7,24,31,4,24,23,24,21,15,25,46,24,24,27,90,32,21,96,59,6,39,58,23,4,14,59,44,24,36,78]
