@@ -11,6 +11,7 @@ function load() {
   if (!localStorage.getItem("player")) {
     player={
   levelbeaten:[0],
+  perfectbeaten:[],
   key:true,
     }
     save()
@@ -73,7 +74,8 @@ function importSave(imported = undefined) {
 function hardReset(){
   if(confirm("Are you sure??? It will reset EVERYTHING and you will not get any reward!!!")){
     player={
-  levelbeaten:[]
+  levelbeaten:[],
+  perfectbeaten:[],
     }
     save()
     window.location.reload();
