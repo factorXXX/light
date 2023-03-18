@@ -18,15 +18,14 @@ function load() {
     window.location.reload();
   }
 
-  player = merge(player, JSON.parse(localStorage.getItem('player')));
-var app = new Vue({
+  player = {...player, ...JSON.parse(localStorage.getItem('player'))} 
+  var app = new Vue({
       el: "#app",
       data: {
         player,
         tmp,
       },
   })
-  if(player.perfectbeaten==undefined)player.perfectbeaten=[]
   app.$forceUpdate();
   
   
