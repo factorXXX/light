@@ -87,9 +87,6 @@ table  {
     font-size: 70px;
     border: solid 5px #aaaaaa;
   }
-  .control tr:nth-child(1) td:nth-child(1){
-    border: none !important;
-  }
 }
 
 
