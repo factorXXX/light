@@ -58,28 +58,34 @@ table  {
   transform: rotate(270deg);
 }
 .control td{
-  display: none;
+  width:40px;
+  height:40px;
+  border: 2px solid #aaaaaa;
+  max-width: 120px;
+  max-height: 120px;
+  text-align: center;
+  user-select: none;
+  touch-action: manipulation;
+  display:inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .opts{
-    box-sizing: border-box;
-    border-color:#aaaaaa;
-    text-align:center;
-    user-select: none;
-    border: 2px solid #aaaaaa;
-    height: 55px;
-    width: 55px;
+  box-sizing: border-box;
+  border-color:#aaaaaa;
+  background: #333;
+  text-align:center;
+  user-select: none;
+  border: 2px solid #aaaaaa;
+  height: 90px;
+  width: 90px;
 }
 @media (pointer:none), (pointer:coarse){
   .control td{
-    box-sizing: border-box;
-    touch-action: manipulation;
-    width: 25vw;
-    height: 200px;
-    font-size: 150px;
-    display:inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 5px solid #aaaaaa;
+    width: 15vw;
+    height: 15vw;
+    font-size: 70px;
+    border: solid 5px #aaaaaa;
   }
   .control tr:nth-child(1) td:nth-child(1){
     border: none !important;
