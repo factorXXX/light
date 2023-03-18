@@ -1139,4 +1139,6 @@ function reset() {
     
     calculation2()
     tmp.previous = [];
+
+    save()
   }

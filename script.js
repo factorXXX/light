@@ -159,6 +159,12 @@ Vue.component("level", {
 <tr><td onclick="doSomething('KeyA',false)">&#8592;</td><td onclick="doSomething('KeyS',false)">&#8595;</td><td onclick="doSomething('KeyD',false)">&#8594;</td></tr></table>
 </td>
 </tr>
+
+<tr v-if="player.key">
+<td colspan="2">
+Total moves: {{tmp.previous.length}}
+</td>
+</tr>
    </table>  
     `,
 });
@@ -323,6 +329,10 @@ function doSomething(a,b){
     tmp.building[tmp.location[0]][tmp.location[1]][0] == "portal"
   ) {
     enter();
+    tmp.previous[tmp.previous.length - 1].location = locat;
+
+    tmp.previous[tmp.previous.length - 1].building = JSON.parse(
+      JSON.stringify(tmp.building))
   }
 
 
@@ -402,12 +412,12 @@ function doSomething(a,b){
         }
         tmp.building[locat[0] + pos[0]][locat[1] + pos[1]] = [null];
         tmp.location = [locat[0] + pos[0], locat[1] + pos[1]];
-        return;
+        return calculation2();
       }
       else if ((tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] != null)&&buildtouch[0][0]=="r") {
         tmp.location = [locat[0], locat[1]];
         tmp.previous.pop();
-        return;
+        return calculation2();
       }
       tmp.building[locat[0] + pos[0]][locat[1] + pos[1]] = [null];
       tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2] =
@@ -497,7 +507,8 @@ function importL(imported = undefined) {
       if (tmp.building[i][j][0] == "light") light.push([i, j]);
     }
   }
-  tmp.light = light;
+ 
+ tmp.light = light;
   for (let i = 0; i <= 8; i++) {
     let num1 = tmp.building[i].findIndex((x) => x[0] == "location");
     if (num1 != -1) {
