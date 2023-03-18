@@ -18,20 +18,18 @@ function load() {
     window.location.reload();
   }
 
-  player = JSON.parse(localStorage.getItem('player'));
-var app = new Vue({
+  player = {...player, ...JSON.parse(localStorage.getItem('player'))} 
+  var app = new Vue({
       el: "#app",
       data: {
         player,
         tmp,
       },
   })
-  if(player.perfectbeaten==undefined)player.perfectbeaten=[]
   app.$forceUpdate();
   
   
 }
-//setInterval(function () {save()}, 1000);
 window.onload=function(){
 
   load()
@@ -50,18 +48,12 @@ window.onload=function(){
 
 function exportSave() {
   let str = btoa(JSON.stringify(player));
-  //wtf is this?? 
-/*const el = document.createElement("textarea");	
-el.value = str;	document.body.appendChild(el);	
-el.select();	el.setSelectionRange(0, 99999); 
-document.execCommand("copy"); */
 navigator.clipboard.writeText(str)
 let btn=document.getElementById("export")
 btn.style.background=("#449944")
 setTimeout(() => {
   btn.style.background=("")
 }, 600);
-//document.body.removeChild(el);
 }
 
 

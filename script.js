@@ -179,7 +179,7 @@ Vue.component("level", {
 <br>
 <tr>
 <td colspan="2">
-Total moves: {{tmp.previous.length}} Perfect requirement: {{perfect(tmp.level)}}
+Total moves: {{tmp.previous.length}} Perfect requirement: {{perfect[tmp.level]}}
 </td>
 </tr>
    </table>  
@@ -277,7 +277,7 @@ function light(win = false, withlight = false, withM = false) {
         lightL.pop();
         locat = [...tmp.building[locat[0]][locat[1]][1]];
         if (JSON.stringify(tmp.location) == JSON.stringify(locat)) {
-          lightL.pop();
+          //lightL.pop();
           break;
         }
       }
@@ -462,8 +462,8 @@ setInterval(function () {
       if (tmp.level != "custom") {
         if (!player.levelbeaten.includes(tmp.level))
           player.levelbeaten.push(tmp.level);
-          if(perfect(tmp.level)!=undefined){
-            if(tmp.previous.length<=perfect(tmp.level)&&!player.perfectbeaten.includes(tmp.level)){
+          if(perfect[tmp.level]!=undefined){
+            if(tmp.previous.length<=perfect[tmp.level]&&!player.perfectbeaten.includes(tmp.level)){
               player.perfectbeaten.push(tmp.level);
             }
 
@@ -566,7 +566,4 @@ function importL2(imported = undefined,a1=7,a2=7) {
   tmp.level = "custom";
   tmp.store = imported;
 }
-function perfect(a){
-  return [null,3,9,6,7,3,14,15,17,5,7,24,31,4,24,23,24,21,15,25,46,24,24,27,90,32,21,96,59,6,39,58,23,4,14,61,44][a]
-
-}
+const perfect= [null,3,9,6,7,3,14,15,17,5,7,24,31,4,24,23,24,21,15,25,46,24,24,27,90,32,21,96,59,6,39,58,23,4,14,61,44]
