@@ -320,7 +320,7 @@ td div {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 55px;
-  filter: invert(17%) sepia(90%) saturate(3310%) hue-rotate(353deg) brightness(89%) contrast(94%);
+  filter:  invert(17%) sepia(90%) saturate(3310%) hue-rotate(353deg) brightness(89%) contrast(94%) drop-shadow(0px 0px 4px #000000);
 }
 .badportal div {
   z-index: 1;
@@ -329,7 +329,7 @@ td div {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 55px;
-  filter: invert(70%)
+  filter:invert(70%) drop-shadow(0px 0px 4px #000000) ;
 }
 .player{
   background: url('images/player.gif') ;
