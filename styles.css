@@ -332,8 +332,8 @@ td div {
   filter: invert(70%)
 }
 .player{
-  background: url('images/player.gif') ;
-  background-size: 120px;
+  background: url('images/location.png') ;
+  background-size: 48px;
   background-position: center;
   z-index: 999;
 }
