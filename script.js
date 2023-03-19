@@ -109,10 +109,8 @@ Vue.component("machine", {
     }"><div></div></div>
 
     <div v-for="layer in findLightPos(a-1,b-1,false,true,0,true)" :class="{
-      greenLaser:tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0&& tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][3] == 'green',
-      yellowLaser:tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0&& tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][3] == 'yellow',
-      redLaser:tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0&& tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][3] == 'red',
-      
+      [tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][3]+'Laser']:true,
+    
       trans1:tmp.building[a-1][b-1][1]=='left-down'||
       ((tmp.building[a-1][b-1][0]!=='mirror')&&
       (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
