@@ -1131,6 +1131,28 @@ function reset() {
     }
     else if (tmp.level == "custom") {
       importL(tmp.store);
+    }  else if (tmp.level == "ch1") {
+
+      tmp.building = [
+        [[null], [null], [null], [null], [null], ["boxwall"], [null], [null], [null], [null], [null], [null], ["light",'down',"green"], [null], [null]],
+        [[null], [null], [null], [null], [null], ["boxwall"], [null], ["mirror","right-down"], [null], [null], [null], [null], [null], [null], [null]],
+        [[null], [null], [null], ["boxwall"], ["level",12], ["badboxwall"], [null], ["box"], ["badbox"], [null], [null], ["mirror","left-up"], [null], [null], [null]],
+        [[null], [null], [null], ["boxwall"], ["boxwall"], ["badboxwall"], ["level",6], [null], ["boxwall"], ["boxwall"], ["boxwall"], ["level",5], [null], [null], [null]],
+        [[null], [null], [null], [null], [null], [null], ["boxwall"], ["boxwall"], [null], [null], [null], ["mirror","right-down"], [null], [null], [null]],
+        [[null], [null], [null], [null], [null], [null], [null], [null], [null], ["box"], [null], ["boxwall"], ["boxwall"], [null], [null]],
+        [[null], [null], [null], [null], ["boxwall"], [null], [null], [null], ["boxwall"], [null], ["box"], ["level",4], ["boxwall"], [null], [null]],
+        [[null], [null], [null], [null], ["boxwall"], [null], ["level",2], ["boxwall"], ["level",3], [null], [null], ["boxwall"], [null], [null], [null]],
+        [[null], [null], [null], [null], ["boxwall"], [null], ["box"], [null], ["boxwall"], [null], ["boxwall"], [null], [null], [null], [null]],
+        [[null], [null], [null], [null], [null], ["boxwall"], [null], [null], ["boxwall"], [null], [null], [null], [null], [null], [null]],
+        [[null], [null], [null], [null], [null], ["boxwall"], ["level",1], ["boxwall"], [null], [null], [null], [null], [null], [null], [null]],
+        [[null], [null], [null], [null], [null], ["boxwall"], [null], ["boxwall"], [null], [null], [null], [null], [null], [null], [null]],
+        [[null], [null], [null], [null], [null], ["boxwall"], [null], ["boxwall"], [null], [null], [null], [null], [null], [null], [null]],
+      ];
+      (tmp.location = [12, 6]),
+        (tmp.light = [[0,12]]),
+        (tmp.area = [13, 13]);
+
+
     } else {
       tmp.building = [
         [[null], ["light", "down", "green"], [null]],
@@ -1142,6 +1164,8 @@ function reset() {
         (tmp.area = [3, 3]);
     }
     
+
+
     calculation2()
     tmp.previous = [];
 

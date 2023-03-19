@@ -2,6 +2,7 @@ var player={
   levelbeaten:[0],
   perfectbeaten:[],
   key:true,
+
 }
 function save() {
   localStorage.setItem('player', JSON.stringify(player));

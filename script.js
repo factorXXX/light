@@ -35,7 +35,7 @@ Vue.component("selectmenu", {
   <td v-for="d in 4" style="padding:0px">
     <table>
       <div class="unlocked" v-if="(player.levelbeaten.filter(a=>a>((c*3+d-3)*12-24)&&a<=((c*3+d-3)*12-12)).length>=9)||((c*3+d-3)==1)">
-      <tr><td colspan="4" style='vertical-align: middle'>Chapter {{c*3+d-3}}</td></tr>
+      <tr><td colspan="4" style='vertical-align: middle' onclick='tmp.level="ch1";reset();tmp.page=1'>Chapter {{c*3+d-3}}</td></tr>
       <tr v-for="a in 3">
         <td v-for="b in 4" 
           :class="{
@@ -140,6 +140,14 @@ Vue.component("machine", {
       laser:findLightPos(a-1,b-1,false,false,layer-1),
       laser90:((tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0) && (tmp.building[a-1][b-1][0]=='mirror')),
     }"><div></div></div>
+
+    <div v-if="tmp.building[a-1][b-1][0]=='level'" :class="{
+      perfect:player.perfectbeaten.includes(tmp.building[a-1][b-1][1]),
+      beaten:player.levelbeaten.includes(tmp.building[a-1][b-1][1]),
+      unbeaten:!player.levelbeaten.includes(tmp.building[a-1][b-1][1]),
+      levelIcon:true
+    }" style="margin:0px auto" >{{tmp.building[a-1][b-1][1]}}</div>
+
     </td>
     </tr>
     </table>
@@ -190,8 +198,8 @@ Vue.component("level", {
     <button :class="{portalButton: true, canportal: true}" @click="tmp.page=2">
         Go to Menu
     </button><br><br>
-    <button v-if="tmp.level>=13||tmp.level=='custom'" :class="{portalButton: true, canportal: tmp.building[tmp.location[0]][tmp.location[1]][0]=='portal', cantportal: tmp.building[tmp.location[0]][tmp.location[1]][0]!='portal'}" @click="enter()">
-        Enter the Portal
+    <button v-if="(tmp.level>=13||tmp.level=='custom')||tmp.level[1]=='h'" :class="{portalButton: true, canportal: tmp.building[tmp.location[0]][tmp.location[1]][0]=='portal'||tmp.building[tmp.location[0]][tmp.location[1]][0]=='level', cantportal: tmp.building[tmp.location[0]][tmp.location[1]][0]!='portal'&&tmp.building[tmp.location[0]][tmp.location[1]][0]!='level'}" @click="enter()">
+        Enter the {{tmp.level>=13||tmp.level=='custom'?'portal':'level'}}
     </button>
     </td>
   </tr><br><br>
@@ -370,8 +378,7 @@ function doSomething(a,b){ if (tmp.win == false) {
   tmp.previous.push([{}]);
   let locat = [parseInt(tmp.location[0]), parseInt(tmp.location[1])];
   if (
-   a === "KeyE" &&
-    tmp.building[tmp.location[0]][tmp.location[1]][0] == "portal"
+   a === "KeyE" 
   ) {
     enter();
     tmp.previous[tmp.previous.length - 1].location = locat;
@@ -472,7 +479,7 @@ function doSomething(a,b){ if (tmp.win == false) {
       return;
     }
     calculation2()
-    if (["portal", "badportal"].includes(buildtouch[0])) return;
+    if (["portal", "badportal", "level"].includes(buildtouch[0])) return;
     tmp.location = [...locat];
   }
   calculation2()
@@ -500,9 +507,8 @@ setInterval(function () {
 
           }
           
-        if (!(tmp.level / 12 == Math.floor(tmp.level / 12)))
-          tmp.level++;
-        else tmp.page = 2;
+        tmp.level="ch"+(Math.floor(tmp.level / 12)+1)
+        reset()
       } else tmp.page = 2;
       reset();
       tmp.b = false;
@@ -517,8 +523,13 @@ setInterval(function () {
 }, 50);
 
 function enter() {
-  if (tmp.building[tmp.location[0]][tmp.location[1]][0] != "portal")
+  if (tmp.building[tmp.location[0]][tmp.location[1]][0] != "portal"&&tmp.building[tmp.location[0]][tmp.location[1]][0] != "level")
     return;
+    if(tmp.building[tmp.location[0]][tmp.location[1]][0]=='level'){
+      tmp.level=tmp.building[tmp.location[0]][tmp.location[1]][1]
+      reset()
+    }
+    else 
   tmp.location = [
     ...tmp.building[tmp.location[0]][tmp.location[1]][1],
   ];

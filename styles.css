@@ -337,7 +337,17 @@ td div {
   background-position: center;
   z-index: 999;
 }
-
+.levelIcon{
+  border-radius: 45%;
+  display:flex;
+align-items: center;
+justify-content: center;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #333;
+  color:#000
+  
+}
 @keyframes rotation {
   from {
     transform: rotate(359deg);
