@@ -21,12 +21,6 @@ var tmp = {
   where2:[],
   diff:0
 };
-function img(x) {
-  return (
-    "https://cdn.glitch.global/1c628347-f3a3-4ff6-841d-e401a9fb21ec/" +
-    x +".png?v=1678609082279"
-);
-}
 function music(x) {
   return (
     "https://cdn.glitch.global/1c628347-f3a3-4ff6-841d-e401a9fb21ec/" +
@@ -90,10 +84,10 @@ Vue.component("selectmenu", {
 
     <tr style="margin-top: 2px;">
     <td colspan="2" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;background-color:#aa6464"
-    onclick="tmp.diff=(tmp.diff+1)%2"
+    @click="tmp.diff=(tmp.diff+1)%2"
     >{{tmp.diff==1?'Hard Mode':'Normal Mode'}}</td>
     <td colspan="2" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid"
-    onclick="tmp.page=3"
+    @click="tmp.page=3"
     >Options</td>
     </tr>
 </table>
@@ -102,17 +96,50 @@ Vue.component("selectmenu", {
 Vue.component("machine", {
   template: `
     <table class="gamezone" >
-    <tr class="rows" height="30px" v-for="a in tmp.area[0]">
-    <td class="columns" v-for="b in tmp.area[1]"> 
-    <img  width="60" height="60" v-bind:src="img((tmp.location[0]==(a-1)&&tmp.location[1]==(b-1))?'location':
-    tmp.building[a-1][b-1][0]=='light'?tmp.building[a-1][b-1][2]+tmp.building[a-1][b-1][0]:
-    tmp.building[a-1][b-1][0]=='mirror'?'mirror'+(findLightPos(a-1, b-1, true,false,0,true)?tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length-1][3]:''):
-    tmp.building[a-1][b-1][0]=='store'?tmp.building[a-1][b-1][1]+tmp.building[a-1][b-1][0]:
-    ((findLightPos(a-1,b-1,true))?findLightPos(a-1,b-1,false):
-    tmp.building[a-1][b-1][0]))"
-    :class="{trans1:tmp.building[a-1][b-1][1]=='right'||tmp.building[a-1][b-1][1]=='left-down',trans2:tmp.building[a-1][b-1][1]=='up'||tmp.building[a-1][b-1][1]=='right-down',trans3:tmp.building[a-1][b-1][1]=='left'||tmp.building[a-1][b-1][1]=='right-up'}"
-    >
-    <img width="60" height="60" style="position: relative; bottom: 64px" v-bind:src="img(findLightPos(a-1,b-1,false,true)>=2?findLightPos(a-1,b-1,false,false,1):'null')">
+    <tr v-for="a in tmp.area[0]">
+    <td v-for="b in tmp.area[1]">
+    <div :class="{player: tmp.location[0]==a-1 && tmp.location[1]==[b-1]}"><div></div></div> 
+    <div :class="{
+      green: tmp.building[a-1][b-1][2]=='green'||(tmp.building[a-1][b-1][0]=='store'&&tmp.building[a-1][b-1][1]=='green'),
+      red: tmp.building[a-1][b-1][2]=='red'||(tmp.building[a-1][b-1][0]=='store'&&tmp.building[a-1][b-1][1]=='red'),
+      yellow: tmp.building[a-1][b-1][2]=='yellow'||(tmp.building[a-1][b-1][0]=='store'&&tmp.building[a-1][b-1][1]=='yellow'),
+      white: tmp.building[a-1][b-1][0]=='store'&&tmp.building[a-1][b-1][1]==null,
+      store: tmp.building[a-1][b-1][0]=='store',
+      lightsource: tmp.building[a-1][b-1][0]=='light',
+      sun: tmp.building[a-1][b-1][0]=='sun',
+      box: tmp.building[a-1][b-1][0]=='box',
+      badbox: tmp.building[a-1][b-1][0]=='badbox',
+      wall: tmp.building[a-1][b-1][0]=='boxwall',
+      badwall: tmp.building[a-1][b-1][0]=='badboxwall',
+      portal: tmp.building[a-1][b-1][0]=='portal',
+      badportal: tmp.building[a-1][b-1][0]=='badportal',
+      mirror: tmp.building[a-1][b-1][0]=='mirror',
+      greencross: tmp.building[a-1][b-1][0]=='greenpass',
+      yellowcross: tmp.building[a-1][b-1][0]=='yellowpass',
+      redcross: tmp.building[a-1][b-1][0]=='redpass',
+      rotate90cw: tmp.building[a-1][b-1][0]=='rotate90',
+      rotate90ccw: tmp.building[a-1][b-1][0]=='rotate270',
+      rotate180: tmp.building[a-1][b-1][0]=='rotate180',
+      trans1:tmp.building[a-1][b-1][1]=='right'||tmp.building[a-1][b-1][1]=='left-down',
+      trans2:tmp.building[a-1][b-1][1]=='up'||tmp.building[a-1][b-1][1]=='right-down',
+      trans3:tmp.building[a-1][b-1][1]=='left'||tmp.building[a-1][b-1][1]=='right-up'
+    }"><div></div></div>
+
+    <div v-for="layer in findLightPos(a-1,b-1,false,true,0,true)" :class="{
+      greenLaser:tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0&& tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][3] == 'green',
+      yellowLaser:tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0&& tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][3] == 'yellow',
+      redLaser:tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0&& tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][3] == 'red',
+      
+      trans1:tmp.building[a-1][b-1][1]=='left-down'||
+      ((tmp.building[a-1][b-1][0]!=='mirror')&&
+      (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
+      (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'right'||
+      tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'left'))),
+      trans2:tmp.building[a-1][b-1][1]=='right-down',
+      trans3:tmp.building[a-1][b-1][1]=='right-up',
+      laser:findLightPos(a-1,b-1,false,false,layer-1),
+      laser90:((tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0) && (tmp.building[a-1][b-1][0]=='mirror')),
+    }"><div></div></div>
     </td>
     </tr>
     </table>
@@ -122,14 +149,14 @@ Vue.component("options", {
   template: `
     <table>
     <tr>
-      <td onclick="tmp.page=2" class="opts">Back</td>
-      <td onclick="exportSave()" class="opts" id="export">Export</td>
-      <td onclick="importSave()" class="opts">Import</td>
+      <td @click="tmp.page=2" class="opts">Back</td>
+      <td @click="exportSave()" class="opts" id="export">Export</td>
+      <td @click="importSave()" class="opts">Import</td>
     </tr>
     <tr>
-      <td></td>
-      <td @click="document.location.href = 'https://discord.gg/MXyXdXrC5H'" class="opts" style="background-color: #5865F2">Discord</td>
-      <td onclick="hardReset()" style="background-color: #b44949" class="opts">Hard Reset</td>
+    <td></td>
+      <td style="background-color: #5865F2" @click="document.location.href = 'https://discord.gg/MXyXdXrC5H'" class="opts">Discord</td>
+      <td style="background-color: #b44949" @click="hardReset()"  class="opts">Hard Reset</td>
     </tr>
     </table>
     `,
@@ -157,13 +184,13 @@ Vue.component("level", {
     </td> 
 
     <td style="text-align: right; width:180px"><br>
-    <button :class="{portalButton: true, canportal: true}" onclick="reset()">
+    <button :class="{portalButton: true, canportal: true}" @click="reset()">
         Reset
     </button><br><br>
-    <button :class="{portalButton: true, canportal: true}" onclick="tmp.page=2">
+    <button :class="{portalButton: true, canportal: true}" @click="tmp.page=2">
         Go to Menu
     </button><br><br>
-    <button v-if="tmp.level>=13||tmp.level=='custom'" :class="{portalButton: true, canportal: tmp.building[tmp.location[0]][tmp.location[1]][0]=='portal', cantportal: tmp.building[tmp.location[0]][tmp.location[1]][0]!='portal'}" onclick="enter()">
+    <button v-if="tmp.level>=13||tmp.level=='custom'" :class="{portalButton: true, canportal: tmp.building[tmp.location[0]][tmp.location[1]][0]=='portal', cantportal: tmp.building[tmp.location[0]][tmp.location[1]][0]!='portal'}" @click="enter()">
         Enter the Portal
     </button>
     </td>
@@ -173,14 +200,14 @@ Vue.component("level", {
 <td colspan="2">
 <table class="control">
   <tr>
-  <td onclick="doSomething('KeyU',false)">U</td>
-  <td onclick="doSomething('KeyW',false)">&#8593;</td>
-  <td v-if="tmp.level>=13" onclick="doSomething('KeyE',false)">E</td>
+  <td @click="doSomething('KeyU',false)">U</td>
+  <td @click="doSomething('KeyW',false)">&#8593;</td>
+  <td v-if="tmp.level>=13" @click="doSomething('KeyE',false)">E</td>
   </tr>
   <tr>
-    <td onclick="doSomething('KeyA',false)">&#8592;</td>
-    <td onclick="doSomething('KeyS',false)">&#8595;</td>
-    <td onclick="doSomething('KeyD',false)">&#8594;</td>
+    <td @click="doSomething('KeyA',false)">&#8592;</td>
+    <td @click="doSomething('KeyS',false)">&#8595;</td>
+    <td @click="doSomething('KeyD',false)">&#8594;</td>
   </tr></table>
   </td>
 </tr>
@@ -188,7 +215,7 @@ Vue.component("level", {
     `,
 });
 
-function findLightPos(a, b, bool = false, amt = false, layer = 0,M=false, times=1) {
+function findLightPos(a, b, bool = false, amt = false, layer = 0,M=false) {
   let a1=tmp.where
   if(M)a1=tmp.where2
   if (a1.length==0){if(bool)return false;return};
@@ -199,7 +226,9 @@ function findLightPos(a, b, bool = false, amt = false, layer = 0,M=false, times=
   let color = res[layer][3];
   let pos = res[layer][2];
   if (["right", "down"].includes(pos)) pos = reverse(pos);
-  return color + pos + "line";
+  let colored = [color, pos]
+  if(M)console.log(colored)
+  return colored
 }
 function calculation2() {
   calcolor()
@@ -570,4 +599,4 @@ function importL2(imported = undefined,a1=7,a2=7) {
   tmp.store = imported;
   calculation2()
 }
-const perfect= [null,3,9,6,7,3,14,15,17,5,7,24,31,4,24,23,24,21,15,25,46,24,24,27,90,32,21,96,59,6,39,58,23,4,14,59,44,24,36,78]
+const perfect= [null,3,9,6,7,3,14,15,17,5,7,24,31,4,24,23,24,21,15,25,46,24,24,27,56,32,21,96,59,6,39,58,23,4,14,59,44,24,36,78,null/*4-4*/,44]
