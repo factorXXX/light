@@ -110,16 +110,18 @@ Vue.component("machine", {
 
     <div v-for="layer in findLightPos(a-1,b-1,false,true,0,true)" :class="{
       [tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][3]+'Laser']:true,
-    
+      half:[tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][4]]=='half',
       trans1:tmp.building[a-1][b-1][1]=='left-down'||
-      ((tmp.building[a-1][b-1][0]!=='mirror')&&
-      (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
-      (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'right'||
-      tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'left'))),
-      trans2:tmp.building[a-1][b-1][1]=='right-down',
-      trans3:tmp.building[a-1][b-1][1]=='right-up',
-      laser:findLightPos(a-1,b-1,false,false,layer-1),
-      laser90:((tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0) && (tmp.building[a-1][b-1][0]=='mirror')),
+        (tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
+        (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'right')),
+      trans2:tmp.building[a-1][b-1][1]=='right-down'||
+        (tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
+        (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'up')),
+      trans3:tmp.building[a-1][b-1][1]=='right-up'||
+        (tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
+        (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'left')),
+      laser:(tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0),
+      laser90:(tmp.building[a-1][b-1][0]=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0),
     }"><div></div></div>
     </td>
     </tr>
@@ -195,7 +197,6 @@ Vue.component("level", {
    </table>  
     `,
 });
-
 function findLightPos(a, b, bool = false, amt = false, layer = 0,M=false) {
   let a1=tmp.where
   if(M)a1=tmp.where2
@@ -211,6 +212,25 @@ function findLightPos(a, b, bool = false, amt = false, layer = 0,M=false) {
   if(M)console.log(colored)
   return colored
 }
+function edges(){
+  let colors=['green','red','yellow']
+  for(let i=0; i<3; i++){
+    if(tmp.where2.filter((element) => element[3] == colors[i])[0]){
+  let adding= JSON.parse(JSON.stringify(tmp.where2.filter((element) => element[3] == colors[i])))
+  let first = JSON.parse(JSON.stringify(adding[0]))
+  let last  = JSON.parse(JSON.stringify(adding[adding.length-1]))
+  if      (last[2]=='right'){last[2]='left';last[1]++;last.push('half') ;tmp.where2.push(last)}
+  else if (last[2]=='left') {last[2]='right';last[1]--;last.push('half') ;tmp.where2.push(last)}
+  else if (last[2]=='down') {last[2]='up';last[0]++;last.push('half') ;tmp.where2.push(last)}
+  else if (last[2]=='up')   {last[2]='down';last[0]--;last.push('half') ;tmp.where2.push(last)}
+
+  if      (first[2]=='right'){first[1]--;first.push('half') ;tmp.where2.push(first)}
+  else if (first[2]=='left') {first[1]++;first.push('half') ;tmp.where2.push(first)}
+  else if (first[2]=='down') {first[0]--;first.push('half') ;tmp.where2.push(first)}
+  else if (first[2]=='up')   {first[0]++;first.push('half') ;tmp.where2.push(first)}
+    }
+  }
+}
 function calculation2() {
   calcolor()
   light(false, true);
@@ -220,6 +240,7 @@ function calculation2() {
   calcolor();
   light()
   light(false, false, true);
+  edges()
 }
 function light(win = false, withlight = false, withM = false) {
   let lightL = [];
