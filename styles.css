@@ -176,7 +176,7 @@ table  {
 .red div, .redLaser {
   filter: invert(17%) sepia(90%) saturate(3310%) hue-rotate(353deg) brightness(89%) contrast(94%);
 }
-.green div, .greenLaser, .sun div, .rotate90cw div, .rotate90ccw div, .rotate180 div {
+.green div, .greenLaser, .sun div, .rotate90 div, .rotate270 div, .rotate180 div {
   filter: invert(100%) sepia(22%) saturate(6052%) hue-rotate(20deg) brightness(99%) contrast(87%);
 }
 .yellow div, .yellowLaser{
@@ -197,29 +197,29 @@ table  {
   transform: rotate(180deg);}
 .deg270 div{
   transform: rotate(270deg);}
-.bluebox, .rotate180, .rotate90cw, .rotate90ccw, .lightsource, .sun {
+.bluebox, .rotate180, .rotate90, .rotate270, .light, .sun {
   background: #47AFE3;
   border: 4px solid #000;
   border-radius: 2px;
 }
 .box,
 .badbox,
-.badwall,
-.wall,
+.badboxwall,
+.boxwall,
 .badbox,
-.greencross {
+.greenpass {
   background-color: #b4eb46;
   border: 4px solid #000;
   border-radius: 2px;
 }
 .redbox,
-.redcross {
+.redpass {
   background-color: #CC2218;
   border: 4px solid #000;
   border-radius: 2px;
 }
 .yellowbox,
-.yellowcross {
+.yellowpass {
   background-color: #EAFA35;
   border: 4px solid #000;
   border-radius: 2px;
@@ -236,11 +236,11 @@ td div {
   position: absolute;
 }
 
-.rotate90cw div{
+.rotate90 div{
   z-index: 998;
   background-image: url('./images/90cw.svg');
 }
-.rotate90ccw div{
+.rotate270 div{
   z-index: 998;
   background-image: url('./images/90ccw.svg');
 }
@@ -252,7 +252,7 @@ td div {
   z-index: 998;
   background-image: url('./images/sun.svg');
 }
-.lightsource div {
+.light div {
   z-index: 998;
   background-image: url('./images/source.svg');
 }
@@ -286,15 +286,15 @@ td div {
   background-repeat:no-repeat;
   background-image: url('./images/laser-half.svg');
 }
-.greencross div, .yellowcross div, .redcross div{
+.greenpass div, .yellowpass div, .redpass div{
   z-index: 998;
   background-image: url('./images/cross2.svg');
 }
-.wall div, .badwall {
+.boxwall div, .badboxwall {
   z-index: 998;
   background-image: url('./images/wall.svg');
 }
-.badbox div, .badwall div {
+.badbox div, .badboxwall div {
   z-index: 998;
   background-image: url('./images/crack.svg');
 }

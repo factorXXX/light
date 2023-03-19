@@ -98,28 +98,13 @@ Vue.component("machine", {
     <table class="gamezone" >
     <tr v-for="a in tmp.area[0]">
     <td v-for="b in tmp.area[1]">
-    <div :class="{player: tmp.location[0]==a-1 && tmp.location[1]==[b-1]}"><div></div></div> 
+    <div :class="{player: tmp.location[0]==a-1 && tmp.location[1]==[b-1]}"><div></div></div>
     <div :class="{
       green: tmp.building[a-1][b-1][2]=='green'||(tmp.building[a-1][b-1][0]=='store'&&tmp.building[a-1][b-1][1]=='green'),
       red: tmp.building[a-1][b-1][2]=='red'||(tmp.building[a-1][b-1][0]=='store'&&tmp.building[a-1][b-1][1]=='red'),
       yellow: tmp.building[a-1][b-1][2]=='yellow'||(tmp.building[a-1][b-1][0]=='store'&&tmp.building[a-1][b-1][1]=='yellow'),
       white: tmp.building[a-1][b-1][0]=='store'&&tmp.building[a-1][b-1][1]==null,
-      store: tmp.building[a-1][b-1][0]=='store',
-      lightsource: tmp.building[a-1][b-1][0]=='light',
-      sun: tmp.building[a-1][b-1][0]=='sun',
-      box: tmp.building[a-1][b-1][0]=='box',
-      badbox: tmp.building[a-1][b-1][0]=='badbox',
-      wall: tmp.building[a-1][b-1][0]=='boxwall',
-      badwall: tmp.building[a-1][b-1][0]=='badboxwall',
-      portal: tmp.building[a-1][b-1][0]=='portal',
-      badportal: tmp.building[a-1][b-1][0]=='badportal',
-      mirror: tmp.building[a-1][b-1][0]=='mirror',
-      greencross: tmp.building[a-1][b-1][0]=='greenpass',
-      yellowcross: tmp.building[a-1][b-1][0]=='yellowpass',
-      redcross: tmp.building[a-1][b-1][0]=='redpass',
-      rotate90cw: tmp.building[a-1][b-1][0]=='rotate90',
-      rotate90ccw: tmp.building[a-1][b-1][0]=='rotate270',
-      rotate180: tmp.building[a-1][b-1][0]=='rotate180',
+      [tmp.building[a-1][b-1][0]]:true,
       trans1:tmp.building[a-1][b-1][1]=='right'||tmp.building[a-1][b-1][1]=='left-down',
       trans2:tmp.building[a-1][b-1][1]=='up'||tmp.building[a-1][b-1][1]=='right-down',
       trans3:tmp.building[a-1][b-1][1]=='left'||tmp.building[a-1][b-1][1]=='right-up'
