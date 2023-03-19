@@ -100,10 +100,8 @@ Vue.component("machine", {
     <td v-for="b in tmp.area[1]">
     <div :class="{player: tmp.location[0]==a-1 && tmp.location[1]==[b-1]}"><div></div></div>
     <div :class="{
-      green: tmp.building[a-1][b-1][2]=='green'||(tmp.building[a-1][b-1][0]=='store'&&tmp.building[a-1][b-1][1]=='green'),
-      red: tmp.building[a-1][b-1][2]=='red'||(tmp.building[a-1][b-1][0]=='store'&&tmp.building[a-1][b-1][1]=='red'),
-      yellow: tmp.building[a-1][b-1][2]=='yellow'||(tmp.building[a-1][b-1][0]=='store'&&tmp.building[a-1][b-1][1]=='yellow'),
-      white: tmp.building[a-1][b-1][0]=='store'&&tmp.building[a-1][b-1][1]==null,
+      [tmp.building[a-1][b-1][2]]:true,
+      [tmp.building[a-1][b-1][1]]:tmp.building[a-1][b-1][0]=='store',
       [tmp.building[a-1][b-1][0]]:true,
       trans1:tmp.building[a-1][b-1][1]=='right'||tmp.building[a-1][b-1][1]=='left-down',
       trans2:tmp.building[a-1][b-1][1]=='up'||tmp.building[a-1][b-1][1]=='right-down',
@@ -293,11 +291,9 @@ function light(win = false, withlight = false, withM = false) {
         lightL.pop();
         locat = [...tmp.building[locat[0]][locat[1]][1]];
         if (JSON.stringify(tmp.location) == JSON.stringify(locat)) {
-          //lightL.pop();
           break;
         }
       }
-      //console.log(locat)
       switch (pos) {
         case "down":
           locat[0] = locat[0] + 1;
@@ -313,7 +309,6 @@ function light(win = false, withlight = false, withM = false) {
           break;
       }
     }
-    // lightL.shift()
   }
   if (win) return false;
   if(withlight)return tmp.where1=lightL;
@@ -378,8 +373,6 @@ function doSomething(a,b){ if (tmp.win == false) {
       tmp.location[0] = locat[0]
       tmp.location[1] = locat[1]
     };
-    //console.log(tmp.building[tmp.location[0]][tmp.location[1]][0])
-    //console.log("locat = ",locat[0],locat[1],"  of player =", tmp.location[0],tmp.location[1])
   if (locat[0] == tmp.location[0] && locat[1] == tmp.location[1]) {
     tmp.previous.pop();
     return;

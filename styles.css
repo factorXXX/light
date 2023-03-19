@@ -182,7 +182,7 @@ table  {
 .yellow div, .yellowLaser{
   filter: invert(73%) sepia(100%) saturate(333%) hue-rotate(14deg) brightness(108%) contrast(100%);
 }
-.white div{
+.null div{
   filter: invert(75%)
 }
 .yellowLaser{
