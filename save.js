@@ -1,26 +1,25 @@
 var player={
-  building:[
-    [[null],["light","down","green"],[null]],
-    [[null],["box"],[null]],
-    [[null],["sun"],[null]],
-  ],
-  location:[0,0],
-  area:[3,3],
-  light:[[0,1]],
-  level:1,
   levelbeaten:[0],
-  previous:[
-    1
-  ],
-  
+  perfectbeaten:[],
+  key:true,
 }
 function save() {
   localStorage.setItem('player', JSON.stringify(player));
 }
 
 function load() {
-  player = JSON.parse(localStorage.getItem('player'));
-var app = new Vue({
+  if (!localStorage.getItem("player")) {
+    player={
+  levelbeaten:[0],
+  perfectbeaten:[],
+  key:true,
+    }
+    save()
+    window.location.reload();
+  }
+
+  player = {...player, ...JSON.parse(localStorage.getItem('player'))} 
+  var app = new Vue({
       el: "#app",
       data: {
         player,
@@ -31,40 +30,30 @@ var app = new Vue({
   
   
 }
-//setInterval(function () {save()}, 1000);
 window.onload=function(){
 
   load()
     if(player==null){
-        player={
-      building:[
-    [[null],["light","down","green"],[null]],
-    [[null],["box"],[null]],
-    [[null],["sun"],[null]],
-  ],
-  location:[0,0],
-  area:[3,3],
-  light:[[0,1]],
-  level:1,
-  levelbeaten:[0],
-          previous:[
-    1
-  ]
-    }
+  player={  
+    levelbeaten:[0],
+    perfectbeaten:[],
+    key:true,
+      }
     save()
     window.location.reload();
   }
   reset()
-  player.level=1
+  tmp.level=1
 };
 
 function exportSave() {
-  let str = btoa(JSON.stringify(player)); 
-const el = document.createElement("textarea");	
-el.value = str;	document.body.appendChild(el);	
-el.select();	el.setSelectionRange(0, 99999);
-document.execCommand("copy");
-document.body.removeChild(el); 
+  let str = btoa(JSON.stringify(player));
+navigator.clipboard.writeText(str)
+let btn=document.getElementById("export")
+btn.style.background=("#449944")
+setTimeout(() => {
+  btn.style.background=("")
+}, 600);
 }
 
 
@@ -78,16 +67,8 @@ function importSave(imported = undefined) {
 function hardReset(){
   if(confirm("Are you sure??? It will reset EVERYTHING and you will not get any reward!!!")){
     player={
-      building:[
-    [[null],["light","down","green"],[null]],
-    [[null],["box"],[null]],
-    [[null],["sun"],[null]],
-  ],
-  location:[0,0],
-  area:[3,3],
-  light:[[0,1]],
-  level:1,
-  levelbeaten:[]
+  levelbeaten:[],
+  perfectbeaten:[],
     }
     save()
     window.location.reload();
