@@ -19,6 +19,7 @@ var tmp = {
   where:[],
   where1:[],
   where2:[],
+  where3:[],
   diff:0
 };
 function music(x) {
@@ -110,16 +111,26 @@ Vue.component("machine", {
 
     <div v-for="layer in findLightPos(a-1,b-1,false,true,0,true)" :class="{
       [tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][3]+'Laser']:true,
-    
       trans1:tmp.building[a-1][b-1][1]=='left-down'||
-      ((tmp.building[a-1][b-1][0]!=='mirror')&&
-      (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
-      (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'right'||
-      tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'left'))),
-      trans2:tmp.building[a-1][b-1][1]=='right-down',
-      trans3:tmp.building[a-1][b-1][1]=='right-up',
-      laser:findLightPos(a-1,b-1,false,false,layer-1),
-      laser90:((tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0) && (tmp.building[a-1][b-1][0]=='mirror')),
+        (tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
+        (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'right')),
+      trans2:tmp.building[a-1][b-1][1]=='right-down'||
+        (tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
+        (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'up')),
+      trans3:tmp.building[a-1][b-1][1]=='right-up'||
+        (tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
+        (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'left')),
+      laser:(tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0),
+      laser90:(tmp.building[a-1][b-1][0]=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0),
+    }"><div></div></div>
+
+    <div v-for="layer in tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1).length" :class="{
+      half:[tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][4]]=='half',
+      [tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][3]+'Laser']:true,
+      trans1:tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'right',
+      trans2:tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'down',
+      trans3:tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'left',
+      laser:true,
     }"><div></div></div>
 
     <div v-if="tmp.building[a-1][b-1][0]=='level'" :class="{
@@ -203,7 +214,6 @@ Vue.component("level", {
    </table>  
     `,
 });
-
 function findLightPos(a, b, bool = false, amt = false, layer = 0,M=false) {
   let a1=tmp.where
   if(M)a1=tmp.where2
@@ -219,6 +229,121 @@ function findLightPos(a, b, bool = false, amt = false, layer = 0,M=false) {
   if(M)console.log(colored)
   return colored
 }
+/*
+0: 0 // up/dowm
+1: 5 // left/right
+2: "left"
+3: "green" 
+*/
+function edges(){
+  tmp.where3=[]
+  for (i=0; i<tmp.where2.length; i++){
+    let current = JSON.parse(JSON.stringify(tmp.where2[i]))
+    current.push('half');
+    let orig = JSON.parse(JSON.stringify(current))
+    if(tmp.building[current[0]][current[1]][0]=='mirror'){
+      if (current[2]=='left'){
+        if(tmp.building[current[0]][current[1]][1]=='left-down'){
+          current[0]--
+          current[2]='up'
+          tmp.where3.push(current)
+        }
+        if(tmp.building[current[0]][current[1]][1]=='left-up'){
+          current[0]++
+          current[2]='down'
+          tmp.where3.push(current)
+        }
+      }
+
+      if (current[2]=='right'){
+        if(tmp.building[current[0]][current[1]][1]=='right-down'){
+          current[0]--
+          current[2]='up'
+          tmp.where3.push(current)
+        }
+        if(tmp.building[current[0]][current[1]][1]=='right-up'){
+          current[0]++
+          current[2]='down'
+          tmp.where3.push(current)
+        }
+      }
+
+      if (current[2]=='down'){
+        if(tmp.building[current[0]][current[1]][1]=='right-down'){
+          current[1]--
+          current[2]='right'
+          tmp.where3.push(current)
+        }
+        if(tmp.building[current[0]][current[1]][1]=='left-down'){
+          current[1]++
+          current[2]='left'
+          tmp.where3.push(current)
+        }
+      }
+
+      if (current[2]=='up'){
+        if(tmp.building[current[0]][current[1]][1]=='right-up'){
+          current[1]--
+          current[2]='right'
+          tmp.where3.push(current)
+        }
+        if(tmp.building[current[0]][current[1]][1]=='left-up'){
+          current[1]++
+          current[2]='left'
+          tmp.where3.push(current)
+        }
+      }
+    }
+
+    else if (current[2]=='left'){
+        current[1]++;
+        if(tmp.where2.filter((element) => element[0] == current[0]&&element[1] == current[1]).length==0||['yellowpass','redpass','greenpass'].includes(tmp.building[current[0]][current[1]][0])){
+          tmp.where3.push(current)};
+
+        current = JSON.parse(JSON.stringify(orig))
+        current[1]--;
+        if(tmp.where2.filter((element) => element[0] == current[0]&&element[1] == current[1]).length==0||['yellowpass','redpass','greenpass'].includes(tmp.building[current[0]][current[1]][0])){
+          current[2]='right'
+          tmp.where3.push(current)};
+    }
+
+    else if (current[2]=='right'){
+      current[1]--;
+      if(tmp.where2.filter((element) => element[0] == current[0]&&element[1] == current[1]).length==0||['yellowpass','redpass','greenpass'].includes(tmp.building[current[0]][current[1]][0])){
+        tmp.where3.push(current)};
+
+      current = JSON.parse(JSON.stringify(orig))
+      current[1]++;
+      if(tmp.where2.filter((element) => element[0] == current[0]&&element[1] == current[1]).length==0||['yellowpass','redpass','greenpass'].includes(tmp.building[current[0]][current[1]][0])){
+        current[2]='left'
+        tmp.where3.push(current)};
+    }
+
+    else if (current[2]=='down'){
+      current[0]++ 
+      if(tmp.where2.filter((element) => element[0] == current[0]&&element[1] == current[1]).length==0||['yellowpass','redpass','greenpass'].includes(tmp.building[current[0]][current[1]][0])){
+        tmp.where3.push(current)};
+
+      current = JSON.parse(JSON.stringify(orig))
+      current[0]--;
+      if(tmp.where2.filter((element) => element[0] == current[0]&&element[1] == current[1]).length==0||['yellowpass','redpass','greenpass'].includes(tmp.building[current[0]][current[1]][0])){
+        current[2]='up'
+        tmp.where3.push(current)};
+    }
+
+    else if (current[2]=='up'){
+      current[0]-- 
+      if(tmp.where2.filter((element) => element[0] == current[0]&&element[1] == current[1]).length==0||['yellowpass','redpass','greenpass'].includes(tmp.building[current[0]][current[1]][0])){
+        tmp.where3.push(current)};
+
+      current = JSON.parse(JSON.stringify(orig))
+      current[0]++;
+      if(tmp.where2.filter((element) => element[0] == current[0]&&element[1] == current[1]).length==0||['yellowpass','redpass','greenpass'].includes(tmp.building[current[0]][current[1]][0])){
+        current[2]='down'
+        tmp.where3.push(current)};
+    }
+  }
+}
 function calculation2() {
   calcolor()
   light(false, true);
@@ -228,6 +353,7 @@ function calculation2() {
   calcolor();
   light()
   light(false, false, true);
+  edges()
 }
 function light(win = false, withlight = false, withM = false) {
   let lightL = [];
@@ -280,7 +406,7 @@ function light(win = false, withlight = false, withM = false) {
 
       lightL.push([...locat, pos, color]);
       if (
-        ["light", "redpass", "greenpass", "yellowpass", "store"].includes(build)
+        ["light",  "store"].includes(build)
       )
         lightL.pop();
       if (build == "mirror") {
