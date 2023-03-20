@@ -261,7 +261,7 @@ td div {
   background-image: url('./images/mirror.svg');
 }
 .laser{
-  z-index: 10;
+  z-index: 15 !important;
   width: 70px;
   height: 70px;
   background-repeat:no-repeat;
@@ -287,8 +287,8 @@ td div {
   background-repeat:no-repeat;
   background-image: url('./images/laser-half.svg');
 }
-.greenpass div, .yellowpass div, .redpass div{
-  z-index: 998 !important;
+.greenpass , .yellowpass , .redpass {
+  z-index: 11 !important;
   background-image: url('./images/cross2.svg');
 }
 .boxwall div, .badboxwall {
