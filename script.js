@@ -609,7 +609,7 @@ setInterval(function () {
 
           }
           
-        tmp.level="chselect"
+        tmp.level="ch"+(Math.floor(tmp.level / 12)+1)
         reset()
       } else tmp.page = 2;
       reset();
@@ -625,9 +625,13 @@ setInterval(function () {
 }, 50);
 
 function enter() {
-  if (tmp.building[tmp.location[0]][tmp.location[1]][0] != "portal")
+  if (tmp.building[tmp.location[0]][tmp.location[1]][0] != "portal"&&tmp.building[tmp.location[0]][tmp.location[1]][0] != "level")
     return;
-
+    if(tmp.building[tmp.location[0]][tmp.location[1]][0]=='level'){
+      tmp.level=tmp.building[tmp.location[0]][tmp.location[1]][1]
+      reset()
+    }
+    else 
   tmp.location = [
     ...tmp.building[tmp.location[0]][tmp.location[1]][1],
   ];
