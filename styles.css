@@ -261,7 +261,7 @@ td div {
   background-image: url('./images/mirror.svg');
 }
 .laser{
-  z-index: 15 !important;
+  z-index: 15;
   width: 70px;
   height: 70px;
   background-repeat:no-repeat;
