@@ -125,10 +125,10 @@ Vue.component("machine", {
     }"><div></div></div>
 
     <div v-for="layer in tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1).length" :class="{
-      half:[tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][4]]=='half',
+      half:true,
       [tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][3]+'Laser']:true,
       trans1:tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'right',
-      trans2:tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'down',
+      trans2:tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'up',
       trans3:tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'left',
       laser:true,
     }"><div></div></div>
@@ -229,121 +229,6 @@ function findLightPos(a, b, bool = false, amt = false, layer = 0,M=false) {
   if(M)console.log(colored)
   return colored
 }
-/*
-0: 0 // up/dowm
-1: 5 // left/right
-2: "left"
-3: "green" 
-*/
-function edges(){
-  tmp.where3=[]
-  for (i=0; i<tmp.where2.length; i++){
-    let current = JSON.parse(JSON.stringify(tmp.where2[i]))
-    current.push('half');
-    let orig = JSON.parse(JSON.stringify(current))
-    if(tmp.building[current[0]][current[1]][0]=='mirror'){
-      if (current[2]=='left'){
-        if(tmp.building[current[0]][current[1]][1]=='left-down'){
-          current[0]--
-          current[2]='up'
-          tmp.where3.push(current)
-        }
-        if(tmp.building[current[0]][current[1]][1]=='left-up'){
-          current[0]++
-          current[2]='down'
-          tmp.where3.push(current)
-        }
-      }
-
-      if (current[2]=='right'){
-        if(tmp.building[current[0]][current[1]][1]=='right-down'){
-          current[0]--
-          current[2]='up'
-          tmp.where3.push(current)
-        }
-        if(tmp.building[current[0]][current[1]][1]=='right-up'){
-          current[0]++
-          current[2]='down'
-          tmp.where3.push(current)
-        }
-      }
-
-      if (current[2]=='down'){
-        if(tmp.building[current[0]][current[1]][1]=='right-down'){
-          current[1]--
-          current[2]='right'
-          tmp.where3.push(current)
-        }
-        if(tmp.building[current[0]][current[1]][1]=='left-down'){
-          current[1]++
-          current[2]='left'
-          tmp.where3.push(current)
-        }
-      }
-
-      if (current[2]=='up'){
-        if(tmp.building[current[0]][current[1]][1]=='right-up'){
-          current[1]--
-          current[2]='right'
-          tmp.where3.push(current)
-        }
-        if(tmp.building[current[0]][current[1]][1]=='left-up'){
-          current[1]++
-          current[2]='left'
-          tmp.where3.push(current)
-        }
-      }
-    }
-
-    else if (current[2]=='left'){
-        current[1]++;
-        if(tmp.where2.filter((element) => element[0] == current[0]&&element[1] == current[1]).length==0||['yellowpass','redpass','greenpass'].includes(tmp.building[current[0]][current[1]][0])){
-          tmp.where3.push(current)};
-
-        current = JSON.parse(JSON.stringify(orig))
-        current[1]--;
-        if(tmp.where2.filter((element) => element[0] == current[0]&&element[1] == current[1]).length==0||['yellowpass','redpass','greenpass'].includes(tmp.building[current[0]][current[1]][0])){
-          current[2]='right'
-          tmp.where3.push(current)};
-    }
-
-    else if (current[2]=='right'){
-      current[1]--;
-      if(tmp.where2.filter((element) => element[0] == current[0]&&element[1] == current[1]).length==0||['yellowpass','redpass','greenpass'].includes(tmp.building[current[0]][current[1]][0])){
-        tmp.where3.push(current)};
-
-      current = JSON.parse(JSON.stringify(orig))
-      current[1]++;
-      if(tmp.where2.filter((element) => element[0] == current[0]&&element[1] == current[1]).length==0||['yellowpass','redpass','greenpass'].includes(tmp.building[current[0]][current[1]][0])){
-        current[2]='left'
-        tmp.where3.push(current)};
-    }
-
-    else if (current[2]=='down'){
-      current[0]++ 
-      if(tmp.where2.filter((element) => element[0] == current[0]&&element[1] == current[1]).length==0||['yellowpass','redpass','greenpass'].includes(tmp.building[current[0]][current[1]][0])){
-        tmp.where3.push(current)};
-
-      current = JSON.parse(JSON.stringify(orig))
-      current[0]--;
-      if(tmp.where2.filter((element) => element[0] == current[0]&&element[1] == current[1]).length==0||['yellowpass','redpass','greenpass'].includes(tmp.building[current[0]][current[1]][0])){
-        current[2]='up'
-        tmp.where3.push(current)};
-    }
-
-    else if (current[2]=='up'){
-      current[0]-- 
-      if(tmp.where2.filter((element) => element[0] == current[0]&&element[1] == current[1]).length==0||['yellowpass','redpass','greenpass'].includes(tmp.building[current[0]][current[1]][0])){
-        tmp.where3.push(current)};
-
-      current = JSON.parse(JSON.stringify(orig))
-      current[0]++;
-      if(tmp.where2.filter((element) => element[0] == current[0]&&element[1] == current[1]).length==0||['yellowpass','redpass','greenpass'].includes(tmp.building[current[0]][current[1]][0])){
-        current[2]='down'
-        tmp.where3.push(current)};
-    }
-  }
-}
 function calculation2() {
   calcolor()
   light(false, true);
@@ -352,11 +237,11 @@ function calculation2() {
   light(true);
   calcolor();
   light()
-  light(false, false, true);
-  edges()
+  light(false, false, true, true);
 }
-function light(win = false, withlight = false, withM = false) {
+function light(win = false, withlight = false, withM = false, final=false) {
   let lightL = [];
+  if(final)tmp.where3 = []
   for (let i = 0; i <= tmp.light.length - 1; i++) {
     let pos = tmp.building[tmp.light[i][0]][tmp.light[i][1]][1];
 
@@ -372,16 +257,15 @@ function light(win = false, withlight = false, withM = false) {
       if (build == "sun" && win) {tmp.win = true};
       if (!withlight) {if (["badbox", "badboxwall"].includes(build))
         tmp.building[locat[0]][locat[1]] = [null];
-      if (["store"].includes(build)) {
+      if (build=='store') {
         if (tmp.building[locat[0]][locat[1]][1] == null) {
           tmp.building[locat[0]][locat[1]][1] = color;
-        }
-        if (tmp.building[locat[0]][locat[1]][1] != null) {
-          if (tmp.building[locat[0]][locat[1]][1] != color) color = "yellow";
         }
       }}
       if (build == "light" && try1 != 1) {
         if (withlight) lightL.push([...locat, pos, color]);
+        pos=reverse(pos)
+        if(final)tmp.where3.push([...locat, pos, color,'half'])
         break;
       }
 
@@ -396,32 +280,53 @@ function light(win = false, withlight = false, withM = false) {
           "yellowpass",
           "store",
         ].includes(build)
-      )
-        break;
+      ){pos = reverse(pos)
+        if(final)tmp.where3.push([...locat, pos, color,'half']);
+        break}
 
-      if (build == "redpass" && color != "red") break;
-      if (build == "greenpass" && color != "green") break;
-      if (build == "yellowpass" && color != "yellow") break;
-      if (JSON.stringify(tmp.location) == JSON.stringify(locat)) break;
+        if (build=='store') {
+          pos=reverse(pos)
+          if(final)tmp.where3.push([...locat, pos, color,'half']);
+          pos=reverse(pos)
+          if (tmp.building[locat[0]][locat[1]][1] != null) {
+            if (tmp.building[locat[0]][locat[1]][1] != color) color = "yellow";
+          }}
+      if (build == "redpass" && color != "red") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
+      if (build == "greenpass" && color != "green") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
+      if (build == "yellowpass" && color != "yellow") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
+      if (JSON.stringify(tmp.location) == JSON.stringify(locat)) {
+        pos = reverse(pos)
+        if(final)tmp.where3.push([...locat, pos, color,'half'])  
+        break
+      };
 
       lightL.push([...locat, pos, color]);
-      if (
-        ["light",  "store"].includes(build)
-      )
+      if (["light",  "store"].includes(build)){
+        if(final)tmp.where3.push([...locat, pos, color,'half']);
+        if(build=='store' && final) {
+          tmp.where3.push([...locat, pos, color,'half'])
+        }
         lightL.pop();
+      }
       if (build == "mirror") {
        if(!withM) lightL.pop();
         let posamt = tmp.building[locat[0]][locat[1]][1].split("-");
 
         if (!posamt.includes(pos)) {
+          pos = reverse(pos)
+          tmp.where3.push([...locat, pos, color,'half'])
           if(withM)lightL.pop();
           break;
         }
         if (pos == posamt[0]) pos = reverse(posamt[1]);
         else pos = reverse(posamt[0]);
       } else if (build == "portal") {
+        pos=reverse(pos)
+        if(final)tmp.where3.push([...locat, pos, color,'half']);
+        pos=reverse(pos)
         lightL.pop();
         locat = [...tmp.building[locat[0]][locat[1]][1]];
+        if(final && !(JSON.stringify(tmp.location) == JSON.stringify(locat)))tmp.where3.push([...locat, pos, color,'half']);
         if (JSON.stringify(tmp.location) == JSON.stringify(locat)) {
           break;
         }
