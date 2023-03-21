@@ -609,8 +609,9 @@ setInterval(function () {
 
           }
           
-        tmp.level="ch"+(Math.floor(tmp.level / 12)+1)
-        reset()
+        if (!(tmp.level / 12 == Math.floor(tmp.level / 12)))
+          tmp.level++;
+        else tmp.page = 2;
       } else tmp.page = 2;
       reset();
       tmp.b = false;
