@@ -223,13 +223,13 @@ Vue.component("level", {
   return colored
 }*/
 function calculation2() {
-  calcolor()
+  //calcolor()
   light(false, true);
   calcolor();
   light(false, false, true);
-  light(true);
-  calcolor();
-  light()
+  //light(true);
+  //calcolor();
+  //light()
   light(true, false, true, true);
   dedup()
 }
@@ -355,7 +355,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
   if (win) return false;
   if(withlight)return tmp.where1=lightL;
   else if(withM)return tmp.where2=lightL;
-  else return tmp.where=lightL;
+  //else return tmp.where=lightL;
 }
 function calcolor() {
   let b = [];
