@@ -109,7 +109,7 @@ Vue.component("machine", {
       trans3:tmp.building[a-1][b-1][1]=='left'||tmp.building[a-1][b-1][1]=='right-up'
     }"><div></div></div>
 
-    <div v-for="layer in findLightPos(a-1,b-1,false,true,0,true)" :class="{
+    <div v-for="layer in tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length" :class="{
       [tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][3]+'Laser']:true,
       trans1:tmp.building[a-1][b-1][1]=='left-down'||
         (tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
@@ -206,7 +206,8 @@ Vue.component("level", {
    </table>  
     `,
 });
-function findLightPos(a, b, bool = false, amt = false, layer = 0,M=false) {
+//is it even needed when all positions are in tmp.where2 already?
+/*function findLightPos(a, b, bool = false, amt = false, layer = 0,M=false) {
   let a1=tmp.where
   if(M)a1=tmp.where2
   if (a1.length==0){if(bool)return false;return};
@@ -220,7 +221,7 @@ function findLightPos(a, b, bool = false, amt = false, layer = 0,M=false) {
   let colored = [color, pos]
   if(M)console.log(colored)
   return colored
-}
+}*/
 function calculation2() {
   calcolor()
   light(false, true);
@@ -229,12 +230,22 @@ function calculation2() {
   light(true);
   calcolor();
   light()
-  light(false, false, true, true);
+  light(true, false, true, true);
+  dedup()
+}
+function dedup(){ //if you have red/green and yellow edges overlaped it can cause yellow to not take priority
+  for (let i = 0; i<tmp.where3.length; i++){
+    if (tmp.where3[i][3]=='yellow'){
+      let cur = tmp.where3[i]
+      if(tmp.where3.filter((e) => (e[0] == cur[0] && e[1] == cur[1] && e[2]==cur[2] && e[3]!==cur[3])).length!==0){  
+      tmp.where3.splice(tmp.where3.findIndex((e) => (e[0] == cur[0] && e[1] == cur[1] && e[2]==cur[2] && e[3]!==cur[3])),1)
+      }
+  }}
 }
 function light(win = false, withlight = false, withM = false, final=false) {
   let lightL = [];
   if(final)tmp.where3 = []
-  for (let i = 0; i <= tmp.light.length - 1; i++) {
+  for (let i = 0; i < tmp.light.length; i++) {
     let pos = tmp.building[tmp.light[i][0]][tmp.light[i][1]][1];
 
     let color = tmp.color[i];
@@ -247,8 +258,11 @@ function light(win = false, withlight = false, withM = false, final=false) {
       if (tmp.building[locat[0]][locat[1]] == null) break;
       let build = tmp.building[locat[0]][locat[1]][0];
       if (build == "sun" && win) {tmp.win = true};
-      if (!withlight) {if (["badbox", "badboxwall"].includes(build))
-        tmp.building[locat[0]][locat[1]] = [null];
+      if (!withlight) {
+      if (["badbox", "badboxwall"].includes(build))
+        {tmp.building[locat[0]][locat[1]] = [null];
+          build = null
+        }
       if (build=='store') {
         if (tmp.building[locat[0]][locat[1]][1] == null) {
           tmp.building[locat[0]][locat[1]][1] = color;
@@ -282,7 +296,9 @@ function light(win = false, withlight = false, withM = false, final=false) {
           pos=reverse(pos)
           if (tmp.building[locat[0]][locat[1]][1] != null) {
             if (tmp.building[locat[0]][locat[1]][1] != color) color = "yellow";
-          }}
+          }
+          if(final)tmp.where3.push([...locat, pos, color,'half']);
+        }
       if (build == "redpass" && color != "red") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
       if (build == "greenpass" && color != "green") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
       if (build == "yellowpass" && color != "yellow") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
@@ -295,9 +311,6 @@ function light(win = false, withlight = false, withM = false, final=false) {
       lightL.push([...locat, pos, color]);
       if (["light",  "store"].includes(build)){
         if(final)tmp.where3.push([...locat, pos, color,'half']);
-        if(build=='store' && final) {
-          tmp.where3.push([...locat, pos, color,'half'])
-        }
         lightL.pop();
       }
       if (build == "mirror") {
