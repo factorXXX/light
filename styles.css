@@ -334,7 +334,7 @@ td div {
 }
 .player{
   background: url('images/player.gif') ;
-  background-size: 48px;
+  background-size: 120px;
   background-position: center;
   z-index: 999;
 }
@@ -348,6 +348,55 @@ justify-content: center;
   border-color: #333;
   color:#000
   
+}
+@keyframes rotation {
+  from {
+    transform: rotate(359deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+#selectors td{
+  display:inline-flex;
+  flex-wrap: wrap;
+}
+#selectors td{
+  
+  width: max-content;
+  height: max-content;
+  min-width: 61px;
+  min-height: 61px;
+  padding: 0px;
+  margin: 2px;
+}
+#selectors .clear {
+  filter: invert(75%);
+    width: 61px;
+    height: 61px;
+    background: url('./images/delete.svg');
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#selectors .tiePortals {
+  z-index: 1000 !important;
+    width: 61px;
+    height: 61px;
+    background: url('./images/pointy_arrow.svg');
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#selectors .tiePortals div{
+  animation: rotation 10s infinite linear;
+  background: url('images/portal.svg') ;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  filter:  invert(17%) sepia(90%) saturate(3310%) hue-rotate(353deg) brightness(89%) contrast(94%) drop-shadow(0px 0px 4px #000000);
+
+
 }
 @keyframes rotation {
   from {

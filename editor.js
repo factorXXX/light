@@ -60,7 +60,13 @@
               <button @click="clearEditor()">Clear editor</button>
             </span><br>
             <span>
-              <button @click="exportEditor()">Export</button>
+              <button @click="exportEditor()">Export to Clipboard</button>
+            </span><br>
+            <span>
+              <button @click="importL(btoa(JSON.stringify(player.editor.data)))">Playtest in the game</button>
+            </span><br>
+            <span>
+              <button @click="tmp.page=2">Back</button>
             </span>
           </div>
         </td>
@@ -127,6 +133,17 @@
   function getclass(r, c){
     let current = player.editor.data[r][c]
     if (current[0]=='location'){return 'player'}
+    else if (current[0]=='mirror'){
+      if(current[1]=='left-down'){
+        return ('mirror'+' '+'trans1')
+      }
+      if(current[1]=='right-down'){
+        return ('mirror'+' '+'trans2')
+      }
+      if(current[1]=='left-up'){
+        return ('mirror'+' '+'trans3')
+      }
+    }
     else if (current[0]=='light'){
       if(current[1]=='right'){
         return ('light'+' '+'trans1'+' '+current[2])
@@ -208,15 +225,4 @@
   }}
   function exportEditor(){
    navigator.clipboard.writeText(btoa(JSON.stringify(player.editor.data)))
-  }
-  window.onload = function(){
-    load()
-  var app = new Vue({
-    el: "#app",
-    data: {
-      player,
-      tmp
-    },
-  })
-  app.$forceUpdate();
   }
