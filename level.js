@@ -82,8 +82,7 @@ function reset(){
       [[null], [null], [null], [null], [null]],
       [[null], ["light", "down", "green"], [null], [null], ["sun"]],
       [[null], ["mirror", "left-down"], [null], [null], [null]],
-      [[null], [null], [null], ["mirror", "right-down"], [null]],
-      [[null], [null], ["box"], [null], [null]],
+      [[null], [null], [null], ["mirror", "right-down"], [null]]
     ],
     perfect:14,
     location: [0, 0],
