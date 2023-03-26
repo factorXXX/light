@@ -178,10 +178,10 @@ Vue.component("level", {
       <span style="font-size:20px; text-align:center">
       {{tmp.level>=1001?"Hard Mode Level "+Math.floor((tmp.level-1001)/12+1).toString()+"-"+(tmp.level+8-Math.floor((tmp.level+7)/12)*12).toString():"Level "+Math.floor((tmp.level-1)/12+1).toString()+"-"+(tmp.level-Math.floor((tmp.level-1)/12)*12).toString()}}</span>        <span style="font-size:20px"
       :class="{
-        greenCounter:(tmp.previous.length<=perfect[tmp.level]),
-        redCounter:!(tmp.previous.length<=perfect[tmp.level])
+        greenCounter:(tmp.previous.length<=level[tmp.level].perfect),
+        redCounter:!(tmp.previous.length<=level[tmp.level].perfect)
         }">
-      [{{tmp.previous.length}}/{{perfect[tmp.level]}}]</span>
+      [{{tmp.previous.length}}/{{level[tmp.level].perfect}}]</span>
       <br><br>
       Arrows or WASD: Move the Character<br>
       <span v-if="tmp.level>=13">E: Enter the Portal if you can<br></span>
@@ -568,8 +568,8 @@ setInterval(function () {
       if (tmp.level != "custom") {
         if (!player.levelbeaten.includes(tmp.level))
           player.levelbeaten.push(tmp.level);
-          if(perfect[tmp.level]!=undefined){
-            if(tmp.previous.length<=perfect[tmp.level]&&!player.perfectbeaten.includes(tmp.level)){
+          if(level[tmp.level].perfect!=undefined){
+            if(tmp.previous.length<=level[tmp.level].perfect&&!player.perfectbeaten.includes(tmp.level)){
               player.perfectbeaten.push(tmp.level);
             }
 
@@ -686,4 +686,3 @@ function importL2(imported = undefined,a1=7,a2=7) {
   tmp.store = imported;
   calculation2()
 }
-const perfect= [null,3,9,6,7,3,14,15,17,5,7,24,31,4,24,23,24,21,15,25,46,24,24,27,56,32,21,96,59,6,39,58,23,4,14,59,44,24,36,78,null/*4-4*/,44]

@@ -25,7 +25,7 @@
     ['greenpass'],
     ['redpass'],
     ['yellowpass'],
-    ['store','null'],
+    ['store',null],
     ['store','green'],
     ['store','red'],
     ['store','yellow'],
@@ -142,8 +142,11 @@
       if(current[1]=='right-down'){
         return ('mirror'+' '+'trans2')
       }
-      if(current[1]=='left-up'){
+      if(current[1]=='right-up'){
         return ('mirror'+' '+'trans3')
+      }
+      if(current[1]=='left-up'){
+        return ('mirror')
       }
     }
     else if (current[0]=='light'){
@@ -161,7 +164,6 @@
       }
     }
     else if (current[0]=='store'){
-      //if (current[1]=='null') current[1]='white'
       return ('store'+' '+ current[1])
     }
     else if (current[0]=='reflectvel'){
