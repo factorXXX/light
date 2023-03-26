@@ -57,8 +57,6 @@ window.onload=function(){
     save()
     window.location.reload();
   }
-  reset()
-  tmp.level=1
 };
 
 function exportSave() {

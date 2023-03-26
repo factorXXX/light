@@ -1,10 +1,8 @@
 function reset(){
     if(!level[tmp.level]){
-      setTimeout(() => {
-        tmp.page=2;
-        return
-      }, 100);  
-}
+      return
+    } else {
+    tmp.page=1;
     let currentLevel = JSON.parse(JSON.stringify(level[tmp.level]))
     let thisLeveeel = tmp.level
     if (currentLevel.string!==undefined){
@@ -19,6 +17,7 @@ function reset(){
     calculation2()
     tmp.previous= [];
     save()
+    }
   }
 
   const level = {

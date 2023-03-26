@@ -40,7 +40,7 @@ Vue.component("selectmenu", {
   <td v-for="d in 4" style="padding:0px">
     <table>
       <div class="unlocked" v-if="(player.levelbeaten.filter(a=>a>((c*3+d-3)*12-24)&&a<=((c*3+d-3)*12-12)).length>=9)||((c*3+d-3)==1)">
-      <tr><td colspan="4" style='vertical-align: middle' onclick='tmp.level="ch1";reset();tmp.page=1'>Chapter {{c*3+d-3}}</td></tr>
+      <tr><td colspan="4" style='vertical-align: middle' @click='tmp.level="ch1";reset()'>Chapter {{c*3+d-3}}</td></tr>
       <tr v-for="a in 3">
         <td v-for="b in 4" 
           :class="{
@@ -48,7 +48,7 @@ Vue.component("selectmenu", {
             beaten:player.levelbeaten.includes(((c*3+d-3)*12+(a*4+b-4)-12)),
             unbeaten:!player.levelbeaten.includes(((c*3+d-3)*12+(a*4+b-4)-12))
           }"
-          @click="tmp.level=((c*3+d-3)*12+(a*4+b-4)-12);reset();tmp.page=1">
+          @click='tmp.level=((c*3+d-3)*12+(a*4+b-4)-12);reset()'>
             {{level[(((c*3+d-3)*12+(a*4+b-4)-12))]==undefined?"wip":(a*4+b-4)}}
         </td>
       </tr>
@@ -74,7 +74,7 @@ Vue.component("selectmenu", {
             beaten:player.levelbeaten.includes(((c*3+d-3)*6+(a*2+b-2)+994)),
             unbeaten:!player.levelbeaten.includes(((c*3+d-3)*6+(a*2+b-2)+994))
           }"
-          @click="tmp.level=((c*3+d-3)*6+(a*2+b-2)+994);reset();tmp.page=1">
+          @click="tmp.level=((c*3+d-3)*6+(a*2+b-2)+994);reset()">
           {{level[(((c*3+d-3)*12+(a*4+b-4)-12))+1000]==undefined?"wip":(a*4+b-4)}}
         </td>
       </tr>
