@@ -175,8 +175,13 @@ Vue.component("level", {
       </tr>
    <tr>
      <td style="height: 32px;">
-      <span style="font-size:20px; text-align:center">
-      {{tmp.level>=1001?"Hard Mode Level "+Math.floor((tmp.level-1001)/12+1).toString()+"-"+(tmp.level+8-Math.floor((tmp.level+7)/12)*12).toString():"Level "+Math.floor((tmp.level-1)/12+1).toString()+"-"+(tmp.level-Math.floor((tmp.level-1)/12)*12).toString()}}</span>        <span style="font-size:20px"
+      <span v-if="tmp.level!=='custom'" style="font-size:20px; text-align:center">
+        {{tmp.level>=1001?"Hard Mode Level "+Math.floor((tmp.level-1001)/12+1).toString()+"-"+(tmp.level+8-Math.floor((tmp.level+7)/12)*12).toString():"Level "+Math.floor((tmp.level-1)/12+1).toString()+"-"+(tmp.level-Math.floor((tmp.level-1)/12)*12).toString()}}
+      </span>        
+      <span v-else style="font-size:20px; text-align:center">
+        Custom Level
+      </span>
+      <span style="font-size:20px"
       :class="{
         greenCounter:(tmp.previous.length<=level[tmp.level].perfect),
         redCounter:!(tmp.previous.length<=level[tmp.level].perfect)
@@ -184,7 +189,7 @@ Vue.component("level", {
       [{{tmp.previous.length}}/{{level[tmp.level].perfect}}]</span>
       <br><br>
       Arrows or WASD: Move the Character<br>
-      <span v-if="tmp.level>=13">E: Enter the Portal if you can<br></span>
+      <span v-if="(tmp.level>=13||tmp.level=='custom')">E: Enter the Portal if you can<br></span>
       Shift + R: Restart the Level<br>
       U: Undo a move
     </td> 
@@ -196,7 +201,7 @@ Vue.component("level", {
     <button :class="{portalButton: true, canportal: true}" @click="tmp.page=2">
         Go to Menu
     </button><br><br>
-    <button v-if="(tmp.level>=13||tmp.level=='custom')||tmp.level[1]=='h'" :class="{portalButton: true, canportal: tmp.building[tmp.location[0]][tmp.location[1]][0]=='portal'||tmp.building[tmp.location[0]][tmp.location[1]][0]=='level', cantportal: tmp.building[tmp.location[0]][tmp.location[1]][0]!='portal'&&tmp.building[tmp.location[0]][tmp.location[1]][0]!='level'}" @click="enter()">
+    <button v-if="(tmp.level>=13||tmp.level=='custom')" :class="{portalButton: true, canportal: tmp.building[tmp.location[0]][tmp.location[1]][0]=='portal'||tmp.building[tmp.location[0]][tmp.location[1]][0]=='level', cantportal: tmp.building[tmp.location[0]][tmp.location[1]][0]!='portal'&&tmp.building[tmp.location[0]][tmp.location[1]][0]!='level'}" @click="enter()">
         Enter the {{tmp.level>=13||tmp.level=='custom'?'portal':'level'}}
     </button>
     </td>
@@ -208,7 +213,7 @@ Vue.component("level", {
   <tr>
   <td @click="doSomething('KeyU',false)">U</td>
   <td @click="doSomething('KeyW',false)">&#8593;</td>
-  <td v-if="tmp.level>=13" @click="doSomething('KeyE',false)">E</td>
+  <td v-if="(tmp.level>=13||tmp.level=='custom')" @click="doSomething('KeyE',false)">E</td>
   </tr>
   <tr>
     <td @click="doSomething('KeyA',false)">&#8592;</td>
