@@ -49,7 +49,7 @@ Vue.component("selectmenu", {
             unbeaten:!player.levelbeaten.includes(((c*3+d-3)*12+(a*4+b-4)-12))
           }"
           @click="tmp.level=((c*3+d-3)*12+(a*4+b-4)-12);reset();tmp.page=1">
-          {{a*4+b-4}}
+            {{level[(((c*3+d-3)*12+(a*4+b-4)-12))]==undefined?"wip":(a*4+b-4)}}
         </td>
       </tr>
       </div>
@@ -75,7 +75,7 @@ Vue.component("selectmenu", {
             unbeaten:!player.levelbeaten.includes(((c*3+d-3)*6+(a*2+b-2)+994))
           }"
           @click="tmp.level=((c*3+d-3)*6+(a*2+b-2)+994);reset();tmp.page=1">
-            {{a*2+b-2}}
+          {{level[(((c*3+d-3)*12+(a*4+b-4)-12))+1000]==undefined?"wip":(a*4+b-4)}}
         </td>
       </tr>
     </div>
