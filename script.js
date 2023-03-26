@@ -100,6 +100,36 @@ Vue.component("selectmenu", {
 </table>
     `,
 });
+/*
+else if (current[0]=='mirror'){
+  if(current[1]=='left-down'){
+    return ('mirror'+' '+'trans1')
+  }
+  if(current[1]=='right-down'){
+    return ('mirror'+' '+'trans2')
+  }
+  if(current[1]=='right-up'){
+    return ('mirror'+' '+'trans3')
+  }
+  if(current[1]=='left-up'){
+    return ('mirror')
+  }
+}
+else if (current[0]=='light'){
+  if(current[1]=='right'){
+    return ('light'+' '+'trans1'+' '+current[2])
+  }
+  else if(current[1]=='up'){
+    return ('light'+' '+'trans2'+' '+current[2])
+  }
+  else if(current[1]=='left'){
+    return ('light'+' '+'trans3'+' '+current[2])
+  }
+  else if(current[1]=='down'){
+    return ('light'+' '+current[2])
+  }
+}*/
+
 Vue.component("machine", {
   template: `
     <table class="gamezone" >
@@ -107,12 +137,7 @@ Vue.component("machine", {
     <td v-for="b in tmp.area[1]">
     <div :class="{player: tmp.location[0]==a-1 && tmp.location[1]==[b-1]}"><div></div></div>
     <div :class="{
-      [tmp.building[a-1][b-1][2]]:true,
-      [tmp.building[a-1][b-1][1]]:tmp.building[a-1][b-1][0]=='store',
-      [tmp.building[a-1][b-1][0]]:true,
-      trans1:tmp.building[a-1][b-1][1]=='right'||tmp.building[a-1][b-1][1]=='left-down'||tmp.building[a-1][b-1][0]=='reflectvel',
-      trans2:tmp.building[a-1][b-1][1]=='up'||tmp.building[a-1][b-1][1]=='right-down',
-      trans3:tmp.building[a-1][b-1][1]=='left'||tmp.building[a-1][b-1][1]=='right-up'
+      [getclass(a-1, b-1)]:true
     }"><div></div></div>
 
     <div v-for="layer in tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length" :class="{
@@ -225,22 +250,6 @@ Vue.component("level", {
    </table>  
     `,
 });
-//is it even needed when all positions are in tmp.where2 already?
-/*function findLightPos(a, b, bool = false, amt = false, layer = 0,M=false) {
-  let a1=tmp.where
-  if(M)a1=tmp.where2
-  if (a1.length==0){if(bool)return false;return};
-  let res =a1.filter((element) => element[0] == a && element[1] == b);
-  if (amt) return res.length;
-  if (bool) return res[0] != undefined;
-  if (!findLightPos(a, b, true)) return;
-  let color = res[layer][3];
-  let pos = res[layer][2];
-  if (["right", "down"].includes(pos)) pos = reverse(pos);
-  let colored = [color, pos]
-  if(M)console.log(colored)
-  return colored
-}*/
 function calculation2() {
   //calcolor()
   light(false, true);
@@ -260,6 +269,43 @@ function dedup(){ //if you have red/green and yellow edges overlaped it can caus
       tmp.where3.splice(tmp.where3.findIndex((e) => (e[0] == cur[0] && e[1] == cur[1] && e[2]==cur[2] && e[3]!==cur[3])),1)
       }
   }}
+}
+function getclass(r,c){
+  let current = JSON.parse(JSON.stringify(tmp.building[r][c]))
+  if (current[0]=='store'){
+    return ('store'+' '+current[1])
+  }
+  else if (current[0]=='mirror'){
+    if(current[1]=='left-down'){
+      return ('mirror'+' '+'trans1')
+    }
+    if(current[1]=='right-down'){
+      return ('mirror'+' '+'trans2')
+    }
+    if(current[1]=='right-up'){
+      return ('mirror'+' '+'trans3')
+    }
+    if(current[1]=='left-up'){
+      return ('mirror')
+    }
+  }
+  else if (current[0]=='light'){
+    if(current[1]=='right'){
+      return ('light'+' '+'trans1'+' '+current[2])
+    }
+    else if(current[1]=='up'){
+      return ('light'+' '+'trans2'+' '+current[2])
+    }
+    else if(current[1]=='left'){
+      return ('light'+' '+'trans3'+' '+current[2])
+    }
+    else if(current[1]=='down'){
+      return ('light'+' '+current[2])
+    }
+  }
+  else {
+    return current[0]
+  }
 }
 function light(win = false, withlight = false, withM = false, final=false) {
   let lightL = [];

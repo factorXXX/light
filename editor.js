@@ -87,7 +87,7 @@
         <td v-for="c in player.editor.data[0].length"
           @click="setTo(r-1,c-1)">
           <span :class="{
-            [getclass(r-1, c-1)]:true
+            [geteditorclass(r-1, c-1)]:true
           }"><div></div>
           </span>
           <p v-if="player.editor.data[r-1][c-1][0]=='portal'" style="position: absolute; font-weight: 900; color:white; margin-bottom:0px">{{player.editor.data[r-1][c-1][1]}}</p>
@@ -132,7 +132,7 @@
     </div>
     `
   })
-  function getclass(r, c){
+  function geteditorclass(r, c){
     let current = player.editor.data[r][c]
     if (current[0]=='location'){return 'player'}
     else if (current[0]=='mirror'){
