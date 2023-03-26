@@ -573,17 +573,17 @@ function numToPos(x){
 function importL(imported = undefined) {
   if (imported === undefined) imported = prompt("paste your save here");
   tmp.building = JSON.parse(atob(imported));
-  tmp.area = [9, 9];
+  tmp.area = [tmp.building.length, tmp.building[0].length];
   let light = [];
-  for (let i = 0; i <= 8; i++) {
-    for (let j = 0; j <= 8; j++) {
+  for (let i = 0; i < tmp.area[0]; i++) {
+    for (let j = 0; j < tmp.area[1]; j++) {
       if (tmp.building[i][j][0] == "light") light.push([i, j]);
     }
   }
  
  tmp.light = light;
-  for (let i = 0; i <= 8; i++) {
-    let num1 = tmp.building[i].findIndex((x) => x[0] == "location");
+  for (let i = 0; i < tmp.area[0]; i++) {
+    let num1 = tmp.building[i].findIndex((x) => x[0] == "location"||x[0] == "player");
     if (num1 != -1) {
       tmp.location = [i, num1];
       tmp.building[i][num1][0] = null;
