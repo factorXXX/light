@@ -32,6 +32,8 @@
     ['rotate180'],
     ['rotate90'],
     ['rotate270'],
+    ['reflecthor'],
+    ['reflectvel'],
   ]
   
   
@@ -106,7 +108,7 @@
             [tmp.editor.brush[0]]:true,
             [tmp.editor.brush[1]]:tmp.editor.brush[0]=='store',
             [tmp.editor.brush[2]]:true,
-            trans1:tmp.editor.brush[1]=='right'||tmp.editor.brush[1]=='left-down',
+            trans1:tmp.editor.brush[1]=='right'||tmp.editor.brush[1]=='left-down'||tmp.editor.brush[0]=='reflectvel',
             trans2:tmp.editor.brush[1]=='up'||tmp.editor.brush[1]=='right-down',
             trans3:tmp.editor.brush[1]=='left'||tmp.editor.brush[1]=='right-up'
           }"><div></div>
@@ -120,7 +122,7 @@
             [brushes[i-1][0]]:true,
             [brushes[i-1][1]]:brushes[i-1][0]=='store',
             [brushes[i-1][2]]:true,
-            trans1:brushes[i-1][1]=='right'||brushes[i-1][1]=='left-down',
+            trans1:brushes[i-1][1]=='right'||brushes[i-1][1]=='left-down'||brushes[i-1][0]=='reflectvel',
             trans2:brushes[i-1][1]=='up'||brushes[i-1][1]=='right-down',
             trans3:brushes[i-1][1]=='left'||brushes[i-1][1]=='right-up'
           }"><div></div>
@@ -161,6 +163,10 @@
     else if (current[0]=='store'){
       //if (current[1]=='null') current[1]='white'
       return ('store'+' '+ current[1])
+    }
+    else if (current[0]=='reflectvel'){
+
+      return ('reflectvel'+' '+'trans1')
     }
     else return (current[0]+' '+ current[1])
   }

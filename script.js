@@ -110,14 +110,14 @@ Vue.component("machine", {
       [tmp.building[a-1][b-1][2]]:true,
       [tmp.building[a-1][b-1][1]]:tmp.building[a-1][b-1][0]=='store',
       [tmp.building[a-1][b-1][0]]:true,
-      trans1:tmp.building[a-1][b-1][1]=='right'||tmp.building[a-1][b-1][1]=='left-down',
+      trans1:tmp.building[a-1][b-1][1]=='right'||tmp.building[a-1][b-1][1]=='left-down'||tmp.building[a-1][b-1][0]=='reflectvel',
       trans2:tmp.building[a-1][b-1][1]=='up'||tmp.building[a-1][b-1][1]=='right-down',
       trans3:tmp.building[a-1][b-1][1]=='left'||tmp.building[a-1][b-1][1]=='right-up'
     }"><div></div></div>
 
     <div v-for="layer in tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length" :class="{
       [tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][3]+'Laser']:true,
-      trans1:tmp.building[a-1][b-1][1]=='left-down'||
+      trans1:tmp.building[a-1][b-1][1]=='left-down'||tmp.building[a-1][b-1][0]=='reflectvel'||
         (tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
         (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'right')),
       trans2:tmp.building[a-1][b-1][1]=='right-down'||
@@ -440,7 +440,7 @@ function doSomething(a,b){ if (tmp.win == false) {
 
   if (tmp.building[tmp.location[0]][tmp.location[1]][0] != null) {
     let buildtouch = tmp.building[tmp.location[0]][tmp.location[1]];
-    if (["box", "badbox", "mirror", "store","rotate180","rotate90","rotate270"].includes(buildtouch[0])) {
+    if (["box", "badbox", "mirror", "store","rotate180","rotate90","rotate270","reflecthor"].includes(buildtouch[0])) {
       let pos = [0, 0];
       let req = true;
       if (a === "KeyD" || a === "ArrowRight") {
@@ -471,7 +471,7 @@ function doSomething(a,b){ if (tmp.win == false) {
         calculation2()
         return;
       }
-      if ((["mirror","light"].includes(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0][0]=="r") {
+      if ((["mirror","light"].includes(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0][0]+buildtouch[0][1]=="ro") {
 
         let a=tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2]
         if(a[0]=="light"){
@@ -492,9 +492,51 @@ function doSomething(a,b){ if (tmp.win == false) {
         tmp.location = [locat[0] + pos[0], locat[1] + pos[1]];
         return calculation2();
       }
-      else if ((tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] != null)&&buildtouch[0][0]=="r") {
+      else if ((tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] != null)&&buildtouch[0][0]+buildtouch[0][1]=="ro") {
         tmp.location = [locat[0], locat[1]];
         tmp.previous.pop();
+        return calculation2();
+      }
+
+
+      else if ((["mirror","light"].includes(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0][0]+buildtouch[0][1]=="re"){
+
+
+let a=tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2]
+if(buildtouch[0].split("reflect")=="hor"){
+  if(a[0]=="light"){
+
+    if((tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]%2)!=0)tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]= numToPos((posToNum(a[1])+2)%4)
+  }
+  if(a[0]=="mirror"){
+    let r=tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1].split("-")
+    r[1]=numToPos((posToNum(r[1])+2)%4)
+    if(posToNum(r[0])%2==0){
+      let tmp=r[0]
+ r[0]=r[1]
+ r[1]=tmp
+    }
+    tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]=r[0]+"-"+r[1]
+  }
+}
+else {
+  if(a[0]=="light"){
+
+    if((tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]%2)!=1)tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]= numToPos((posToNum(a[1])+2)%4)
+  }
+  if(a[0]=="mirror"){
+    let r=tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1].split("-")
+    r[0]=numToPos((posToNum(r[0])+2)%4)
+    if(posToNum(r[0])%2==0){
+      let tmp=r[0]
+ r[0]=r[1]
+ r[1]=tmp
+    }
+    tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]=r[0]+"-"+r[1]
+  }
+}
+        tmp.building[locat[0] + pos[0]][locat[1] + pos[1]] = [null];
+        tmp.location = [locat[0] + pos[0], locat[1] + pos[1]];
         return calculation2();
       }
       tmp.building[locat[0] + pos[0]][locat[1] + pos[1]] = [null];
