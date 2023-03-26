@@ -1,5 +1,6 @@
 function reset(manual=false){
     if(!level[tmp.level]){
+      tmp.page=2
       return
     } else {
     tmp.page=1;
