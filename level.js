@@ -1,13 +1,16 @@
-function reset(){
+function reset(manual=false){
     if(!level[tmp.level]){
       return
     } else {
     tmp.page=1;
-    let currentLevel = JSON.parse(JSON.stringify(level[tmp.level]))
-    let thisLeveeel = tmp.level
-    if (currentLevel.string!==undefined){
+    tmp.previous= [];
+    currentLevel={}
+    if (tmp.store!==''&&tmp.level=='custom'){currentLevel = importL(tmp.store)}
+    else {currentLevel = JSON.parse(JSON.stringify(level[tmp.level]))}
+    let levelNumber = tmp.level
+    if (!!currentLevel.string){
       importL(currentLevel.string)
-      tmp.level = thisLeveeel
+      tmp.level = levelNumber
     } else  {
     tmp.building=currentLevel.building
     tmp.location=currentLevel.location
@@ -15,7 +18,6 @@ function reset(){
     tmp.light = currentLevel.light
     }
     calculation2()
-    tmp.previous= [];
     save()
     }
   }
