@@ -20,7 +20,11 @@ var tmp = {
   where1:[],
   where2:[],
   where3:[],
-  diff:0
+  diff:0,
+  editor: {
+    brush: [null],
+    selectedPortal: null,
+  }
 };
 function music(x) {
   return (
@@ -87,9 +91,11 @@ Vue.component("selectmenu", {
     <td colspan="2" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;background-color:#aa6464"
     @click="tmp.diff=(tmp.diff+1)%2"
     >{{tmp.diff==1?'Hard Mode':'Normal Mode'}}</td>
-    <td colspan="2" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid"
+    <td style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid"
     @click="tmp.page=3"
-    >Options</td>
+    >Options</td><td style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid"
+    @click="tmp.page=4"
+    >Level Editor</td>
     </tr>
 </table>
     `,
@@ -539,7 +545,14 @@ setInterval(function () {
   }
 
   //calcolor()
-  if(player.key==undefined)player.key=true
+if(player.editor==undefined){
+  player.editor={
+    data: [
+      [["boxwall"], [null]],
+      [[null], [null]],
+    ]
+  }
+}
   if(player.perfectbeaten==undefined)player.perfectbeaten=[]
 }, 50);
 

@@ -333,7 +333,7 @@ td div {
   filter:invert(70%) drop-shadow(0px 0px 4px #000000) ;
 }
 .player{
-  background: url('images/location.png') ;
+  background: url('images/player.gif') ;
   background-size: 48px;
   background-position: center;
   z-index: 999;
