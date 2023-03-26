@@ -1,8 +1,12 @@
 var player={
   levelbeaten:[0],
   perfectbeaten:[],
-  key:true,
-
+  editor:{
+    data: [
+      [["boxwall"], [null]],
+      [[null], [null]],
+    ]
+  },
 }
 function save() {
   localStorage.setItem('player', JSON.stringify(player));
@@ -13,7 +17,12 @@ function load() {
     player={
   levelbeaten:[0],
   perfectbeaten:[],
-  key:true,
+  editor:{
+    data: [
+      [["boxwall"], [null]],
+      [[null], [null]],
+    ]
+  },
     }
     save()
     window.location.reload();
@@ -38,7 +47,12 @@ window.onload=function(){
   player={  
     levelbeaten:[0],
     perfectbeaten:[],
-    key:true,
+    editor:{
+      data: [
+        [["boxwall"], [null]],
+        [[null], [null]],
+      ]
+    },
       }
     save()
     window.location.reload();
