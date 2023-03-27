@@ -63,6 +63,9 @@
             </span><br>
             <span>
               <button @click="exportEditor()">Export to Clipboard</button>
+            </span><br>            
+            <span>
+              <button @click="importEditor()">Import</button>
             </span><br>
             <span>
               <button @click="importL(btoa(JSON.stringify(player.editor.data)))">Playtest in the game</button>
@@ -233,4 +236,10 @@
   }}
   function exportEditor(){
    navigator.clipboard.writeText(btoa(JSON.stringify(player.editor.data)))
+  }
+  function importEditor(imported = undefined) {
+    if (imported === undefined) imported = prompt("paste your level here")
+    player.editor.data = JSON.parse(atob(imported))
+    save()
+      
   }
