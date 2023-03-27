@@ -44,9 +44,7 @@ Vue.component("selectmenu", {
       <tr v-for="a in 3">
         <td v-for="b in 4" 
           :class="{
-            perfect:player.perfectbeaten.includes(((c*3+d-3)*12+(a*4+b-4)-12)),
-            beaten:player.levelbeaten.includes(((c*3+d-3)*12+(a*4+b-4)-12)),
-            unbeaten:!player.levelbeaten.includes(((c*3+d-3)*12+(a*4+b-4)-12))
+            [getClassOfMenuCell((c*3+d-3)*12+(a*4+b-4)-12)]:true,
           }"
           @click='tmp.level=((c*3+d-3)*12+(a*4+b-4)-12);reset()'>
             {{level[(((c*3+d-3)*12+(a*4+b-4)-12))]==undefined?"wip":(a*4+b-4)}}
@@ -64,15 +62,13 @@ Vue.component("selectmenu", {
   <tr v-for="c in 1" v-if="tmp.diff==1">
   <td v-for="d in 4">
   <table>
-    <div v-if="(player.levelbeaten.filter(a=>a>((c*3+d-3)*6+988)&&a<=((c*3+d-3)*6+994)).length>=9)||((c*3+d-3)==1)">
+    <div v-if="(player.levelbeaten.filter(a=>a>((c*3+d-3)*6+988)&&a<=((c*3+d-3)*6+994)).length>=4)||((c*3+d-3)==1)">
       <tr><td colspan="4" style='vertical-align: middle'>Chapter {{c*3+d-3}}</td></tr>
       <tr v-for="a in 3">
         <td v-for="b in 2"
           :class="{
             wide: true,
-            perfect:player.perfectbeaten.includes(((c*3+d-3)*6+(a*2+b-2)+994)),
-            beaten:player.levelbeaten.includes(((c*3+d-3)*6+(a*2+b-2)+994)),
-            unbeaten:!player.levelbeaten.includes(((c*3+d-3)*6+(a*2+b-2)+994))
+            [getClassOfMenuCell(((c*3+d-3)*6+(a*2+b-2)+994))]:true,
           }"
           @click="tmp.level=((c*3+d-3)*6+(a*2+b-2)+994);reset()">
           {{level[(((c*3+d-3)*12+(a*4+b-4)-12))+1000]==undefined?"wip":(a*4+b-4)}}
@@ -100,35 +96,6 @@ Vue.component("selectmenu", {
 </table>
     `,
 });
-/*
-else if (current[0]=='mirror'){
-  if(current[1]=='left-down'){
-    return ('mirror'+' '+'trans1')
-  }
-  if(current[1]=='right-down'){
-    return ('mirror'+' '+'trans2')
-  }
-  if(current[1]=='right-up'){
-    return ('mirror'+' '+'trans3')
-  }
-  if(current[1]=='left-up'){
-    return ('mirror')
-  }
-}
-else if (current[0]=='light'){
-  if(current[1]=='right'){
-    return ('light'+' '+'trans1'+' '+current[2])
-  }
-  else if(current[1]=='up'){
-    return ('light'+' '+'trans2'+' '+current[2])
-  }
-  else if(current[1]=='left'){
-    return ('light'+' '+'trans3'+' '+current[2])
-  }
-  else if(current[1]=='down'){
-    return ('light'+' '+current[2])
-  }
-}*/
 
 Vue.component("machine", {
   template: `
@@ -310,6 +277,14 @@ function getclass(r,c){
   else {
     return current[0]
   }
+}
+
+function getClassOfMenuCell(levelNum) {
+  if (level[levelNum]){
+    if (player.perfectbeaten.includes(level[levelNum].index)) return 'perfect'
+    if (player.levelbeaten.includes(level[levelNum].index)) return 'beaten'
+  }
+  return 'unbeaten'
 }
 function light(win = false, withlight = false, withM = false, final=false) {
   let lightL = [];
@@ -616,33 +591,34 @@ else if((["mirror","light","rotate90","rotate180","rotate270"].includes(tmp.buil
   }
   calculation2()
 }}
+
 setInterval(function () {
+  /* wtf
   if (tmp.location[0] < 0) tmp.location[0] = 0;
   if (tmp.location[1] < 0) tmp.location[1] = 0;
-
+  */
+/* player.bestlevel doesn't exists and is not used anywhere
   if (
     tmp.level != "custom" &&
     (player.bestlevel == undefined || tmp.level > player.bestlevel)
   )
+
     player.bestlevel = tmp.level;
-  if (!tmp.b && tmp.win) {
+*/
+  if (!tmp.b && tmp.win) { //realisticly this game doesn't need game loop like incrementals and this one can be moved to light() in  `if (build == "sun" && win) {tmp.win = true};`
     tmp.b = true;
     new Audio(music("win")).play();
     setTimeout(function () {
-      if (tmp.level != "custom") {
+      if (tmp.level !== "custom") {
         if (!player.levelbeaten.includes(tmp.level))
-          player.levelbeaten.push(tmp.level);
-          if(level[tmp.level].perfect!=undefined){
-            if(tmp.previous.length<=level[tmp.level].perfect&&!player.perfectbeaten.includes(tmp.level)){
-              player.perfectbeaten.push(tmp.level);
+          player.levelbeaten.push(level[tmp.level].index);
+            if(tmp.previous.length<=level[tmp.level].perfect&&!player.perfectbeaten.includes(level[tmp.level].index)){
+              player.perfectbeaten.push(level[tmp.level].index);
             }
-
-          }
-          
         if (!(tmp.level / 12 == Math.floor(tmp.level / 12)))
           tmp.level++;
         else tmp.page = 2;
-      } else tmp.page = 2;
+      }
       reset();
       tmp.b = false;
       tmp.win = false
@@ -650,7 +626,7 @@ setInterval(function () {
     }, 1000);
   }
 
-  //calcolor()
+ /* why run it in a loop and why run it at all, in load function it merges basee player with player so this issue won't happen 
 if(player.editor==undefined){
   player.editor={
     data: [
@@ -660,13 +636,14 @@ if(player.editor==undefined){
   }
 }
   if(player.perfectbeaten==undefined)player.perfectbeaten=[]
+  
   if(player.version==undefined){
     player.version=1
     if(player.levelbeaten.includes(41)){player.levelbeaten.push(40);player.levelbeaten.splice(player.levelbeaten.findIndex((element)=>element ==41), 1)}
     if(player.perfectbeaten.includes(41)){player.perfectbeaten.push(40);player.perfectbeaten.splice(player.perfectbeaten.findIndex((element)=>element ==41), 1)}
     if(player.levelbeaten.includes(44)){player.levelbeaten.push(42);player.levelbeaten.splice(player.levelbeaten.findIndex((element)=>element ==44), 1)}
     if(player.perfectbeaten.includes(44)){player.perfectbeaten.push(42);player.perfectbeaten.splice(player.perfectbeaten.findIndex((element)=>element ==44), 1)}
-  }
+  }*/
 }, 50);
 
 function enter() {

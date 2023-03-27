@@ -35,6 +35,7 @@ function reset(manual=false){
     perfect:3,
     location: [0, 0],
     light: [[0, 1]],
+    index: 1
   },
   2: {
     building: [
@@ -46,6 +47,7 @@ function reset(manual=false){
     perfect:9,
     location: [0, 0],
     light: [[0, 1]],
+    index: 2
   },
   3: {
     building: [
@@ -58,6 +60,7 @@ function reset(manual=false){
     perfect:6,
     location: [0, 0],
     light: [[0, 1]],
+    index: 3
   },
   4: {
     building: [
@@ -70,6 +73,7 @@ function reset(manual=false){
     perfect:7,
     location: [0, 0],
     light: [[2, 0]],
+    index: 4
   },
   5: {
     building: [
@@ -80,6 +84,7 @@ function reset(manual=false){
     perfect:3,
     location: [0, 0],
     light: [[0, 1]],
+    index: 5
   },
   6: {
     building: [
@@ -91,6 +96,7 @@ function reset(manual=false){
     perfect:14,
     location: [0, 0],
     light: [[1, 1]],
+    index: 6
   },
   7: {
     building: [
@@ -102,6 +108,7 @@ function reset(manual=false){
     perfect:15,
     location: [0, 0],
     light: [[0, 2]],
+    index: 7
   },
   8: {
     building: [
@@ -114,6 +121,7 @@ function reset(manual=false){
     perfect:17,
     location: [2, 0],
     light: [[1, 2]],
+    index: 8
   },
   9: {
     building: [
@@ -124,6 +132,7 @@ function reset(manual=false){
     perfect:5,
     location: [0, 0],
     light: [[2, 0]],
+    index: 9
   },
   10: {
     building: [
@@ -136,6 +145,7 @@ function reset(manual=false){
     perfect:7,
     location: [2, 1],
     light: [[3, 0]],
+    index: 10
   },
   11: {
     building: [
@@ -150,6 +160,7 @@ function reset(manual=false){
     perfect:24,
     location: [2, 0],
     light: [[6, 1]],
+    index: 11
   },
   12: {
     building: [
@@ -163,6 +174,7 @@ function reset(manual=false){
     perfect:31,
     location: [5, 6],
     light: [[1, 2]],
+    index: 12
   },
    13: {
     building: [
@@ -175,6 +187,7 @@ function reset(manual=false){
     perfect:4,
     location: [0, 0],
     light: [[4, 1]],
+    index: 13
   },
   14: {
     building: [
@@ -188,6 +201,7 @@ function reset(manual=false){
     perfect:24,
     location: [0, 0],
     light: [[2, 0]],
+    index: 14
   },
   15: {
     building: [
@@ -200,6 +214,7 @@ function reset(manual=false){
     perfect:23,
     location: [0, 0],
     light: [[4, 0]],
+    index: 15
   },
   16: {
     building: [
@@ -212,6 +227,7 @@ function reset(manual=false){
     perfect:24,
     location: [0, 0],
     light: [[0, 1]],
+    index: 16
   },
   17: {
     building: [
@@ -225,6 +241,7 @@ function reset(manual=false){
     perfect:21,
     location: [5, 2],
     light: [[5, 0]],
+    index: 17
   },
   18: {
     building: [
@@ -239,6 +256,7 @@ function reset(manual=false){
     perfect:15,
     location: [2, 2],
     light: [[2, 1]],
+    index: 18
   },
   19: {
     building: [
@@ -252,6 +270,7 @@ function reset(manual=false){
     perfect:25,
     location: [0, 0],
     light: [[1, 2]],
+    index: 19
   },
   20: {
     building: [
@@ -266,6 +285,7 @@ function reset(manual=false){
     perfect:46,
     location: [3, 4],
     light: [[1, 3]],
+    index: 20
   },
   21: {
     building: [
@@ -280,6 +300,7 @@ function reset(manual=false){
     perfect:24,
     location: [0, 1],
     light: [[5, 1]],
+    index: 21
   },
   22: {
     building: [
@@ -294,6 +315,7 @@ function reset(manual=false){
     perfect:24,
     location: [3, 3],
     light: [[1, 0]],
+    index: 22
   },
   23: {
     building: [
@@ -307,10 +329,8 @@ function reset(manual=false){
     ],
     perfect:27,
     location: [6, 6],
-    light: [
-      [6, 5],
-      [2, 6],
-    ],
+    light: [[6, 5],[2, 6]],
+    index: 23
   },
   24: {
     building: [
@@ -327,6 +347,7 @@ function reset(manual=false){
     perfect:56,
     location: [8, 0],
     light: [[7, 1]],
+    index: 24
   },
   25: {
     building: [
@@ -339,10 +360,8 @@ function reset(manual=false){
     ],
     perfect:32,
     location: [0, 0],
-    light: [
-      [0, 1],
-      [0, 3],
-    ],
+    light: [[0, 1],[0, 3]],
+    index: 25
   },
   26: {
     building: [
@@ -356,10 +375,8 @@ function reset(manual=false){
     ],
     perfect:21,
     location: [0, 3],
-    light: [
-      [0, 1],
-      [0, 5],
-    ],
+    light: [[0, 1],[0, 5]],
+    index: 26
   },
   27: {
     building: [
@@ -373,10 +390,8 @@ function reset(manual=false){
     ],
     perfect:94,
     location: [3, 3],
-    light: [
-      [3, 2],
-      [3, 4],
-    ],
+    light: [[3, 2],[3, 4]],
+    index: 27
   },
   28: {
     building: [
@@ -390,10 +405,8 @@ function reset(manual=false){
     ],
     perfect:59,
     location: [1, 0],
-    light: [
-      [4, 0],
-      [2, 0],
-    ],
+    light: [[4, 0], [2, 0]],
+    index: 28
   },
   29: {
     building: [
@@ -407,7 +420,8 @@ function reset(manual=false){
     ],
     perfect:6,
     location: [0, 0],
-      light: [[0, 1],[3, 1],],
+      light: [[0, 1],[3, 1]],
+      index: 29
   },
   30: {
     building: [
@@ -419,10 +433,8 @@ function reset(manual=false){
     ],
     perfect:39,
     location: [2, 3],
-      light: [
-        [1, 1],
-        [1, 3],
-      ],
+      light: [ [1, 1],[1, 3]],
+      index: 30
   },
   31: {
     building: [
@@ -436,11 +448,8 @@ function reset(manual=false){
     ],
     perfect:58,
     location: [0, 0],
-      light: [
-        [2, 1],
-        [3, 1],
-        [0, 6],
-      ],
+      light: [[2, 1],[3, 1],[0, 6]],
+      index: 31
   },
   32: {
     building: [
@@ -454,10 +463,8 @@ function reset(manual=false){
     ],
     perfect:23,
     location: [3, 4],
-      light: [
-        [4, 3],
-        [4, 5],
-      ],
+      light: [[4, 3],[4, 5]],
+      index: 32
   },
   33: {
     building: [
@@ -469,10 +476,8 @@ function reset(manual=false){
       [[null], [null], [null], ["sun"]],],
       perfect:4,
     location: [0, 0],
-    light: [
-      [0, 2],
-      [0, 3],
-    ],
+    light: [[0, 2],[0, 3]],
+    index: 33
   },
   34: {
     building: [
@@ -485,66 +490,79 @@ function reset(manual=false){
     ],
     perfect:14,
     location: [0, 0],
-    light: [
-      [0, 2],
-      [0, 3],
-    ],
+    light: [[0, 2],[0, 3]],
+    index: 34
   },
   35: {
     string:`W1tbImJveHdhbGwiXSxbImJveHdhbGwiXSxbImJveHdhbGwiXSxbImJveHdhbGwiXSxbImJveHdhbGwiXSxbImJveHdhbGwiXSxbbnVsbF0sWyJsaWdodCIsImRvd24iLCJncmVlbiJdLFtudWxsXV0sW1sibGlnaHQiLCJyaWdodCIsImdyZWVuIl0sWyJncmVlbnBhc3MiXSxbbnVsbF0sWyJ5ZWxsb3dwYXNzIl0sW251bGxdLFsiYmFkYm94d2FsbCJdLFtudWxsXSxbImJveCJdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbImJhZGJveHdhbGwiXSxbImJveHdhbGwiXSxbImJveHdhbGwiXSxbInN1biJdLFsiYm94d2FsbCJdXSxbW251bGxdLFtudWxsXSxbImxvY2F0aW9uIl0sWyJib3h3YWxsIl0sW251bGxdLFsibGlnaHQiLCJyaWdodCIsImdyZWVuIl0sW251bGxdLFsiYm94d2FsbCJdLFtudWxsXV0sW1sicG9ydGFsIixbNCw4XV0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJ5ZWxsb3dwYXNzIl0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJwb3J0YWwiLFs0LDBdXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFsic3RvcmUiLG51bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFsibWlycm9yIiwicmlnaHQtdXAiXSxbbnVsbF1dLFtbImxpZ2h0IiwicmlnaHQiLCJyZWQiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbInJlZHBhc3MiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFsibWlycm9yIiwibGVmdC1kb3duIl0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFsibWlycm9yIiwicmlnaHQtZG93biJdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbImxpZ2h0IiwidXAiLCJyZWQiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dXQ==`,
     perfect:59,
+    index: 35
   },
   36: {
     string:`W1tbImxpZ2h0IiwiZG93biIsImdyZWVuIl0sW251bGxdLFsibGlnaHQiLCJsZWZ0IiwicmVkIl0sWyJtaXJyb3IiLCJsZWZ0LXVwIl0sW251bGxdLFsicG9ydGFsIixbMywwXV0sW251bGxdXSxbW251bGxdLFtudWxsXSxbIm1pcnJvciIsInJpZ2h0LXVwIl0sW251bGxdLFsic3RvcmUiLG51bGxdLFsieWVsbG93cGFzcyJdLFsic3VuIl1dLFtbIm1pcnJvciIsImxlZnQtZG93biJdLFsibWlycm9yIiwibGVmdC11cCJdLFsieWVsbG93cGFzcyJdLFsibWlycm9yIiwicmlnaHQtZG93biJdLFtudWxsXSxbbnVsbF0sWyJncmVlbnBhc3MiXV0sW1sicG9ydGFsIixbMCw1XV0sW251bGxdLFsibG9jYXRpb24iXSxbIm1pcnJvciIsInJpZ2h0LXVwIl0sWyJiYWRib3h3YWxsIl0sWyJib3h3YWxsIl0sW251bGxdXSxbWyJzdW4iXSxbInJlZHBhc3MiXSxbImJhZGJveHdhbGwiXSxbImJhZGJveHdhbGwiXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1sibWlycm9yIiwibGVmdC11cCJdLFtudWxsXSxbIm1pcnJvciIsImxlZnQtZG93biJdLFsieWVsbG93cGFzcyJdLFtudWxsXSxbIm1pcnJvciIsInJpZ2h0LWRvd24iXSxbbnVsbF1dLFtbIm1pcnJvciIsImxlZnQtZG93biJdLFtudWxsXSxbbnVsbF0sWyJtaXJyb3IiLCJsZWZ0LWRvd24iXSxbbnVsbF0sW251bGxdLFsiYm94d2FsbCJdXV0=`,
-    perfect:44
+    perfect:44,
+    index: 36
     
   }, 
   37: {
     string:`W1tbImxvY2F0aW9uIl0sW251bGxdLFsibGlnaHQiLCJ1cCIsImdyZWVuIl0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFsicm90YXRlMTgwIl0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbImJveHdhbGwiXSxbImJveHdhbGwiXSxbImJhZGJveHdhbGwiXSxbInN1biJdLFsiYm94d2FsbCJdXSxbW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbImxpZ2h0IiwicmlnaHQiLCJncmVlbiJdLFsicm90YXRlMTgwIl0sWyJtaXJyb3IiLCJsZWZ0LXVwIl0sW251bGxdXSxbW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dXQ==`,
     perfect:24,
+    index: 37
   },
   38: {
     string:`W1tbbnVsbF0sWyJwb3J0YWwiLFszLDJdXSxbbnVsbF0sWyJsaWdodCIsImRvd24iLCJncmVlbiJdLFtudWxsXV0sW1tudWxsXSxbInJvdGF0ZTE4MCJdLFsiYm94Il0sWyJtaXJyb3IiLCJsZWZ0LXVwIl0sW251bGxdXSxbW251bGxdLFsiYm94Il0sW251bGxdLFsibWlycm9yIiwibGVmdC11cCJdLFtudWxsXV0sW1sic3VuIl0sW251bGxdLFsicG9ydGFsIixbMCwxXV0sW251bGxdLFsibG9jYXRpb24iXV1d`,
     perfect:36,
+    index: 38
   },
   39: {
     string:`W1tbImxvY2F0aW9uIl0sWyJyb3RhdGUxODAiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFsibWlycm9yIiwibGVmdC11cCJdLFtudWxsXSxbImxpZ2h0IiwidXAiLCJncmVlbiJdLFsibGlnaHQiLCJ1cCIsInJlZCJdLFtudWxsXSxbbnVsbF1dLFtbInllbGxvd3Bhc3MiXSxbbnVsbF0sWyJtaXJyb3IiLCJsZWZ0LXVwIl0sWyJyb3RhdGUxODAiXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1sic3VuIl0sWyJ5ZWxsb3dwYXNzIl0sW251bGxdLFsibWlycm9yIiwicmlnaHQtdXAiXSxbInJvdGF0ZTE4MCJdLFtudWxsXSxbbnVsbF1dLFtbInllbGxvd3Bhc3MiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbIm1pcnJvciIsInJpZ2h0LXVwIl0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV1d`,
-    perfect:78
+    perfect:78,
+    index: 39
   },
   40: {
     string:`W1tbInN1biJdLFsiYmFkYm94d2FsbCJdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJtaXJyb3IiLCJyaWdodC1kb3duIl1dLFtbImJveHdhbGwiXSxbImxpZ2h0IiwiZG93biIsImdyZWVuIl0sWyJib3h3YWxsIl0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sWyJsb2NhdGlvbiJdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJyb3RhdGU5MCJdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFtudWxsXSxbbnVsbF0sWyJyb3RhdGU5MCJdLFsicm90YXRlMTgwIl0sWyJyb3RhdGUyNzAiXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFsicm90YXRlMjcwIl0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbWyJib3h3YWxsIl0sWyJtaXJyb3IiLCJsZWZ0LXVwIl0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbIm1pcnJvciIsImxlZnQtZG93biJdXV0=`,
     perfect:44,
+    index: 40
   },
   41:{
-    perfect:0,
-    string:`W1tbImxvY2F0aW9uIl0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFsieWVsbG93cGFzcyJdLFsic3VuIl1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbInllbGxvd3Bhc3MiXV0sW1tudWxsXSxbbnVsbF0sWyJtaXJyb3IiLCJsZWZ0LXVwIl0sWyJyb3RhdGU5MCJdLFsibWlycm9yIiwibGVmdC11cCJdLFtudWxsXSxbbnVsbF1dLFtbImxpZ2h0IiwicmlnaHQiLCJncmVlbiJdLFtudWxsXSxbInJvdGF0ZTkwIl0sWyJiYWRwb3J0YWwiXSxbInJvdGF0ZTI3MCJdLFsibGlnaHQiLCJsZWZ0IiwicmVkIl0sWyJwb3J0YWwiLFszLDNdXV0sW1tudWxsXSxbbnVsbF0sWyJtaXJyb3IiLCJsZWZ0LXVwIl0sWyJyb3RhdGUyNzAiXSxbIm1pcnJvciIsImxlZnQtdXAiXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFsicm90YXRlMTgwIl0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJyb3RhdGUxODAiXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dXQ==`
+    string:`W1tbImxvY2F0aW9uIl0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFsieWVsbG93cGFzcyJdLFsic3VuIl1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbInllbGxvd3Bhc3MiXV0sW1tudWxsXSxbbnVsbF0sWyJtaXJyb3IiLCJsZWZ0LXVwIl0sWyJyb3RhdGU5MCJdLFsibWlycm9yIiwibGVmdC11cCJdLFtudWxsXSxbbnVsbF1dLFtbImxpZ2h0IiwicmlnaHQiLCJncmVlbiJdLFtudWxsXSxbInJvdGF0ZTkwIl0sWyJiYWRwb3J0YWwiXSxbInJvdGF0ZTI3MCJdLFsibGlnaHQiLCJsZWZ0IiwicmVkIl0sWyJwb3J0YWwiLFszLDNdXV0sW1tudWxsXSxbbnVsbF0sWyJtaXJyb3IiLCJsZWZ0LXVwIl0sWyJyb3RhdGUyNzAiXSxbIm1pcnJvciIsImxlZnQtdXAiXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFsicm90YXRlMTgwIl0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJyb3RhdGUxODAiXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dXQ==`,
+    perfect: 0,
+    index: 41
   },
   42: {
     string:`W1tbIm1pcnJvciIsImxlZnQtdXAiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbImJhZGJveHdhbGwiXSxbIm1pcnJvciIsInJpZ2h0LXVwIl0sW251bGxdXSxbW251bGxdLFsibWlycm9yIiwibGVmdC11cCJdLFtudWxsXSxbbnVsbF0sWyJzdG9yZSIsbnVsbF0sW251bGxdLFtudWxsXV0sW1siYmFkYm94Il0sWyJtaXJyb3IiLCJsZWZ0LWRvd24iXSxbImxvY2F0aW9uIl0sW251bGxdLFsibWlycm9yIiwicmlnaHQtdXAiXSxbIm1pcnJvciIsImxlZnQtZG93biJdLFtudWxsXV0sW1sibWlycm9yIiwibGVmdC1kb3duIl0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbImxpZ2h0IiwiZG93biIsInJlZCJdXSxbWyJzdW4iXSxbInBvcnRhbCIsWzYsNl1dLFsiYmFkYm94d2FsbCJdLFsiYmFkYm94d2FsbCJdLFsibGlnaHQiLCJ1cCIsImdyZWVuIl0sWyJib3h3YWxsIl0sWyJyb3RhdGUxODAiXV0sW1sieWVsbG93cGFzcyJdLFsiYmFkYm94d2FsbCJdLFsiYm94d2FsbCJdLFtudWxsXSxbbnVsbF0sWyJyb3RhdGUyNzAiXSxbbnVsbF1dLFtbbnVsbF0sWyJtaXJyb3IiLCJsZWZ0LWRvd24iXSxbbnVsbF0sW251bGxdLFtudWxsXSxbImdyZWVucGFzcyJdLFsicG9ydGFsIixbNCwxXV1dXQ==`,
-    perfect:61
+    perfect:61,
+    index: 42
   },
   43:{
     string:"W1tbImxvY2F0aW9uIl0sW251bGxdLFsibGlnaHQiLCJsZWZ0IiwicmVkIl0sW251bGxdLFsiYmFkYm94d2FsbCJdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbImJveHdhbGwiXSxbbnVsbF0sWyJyb3RhdGUyNzAiXSxbInJlZmxlY3R2ZWwiXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFsicmVmbGVjdGhvciJdLFtudWxsXSxbImJveHdhbGwiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJib3h3YWxsIl0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbWyJib3h3YWxsIl0sWyJib3h3YWxsIl0sWyJiYWRib3h3YWxsIl0sWyJib3h3YWxsIl0sWyJib3h3YWxsIl0sWyJib3h3YWxsIl0sWyJzdW4iXSxbImJveHdhbGwiXSxbImJveHdhbGwiXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFsicm90YXRlOTAiXSxbInJlZmxlY3R2ZWwiXSxbIm1pcnJvciIsImxlZnQtdXAiXSxbIm1pcnJvciIsInJpZ2h0LXVwIl0sWyJyZWZsZWN0aG9yIl0sWyJyb3RhdGU5MCJdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdXV0=",
     perfect:0,
+    index: 43
   },
   44:{
   string:'W1tbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFtudWxsXSxbImxpZ2h0IiwiZG93biIsImdyZWVuIl0sWyJtaXJyb3IiLCJyaWdodC11cCJdLFsicmVmbGVjdGhvciJdLFtudWxsXSxbInJlZmxlY3R2ZWwiXSxbIm1pcnJvciIsImxlZnQtdXAiXSxbImxpZ2h0IiwiZG93biIsInJlZCJdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFsicmVmbGVjdHZlbCJdLFtudWxsXSxbInJvdGF0ZTI3MCJdLFsibG9jYXRpb24iXSxbInJvdGF0ZTkwIl0sW251bGxdLFsicmVmbGVjdGhvciJdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbIm1pcnJvciIsInJpZ2h0LWRvd24iXSxbbnVsbF0sWyJ5ZWxsb3dwYXNzIl0sW251bGxdLFsibWlycm9yIiwibGVmdC1kb3duIl0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJ5ZWxsb3dwYXNzIl0sWyJzdW4iXSxbInllbGxvd3Bhc3MiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dXQ==',
   perfect:0,
+  index: 44
   },
   45:{
     string:'W1tbIm1pcnJvciIsImxlZnQtdXAiXSxbImJhZGJveCJdLFsiYmFkcG9ydGFsIl0sW251bGxdLFsibGlnaHQiLCJkb3duIiwicmVkIl0sWyJwb3J0YWwiLFswLDJdXSxbbnVsbF0sWyJib3h3YWxsIl0sWyJib3h3YWxsIl0sWyJwb3J0YWwiLFswLDJdXSxbIm1pcnJvciIsInJpZ2h0LXVwIl1dLFtbIm1pcnJvciIsImxlZnQtZG93biJdLFtudWxsXSxbImJhZGJveHdhbGwiXSxbbnVsbF0sWyJtaXJyb3IiLCJyaWdodC11cCJdLFtudWxsXSxbbnVsbF0sW251bGxdLFsicG9ydGFsIixbMCw5XV0sWyJib3h3YWxsIl0sW251bGxdXSxbW251bGxdLFsibWlycm9yIiwibGVmdC11cCJdLFtudWxsXSxbInJlZHBhc3MiXSxbInJlZHBhc3MiXSxbbnVsbF0sW251bGxdLFsiYmFkYm94d2FsbCJdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFsibWlycm9yIiwibGVmdC1kb3duIl0sW251bGxdLFsicmVkcGFzcyJdLFsicG9ydGFsIixbNiwzXV0sWyJyZWRwYXNzIl0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJtaXJyb3IiLCJyaWdodC1kb3duIl0sW251bGxdXSxbW251bGxdLFtudWxsXSxbbnVsbF0sWyJncmVlbnBhc3MiXSxbImxpZ2h0IiwibGVmdCIsImdyZWVuIl0sWyJtaXJyb3IiLCJyaWdodC11cCJdLFtudWxsXSxbInJlZmxlY3Rob3IiXSxbIm1pcnJvciIsInJpZ2h0LWRvd24iXSxbInJvdGF0ZTE4MCJdLFtudWxsXV0sW1sieWVsbG93cGFzcyJdLFsibG9jYXRpb24iXSxbIm1pcnJvciIsInJpZ2h0LWRvd24iXSxbInJvdGF0ZTE4MCJdLFtudWxsXSxbImdyZWVucGFzcyJdLFsibWlycm9yIiwibGVmdC1kb3duIl0sW251bGxdLFsibWlycm9yIiwibGVmdC1kb3duIl0sWyJyb3RhdGUxODAiXSxbbnVsbF1dLFtbInN1biJdLFsieWVsbG93cGFzcyJdLFsiYmFkYm94d2FsbCJdLFsiYmFkcG9ydGFsIl0sWyJiYWRib3h3YWxsIl0sWyJtaXJyb3IiLCJsZWZ0LWRvd24iXSxbInN0b3JlIixudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbIm1pcnJvciIsInJpZ2h0LWRvd24iXV1d',
-    perfect:0
+    perfect:0,
+    index: 45
   },
   46:{
     string:"W1tbImJveHdhbGwiXSxbImJveHdhbGwiXSxbImxpZ2h0IiwicmlnaHQiLCJncmVlbiJdLFsiYm94d2FsbCJdLFsiYm94d2FsbCJdXSxbWyJib3h3YWxsIl0sW251bGxdLFtudWxsXSxbImxvY2F0aW9uIl0sWyJib3h3YWxsIl1dLFtbbnVsbF0sW251bGxdLFsicmVmbGVjdHZlbCJdLFtudWxsXSxbbnVsbF1dLFtbImJveHdhbGwiXSxbImJveHdhbGwiXSxbbnVsbF0sWyJib3h3YWxsIl0sW251bGxdXSxbW251bGxdLFtudWxsXSxbInJvdGF0ZTI3MCJdLFtudWxsXSxbbnVsbF1dLFtbImJveHdhbGwiXSxbImJveHdhbGwiXSxbbnVsbF0sW251bGxdLFsiYm94d2FsbCJdXSxbWyJib3h3YWxsIl0sWyJib3h3YWxsIl0sWyJzdW4iXSxbbnVsbF0sWyJib3h3YWxsIl1dXQ==",
     perfect:0,
+    index: 46
   },
   1001: {
     string:`W1tbImJveCJdLFsiYm94Il0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbImJveCJdLFsiYm94Il1dLFtbImJveCJdLFtudWxsXSxbbnVsbF0sWyJsb2NhdGlvbiJdLFsibGlnaHQiLCJkb3duIiwiZ3JlZW4iXSxbbnVsbF0sW251bGxdLFtudWxsXSxbImJveCJdXSxbW251bGxdLFtudWxsXSxbImJveCJdLFsiYm94Il0sW251bGxdLFsiYm94Il0sWyJib3giXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFtudWxsXSxbImJveCJdLFtudWxsXSxbImJveCJdLFtudWxsXSxbImJveCJdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbImJveCJdLFtudWxsXSxbImJveCJdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFtudWxsXSxbImJveCJdLFtudWxsXSxbImJveCJdLFtudWxsXSxbImJveCJdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFsiYm94Il0sWyJib3giXSxbbnVsbF0sWyJib3giXSxbImJveCJdLFtudWxsXSxbbnVsbF1dLFtbImJveCJdLFtudWxsXSxbbnVsbF0sW251bGxdLFsic3VuIl0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJib3giXV0sW1siYm94Il0sWyJib3giXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFsiYm94Il0sWyJib3giXV1d`,
-    perfect:25
+    perfect:25,
+    index: 1001
   },
   'custom': {
-    string:tmp.store
+    string:tmp.store,
+    perfect:NaN,
+    index:-1
   }, /*
   'ch1': {
 
