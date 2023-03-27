@@ -142,9 +142,9 @@ Vue.component("machine", {
 
     <div v-for="layer in tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length" :class="{
       [tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][3]+'Laser']:true,
-      trans1:tmp.building[a-1][b-1][1]=='left-down'||tmp.building[a-1][b-1][0]=='reflectvel'||
-        (tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
-        (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'right')),
+      trans1:tmp.building[a-1][b-1][1]=='left-down'||
+        ((tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
+        (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'right')))||(tmp.building[a-1][b-1][0]=='reflectvel'),
       trans2:tmp.building[a-1][b-1][1]=='right-down'||
         (tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
         (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'up')),
@@ -302,6 +302,10 @@ function getclass(r,c){
     else if(current[1]=='down'){
       return ('light'+' '+current[2])
     }
+  }
+  else if (current[0]=='reflectvel'){
+      return ('reflectvel'+' '+'trans1')
+    
   }
   else {
     return current[0]
@@ -491,7 +495,7 @@ function doSomething(a,b){ if (tmp.win == false) {
 
   if (tmp.building[tmp.location[0]][tmp.location[1]][0] != null) {
     let buildtouch = tmp.building[tmp.location[0]][tmp.location[1]];
-    if (["box", "badbox", "mirror", "store","rotate180","rotate90","rotate270","reflecthor"].includes(buildtouch[0])) {
+    if (["box", "badbox", "mirror", "store","rotate180","rotate90","rotate270","reflecthor","reflectvel"].includes(buildtouch[0])) {
       let pos = [0, 0];
       let req = true;
       if (a === "KeyD" || a === "ArrowRight") {
@@ -554,35 +558,25 @@ function doSomething(a,b){ if (tmp.win == false) {
 
 
 let a=tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2]
-if(buildtouch[0].split("reflect")=="hor"){
+if(buildtouch[0].split("reflect")[1]=="hor"){
   if(a[0]=="light"){
 
-    if((tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]%2)!=0)tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]= numToPos((posToNum(a[1])+2)%4)
+    if((posToNum(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1])%2)!=0)tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]= numToPos((posToNum(a[1])+2)%4)
   }
   if(a[0]=="mirror"){
     let r=tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1].split("-")
-    r[1]=numToPos((posToNum(r[1])+2)%4)
-    if(posToNum(r[0])%2==0){
-      let tmp=r[0]
- r[0]=r[1]
- r[1]=tmp
-    }
+    r[0]=numToPos((posToNum(r[0])+2)%4)
     tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]=r[0]+"-"+r[1]
   }
 }
 else {
   if(a[0]=="light"){
 
-    if((tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]%2)!=1)tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]= numToPos((posToNum(a[1])+2)%4)
+    if((posToNum(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1])%2)!=1)tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]= numToPos((posToNum(a[1])+2)%4)
   }
   if(a[0]=="mirror"){
     let r=tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1].split("-")
-    r[0]=numToPos((posToNum(r[0])+2)%4)
-    if(posToNum(r[0])%2==0){
-      let tmp=r[0]
- r[0]=r[1]
- r[1]=tmp
-    }
+    r[1]=numToPos((posToNum(r[1])+2)%4)
     tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]=r[0]+"-"+r[1]
   }
 }
