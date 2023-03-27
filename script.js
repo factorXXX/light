@@ -447,7 +447,7 @@ document.addEventListener("keydown", (e) => {
   doSomething(e.code,isShift)
 
 });
-function doSomething(a,b){ if (tmp.win == false) {
+function doSomething(a,b){ if (tmp.win == false&&tmp.page!==2) {
     if (a === "KeyR" && b) reset();
   if (a === "KeyI" && b) importL();
   if (a === "KeyU") {
