@@ -526,7 +526,7 @@ function doSomething(a,b){ if (tmp.win == false) {
         calculation2()
         return;
       }
-      if ((["mirror","light"].includes(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0][0]+buildtouch[0][1]=="ro") {
+      if ((["mirror","light","reflecthor","reflectvel"].includes(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0][0]+buildtouch[0][1]=="ro") {
 
         let a=tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2]
         if(a[0]=="light"){
@@ -543,6 +543,12 @@ function doSomething(a,b){ if (tmp.win == false) {
           }
           tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]=r[0]+"-"+r[1]
         }
+        if(a[0][0]+a[0][1]=="re"){
+          if(buildtouch[0]!="rotate180"){
+            if(a[0]=="reflecthor")tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]="reflectvel"
+            else tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]="reflecthor"
+          }
+        }
         tmp.building[locat[0] + pos[0]][locat[1] + pos[1]] = [null];
         tmp.location = [locat[0] + pos[0], locat[1] + pos[1]];
         return calculation2();
@@ -554,11 +560,11 @@ function doSomething(a,b){ if (tmp.win == false) {
       }
 
 
-      else if ((["mirror","light"].includes(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0][0]+buildtouch[0][1]=="re"){
+      else if ((["mirror","light","rotate90","rotate180","rotate270"].includes(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0][0]+buildtouch[0][1]=="re"){
 
 
 let a=tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2]
-if(buildtouch[0].split("reflect")[1]=="hor"){
+if((["mirror","light","rotate90","rotate180","rotate270"].includes(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0].split("reflect")[1]=="hor"){
   if(a[0]=="light"){
 
     if((posToNum(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1])%2)!=0)tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]= numToPos((posToNum(a[1])+2)%4)
@@ -568,8 +574,11 @@ if(buildtouch[0].split("reflect")[1]=="hor"){
     r[0]=numToPos((posToNum(r[0])+2)%4)
     tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]=r[0]+"-"+r[1]
   }
+  if(a[0]=="rotate90"){tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]="rotate270"}
+
+ else if(a[0]=="rotate270"){tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]="rotate90"}
 }
-else {
+else if((["mirror","light","rotate90","rotate180","rotate270"].includes(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0].split("reflect")[1]=="vel"){
   if(a[0]=="light"){
 
     if((posToNum(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1])%2)!=1)tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]= numToPos((posToNum(a[1])+2)%4)
@@ -579,10 +588,20 @@ else {
     r[1]=numToPos((posToNum(r[1])+2)%4)
     tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]=r[0]+"-"+r[1]
   }
+  if(a[0]=="rotate90"){tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]="rotate270"}
+
+  else if(a[0]=="rotate270"){tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]="rotate90"}
 }
         tmp.building[locat[0] + pos[0]][locat[1] + pos[1]] = [null];
         tmp.location = [locat[0] + pos[0], locat[1] + pos[1]];
         return calculation2();
+      }
+      else {
+        if ((tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] != null)&&buildtouch[0][0]+buildtouch[0][1]=="re") {
+          tmp.location = [locat[0], locat[1]];
+          tmp.previous.pop();
+          return calculation2();
+        }
       }
       tmp.building[locat[0] + pos[0]][locat[1] + pos[1]] = [null];
       tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2] =
