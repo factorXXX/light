@@ -1,6 +1,7 @@
 var player={
   levelbeaten:[0],
   perfectbeaten:[],
+  version:1,
   editor:{
     data: [
       [["boxwall"], [null]],
@@ -17,6 +18,7 @@ function load() {
     player={
   levelbeaten:[0],
   perfectbeaten:[],
+  version:1,
   editor:{
     data: [
       [["boxwall"], [null]],
@@ -47,6 +49,7 @@ window.onload=function(){
   player={  
     levelbeaten:[0],
     perfectbeaten:[],
+    version:1,
     editor:{
       data: [
         [["boxwall"], [null]],

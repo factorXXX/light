@@ -647,6 +647,13 @@ if(player.editor==undefined){
   }
 }
   if(player.perfectbeaten==undefined)player.perfectbeaten=[]
+  if(player.version==undefined){
+    player.version=1
+    if(player.levelbeaten.includes(41)){player.levelbeaten.push(40);player.levelbeaten.splice(player.levelbeaten.findIndex((element)=>element ==41), 1)}
+    if(player.perfectbeaten.includes(41)){player.perfectbeaten.push(40);player.perfectbeaten.splice(player.perfectbeaten.findIndex((element)=>element ==41), 1)}
+    if(player.levelbeaten.includes(44)){player.levelbeaten.push(42);player.levelbeaten.splice(player.levelbeaten.findIndex((element)=>element ==44), 1)}
+    if(player.perfectbeaten.includes(44)){player.perfectbeaten.push(42);player.perfectbeaten.splice(player.perfectbeaten.findIndex((element)=>element ==44), 1)}
+  }
 }, 50);
 
 function enter() {
