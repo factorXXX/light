@@ -593,19 +593,7 @@ else if((["mirror","light","rotate90","rotate180","rotate270"].includes(tmp.buil
 }}
 
 setInterval(function () {
-  /* wtf
-  if (tmp.location[0] < 0) tmp.location[0] = 0;
-  if (tmp.location[1] < 0) tmp.location[1] = 0;
-  */
-/* player.bestlevel doesn't exists and is not used anywhere
-  if (
-    tmp.level != "custom" &&
-    (player.bestlevel == undefined || tmp.level > player.bestlevel)
-  )
-
-    player.bestlevel = tmp.level;
-*/
-  if (!tmp.b && tmp.win) { //realisticly this game doesn't need game loop like incrementals and this one can be moved to light() in  `if (build == "sun" && win) {tmp.win = true};`
+  if (!tmp.b && tmp.win) { //this one can be moved to light() in  `if (build == "sun" && win) {tmp.win = true};`
     tmp.b = true;
     new Audio(music("win")).play();
     setTimeout(function () {
@@ -625,25 +613,6 @@ setInterval(function () {
       tmp.previous = [];
     }, 1000);
   }
-
- /* why run it in a loop and why run it at all, in load function it merges basee player with player so this issue won't happen 
-if(player.editor==undefined){
-  player.editor={
-    data: [
-      [["boxwall"], [null]],
-      [[null], [null]],
-    ]
-  }
-}
-  if(player.perfectbeaten==undefined)player.perfectbeaten=[]
-  
-  if(player.version==undefined){
-    player.version=1
-    if(player.levelbeaten.includes(41)){player.levelbeaten.push(40);player.levelbeaten.splice(player.levelbeaten.findIndex((element)=>element ==41), 1)}
-    if(player.perfectbeaten.includes(41)){player.perfectbeaten.push(40);player.perfectbeaten.splice(player.perfectbeaten.findIndex((element)=>element ==41), 1)}
-    if(player.levelbeaten.includes(44)){player.levelbeaten.push(42);player.levelbeaten.splice(player.levelbeaten.findIndex((element)=>element ==44), 1)}
-    if(player.perfectbeaten.includes(44)){player.perfectbeaten.push(42);player.perfectbeaten.splice(player.perfectbeaten.findIndex((element)=>element ==44), 1)}
-  }*/
 }, 50);
 
 function enter() {
