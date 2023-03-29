@@ -254,6 +254,9 @@ td div {
 .light div {
   background-image: url('./images/source.svg');
 }
+.bomb div {
+  background-image: url('./images/bomb.svg');
+}
 .mirror{
   width: 61px;
   height: 61px;

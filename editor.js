@@ -34,6 +34,7 @@
     ['rotate270'],
     ['reflecthor'],
     ['reflectvel'],
+    ['bomb','green'],
   ]
   
   
@@ -173,6 +174,10 @@
 
       return ('reflectvel'+' '+'trans1')
     }
+    else if (current[0]=='bomb'){
+      return ('bomb'+' '+ current[1])
+    }
+
     else return (current[0]+' '+ current[1])
   }
   

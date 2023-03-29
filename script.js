@@ -274,6 +274,10 @@ function getclass(r,c){
       return ('reflectvel'+' '+'trans1')
     
   }
+  else if (current[0]=='bomb'){
+    return ('bomb'+' '+current[1])
+  
+}
   else {
     return current[0]
   }
@@ -311,7 +315,17 @@ function light(win = false, withlight = false, withM = false, final=false) {
         if (tmp.building[locat[0]][locat[1]][1] == null) {
           tmp.building[locat[0]][locat[1]][1] = color;
         }
-      }}
+      }
+      if (build=='bomb') {
+        for(let i=-1;i<=1;i++){
+          for(let j=-1;j<=1;j++){
+            if(!(["portal","light"].includes(tmp.building[locat[0]+i][locat[1]+j][0])))tmp.building[locat[0]+i][locat[1]+j]=[null]
+          }
+     
+        }
+        build = null
+      }
+    }
       if (build == "light" && try1 != 1) {
         if (withlight) lightL.push([...locat, pos, color]);
         pos=reverse(pos)
@@ -397,6 +411,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
     }
   }
   if (win) return false;
+
   if(withlight)return tmp.where1=lightL;
   else if(withM)return tmp.where2=lightL;
   //else return tmp.where=lightL;
@@ -470,7 +485,7 @@ function doSomething(a,b){ if (tmp.win == false&&tmp.page!==2) {
 
   if (tmp.building[tmp.location[0]][tmp.location[1]][0] != null) {
     let buildtouch = tmp.building[tmp.location[0]][tmp.location[1]];
-    if (["box", "badbox", "mirror", "store","rotate180","rotate90","rotate270","reflecthor","reflectvel"].includes(buildtouch[0])) {
+    if (["box", "badbox", "mirror", "store","rotate180","rotate90","rotate270","reflecthor","reflectvel","bomb"].includes(buildtouch[0])) {
       let pos = [0, 0];
       let req = true;
       if (a === "KeyD" || a === "ArrowRight") {
