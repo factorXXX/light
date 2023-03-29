@@ -324,6 +324,8 @@ function light(win = false, withlight = false, withM = false, final=false) {
      
         }
         build = null
+        light()
+        break
       }
     }
       if (build == "light" && try1 != 1) {
