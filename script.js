@@ -37,7 +37,7 @@ Vue.component("selectmenu", {
   template: `
   <table class="selectmenu">
   <tr v-for="c in 1" v-if="tmp.diff==0">
-  <td v-for="d in 4" style="padding:0px">
+  <td v-for="d in 5" style="padding:0px">
     <table>
       <div class="unlocked" v-if="(player.levelbeaten.filter(a=>a>((c*3+d-3)*12-24)&&a<=((c*3+d-3)*12-12)).length>=9)||((c*3+d-3)==1)">
       <tr><td colspan="4" style='vertical-align: middle' @click='tmp.level="ch1";reset()'>Chapter {{c*3+d-3}}</td></tr>
@@ -60,10 +60,10 @@ Vue.component("selectmenu", {
   </tr>
 
   <tr v-for="c in 1" v-if="tmp.diff==1">
-  <td v-for="d in 4">
+  <td v-for="d in 5">
   <table>
     <div v-if="(player.levelbeaten.filter(a=>a>((c*3+d-3)*6+988)&&a<=((c*3+d-3)*6+994)).length>=4)||((c*3+d-3)==1)">
-      <tr><td colspan="4" style='vertical-align: middle'>Chapter {{c*3+d-3}}</td></tr>
+      <tr><td colspan="5" style='vertical-align: middle'>Chapter {{c*3+d-3}}</td></tr>
       <tr v-for="a in 3">
         <td v-for="b in 2"
           :class="{
@@ -84,12 +84,16 @@ Vue.component("selectmenu", {
 
 
     <tr style="margin-top: 2px;">
-    <td colspan="2" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;background-color:#aa6464"
+    <td style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;background-color:#aa6464"
     @click="tmp.diff=(tmp.diff+1)%2"
     >{{tmp.diff==1?'Hard Mode':'Normal Mode'}}</td>
+    <td style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;background-color:#64aa64"
+    @click="tmp.level='lobby',reset()"
+    >Lobby</td>
+
     <td style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid"
     @click="tmp.page=3"
-    >Options</td><td style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid"
+    >Options</td><td colspan="2" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid"
     @click="tmp.page=4"
     >Level Editor</td>
     </tr>
