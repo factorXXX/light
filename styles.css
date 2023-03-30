@@ -254,8 +254,15 @@ td div {
 .light div {
   background-image: url('./images/source.svg');
 }
+.bomb {
+  background-size: 60px;
+  background-position: center;
+  background-image: url('./images/bomb-base.svg');
+}
 .bomb div {
-  background-image: url('./images/bomb.svg');
+  background-size: 60px;
+  background-position: center;
+  background-image: url('./images/bomb-core.svg');
 }
 .mirror{
   width: 61px;
