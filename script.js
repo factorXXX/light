@@ -313,6 +313,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
         }
       }
       if (build=='bomb') {
+        if (color==tmp.building[locat[0]][locat[1]][1]){
         for(let i=-1;i<=1;i++){
           for(let j=-1;j<=1;j++){
             if(!(["portal","light"].includes(tmp.building[locat[0]+i][locat[1]+j][0])))tmp.building[locat[0]+i][locat[1]+j]=[null]
@@ -320,8 +321,9 @@ function light(win = false, withlight = false, withM = false, final=false) {
      
         }
         build = null
-        light()
-        break
+        return calculation2()
+       
+        }
       }
     }
       if (build == "light" && try1 != 1) {

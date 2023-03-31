@@ -35,6 +35,8 @@
     ['reflecthor'],
     ['reflectvel'],
     ['bomb','green'],
+    ['bomb','red'],
+    ['bomb','yellow'],
   ]
   
   
@@ -110,7 +112,7 @@
         <div
           :class="{
             [tmp.editor.brush[0]]:true,
-            [tmp.editor.brush[1]]:tmp.editor.brush[0]=='store',
+            [tmp.editor.brush[1]]:['store','bomb'].includes(tmp.editor.brush[0]),
             [tmp.editor.brush[2]]:true,
             trans1:tmp.editor.brush[1]=='right'||tmp.editor.brush[1]=='left-down'||tmp.editor.brush[0]=='reflectvel',
             trans2:tmp.editor.brush[1]=='up'||tmp.editor.brush[1]=='right-down',
@@ -124,7 +126,7 @@
         <div @click="tmp.editor.brush=brushes[i-1]" 
           :class="{
             [brushes[i-1][0]]:true,
-            [brushes[i-1][1]]:brushes[i-1][0]=='store',
+            [brushes[i-1][1]]:['store','bomb'].includes(brushes[i-1][0]),
             [brushes[i-1][2]]:true,
             trans1:brushes[i-1][1]=='right'||brushes[i-1][1]=='left-down'||brushes[i-1][0]=='reflectvel',
             trans2:brushes[i-1][1]=='up'||brushes[i-1][1]=='right-down',
@@ -167,17 +169,9 @@
         return ('light'+' '+current[2])
       }
     }
-    else if (current[0]=='store'){
-      return ('store'+' '+ current[1])
+    else if (['store', 'bomb'].includes(current[0])){
+      return (current[0] +' '+ current[1])
     }
-    else if (current[0]=='reflectvel'){
-
-      return ('reflectvel'+' '+'trans1')
-    }
-    else if (current[0]=='bomb'){
-      return ('bomb'+' '+ current[1])
-    }
-
     else return (current[0]+' '+ current[1])
   }
   
