@@ -279,11 +279,12 @@ td div {
 }
 .reflecthor{
   z-index: 998;
-  background-image: url('./images/reflecthor.svg');
+  background-image: url('./images/reflect.svg');
 }
 .reflectvel{
   z-index: 998;
-  background-image: url('./images/reflectvel.svg');
+  transform: rotate(90deg);
+  background-image: url('./images/reflect.svg');
 }
 .half {
   z-index: 5 !important;

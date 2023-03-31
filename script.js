@@ -243,8 +243,8 @@ function dedup(){ //if you have red/green and yellow edges overlaped it can caus
 }
 function getclass(r,c){
   let current = JSON.parse(JSON.stringify(tmp.building[r][c]))
-  if (current[0]=='store'){
-    return ('store'+' '+current[1])
+  if (['store', 'bomb'].includes(current[0])){
+    return (current[0]+' '+current[1])
   }
   else if (current[0]=='mirror'){
     if(current[1]=='left-down'){
@@ -274,14 +274,6 @@ function getclass(r,c){
       return ('light'+' '+current[2])
     }
   }
-  else if (current[0]=='reflectvel'){
-      return ('reflectvel'+' '+'trans1')
-    
-  }
-  else if (current[0]=='bomb'){
-    return ('bomb'+' '+current[1])
-  
-}
   else {
     return current[0]
   }
