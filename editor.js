@@ -38,8 +38,7 @@
     ['bomb','red'],
     ['bomb','yellow'],
   ]
-  
-  
+  tmp.editor.brush = brushes[0]
   
   Vue.component('editor', {
     template: `
@@ -71,7 +70,7 @@
               <button @click="importEditor()">Import</button>
             </span><br>
             <span>
-              <button @click="importL(btoa(JSON.stringify(player.editor.data)))">Playtest in the game</button>
+              <button @click="importL(btoa(JSON.stringify(player.editor.data))); tmp.editor.fromEditor=true">Playtest in the game</button>
             </span><br>
             <span>
               <button @click="tmp.page=2">Back</button>
@@ -105,25 +104,17 @@
   
   Vue.component('selectors',{
     template: `
-    <div id="selectors" >
+    <div id="selectors" style="margin-top:10px;">
   <table>
-    <tr>
-      <td>selected:
-        <div
+    <tr >
+      <td v-for="i in brushes.length" 
           :class="{
-            [tmp.editor.brush[0]]:true,
-            [tmp.editor.brush[1]]:['store','bomb'].includes(tmp.editor.brush[0]),
-            [tmp.editor.brush[2]]:true,
-            trans1:tmp.editor.brush[1]=='right'||tmp.editor.brush[1]=='left-down'||tmp.editor.brush[0]=='reflectvel',
-            trans2:tmp.editor.brush[1]=='up'||tmp.editor.brush[1]=='right-down',
-            trans3:tmp.editor.brush[1]=='left'||tmp.editor.brush[1]=='right-up'
-          }"><div></div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td v-for="i in brushes.length" >
-        <div @click="tmp.editor.brush=brushes[i-1]" 
+            selected:tmp.editor.brush==brushes[i-1]
+          }"
+      >
+        <div 
+          :title="[brushes[i-1][0]]"
+        @click="tmp.editor.brush=brushes[i-1]" 
           :class="{
             [brushes[i-1][0]]:true,
             [brushes[i-1][1]]:['store','bomb'].includes(brushes[i-1][0]),

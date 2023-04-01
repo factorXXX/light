@@ -31,7 +31,9 @@ function load() {
   
 }
 window.onload = () => { 
-
+  setTimeout(() => {
+  document.getElementById("remover").remove()
+  }, 1000);
   load()
    
 };

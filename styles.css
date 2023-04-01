@@ -235,7 +235,7 @@ td div {
 .gamezone td div:nth-child(n+2){
   position: absolute;
 }
-.light, .sun, .rotate90, .rotate180, .rotate270, .mirror, .box, .boxwall{
+.light, .sun, .rotate90, .rotate180, .rotate270, .mirror, .box, .boxwall, .bomb{
   z-index: 998 !important;
 }
 .rotate90 div{
@@ -255,12 +255,15 @@ td div {
   background-image: url('./images/source.svg');
 }
 .bomb {
-  background-size: 60px;
+
+  width: 61px;
+  height: 61px;
   background-position: center;
   background-image: url('./images/bomb-base.svg');
 }
 .bomb div {
-  background-size: 60px;
+  width: 61px;
+  height: 61px;
   background-position: center;
   background-image: url('./images/bomb-core.svg');
 }
@@ -360,8 +363,8 @@ td div {
 .levelIcon{
   border-radius: 45%;
   display:flex;
-align-items: center;
-justify-content: center;
+  align-items: center;
+  justify-content: center;
   border-style: solid;
   border-width: 2px;
   border-color: #333;
@@ -376,12 +379,21 @@ justify-content: center;
     transform: rotate(0deg);
   }
 }
+
+/*editor*/
+#selectors tr td.selected::before {
+  background-color: #cfb541;
+  position: absolute;
+  content: " ";
+  height: 67px;
+  width: 67px;
+  margin-left: -3px;
+  margin-top: -3px;
+  z-index: -1 ;
+}
 #selectors td{
   display:inline-flex;
   flex-wrap: wrap;
-}
-#selectors td{
-  
   width: max-content;
   height: max-content;
   min-width: 61px;
@@ -389,12 +401,14 @@ justify-content: center;
   padding: 0px;
   margin: 2px;
 }
+#selectors td div {
+  margin: auto;
+}
 #selectors .clear {
-  filter: invert(75%);
     width: 61px;
     height: 61px;
     background: url('./images/delete.svg');
-    background-size: 40px;
+    background-size: 85px;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -403,12 +417,11 @@ justify-content: center;
     width: 61px;
     height: 61px;
     background: url('./images/pointy_arrow.svg');
-    background-size: 40px;
+    background-size: 45px;
     background-repeat: no-repeat;
     background-position: center;
 }
 #selectors .tiePortals div{
-  animation: rotation 10s infinite linear;
   background: url('images/portal.svg') ;
   background-position: center;
   background-repeat: no-repeat;

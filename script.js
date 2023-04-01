@@ -22,6 +22,7 @@ var tmp = {
   where3:[],
   diff:0,
   editor: {
+    fromEditor: false,
     brush: [null],
     selectedPortal: null,
   }
@@ -194,8 +195,14 @@ Vue.component("level", {
     <button :class="{portalButton: true, canportal: true}" @click="reset()">
         Reset
     </button><br><br>
-    <button :class="{portalButton: true, canportal: true}" @click="tmp.page=2">
-        Go to Menu
+    <button :class="{portalButton: true, canportal: true}" 
+    @click="{
+      if(tmp.editor.fromEditor){
+        tmp.page=4 
+        tmp.editor.fromEditor=false
+      }else{tmp.page=2}
+    }">
+        Go to the {{tmp.editor.fromEditor?'Editor':'Menu'}}
     </button><br><br>
     <button v-if="(tmp.level>=13||tmp.level=='custom')" :class="{portalButton: true, canportal: tmp.building[tmp.location[0]][tmp.location[1]][0]=='portal'||tmp.building[tmp.location[0]][tmp.location[1]][0]=='level', cantportal: tmp.building[tmp.location[0]][tmp.location[1]][0]!='portal'&&tmp.building[tmp.location[0]][tmp.location[1]][0]!='level'}" @click="doSomething('KeyE',false)">
         Enter the {{tmp.level>=13||tmp.level=='custom'?'portal':'level'}}
