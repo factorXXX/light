@@ -37,6 +37,7 @@
     ['bomb','green'],
     ['bomb','red'],
     ['bomb','yellow'],
+    ['wallStrong']
   ]
   tmp.editor.brush = brushes[0]
   
