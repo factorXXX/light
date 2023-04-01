@@ -479,7 +479,7 @@ function doSomething(a,b){ if (tmp.win == false&&tmp.page!==2) {
     Vue.set(tmp.location, 1, Math.max(locat[1] - 1, 0));
   else if (a === "KeyD" || a === "ArrowRight")
     Vue.set(tmp.location, 1, Math.min(tmp.area[1] - 1, locat[1] + 1));
-    if (["boxwall","redpass","yellowpass","greenpass","light","badboxwall","sun"].includes(tmp.building[tmp.location[0]][tmp.location[1]][0])){
+    if (["boxwall","redpass","yellowpass","greenpass","light","badboxwall","sun","void"].includes(tmp.building[tmp.location[0]][tmp.location[1]][0])){
       tmp.location[0] = locat[0]
       tmp.location[1] = locat[1]
     };
