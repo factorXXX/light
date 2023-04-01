@@ -3,6 +3,7 @@
     ['clear'],
     ['tiePortals'],
     ['player'],
+    ['void'],
     ['box'], 
     ['boxwall'], 
     ['badbox'], 
@@ -37,7 +38,6 @@
     ['bomb','green'],
     ['bomb','red'],
     ['bomb','yellow'],
-    ['wallStrong']
   ]
   tmp.editor.brush = brushes[0]
   
@@ -90,7 +90,7 @@
     template: `
     <table class="gamezone">
       <tr v-for="r in player.editor.data.length">
-        <td v-for="c in player.editor.data[0].length"
+      <td :class="{void:player.editor.data[r-1][c-1][0]=='void'}"  v-for="c in player.editor.data[0].length"
           @click="setTo(r-1,c-1)">
           <span :class="{
             [geteditorclass(r-1, c-1)]:true

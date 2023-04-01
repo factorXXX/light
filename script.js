@@ -106,7 +106,7 @@ Vue.component("machine", {
   template: `
     <table class="gamezone" >
     <tr v-for="a in tmp.area[0]">
-    <td v-for="b in tmp.area[1]">
+    <td :class="{void:tmp.building[a-1][b-1][0]=='void'}" v-for="b in tmp.area[1]">
     <div :class="{player: tmp.location[0]==a-1 && tmp.location[1]==[b-1]}"><div></div></div>
     <div :class="{
       [getclass(a-1, b-1)]:true
@@ -326,7 +326,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
         if (color==tmp.building[locat[0]][locat[1]][1]){
         for(let i=-1;i<=1;i++){
           for(let j=-1;j<=1;j++){
-            if((tmp.building[locat[0]+i]&&tmp.building[locat[0]+i][locat[1]+j])&&!(["portal","light","wallStrong"].includes(tmp.building[locat[0]+i][locat[1]+j][0])))tmp.building[locat[0]+i][locat[1]+j]=[null]
+            if((tmp.building[locat[0]+i]&&tmp.building[locat[0]+i][locat[1]+j])&&!(["portal","light","void"].includes(tmp.building[locat[0]+i][locat[1]+j][0])))tmp.building[locat[0]+i][locat[1]+j]=[null]
           }
      
         }
