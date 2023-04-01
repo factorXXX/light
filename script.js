@@ -300,6 +300,9 @@ function light(win = false, withlight = false, withM = false, final=false) {
     let pos = tmp.building[tmp.light[i][0]][tmp.light[i][1]][1];
 
     let color = tmp.color[i];
+    if(tmp.color[i]==undefined){
+      color=tmp.building[tmp.light[i][0]][tmp.light[i][1]][2]
+    }
     let locat = [...tmp.light[i]];
     let try1 = 0;
 
