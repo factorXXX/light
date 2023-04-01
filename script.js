@@ -197,7 +197,7 @@ Vue.component("level", {
     <button :class="{portalButton: true, canportal: true}" @click="tmp.page=2">
         Go to Menu
     </button><br><br>
-    <button v-if="(tmp.level>=13||tmp.level=='custom')" :class="{portalButton: true, canportal: tmp.building[tmp.location[0]][tmp.location[1]][0]=='portal'||tmp.building[tmp.location[0]][tmp.location[1]][0]=='level', cantportal: tmp.building[tmp.location[0]][tmp.location[1]][0]!='portal'&&tmp.building[tmp.location[0]][tmp.location[1]][0]!='level'}" @click="enter()">
+    <button v-if="(tmp.level>=13||tmp.level=='custom')" :class="{portalButton: true, canportal: tmp.building[tmp.location[0]][tmp.location[1]][0]=='portal'||tmp.building[tmp.location[0]][tmp.location[1]][0]=='level', cantportal: tmp.building[tmp.location[0]][tmp.location[1]][0]!='portal'&&tmp.building[tmp.location[0]][tmp.location[1]][0]!='level'}" @click="doSomething('KeyE',false)">
         Enter the {{tmp.level>=13||tmp.level=='custom'?'portal':'level'}}
     </button>
     </td>
