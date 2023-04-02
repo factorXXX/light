@@ -193,7 +193,7 @@ function reset(manual=false){
   },
   34: {
     string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEY10PgIDmAFnCEcRAO6oibAE4BTMahZh2XHiQFCQ44iBYA3CAlX4GjWvRwYQAIwgAPNUaaH9zawd1HjAWwQiREEfLBiAZnAAtNQADlbGAM5wXmI8NgzxDvZ29HqJKQmOSbasnNxEvgHyohJSaVnGmtrhIFU6RrVa9ZVNanogbh5ePv5BfILh6SAAnmJ0AiEwERE1EdRSDXVt+AC+QA`,
-    perfect:13,
+    perfect:11,
     index: '34v2'
   },
   35: {
