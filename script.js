@@ -376,8 +376,12 @@ function light(win = false, withlight = false, withM = false, final=false) {
           pos=reverse(pos)
           if(final)tmp.where3.push([...locat, pos, color,'half']);
           pos=reverse(pos)
+
           if (tmp.building[locat[0]][locat[1]][1] != null) {
-            if (tmp.building[locat[0]][locat[1]][1] != color) color = "yellow";
+            let colors=[tmp.building[locat[0]][locat[1]][1] ,color]
+      if (colors.includes('red')&&colors.includes('green')) color="yellow"
+      else if (colors.includes('blue')&&colors.includes('green')) color="lightBlue"
+      else if (colors.includes('blue')&&colors.includes('red')) color="purple"
           }
           if(final)tmp.where3.push([...locat, pos, color,'half']);
         }
@@ -448,8 +452,10 @@ function calcolor() {
     );
 
     if (a != undefined) {
-      if (a[3] != tmp.building[tmp.light[i][0]][tmp.light[i][1]][2])
-        b.push("yellow");
+      let color=[a[3],tmp.building[tmp.light[i][0]][tmp.light[i][1]][2]]
+      if (color.includes('red')&&color.includes('green')) b.push("yellow")
+      else if (color.includes('blue')&&color.includes('green')) b.push("lightBlue")
+      else if (color.includes('blue')&&color.includes('red')) b.push("purple")
       else b.push(tmp.building[tmp.light[i][0]][tmp.light[i][1]][2]);
     } else b.push(tmp.building[tmp.light[i][0]][tmp.light[i][1]][2]);
   }
