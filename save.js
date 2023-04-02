@@ -4,8 +4,9 @@ var player={
   perfectbeaten:[],
   version:1,
   editor:{
+    location:[0,0],
     data: [
-      [["boxwall"], [null]],
+      [[null], [null]],
       [[null], [null]],
     ]
   },
@@ -60,7 +61,7 @@ let btn=document.getElementById("export")
 
 function importSave(imported = undefined) {
   if (imported === undefined) imported = prompt("paste your save here")
-  player =JSON.parse(atob(imported))
+  player =JSON.parse(LZString.decompressFromBase64(imported))
   save()
   window.location.reload();
     

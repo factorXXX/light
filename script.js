@@ -682,7 +682,9 @@ function numToPos(x){
 function importL(imported = undefined) {
   if (imported === undefined) imported = prompt("paste your save here");
   tmp.previous=[]
-  tmp.building = JSON.parse(atob(imported));
+  let decomp=JSON.parse(LZString.decompressFromBase64(imported))
+  tmp.building = JSON.parse(JSON.stringify(decomp.data));
+  tmp.location = decomp.location;
   tmp.area = [tmp.building.length, tmp.building[0].length];
   let light = [];
   for (let i = 0; i < tmp.area[0]; i++) {
@@ -692,13 +694,6 @@ function importL(imported = undefined) {
   }
  
  tmp.light = light;
-  for (let i = 0; i < tmp.area[0]; i++) {
-    let num1 = tmp.building[i].findIndex((x) => x[0] == "location"||x[0] == "player");
-    if (num1 != -1) {
-      tmp.location = [i, num1];
-      tmp.building[i][num1][0] = null;
-    }
-  }
 
   tmp.page = 1;
   tmp.level = "custom";

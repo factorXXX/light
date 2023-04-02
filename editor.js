@@ -12,8 +12,7 @@
     ['mirror', 'right-down'],
     ['mirror', 'left-down'],
     ['mirror', 'right-up'],
-    ['portal',[0,0]],
-    ['badportal'],
+    ['sun'],
     ['light','down','green'],
     ['light','left','green'],
     ['light','up','green'],
@@ -22,7 +21,8 @@
     ['light','left','red'],
     ['light','up','red'],
     ['light','right','red'],
-    ['sun'],
+    ['portal',[0,0]],
+    ['badportal'],
     ['greenpass'],
     ['redpass'],
     ['yellowpass'],
@@ -69,9 +69,10 @@
             </span><br>            
             <span>
               <button @click="importEditor()">Import</button>
+              <button @click="importEditorLegacy()">Import (legacy)</button>
             </span><br>
             <span>
-              <button @click="importL(btoa(JSON.stringify(player.editor.data))); tmp.editor.fromEditor=true">Playtest in the game</button>
+              <button @click="importL(LZString.compressToBase64(JSON.stringify(player.editor))); tmp.editor.fromEditor=true">Playtest in the game</button>
             </span><br>
             <span>
               <button @click="tmp.page=2">Back</button>
@@ -92,10 +93,15 @@
       <tr v-for="r in player.editor.data.length">
       <td :class="{void:player.editor.data[r-1][c-1][0]=='void'}"  v-for="c in player.editor.data[0].length"
           @click="setTo(r-1,c-1)">
+          <span 
+          style="position:absolute; width: 70px; height: 70px"
+          :class="{player: player.editor.location[0]==r-1&&player.editor.location[1]==c-1}">
+          </span>
           <span :class="{
             [geteditorclass(r-1, c-1)]:true
           }"><div></div>
           </span>
+          
           <p v-if="player.editor.data[r-1][c-1][0]=='portal'" style="position: absolute; font-weight: 900; color:white; margin-bottom:0px">{{player.editor.data[r-1][c-1][1]}}</p>
         </td>
       </tr>
@@ -208,7 +214,7 @@
       save()
       return;
     }
-    else if (selected == 'player'){selected = ['location']}
+    else if (selected == 'player'){player.editor.location = [r,c];save(); return}
     else if (selected == 'clear'){selected = [null]}
     player.editor.data[r][c] = selected
     player.editor.data[0].push([null])
@@ -224,18 +230,23 @@
     }
     player.editor.data[0].push(null)
     player.editor.data[0].pop()
-  }}
+  }
+  player.editor.location=[0,0]
+}
   function exportEditor(){
-   navigator.clipboard.writeText(LZString.compressToBase64(JSON.stringify(player.editor.data)))
+   navigator.clipboard.writeText(LZString.compressToBase64(JSON.stringify(player.editor)))
   }
   function importEditor(imported = undefined) {
+    if (imported === undefined) imported = prompt("paste your level here")
+    let importedData = JSON.parse(LZString.decompressFromBase64(imported))
+    player.editor.data = importedData.data
+    player.editor.location = importedData.location
+    save()
+  }
+  function importEditorLegacy(imported = undefined){
     if (imported === undefined) imported = prompt("paste your level here")
     let importedData = JSON.parse(atob(imported))
     player.editor.data = importedData
     save()
-      /*
-         if (imported === undefined) imported = prompt("paste your level here")
-    player.editor.data = JSON.parse(LZString.decompressFromoBase64(imported))
-    save()
-       */
   }
+  

@@ -27,556 +27,258 @@ function reset(manual=false){
 
   const level = {
   1: {
-    building: [
-      [[null], ["light", "down", "green"], [null]],
-      [[null], ["box"], [null]],
-      [[null], ["sun"], [null]],
-    ],
+    string:`N4IgJghgLhIFwG0kDsCuAbdBdANAk6AlgOYAWUIO4A9gO7KUjEBOApqw7gmpll9xmx4QAI2oAPEFx7Z+MriADOqTnnl8q6agGNohag0QAGHEawBfIA==`,
     perfect:3,
-    location: [0, 0],
-    light: [[0, 1]],
     index: 1
   },
   2: {
-    building: [
-      [[null], ["light", "down", "green"], [null], ["box"]],
-      [[null], ["box"], ["box"], [null]],
-      [[null], ["sun"], [null], ["box"]],
-      [[null], [null], ["box"], [null]],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEbgIDmAFnCEcRAO6pHMATgFNhqBjToMQAIwgAPEPgYZJ9HIzmLpWpRrXKNq2usYBnauP0mdCpSoPWpG2XYk3lAXyA=`,
     perfect:9,
-    location: [0, 0],
-    light: [[0, 1]],
     index: 2
   },
   3: {
-    building: [
-      [[null], ["light", "down", "green"], [null]],
-      [[null], [null], [null], [null]],
-      [[null], ["box"], ["box"]],
-      [[null], [null], [null]],
-      [[null], ["sun"], [null]],
-    ],
+    string: `N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEbgIDmAFnCEcRAO6pHMATgFNhqBjTr4GGSfRyza8xVJlyGIAEYQAHiA3a90hSuXqF6tUo0BnauIvXpAXyA`,
     perfect:6,
-    location: [0, 0],
-    light: [[0, 1]],
     index: 3
   },
   4: {
-    building: [
-      [[null], [null], ["box"], [null], [null]],
-      [[null], ["box"], [null], [null], [null]],
-      [["light", "right", "green"], ["box"], ["box"], [null], ["sun"]],
-      [[null], [null], [null], [null], [null]],
-      [[null], [null], [null], [null], [null]],
-    ],
+    string: `N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEY10MgBGEAHiA0/To7XoMBzfm07d+vHoJnNh4BAHMAFnBBEATsrUaQSzQFNDqFuy5mJcvhhABnaqeHSps16JE3pzt5+v/3IXwAXyA=`,
     perfect:7,
-    location: [0, 0],
-    light: [[2, 0]],
     index: 4
   },
   5: {
-    building: [
-      [[null], ["light", "down", "green"], [null], [null]],
-      [[null], ["box"], [null], [null]],
-      [[null], ["mirror", "left-down"], [null], ["sun"]],
-    ],
+    string: `N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEbgIDmAFnCEcRAO6pHMATgFNhqBjToTa9Bhkn0cjAEYQAHiGlSlC/HN1KQAWwSDBEQZ3DCAZnAC03Ppp0yGIAM7VxegL5A`,
     perfect:3,
-    location: [0, 0],
-    light: [[0, 1]],
     index: 5
   },
   6: {
-    building: [
-      [[null], [null], [null], [null], [null]],
-      [[null], ["light", "down", "green"], [null], [null], ["sun"]],
-      [[null], ["mirror", "left-down"], [null], [null], [null]],
-      [[null], [null], [null], ["mirror", "right-down"], [null]]
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEY10NP06O1sfMPdfgIA5gAs4IIsQgB3VEUEAnAKaLULTmubsQAZ2qrerBiAC2CefIjzx4RQDM4AWkkyQGrofaGD6zz75HTc0treSFRJ2lVXx58AF8gA===`,
     perfect:14,
-    location: [0, 0],
-    light: [[1, 1]],
     index: 6
   },
   7: {
-    building: [
-      [[null], [null], ["light", "down", "green"], [null], [null]],
-      [["sun"], [null], [null], [null], [null]],
-      [[null],[null],["mirror", "left-down"],["mirror", "right-up"],["mirror", "right-down"],],
-      [[null], [null], [null], [null], ["box"]],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEY10PgIDmAFnCEcRAO6oibAE4BTMagZN6ORrXoMMIAM7UpcmdIXbmmnUq369ygLYIRIiCJ7gxAMzgBaPoJAtzl67ZHsuT6gAHdzkQTysbIl9OZ1cpQx1jWXkTI2UAIwgAD3d8fABfIA===`,
     perfect:15,
-    location: [0, 0],
-    light: [[0, 2]],
     index: 7
   },
   8: {
-    building: [
-      [[null], [null], [null], [null], [null], ["box"]],
-      [[null],["mirror", "left-up"],["light", "right", "green"],["box"],[null],["box"],],
-      [[null], [null], ["mirror", "right-up"], [null], [null], [null]],
-      [[null],["mirror", "left-down"],["mirror", "right-down"],[null],[null],[null],],
-      [[null], [null], [null], [null], [null], ["sun"]],
-    ],
+    string: `N4IgNg9gxghgLgSwgOxALgNoCYA0AGAXRxABN4Z0MrkBXMMIjW+x5hnJu9zljkAIwgAPEAUY9uIALYIATrIiyQxMAFMAZnAC0NAA6i+YBAHMAFnGUhZJ85eOzVq1IwHCDEl4JFiOHjmxcZeUVLazNtPXcA/y5WWPFojGk5BSUVDW0SCAB3Zz4g1NCbTJy8v3KAhNiY3grq8pAAZxpnMQBfIA`,
     perfect:17,
-    location: [2, 0],
-    light: [[1, 2]],
     index: 8
   },
   9: {
-    building: [
-      [[null], [null], [null], ["sun"]],
-      [[null], [null], [null], ["badbox"]],
-      [["light", "right", "green"], [null], ["mirror", "right-down"], [null]],
-    ],
+    string: `N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEY10NP04YgDO1q+DjtNgObtWDEACMYxCRAAeIPuw5gEAcwAWcEEQBO6rTpBrdAU1O9Rg8QFsEu3RF1H9muAFpiEAO6Xh9PgBfIA===`,
     perfect:5,
-    location: [0, 0],
-    light: [[2, 0]],
     index: 9
   },
   10: {
-    building: [
-      [["box"], [null], [null], [null]],
-      [["box"], [null], ["mirror", "right-up"], [null]],
-      [["box"], [null], ["badbox"], [null]],
-      [["light", "right", "green"], [null], [null], ["mirror", "right-down"]],
-      [[null], [null], ["sun"], [null]],
-    ],
+    string: `N4IgNg9gxghgLgSwgOxALgNoCYA0BGAXRxABN4Z0MqQAjCADxCI2QFcwxm2Ov3PmMtBkxws+zEAFsEAJxkQZIYjIQBzABZwAtKwAOIsTwFDGvHqNowSdU6O79RgsGs1KQKjXDeqZAU1+oZpx24hbScgpuHppaJBAA7oEC9kESAM6sgSFGBAC+QA=`,
     perfect:7,
-    location: [2, 1],
-    light: [[3, 0]],
     index: 10
   },
   11: {
-    building: [
-      [["mirror", "left-up"],[null],[null],["badboxwall"],["mirror", "right-up"],[null],],
-      [[null], ["boxwall"], [null], ["boxwall"], [null], [null]],
-      [[null], [null], [null], ["boxwall"], [null], [null]],
-      [[null], ["mirror", "right-down"], [null], ["badbox"], [null], [null]],
-      [[null], ["boxwall"], ["boxwall"], [null], [null], [null]],
-      [[null], [null], [null], [null], [null], [null]],
-      [["sun"], ["light", "right", "green"], [null], [null], [null], [null]],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoCYA0AGAXRxABN4Z0MqQBbBAJ3onpGLAFMAzOAWgFcADiCIZkfMGBFiJIkACMYJORAAeAdxgThODLQZMWxeggDmAC16Dto8ZJE2ZO6ZKe3Zy9ZrDXnUt/d9XRwcXXQ8NLT9g3wC3HT1GZlYQY3NeEgg1VCjQ+UUPHziQgljg+VUI73cKr0LoopidYqDQwOb2xuoAZz5s+LBTC2TUoeITenZ2Po6G2ZkSgF8gA`,
     perfect:24,
-    location: [2, 0],
-    light: [[6, 1]],
     index: 11
   },
   12: {
-    building: [
-      [["boxwall"],["boxwall"],["boxwall"],["boxwall"],["sun"],["boxwall"],["boxwall"],],
-      [[null],[null],["light", "right", "green"],[null],[null],[null],["box"],],
-      [[null],["boxwall"],["box"],["boxwall"],["badboxwall"],[null],[null],],
-      [[null],["mirror", "left-down"],["badboxwall"],[null],[null],["mirror", "right-down"],[null],],
-      [[null], ["box"], [null], [null], ["mirror", "right-up"], [null], [null]],
-      [[null], [null], [null], [null], [null], [null], [null]],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoFYA0A2AXRxABN4Z0MqQAjCADwHcYwwQiNaHnX2dO6TFmw5chvUQGcArqlGCeI/mMXsOGZNNYdN25WAQBzABZwQxAE5HT5kIYsBTB3P66wOre9ef5DNfw0fZQVhPgE/X3ElARgSEIlvPUDtdTdRAFsECwsIC1swBwAzOABaEghGFxi47lCPJLTlTOzc2ysTUvLKsLTUoPD6Hv7GzmacvMtrUukAByGGnz6F5a9k1ZGNxYIAXyA===`,
     perfect:31,
-    location: [5, 6],
-    light: [[1, 2]],
     index: 12
   },
    13: {
-    building: [
-      [[null], ["sun"], [null]],
-      [["portal", [3, 0]], [null], [null]],
-      [["badboxwall"], ["badboxwall"], ["badboxwall"]],
-      [["portal", [1, 0]], ["box"], [null]],
-      [[null], ["light", "up", "green"], [null]],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEYgDO1qDNd+DjADhAE5wYYEDgwBmPFzEd6M2vW4gARjGLKIADwDuwkQxVqNOvSAOr1W3XTNK+g4aIwBGKea1n5nbrINgEAOYAFnCiINQ8YQH8AKYxbF6K+AC+QA===`,
     perfect:4,
-    location: [0, 0],
-    light: [[4, 1]],
     index: 13
   },
   14: {
-    building: [
-      [[null], [null], [null], [null]],
-      [[null], [null], [null], [null]],
-      [["light", "down", "green"], ["mirror", "right-down"], [null], [null]],
-      [["portal", [3, 1]], ["portal", [3, 0]], [null], [null]],
-      [["sun"], ["mirror", "right-up"], [null], [null]],
-      [[null], [null], [null], [null]],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEY10NP06O30MfPusucBzbuAQBzABZwQRYhADuqImIBOAUzWoGIALYIVKiCpkgV4qQFo5ikELY8u7DCAAORuDDAyMAZhwBGfG03FQ8vdj8CO2iRAGdqLXZdfUNjIjNJOAtqF1s+QXzhJ35C+xKHIPwAXyA=`,
     perfect:24,
-    location: [0, 0],
-    light: [[2, 0]],
     index: 14
   },
   15: {
-    building: [
-      [[null], [null], [null], [null], [null]],
-      [["sun"], [null], ["portal", [3, 2]], ["mirror", "right-down"], [null]],
-      [["boxwall"], ["boxwall"], ["boxwall"], [null], [null]],
-      [[null],["mirror", "left-up"],["portal", [1, 2]],["mirror", "right-up"],[null],],
-      [["light", "up", "green"], [null], [null], [null], [null]],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEY10NP06O1sfMMYgDO1VC04MQABwgAnODDAh2AZhwAmfGIC2CKVOkKQUhAHMAFnAC0xCAHdh7VuvZ8ARhAAe1ufLGuPXkD7unnQB9qJhPE4O7CBaOnpEYACmAGYW1OKhfJIycgoYAIyqjnxxulL6hqbpmSKRlODGZvoZ+kZSSUl23FzRPXX06gC+QA`,
     perfect:23,
-    location: [0, 0],
-    light: [[4, 0]],
     index: 15
   },
   16: {
-    building: [
-      [[null], ["light", "down", "green"], [null], [null], ["sun"]],
-      [[null], ["portal", [3, 0]], ["mirror", "left-up"], [null], [null]],
-      [["boxwall"], ["boxwall"], [null], ["boxwall"], ["boxwall"]],
-      [["portal", [1, 1]], [null], ["mirror", "right-down"], [null], [null]],
-      [[null], ["mirror", "left-down"], [null], [null], [null]],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEbgIDmAFnCEcRAO6pHMATgFNhqBjToTa9HIwDO1cQwyTZjAA4RBcGGE4YAzHnwMQAWwSDB2zuGEAzOAFpqGkNKly1puYwBGEAAePHr6ZoEhYR7eMhHBoXQxAQnRvpQgWjp6BgCMOLnpPnIWVjaCdoIs7M7cfMnFqnEqjaXWtkRgji514rFeTQM+pgC+QA=`,
     perfect:24,
-    location: [0, 0],
-    light: [[0, 1]],
     index: 16
   },
   17: {
-    building: [
-      [[null], [null], [null], [null]],
-      [[null], ["mirror", "right-up"], ["mirror", "left-up"], [null]],
-      [["portal", [4, 3]], [null], [null], ["portal", [4, 0]]],
-      [["boxwall"], ["boxwall"], ["boxwall"], ["boxwall"]],
-      [["portal", [2, 3]], [null], [null], ["portal", [2, 0]]],
-      [["light", "up", "green"], [null], [null], ["sun"]],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoFYA0AmAXRxABN4Z0MrkBXMMIjW+x5hnJuhxzljkALYIATsIjCQxYQgDmACzgBaGgAcQjQSLETiYAKYAzJavUc2BHiBXi4MMJIwAWHAGYLZrq0/9rw2/Y5nAAYLSwA3CAQSUwwQCKiYuMjojXiUy19/BzxXd152fI1Mu2ycELzYsFkFSRATYhlhPT1ULz5C/gBnGlaLAF8gA=`,
     perfect:21,
-    location: [5, 2],
-    light: [[5, 0]],
     index: 17
   },
   18: {
-    building: [
-      [[null],[null],["boxwall"],[null],["portal", [5, 5]],["boxwall"],[null],],
-      [[null],[null],["portal", [5, 1]],["mirror", "right-up"],["boxwall"],[null],[null],],
-      [["boxwall"],["light", "right", "green"],[null],[null],["boxwall"],[null],["boxwall"],],
-      [[null],[null],[null],["portal", [4, 4]],["boxwall"],["boxwall"],[null],],
-      [[null],["boxwall"],["boxwall"],["boxwall"],["portal", [3, 3]],[null],["badboxwall"],],
-      [["boxwall"],["portal", [1, 2]],[null],["boxwall"],[null],["portal", [0, 4]],["boxwall"],],
-      [["sun"],[null],["mirror", "right-down"],[null],["badboxwall"],["boxwall"],["boxwall"],],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoCYA0WC6OIAJvDOhpcgK5hiEY10MgBuECxIDT9OGIAA4QATnBhgQ/AKw5p+FgCMIADwDuEyT1r0GA9p279eLYWIlSMsgIwL+IALYIRI0VJAiEAcwAWcALTUgkYCyuqaISbGOnaUbBxcLGDefu6evnDuXiIApjmo2szRRaGqGnSRMfYGiXpRjFUNJUKi4pL8ACw4HbEgYeVa9v0RLDXcevGGowkhk4nVM6atFvwAzDirsfV9ZSMTY0vm7RjWeFuNc5XNZm2WAAzdvQcTAM7UBcV8Ak4ubkTpfn8xAgag+TS+fRgxGGFWmUwWUwUAF8gA==`,
     perfect:15,
-    location: [2, 2],
-    light: [[2, 1]],
     index: 18
   },
   19: {
-    building: [
-      [[null], ["sun"], [null], [null], [null], [null], [null]],
-      [[null],[null],["light", "right", "green"],[null],["portal", [1, 5]],["portal", [1, 4]],[null],],
-      [[null],["mirror", "left-down"],["boxwall"],["mirror", "right-up"],[null],["portal", [5, 3]],[null],],
-      [[null],["box"],["badboxwall"],[null],["badboxwall"],[null],["portal", [4, 1]],],
-      [[null],["portal", [3, 6]],[null],["mirror", "right-down"],[null],["badboxwall"],[null],],
-      [[null],[null],["boxwall"],["portal", [2, 5]],["boxwall"],[null],[null],],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEYgDO1qDNd7t9OGHPfbl04NBnXvwbgEAcwAWcEEQBOshUpAzlAU21sJQ3iAAOEZXBhglGAIw4ArPimnzl63YAsTgyN5iBIAC2CMrKZhpg2gBmcAC0xBAA7vqMAEYQAB6JllZSwaHhKmpx1MYgwgEuFla89jgAzN7+Tc1G6RnlbTDE7dl0na1p3b05A5JGVW68Hjg2TqLjjJM1GPU4AGxNi0EhYcoaqvJxCcljhkM9mX25PvQL59sAbhAIxAMmZtXWAEwOTSDPV5ncTNJwAXyAA`,
     perfect:25,
-    location: [0, 0],
-    light: [[1, 2]],
     index: 19
   },
   20: {
-    building: [
-      [[null],[null],["badboxwall"],["portal", [6, 0]],["boxwall"],[null],["portal", [3, 3]],],
-      [["portal", [3, 2]],["boxwall"],[null],["light", "down", "green"],[null],["mirror", "right-down"],[null],],
-      [[null],["mirror", "left-down"],["badboxwall"],[null],["badbox"],[null],[null],],
-      [[null],["boxwall"],["portal", [1, 0]],["portal", [0, 6]],[null],[null],[null],],
-      [[null], [null], ["badboxwall"], [null], ["badboxwall"], [null], [null]],
-      [["boxwall"],["boxwall"],["mirror", "left-up"],["sun"],["mirror", "right-up"],["boxwall"],["mirror", "right-down"],],
-      [["portal", [0, 3]], [null], [null], [null], [null], [null], [null]],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoGYA0AWAXRxABN4Z0MrkBXMMIjW+xkAIxhLYgA8B3GPRCsADhABOcQSBwYAbDgAMBVt36Cww2cwayQYydNm4sKxhn0Spm4zgBMKvQDcICElqZ1dFsAgDmABZwMqQQfKjEfuIAptGojDqsALYI4uISIeL+QQC0JGHx2l6O1MV6KWkZxGDRAGZweQUe7JxqAkIJZRYcXLweiUUs5gMWLm7NBtYyGACMSiWWhjYYijhyJSObxcNdIy296h2D3vttGv2727Kjru6sY3flqeniITX1OTQizQDONIUWCovTLZBpfZoPZpAqogLKBBr5cLCcyLKayVamTosY5Y7xbbGeIYEAC+QA`,
     perfect:46,
-    location: [3, 4],
-    light: [[1, 3]],
     index: 20
   },
   21: {
-    building: [
-      [[null], [null], [null], ["boxwall"], [null], [null], [null]],
-      [[null],["portal", [5, 5]],[null],["boxwall"],[null],["sun"],[null],],
-      [[null], ["box"], [null], ["boxwall"], [null], ["box"], [null]],
-      [[null], ["box"], [null], ["boxwall"], [null], ["box"], [null]],
-      [[null], ["box"], [null], ["boxwall"], [null], ["box"], [null]],
-      [[null],["light", "up", "green"],[null],["boxwall"],[null],["badportal"],[null],],
-      [[null], [null], [null], ["boxwall"], [null], [null], [null]],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0BGAXRxABN4Z0MrkBXMMIjW+x5hnDEANwgRJFZ12TIYJaMRLDiAAOEAE5wYYEBwCsONQTHDuvfjsYgAzjVSGJbIwCMIADwEcr0nn0eTdthxY4eb992dOVwMnUWkvQNFLcM5Iwxd9KKk4gJ9qWPAEAHMACzhVEBoZQuz5AFNy8zCUvTcEuJgSOUVlZIYYlKCgutC/GuErbQBfIA===`,
     perfect:24,
-    location: [0, 1],
-    light: [[5, 1]],
     index: 21
   },
   22: {
-    building: [
-      [[null], [null], [null], ["boxwall"], [null], [null], [null]],
-      [["light", "down", "green"],[null],["badportal"],["boxwall"],["badportal"],[null],["sun"],],
-      [[null], [null], ["boxwall"], ["boxwall"], ["boxwall"], [null], [null]],
-      [[null],["boxwall"],["portal", [1, 2]],[null],["portal", [1, 4]],["boxwall"],[null],],
-      [["mirror", "left-down"],["boxwall"],[null],[null],[null],["boxwall"],["mirror", "right-down"],],
-      [[null], [null], ["boxwall"], [null], ["boxwall"], [null], [null]],
-      [[null], [null], [null], ["badboxwall"], [null], [null], [null]],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoGYA0WC6OIAJvDOhpeAgOYAWcIRxEA7qkTQE4CmPqhDMgCuYMIJFjBIAG4QExEBNHicQldIDOwgYPVS1k1RhAAjGMQAOELnBhgla2fMXTzVm3YfKD+8XqNpOQVHE2DXJ3DQ5xCgl1DAgI1I+OlrW3smDABGHAAmfB9jEHSvLNyAFkKU2MMNPRAAWwQuLhsmcB4AMzgAWhZ2aKi42r8RiLDUp2bW9qIuWgZ+tl01MbrfGInAmu3ksaTfHfWTd1MIAA9We28N42PE/ABfIA`,
     perfect:24,
-    location: [3, 3],
-    light: [[1, 0]],
-    index: 22
+    index: `22v2`
   },
   23: {
-    building: [
-      [[null],["mirror", "left-up"],[null],[null],["mirror", "right-up"],[null],["portal", [2, 1]],],
-      [[null], [null], ["boxwall"], [null], ["boxwall"], [null], ["sun"]],
-      [["badportal"],["portal", [0, 6]],[null],[null],[null],[null],["light", "left", "green"],],
-      [["boxwall"],["boxwall"],["boxwall"],["mirror", "left-down"],["boxwall"],["boxwall"],["boxwall"],],
-      [[null],[null],[null],["badboxwall"],[null],[null],["portal", [2, 0]],],
-      [[null],["mirror", "left-up"],[null],["boxwall"],["badbox"],[null],[null],],
-      [["mirror", "left-down"],[null],[null],[null],[null],["light", "left", "green"],[null],],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoDYA0WC6OIAJvDOhpcgK5hiEYgC2CATqxKyEWAKYBmcALTUADiAY06k2vRyMW7TtxCsEAcwAWwsRPlS5jUZzgww3DACYcARnz35GAzOnyQAIwgAPAO5nzLoYe3n50ek6yDCAAztSoDpQeMMTGrKYBbqnpFgAMeAnO+pFFrhGl4BraKnyCKuqsvLzxDIwAbhAIxOEg7Z3dvV1RihxcPALCxBA+8W4D/R2DswsSLYVlhmtJxJ6+/uFrm1lmFtY59qvFCmwj1eMi4oFRO6EZjO7JO/uXzi3M18pjQRCSbTL6lA7fS4VLRwW61Ij1RozdbnAC+QA=`,
     perfect:27,
-    location: [6, 6],
-    light: [[6, 5],[2, 6]],
     index: 23
   },
   24: {
-    building: [
-      [[null],[null],[null],[null],["boxwall"],[null],[null],[null],["portal", [4, 4]],],
-      [[null],[null],[null],[null],["boxwall"],[null],["mirror", "right-down"],[null],[null],],
-      [[null],["mirror", "left-up"],["mirror", "right-up"],[null],["boxwall"],[null],["mirror", "left-up"],[null],[null],],
-      [[null],[null],["mirror", "left-down"],[null],["badboxwall"],[null],["boxwall"],[null],[null],],
-      [["badboxwall"],["boxwall"],["boxwall"],["boxwall"],["badportal"],["badboxwall"],["boxwall"],["boxwall"],["badboxwall"],],
-      [[null],[null],["mirror", "right-up"],[null],["boxwall"],[null],["box"],[null],[null],],
-      [[null],[null],["mirror", "left-down"],[null],["boxwall"],[null],["mirror", "right-up"],[null],[null],],
-      [[null],["light", "up", "green"],[null],[null],["boxwall"],[null],["box"],[null],[null],],
-      [["portal", [4, 4]],[null],[null],[null],["boxwall"],["sun"],[null],[null],["portal", [4, 4]],],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoA4A0AGAXRxABN4Z0MrkBXMMIjW+x5hnJu9jEANwgQkQrLiJYc2jEAAcIAJzgwwIDgBYcqglo6dxu7pImiOfAULHcQAWwRy58lSDkIA5gAs4AWhIQA7qgtAxn0pGzsHYjAAUwAzLxppYRMw+zlHZ3d4xMCTfkEkkOTbVMdouM8EgsMQ4Orq62KI8FivH38q4x4AIxgSLogAD18lZRyePPMjPUlgkB6+weH6ArnFkZX+ofWpTaXRk3nZBSUN3t3t3LMVieur7WpO+pSmjI8K7KnLG7HVgY7p0S1R6dBrhNKRFrePwBT5Sb6wopg9KuN6VMYzHT1MAouCOSrEFxyKJRGGFMmmfI/Tb/AyAnQyeSKZRqDT3OrAvQUyY8ADONFJ7M5RyZKgw6k0WgIAF8gA==`,
     perfect:56,
-    location: [8, 0],
-    light: [[7, 1]],
     index: 24
   },
   25: {
-    building: [
-      [[null],["light", "down", "green"],[null],["light", "down", "red"],[null],],
-      [[null], ["box"], [null], ["box"], [null]],
-      [[null], ["redpass"], [null], ["redpass"], [null]],
-      [[null],["mirror", "left-down"],[null],["mirror", "right-down"],[null],],
-      [[null], [null], [null], [null], [null]],
-      [[null], [null], ["sun"], [null], [null]],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEbgIDmAFnCEcRAO6pHMATgFNhqBjToMmbDl178QI4iAm16DDJPo5GAIwgAPVbu3SDxtVM1ndS4cQAOMAM4uTW9dOXO3HszZedgC2CIKCEIKc4MIAZnAAtNx8/kGMoeGR0YIs7EkKqda6nlKmabYlOpX4gaXVdi7U4mV1AfgAvkA===`,
     perfect:32,
-    location: [0, 0],
-    light: [[0, 1],[0, 3]],
     index: 25
   },
   26: {
-    building: [
-      [[null],["light", "down", "green"],[null],[null],[null],["light", "down", "red"],[null],],
-      [["boxwall"],["greenpass"],[null],["mirror", "right-up"],[null],["redpass"],["boxwall"],],
-      [[null], [null], [null], ["mirror", "left-down"], [null], [null], [null]],
-      [["boxwall"],["redpass"],["boxwall"],["badboxwall"],["boxwall"],["greenpass"],["boxwall"],],
-      [[null],[null],["mirror", "left-up"],[null],["mirror", "right-down"],[null],[null],],
-      [["boxwall"],["greenpass"],["boxwall"],["boxwall"],["boxwall"],["redpass"],["boxwall"],],
-      [[null],["mirror", "left-down"],[null],["sun"],[null],[null],[null],],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0BmAXRxABN4Z0MrkBXMMIjcBAcwAs4RiSIB3VYiwBOAUxGpGtepLoMcGKXKZhWHLqT4CQokiBnTGTAG4QEuxiGFjkABxgBne3vmKLAWwRChEIeqGq4AFoaG2cFWQsdO0cwkBMzPUNXFwiU6XkQDy8fdTARADMgnn4w5PD08oZDONNzDKiHJwsAIwgAD14YeljmmBJWjq6wHvbO7osrcWimjPjzJNTK909vX2I8wuDQ/SVMlZzif3YizVLF12q52MnbRpHB8YyBseGW0aHYhpiLK4IFir22TW4AKJxKOws9hoEjSSjKFwIAF8gA===`,
     perfect:21,
-    location: [0, 3],
-    light: [[0, 1],[0, 5]],
     index: 26
   },
   27: {
-    building: [
-      [[null], [null], [null], [null], [null], [null], [null]],
-      [[null], [null], [null], [null], [null], [null], [null]],
-      [[null],[null],[null],["mirror", "left-up"],[null],[null],["boxwall"],],
-      [[null],[null],["light", "right", "green"],[null],["light", "left", "red"],["greenpass"],["sun"],],
-      [[null],["mirror", "left-down"],["boxwall"],["mirror", "right-up"],["mirror", "right-down"],[null],["greenpass"],],
-      [[null], ["badboxwall"], ["redpass"], [null], [null], [null], [null]],
-      [[null], [null], [null], [null], [null], [null], [null]],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoGYA0WC6OIAJvDOhpcgK5hiEY10NP06O1sfPusuf4G3Ln14CxPYf0l8hoqRK4gAtggBOaiGpBEwAUwBmcALTUADiGkjxGEACMIADwDuMOpbk354BAHMAFnA6IGp+gcG+anp6qFYMPgFBuoZJIXrEluwgkdHIZjAAzgWZtgXUsZ6SKuqa2slGxsQQzrFZDi5uYCXVGlrBoYmmFvGqvXUhYSZNLSXeOTH5RR7sCrZ2MMTtru7xUcSLxXGKR1KV1jJelxfX9IIAvkA==`,
     perfect:94,
-    location: [3, 3],
-    light: [[3, 2],[3, 4]],
     index: 27
   },
   28: {
-    building: [
-      [["badportal"],[null],[null],["mirror", "left-up"],[null],["redpass"],["sun"],],
-      [[null],[null],["mirror", "right-up"],["mirror", "left-down"],[null],[null],["boxwall"],],
-      [["light", "right", "green"],[null],["mirror", "right-up"],[null],[null],[null],["badboxwall"],],
-      [["boxwall"],["boxwall"],["boxwall"],["boxwall"],["boxwall"],["badboxwall"],[null],],
-      [["light", "right", "red"],[null],[null],["redpass"],[null],[null],[null],],
-      [[null],[null],[null],[null],["badboxwall"],["boxwall"],["badboxwall"],],
-      [["portal", [0, 0]],["mirror", "left-down"],[null],["mirror", "right-down"],["badboxwall"],[null],[null],],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoEYA0AGAXRxABN4Z0MqQAjGEgBwgCc4YwQiNkBXMMLr35cQAWwTNmLEMTABTAGZwAtDwacc3PgM0hmcxjADORjRhBGeqAly3DNQnefGTpxZggDmACxVqzYhJSzDLgiiokEADu1g7agvG6NBAAHlHsHDaa5mBevqEePnChnvpysXZOga4h7nl+6gn2lU1VdCTJaRmctiAAbhAIJAEDQyODwyKjk7rTAe2d6fxmjlnUuUUF9QUGK4ktuvqGJnvNq3HCtucHN9e09IvdIo/Lzw+pS5m9TKzsMhh4fBrarBULyJTKSIxU5VFygupFSHRCr3DofJ4XJyrGwAXyAA==`,
     perfect:59,
-    location: [1, 0],
-    light: [[4, 0], [2, 0]],
     index: 28
   },
   29: {
-    building: [
-      [[null], ["light", "down", "green"], [null]],
-      [[null], ["box"], [null]],
-      [[null], ["box"], [null]],
-      [[null], ["light", "down", "red"], [null]],
-      [[null], ["yellowpass"], [null]],
-      [[null], [null], [null]],
-      [[null], ["sun"], [null]],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEbgIDmAFnCEcRAO6pHMATgFNhqBjTr4GGSfRyMARhAAeICbXoy5DEMrUap2zbrAt2nEr34gRxdQp3GpCkAE9hdXgAcYAZz8HWRNneWCXcK0FSN0/anFHEPwAXyA===`,
     perfect:6,
-    location: [0, 0],
-      light: [[0, 1],[3, 1]],
-      index: 29
+    index: 29
   },
   30: {
-    building: [
-      [[null],["portal", [0, 3]],["boxwall"],["portal", [0, 1]],[null],[null],["boxwall"],],
-      [[null],["light", "right", "green"],["mirror", "right-up"],["light", "down", "red"],[null],[null],[null],],
-      [[null],[null],["mirror", "right-down"],[null],["mirror", "left-down"],[null],[null],],
-      [[null], [null], ["yellowpass"], [null], [null], [null], ["boxwall"]],
-      [[null], ["boxwall"], ["sun"], ["boxwall"], [null], [null], ["boxwall"]],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoCYA0BmAXRxABN4Z0MrkBXMMIjEABwgCc4YwQcMAGfAUYgAbhAQkQw1hy49+OAIxDeteozUNeo8ZJXU6WpmAQBzABZweINmcvXTbAKZPUwgLYI2bdtdsW4AFoaZiltEwDrEggAd1RiZz1VQw0U5PVGDE1U9W1Pb18EuyDouLCstKZ8nzZrMCcAMxLYt3SjbMzstuEATyd6WOYYAGdh8q6K3MmjHQkpTsrZpKZhmlamMTmc9sXNvSEAXyA`,
     perfect:39,
-    location: [2, 3],
-      light: [ [1, 1],[1, 3]],
-      index: 30
+    index: 30
   },
   31: {
-    building: [
-      [[null],[null],[null],[null],[null],[null],["light", "down", "green"],[null],],
-      [[null], [null], [null], [null], [null], [null], ["box"], ["box"]],
-      [[null],["light", "right", "green"],[null],["mirror", "right-up"],["mirror", "left-up"],["redpass"],[null],["badboxwall"],],
-      [[null],["light", "right", "red"],["mirror", "left-down"],["mirror", "right-down"],[null],["yellowpass"],["badboxwall"],["badboxwall"],],
-      [[null],[null],[null],[null],[null],["greenpass"],[null],["badboxwall"],],
-      [[null], [null], [null], [null], [null], ["boxwall"], ["sun"], [null]],
-      [[null], [null], [null], ["boxwall"], [null], [null], [null], [null]],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEY10NP06O1sfPusPgIA5gAs4IIsQgB3VEUEAnAKaLULTvgbcufXut08tagyABGEAB4h+ZyxvaH2AkWKLyho8SAXLV+riABbBHl5CHlPN2cAWmoABytHIJCwzzBFADM4GPj+JWJYmABnQoSHDFMYYhspGDorTR1ysHcXEEiPV0ViUsDg0PCiNMyoyRkepP6IlpHpXzKQAE9FOmkC4p6TSurasA2tixq6uyo9Msbz068lFTWSo39NqoOd+vsLg3ftS+2jx0LqOZ8BqnT78ABuEAQ3XuML8MI0AF8gA==`,
     perfect:58,
-    location: [0, 0],
-      light: [[2, 1],[3, 1],[0, 6]],
-      index: 31
+    index: 31
   },
   32: {
-    building: [
-      [["portal", [6, 3]],[null],[null],["boxwall"],["badportal"],["boxwall"],[null],["portal", [6, 5]],],
-      [[null],[null],[null],["mirror", "left-up"],["mirror", "right-up"],["mirror", "right-up"],[null],[null],[null],],
-      [["boxwall"],[null],[null],["portal", [2, 5]],[null],["portal", [2, 3]],[null],[null],[null],],
-      [["sun"],["yellowpass"],[null],["mirror", "left-down"],[null],["mirror", "right-down"],[null],[null],[null],],
-      [["boxwall"],[null],[null],["light", "up", "green"],["portal", [0, 4]],["light", "up", "red"],[null],[null],[null],],
-      [[null], [null], [null], [null], [null], [null], [null], [null], [null]],
-      [[null],[null],[null],["portal", [0, 0]],[null],["portal", [0, 7]],[null],[null],[null],],
-    ],
+    string:`N4IgNg9gxghgLgSwgOxALgNoGYA0AWAXRxABN4Z0MqQA3CBEkIjW+x55AVzDGdYaY4WAIxgkADhABOcGGEEs6AvkvbNFbBf3ZCuPPgFsEUqdJDEwAUwBmcALSdxWoybPEpCAOYALe4+fGplLmIB4+fk4c3LzqIMIQAB4A7nLyUfq60XySMnLmGABMOACsBOm8QiA5svJCRVhlmfqxAM6cqHwAnpY8EEniMC0tCnoVLC5BIVa2diR9HU1jIBNuoV6+s/MjWbHxyanbGRijfGDrcCH+xJ5SlpYLLNV5QgAM+I0sZ+GXTu6WOscdgQAL5AA`,
     perfect:23,
-    location: [3, 4],
-      light: [[4, 3],[4, 5]],
-      index: 32
+    index: `32v2`
   },
   33: {
-    building: [
-      [[null], [null], ["light", "down", "green"], ["light", "down", "red"]],
-      [[null], [null], [null], [null]],
-      [[null], ["store", null], [null], [null]],
-      [[null], [null], [null], [null]],
-      [[null], [null], [null], ["yellowpass"]],
-      [[null], [null], [null], ["sun"]],],
-      perfect:4,
-    location: [0, 0],
-    light: [[0, 2],[0, 3]],
+    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEY10PgIDmAFnCEcRAO6oibAE4BTMahZh2XHiQFCQ44iHwNGtejk3MdTbbvoaDLAM5wI4nqf1aGpjSABuEBKpav3au3qPqdDBc3Dx1g7wd7MIBPMToBAAcYMzM1Jy9QoIyffzCzail1AF8gA===`,
+    perfect:4,
     index: 33
   },
   34: {
-    building: [
-      [[null],[null],["light", "down", "green"],["light", "down", "red"],[null],],
-      [[null], ["box"], [null], [null], [null]],
-      [[null], ["store", null], [null], [null], [null]],
-      [[null], [null], [null], [null], [null]],
-      [[null], [null], ["yellowpass"], [null], [null]],
-      [[null], [null], ["sun"], [null], [null]],
-    ],
-    perfect:14,
-    location: [0, 0],
-    light: [[0, 2],[0, 3]],
-    index: 34
+    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEY10PgIDmAFnCEcRAO6oibAE4BTMahZh2XHiQFCQ44iBYA3CAlX4GjWvRwYQAIwgAPNUaaH9zawd1HjAWwQiREEfLBiAZnAAtNQADlbGAM5wXmI8NgzxDvZ29HqJKQmOSbasnNxEvgHyohJSaVnGmtrhIFU6RrVa9ZVNanogbh5ePv5BfILh6SAAnmJ0AiEwERE1EdRSDXVt+AC+QA`,
+    perfect:13,
+    index: '34v2'
   },
   35: {
-    stringcompressed: `NohECMHsA8HcEMA2jQF0A0wIwctns4kUMsoi9TDcSDyb9gA7AV2SsQEsBzACwBdQ6UABNIsJkNDcATgFM5k0q3aksXPoOEyeAqbIVKCBxQAd4AZwuMViKgE85yceas22duvBH1i79nQw/nZqtsoe4QHMEV4+OH5UvpSBFLRYFixGZPGUoTHRUaCIkADG8PyckFnUCZhhBBp62rpa0vKKwYk5aWFqoKaQMvxIQsAALOgAHKiRngVz9ViOzrCu1rMbdfn9g8MomBMADDN5UYuLoBb8g3JC5/n3hQC2nDIyg1I6mgC0LKadfUarS+TVA8hEnS2Z224LWkPmmwRpwW2xebw+wkQcgAZvxvmIJPDHijnq93jJPi18eIsr1MAioSSmRwWlI/p85BDEcSNjMgA=`,
-    string:`W1tbImJveHdhbGwiXSxbImJveHdhbGwiXSxbImJveHdhbGwiXSxbImJveHdhbGwiXSxbImJveHdhbGwiXSxbImJveHdhbGwiXSxbbnVsbF0sWyJsaWdodCIsImRvd24iLCJncmVlbiJdLFtudWxsXV0sW1sibGlnaHQiLCJyaWdodCIsImdyZWVuIl0sWyJncmVlbnBhc3MiXSxbbnVsbF0sWyJ5ZWxsb3dwYXNzIl0sW251bGxdLFsiYmFkYm94d2FsbCJdLFtudWxsXSxbImJveCJdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbImJhZGJveHdhbGwiXSxbImJveHdhbGwiXSxbImJveHdhbGwiXSxbInN1biJdLFsiYm94d2FsbCJdXSxbW251bGxdLFtudWxsXSxbImxvY2F0aW9uIl0sWyJib3h3YWxsIl0sW251bGxdLFsibGlnaHQiLCJyaWdodCIsImdyZWVuIl0sW251bGxdLFsiYm94d2FsbCJdLFtudWxsXV0sW1sicG9ydGFsIixbNCw4XV0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJ5ZWxsb3dwYXNzIl0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJwb3J0YWwiLFs0LDBdXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFsic3RvcmUiLG51bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFsibWlycm9yIiwicmlnaHQtdXAiXSxbbnVsbF1dLFtbImxpZ2h0IiwicmlnaHQiLCJyZWQiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbInJlZHBhc3MiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFsibWlycm9yIiwibGVmdC1kb3duIl0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFsibWlycm9yIiwicmlnaHQtZG93biJdLFtudWxsXV0sW1tudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbImxpZ2h0IiwidXAiLCJyZWQiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dXQ==`,
+    string:`N4IgNg9gxghgLgSwgOxALgNoGYA0AmAXRxABN4Z0MqQAjCADwHcYwwQiNaHnX2dO6TFmw5chvUYJ4j+Y6XwzIArq1FgEAcwAWcEMRIRGqYhoBOAU3OoOy1R07rtu4qc069IM5euyvVgA4wAM5BCrZgogCe5qyGgSFhKhGyNDAkUsKJqikMWRH24TZJRdmKxSlpGRI54jIC3JmiQUo+9bXsBeVlpYU18iXJDm7OIK5OHn6tvW39/IX2IP4QpnAsehgALDgAHAQD+3NdINGxjPGhB92D04vLq2z8WwAMe509XTdBcMvmetP/HyOAFsEKZTMsPGMdABaJT+PJ7fhDcYuYaQ8wkBGHd6lUYY85Yq6XeZIgG4kFgiHEMDmABmcGhBiMhLJ12BoPBpkhw0ZhimxTebJxQsG4DRxDh6MxxMBwteAF8gA===`,
     perfect:59,
     index: 35
   },
   36: {
-    string:`NohEBsEsHMAsBdQBpQBMD2B3Ads00AnAUyNwF0lhsBXccC4CGBPcIgM0RWNVAdAC2kAgXQFWHeAFpqABz6UadfrLHwAhuGTAAzEgAMZBkvoMqteoov8hIsXgLNpcheeWVQAZ3hiiyE/wAnkR0WLLqnp6uXtTkZoLCouIobJxSGDjRtkkSaS5BIeBhEVE2ifbcTulY5FbubpaMhCTY4ZF88aoEGlqU+kgArEZ1jRDoAMbq8JDotYzZFaCOcM7y/ABG6qjr6AAemJpaG3sHdK4B8Z6x0TxtpR6b2yeH0Y87+y/G1iNfyvELyQgkhkax+HgBuWkGTmoGCoUwd3O33m5UBywQ1Uyv1MlBRdkBqShNSR9QC4NRkMxczJDWOHzORjIQA==`,
+    string:`N4IgNg9gxghgLgSwgOxALgNoGYA0AmAXRxABN4Z0MrwEBzACzhGJIgHdVjaAnAU19REMyAK5gwQmgybEwvAGYyQfEiEkBbBN24RuzcArgBaEQAc1OYWImWQp3XBhhm2HAAYCQ0eM+WrPy28bDBBNbV19bjpGE3Mva0kAZzhdXmYgyQBPXnF2UxhExIsQxJFBIRCwnT1ZQyNWDmLQrWr9OUVYpuzctnzCpqqI4ijpevZBQITJgJCefmQ+ot9qe25HZ0s3HABWZYzp4ObwmuVo4zMmgCMYEkuIAA82J2dJO8fn4oyKkFKJkJVFlcbm8nuIgbcHqCXgd4jMvn4jq1ah0LrDDoMTu1jA0/iBupBegUljDbBjImcxo00ctKi0hgYOjjPlN/Oi6Zi6kzqSSQgA3CAIVSeAgAXyAA==`,
     perfect:44,
     index: 36
     
   }, 
   37: {
-    string:`NohEBsHsGMEMBcCWkB2oC6AaYKCu5wtgJEBzAC3lE1FwAdrRSAnAU1bSLwK/0KJx9ePbN0KihEngLHDxxZpHgJWARgAcABgxT5smZMEijew/uzEARpAAeAd1gEdV2w6dFQl2ABNr9x+DOoADOuJzYnq4BGAbGsrpyibHyJBRUNMxklIws7OEKSioa2h4AtojMisyM4KwAZvAAtPTO5iDxJokJCcldnd2d6OhAA==`,
+    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEY10PgIDmAFnCEdQA48QbAE4BTUagZN6ORrXoM5zWdKny1ypQtlaNMjCGEQ48UQEYAHFhB7bi1SvWPND3YpAA3CAmI3Zn718WACMYYmCIAA8Adxg6PwMAZ2pJfy8fG3snXWd9V1UszVZObiJhdi5BEXFUgyMTOHMrBJAAWwRhI2FBMFEAMzgAWn4Egp187ImXdUK8yfnp5nx8AF8gA`,
     perfect:24,
     index: 37
   },
   38: {
-    string:`Noh2FcBtIXQGmAIgA4HsBOAXAhpRCBmOAJhnmAmnMUgEsBzAC030QBNUB3UV+9AU349ylWOQpRYCROlQ5M/AIwAOAAyJqAI1QAPDdIC2tdLPStI/AGaYAtOGT6JVcaK27Hrw8dPmrt+x6SZAhIAM7gwgieSGhYuPjAqnCKwU5SSJCoAMbYmLSowmRAA=`,
+    string:`N4IgNg9gxghgLgSwgOxALgNoGYA0AWAXRxABN4Z0MrkBXMMIjEABwgCc4YwQdscAmAo1r1G4BAHMAFnB6kIAd1TEJbAKZrUwug0YYRDXiDYROcNQEYAHAAYQYgEYQAHvaMBbBGxNs5YNQBmcAC0NMxu+jpCvJGiRk6u2nFMnt7sfoEhYREG0VQgAM40Wry5RqwcXDwYNjgWeWWxugQAvkA==`,
     perfect:36,
     index: 38
   },
   39: {
-    string:`NohEBsHsGMEMBcCWkB2oC6AaYoBOl4EBTARgA4AGDbFAV3HC2DoaZcZvo+a/SZ9bZQAW0S58uUJghEAZvAC0tAA7UB3CIgDmAC3hTQKg1txEiaJpt37pR6aYAma9m179QATyINIAd2WwAM6BzrxCouKQktLgcopGlviE8KSUoYLqrqzugbQWQl4+/kEhWRoREga42npKqokExORUZa3uhVDFwencLpwZImKV9jXx9f29btiZE62z8zOZfEA=`,
+    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEYgBOEc8ApgIwAcWIDNOgNr0cGQaPEjhQhlKFiQAWwRMWTEETDsAZnAC01AA78xEhuAQBzABZxNIYw6tN27VBbDW7Dp0VfEpvKS5nIgAJ7sdBAA7kYwAM4JQeaKKmoQGlq6Bk4WLGxwXLwp0mZlwfhhCdQeipHRcYnJMpLKquoOTN65JvmsHDx8rSNhDZBNSaUKleUz7RlZzD2GfXMh0nKpszvbexWh+AC+QA=`,
     perfect:78,
     index: 39
   },
   40: {
-    string:`NohEGcFcDtQXQDTFAIwIYBMUHsAeB3NAGyPiWkhMWAqvMqOtsfruQFsBLAJ2+29AJQ3TgHMAFgBcAtBmz5YcashwFipaqCJipg0HIV7R3AKYnFSVHkIkyNBkwesW9tsyVJXL95aLYAxmiSnNgWXo5uTuHOHiA+0QnxwtiSQSYAnAAMdvG5Dsp5kWzJqZIZ2Zp8pSYAjAAcFZZVaQBMAOyNifmehd5RSc1l7Z29EYwF/ZNFfdNjc8pWaraaXLz8ekQmAGYykAAOOVMzx3OWq3wCQps7svKKSkA===`,
+    string:`N4IgNg9gxghgLgSwgOxALgNoCYA0WC6OIAJvDOhpSAM4CuqhGIARjMcxAB4DuMYYIRslr8hIsGNE4MwqTPGMQAWwQAnVRFUgiqhAHMAFnAC0xCNwaMmHHnwGKw+o9pLnURPaoCmXhtJZcvPyC0rISoQoRcmGSElYxUeHy0ZHJSQlpsfjxqRl5qSAacPBeAJwADCGZiVk5KfVJhRDFcGWVikUlAIwAHO3+na1YAOz91Zl16bnTck0tXiNj+Q3Z0uPLUys12xNrIABuEAjEVcpqGlpEYF4AZia0AA5VG1k7GWfqmi7Xd6ZugtkAL5AA===`,
     perfect:44,
     index: 40
   },
   41:{
-    string:`NohEBsHsGMEMBcCWkB2oC6AaYKCu5wsd9Ds8CjzThQBPAUwMgHcAHWAZw421A9zToixCmRKVxY0SOpUidRlDaduQ7DInTQAW0QAnPZD2hMEegDN4AWlyseNQ/AT0AnAAZ7O/YeOnwF61t7OSlCYQhEAHMAC3gTUD0o2PjIvXp6QVD5R2d3TwAjWAATViMncE8c+HoAJgB2D3lwJLi/APi0os9SvXKTYABmTAGhYRCNXl0DI3j/Sxs7bMgnavrGye8ZtvmgzVlxMckHZecARgAOdYnr8YST6ouruUPpcbej99eD9CA===`,
+    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEY10NP06O1sfPsgCeAUzoQA7gAcYAZ0kgGISdVT4G3LqxacNPVVq78hkcVJnL2O9ut4BbBACdbEWyCJgBAMzgBaamNm8HcPACAJxYfhggNvaOzuDuXj7hljoq4AgA5gAWcLG2Gdmx6bYCAkoWmv4QgXAhYXIARjDEYo6BYOEgAUEATADsdbxg+Tku8bkCxB0ttm3OGADMOPPKKsnJkXYOTqMe3r5yXTV9AxFRW7Guu4m6N6sVEYcCAIwAHCdr9+uPr++ad9ofAGfYFA5jKAC+QA===`,
     perfect: 45,
     index: 41
   },
   42: {
-    string:`NohEFsEsCdoe2qANKANgUwGYBcC0BXAB1AF0lgA7fVVMy628qmu0AIwEMATNuADwDuHGqXIQY8RCmiQA5gAs8RUfRZ1VjYONgJkaLEuJ1mmk6wDO2BOmRmmDYw/XtuvPiu2S9GHLi5wBCg9UOABjDmxIOCDHFjEoHSlQGQVDDwSvFB88f0CVM2cM3SyDPwCY+ziNWNMHSs00OUU9XKDpdC5SZ3N8Cq1CBGxhZGAANiRRklZOHn4hEWnXOeFUYKbsPWUUWWh0dD72ZYWxeCHsdABGAA4ABi7yLQBPdBoAwg5zcw8Zt3nV6aO/3qNVYpwi6AATAB2O4g9R2LRFJLZMp5EHAjFaHZ7CjvT4eAbQIarcgAFiQFymUyAA`,
+    string:`N4IgNg9gxghgLgSwgOxALgNoCYA0WC6OIAJvDOhpSALYIBOdEdIRYApgGZwC0ArgA4hCGZLzBhho8ZLEScGEACMYxRRAAeAdxjih8mvUbMidBAHMAFjwF6Rs/MLvT9tBkxbhO1wTOdO5CgDOcExsLFIBEb4Sjkoqauq2Bm7GnlzcxBCaqNG5LobuJuZWfD75KR7s6ZnZtlGxrkaVXhlZOfJRHfZdfp3+wuDFcB41qCZsxEKxgbztCvxMcDosGABsOKsO+sqqGtq6AzsJ+2BJYEMeNkRmdGxsc0p7OqcDjEtwbACMABwADFPyBQATzY4iy/BggUCSSOTwO2zhLx6kW6Cje8DYWAA7P9co4+skmqwWqM6qi+gSbndkBCoUkFnQlqd5AAWHCfBwOAC+QA==`,
     perfect:61,
     index: 42
   },
   43:{
-    string:"NohEBsHsGMEMBcCWkB2oC6AaYKCu5wtgJEBzAC3lEwgFMAzKmgJ1oBMNs8CjQAjWGz6QAHgHdYBTjnyEusotzkyeRFcqWKF8ntn6iJUrbuLNI8BLQBMAdgAM00K3rha0eADda4aZrWadZScGV3dySGZfbWJhcUkfYw1ogPV0f2SMkxT9OKNAxIL8tRzDBL1Y0scBIQN4qtq8mIayptyW0ABnXDReCrre5ox0rMykkfGxyYLhoLMLeFoATgdeZ1DPb0cAW0RmM0iaV0YAWlwAB23d/eonMkpTi9WQt3hwyNXzS2WoibTsVPygIBwJSoNGfxAYN+QKhUxhCjSQA===",
+    string:"N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEY10PgIDmAFnCEWAKYAzbkQBOfYiAZN6ODCABGMYvIgAPAO4w6k2dKm0ZjA/uYMjzXccsXzhkADcICCSbsiIceHwBMAdiw6cmIC/FBw9nxggXpmetZugqFwHBAi0VZyjs7pNnG2rvixGXklGQ5OLvEFVVVm5dksWZVyispqmtqNFYH1zb09AM7UqF0Nsv2Fsvk107OlucWLplN5IO6ecHwAnAEswUkRUSwAtggi7mm8gnAAtNQADj2n56k8a+xcd497iXxhKWk9h4vDscoYYisluCodU5jDapCFkjocjYfMUfRCgBfIA==",
     perfect:50,
     index: 43
   },
   44:{
-  string:'Noh2FcBtIXQGmBa9FVgp7XI2ln89cdssCVTCSAiSASwHMALAF2rmoBMB7Ad1HbUGAJwCmogSmoBbOsOHdhg4Y1YBacAAdqUsQDNIogMYsmincSzV9hkwDdRkC8BlyFSjob0sN2qfWY2Dh5+ZVFOZwJLGAooygRrUQNjFgcnKisFFgBDFlEAJgB2AAZnWm4jXLpuSQSs3NEATlKM3STbU3NW6NiieP7XeXMOFUC1ENqBgE9HSD5NbIBnRci+wfdBLx8J1ZI48gR+/b646hnoeaWVqUXwSbPZy+XdshO35BigA',
+  string:'N4IgNg9gxghgLgSwgOxALgNoCYA0BWAXRxABN4Z0MrkBXMMIjW+x5hnJu9zljt1rgN49u/PoMYih3cAgDmACzghiJCAHdUxOQCcApntSMQAWwQ6dEHSpA75SgLQ0ADiGP6AZmD1Q4Cq27iwrZ6Xj5wAG56YIEYpuaW1sTeHnBOrsZg9sqqGlohJLFiUpLFxSFhvlEx0u4QcPB6WADsAAxFghy29Y0AnO21XZ7evv7WgyUcUkGinXFmFgHEdoppapodwQCe0ZDqzjAAzoebMguJNilreacT/KVzZY9zIDv0GgfHsSCHNEZdbz2nxOd2ewnuBAAvkA',
   perfect:48,
   index: 44
   },
   45:{
-    string:'NohEFsEsCdoe2qANKANgUwGYBcC0BXAB1AF0lhQAjAQwBNK4APU8quwhba1F4AO3ypUZCqkgBzABbZkoWnADufWdHS1eoDtC49yABiQAmEiIFCRVJgu48LDRtaEatO5MACMSABwnWUWAgqEtIExL5g/vCIKBg4uPJKvGbCrDT0VjZJgikUkYEo0MF4RFnm5Mmm2RYu3G4GAJzhlg6ZleYi/FV+MFGyscVh5V0UqrSE1ADOExqj41OlORWpdPaOtkNlnZsVHUu5PfloWHgJym05oLOT09WcteQAbEgAzE1X8+efGxd50ZdF8UUZ2+4S2i2Ge1A4lU6D4cxurDEUhkMWOsmh6FhGl+QWRoQWFlUmAwAGNsJJAhYcQUAacZnAuNh0O4vHoCR1QABPdBCRTwjSoOAk6jYSBwYH7AJ/Qp4umEhki5msgmsDGw/lUg5/fqAxJfSW9VFxOWseCMpVsz4cib4CVcnmChQa5bpFpOOzsO7rChpVatbpSvrHXV2ibYBDoZB7aMQ4YQLW4kJykxAA==',
+    string:'N4IgNg9gxghgLgSwgOxALgNoFYA0BGAXRxABN4Z0MqQBbBAJ3onpGLAFMAzOAWgFcADiCIYQAIxgkxEAB7CcoiSQHM4MMPIzI+YMCPAIA5gAs4rUhADuqYvXYlNIFfTUaFABhwAmAiO279ADcIBAcgkLCFJ1V1Vgw8HAAOXyi6RmZzeiNTfiEU6jSmFjYuXhIrVD8dPSilaRlLdQ0qgNSGIszs3kFNfxqtapb+6JdYjxwATnzxWUbdXsGRAdbRQoyS7lyFlZA7ZRgAZwPHPYFD46HL2sl6ueaFPqvlvSXHtvTi8FKecutt4dO50czlccQAbDgAMzTQFHf5PN6rdrrXZdH4VeGvQYPbHPfSGOzsZBnOH6MBdcwcbjmAnsImONafLImbp5HE7OycDhQODGDL6RmdFnov76JhqODsPCJdyYhSiACe7F0VhJF3Zw0FtjRv0qUXF8ClMvhUVpRLVDORnypZQxT1oVsp311JwgEqNssuSxABz4esVysglgt+jqsyajiUINioZu4fmAsdG1toqiBzgzHYrEROdxiIdHyFORdvgIAF8gA===',
     perfect:126,
     index: '45v2'
   },
   46:{
-    string:"NohEDcHsEsBNQLoBpgRvZqA20DmALAF1CVACc8iTRcyBTOgO0RTThdSnYU0/Q8YBXLFkxCRmUFkgBjAIaFokZpK4Ze40Sk2T6AMyx0ZhcHSwDhW4Dt6gARpAAeAdzkiO9p6/djLkhy5u5r4SGn7a4ahkkIQKdABMAOwADBYSEaEofNysamlWOrn8PFlsGEU5qADOgioZVmWIPEA=",
+    string:"N4IgNg9gxghgLgSwgOxALgNoEYA0BmAXRxABN4Z0MqQA3CBEkIjW+x58BAcwAs4RiAJ258BILoICmk1BzoMmOFvPbNlbRRmQBXMGGY69B3fqWsFBNYdNaTHKQDMwkqHBqSwm68aNqQAIwgADwB3GD1NAOCwiJ8bKNDwzzjLJVsjJW8zQQg4eEkAJgB2AAYvO0y7PxVImpTKjPULao05VrMAZ21ZBvi6ywBfIA===",
     perfect:16,
     index: 46
   },
   47:{
-    string:'Noh2FcBtIXQGmBa9gCIBuB7AlgE1SkrAkYVMYuWcipcgqgLbYBOLmLqcqL2A5gAsALgFpwABwIMARgENc0zAA8A7rOhS0kTAGNZQ7JlCbSDSP2FceFoVZYBTfCh6Yh++wEYAHAAYTVWlM6CgwcJxIqCPpg52Y2DjsbMUlqWEDItHY3IXsATj9nLDx/aJdsvIKGBwAzSHsdIXR7SBKKUnTSmrqGppbU/qiQuQVlNQ1nc0Fbbl4pqz4He2N+jraM1ABnIQ57LiCgnnta+sbmzTL3ACYAdkqYwZhVgbRFVXU+h8+X0ffW51exn0nl9UMMAb9nA5cOJZBsNn8QQBPZraFQwuHnDbgZaPIA==',
+    string:'N4IgNg9gxghgLgSwgOxALgNoEYA0BmAXRxABN4Z0MrkBXMMIjW+xkANwgRJEeYZyZ1+glgL68hBRiOEgAtggBOiiIpDFFCAOYALOAFoaABx4CQAIxglzEAB4B3GPVMyJojOG171ITbrg+igCm3KwqcPBBWAAcAAwu4tLiYpJmHFwJqa4p7vJKKmoaXgbGmSxJWb4QEXBBAJzxrOmhObLhkQ0uvkEAZmBBUHBsQWBlwokC2R7BfQNDI2Nu45WW1naOzqxgxYE7xFrBQahLUpPJUyAAznCqQern592zg8OjYdWRAEwA7I2tJxV3I8bA4nG9/hCPCCNuCLtCwTxActcqt4ZszMESEYYJdLotISAAJ4jSD2bG4rqXGjHKQAXyAA=',
     perfect:85,
     index:47
 },
   49:{
-    string:'Noh2FcBtIXQGmBa9FVggRAIwPYA8B3AQ2gxSVhVWQQvLRW32NPuSo0gEsBzACwAuGOBgBOvQcIw9RAU1mgytBsprAmhEpCXVKCXYwC2XUaJyip4/gIC04AA46mhrFJnzFjXJtaq9YFXVIHABjIgEuHE8/L2YtHToqOhiU9W8WbUYAZ3BPGBggA==',
+    string:'N4IgNg9gxghgLgSwgOxALgNoBYA0BGAXRxABN4Z0MrkBXMMIjW+x5hnDEAIwgA8B3GPRCs6DRkzGiWHNo259Bw6eI6cwCAOYALOCGIAnLbv0hNBgKYXUK2xwUChYEbKkS59gLYIDBiAdMjHTgAWhoABxdOHk8uU3MrG3seR2VXFncpdPZJGWjFJyi5TLyPXJyHJWd5AGcaGwICAF8gA=',
     perfect:29,
     index:49
   },
   50:{
-    string:`Noh2FcBtIXQGmBa9gCJIEsDmALALqnKgCYD2A7qIalgE4Cm9VK62+1Zl1djzCSsflFgpEwlAInihyGYLHJRqAEakAHuQCG0VFNkL5kuXpEI0AWwy1apWtUj0AZngC04AA66E6UgGNNeBikfAYsNngB9ACMABwADF4WVjZ2RA7Obp4mMKJGocYF+aG50kUq6lo6LKrmytwMTInlGtqQiZJKlta29k6unCF5eagAzuCDpR0wQA`,
+    string:`N4IgNg9gxghgLgSwgOxALgNoGYA0BGAXRxABN4Z0MrkBXMMIjW+x8BAcwAs4RiSIA7qmLsATgFNxqVmA7depQcJBjJ0nEzoMNzBo00sdWxrpPGjhg3o0YQAIwgAPATHogzl0xe1WP1qiAAtgiiohCiCmDiAGZwALQ0AA7u3n6sYXDw4ngAHAAMKbbBoeGRMfFJhab6Xr6p9XW+NeaN9k4ubqwOgXYKqlKFbc6uYFXG+kEhYRHEUbFx/EJjni0gAM406o3VBAC+QA`,
     perfect:14,
     index:50
   },
   51:{
-    string:`W1tbInZvaWQiXSxbInZvaWQiXSxbInZvaWQiXSxbInZvaWQiXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFsiYm9tYiIsImdyZWVuIl0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJib3h3YWxsIl0sWyJzdW4iXV0sW1sibG9jYXRpb24iXSxbbnVsbF0sWyJsaWdodCIsImRvd24iLCJncmVlbiJdLFtudWxsXSxbIm1pcnJvciIsInJpZ2h0LXVwIl0sW251bGxdLFsidm9pZCJdLFsidm9pZCJdXSxbW251bGxdLFsibWlycm9yIiwibGVmdC1kb3duIl0sW251bGxdLFsibWlycm9yIiwicmlnaHQtZG93biJdLFtudWxsXSxbbnVsbF0sWyJ2b2lkIl0sWyJ2b2lkIl1dLFtbbnVsbF0sWyJib3h3YWxsIl0sWyJtaXJyb3IiLCJsZWZ0LXVwIl0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJ2b2lkIl0sWyJ2b2lkIl1dLFtbbnVsbF0sW251bGxdLFsiYm94d2FsbCJdLFtudWxsXSxbbnVsbF0sW251bGxdLFsidm9pZCJdLFsidm9pZCJdXSxbW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJ2b2lkIl0sWyJ2b2lkIl1dXQ==`,
+    string:`N4IgNg9gxghgLgSwgOxALgNoCYA0AGAXRxABN4Z0MqQA3CBEkIjW+x51hpnFur55AFcwYAcNE8hIsdOYYpE+eI4AjCAFsVIYgHMATgFMDqGYoWnVEAB4B3GCO4sAzoJNzzk5T3AIdACzhtUggbVF1DY0cPFnUEPT0IPSC9XwCAWkEAByivXjZHTnZ3XJBY+MSgsAMAMzg0khCTT2lvMoSk4hT/OobQnJalAcKCviKeQcUQNVt7MAK2iuIq2ozsi2azEtGR/IJigeip6zsHdYmz4Y5tvfHou9z7g63d72u9gF8gA=`,
   perfect:0,
     index:51
       },
   1001: {
-    string:`W1tbImJveCJdLFsiYm94Il0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbImJveCJdLFsiYm94Il1dLFtbImJveCJdLFtudWxsXSxbbnVsbF0sWyJsb2NhdGlvbiJdLFsibGlnaHQiLCJkb3duIiwiZ3JlZW4iXSxbbnVsbF0sW251bGxdLFtudWxsXSxbImJveCJdXSxbW251bGxdLFtudWxsXSxbImJveCJdLFsiYm94Il0sW251bGxdLFsiYm94Il0sWyJib3giXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFtudWxsXSxbImJveCJdLFtudWxsXSxbImJveCJdLFtudWxsXSxbImJveCJdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFtudWxsXSxbImJveCJdLFtudWxsXSxbImJveCJdLFtudWxsXSxbbnVsbF0sW251bGxdXSxbW251bGxdLFtudWxsXSxbImJveCJdLFtudWxsXSxbImJveCJdLFtudWxsXSxbImJveCJdLFtudWxsXSxbbnVsbF1dLFtbbnVsbF0sW251bGxdLFsiYm94Il0sWyJib3giXSxbbnVsbF0sWyJib3giXSxbImJveCJdLFtudWxsXSxbbnVsbF1dLFtbImJveCJdLFtudWxsXSxbbnVsbF0sW251bGxdLFsic3VuIl0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJib3giXV0sW1siYm94Il0sWyJib3giXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFsiYm94Il0sWyJib3giXV1d`,
+    string:`N4IgNg9gxghgLgSwgOxALgNoEYA0BmAXRxABN4Z0MqQAjCADxCI1oaZw2QFcwxnve/Hnw4CRnYc1aMpdGcxZz2EwaMlrVLMAgDmACzghiJCAHdUxHQCcApjdRDNYx+OlMFzja6Wy2L3zIcbv5eBB7qKt5+oUE+MYrRkf7hThGeCYFJsYnpuZIp4unB8cVZGcp5ggUh5QEVEaWllXwKTWntmiAAzlwO8c11YRy12ZkD/R1RmcFhAL5AA=`,
     perfect:25,
     index: 1001
   },
@@ -586,7 +288,7 @@ function reset(manual=false){
     index:-1
   },
   'lobby': {
-    string:'W1tbImJveHdhbGwiXSxbInJvdGF0ZTE4MCJdLFsibWlycm9yIiwicmlnaHQtdXAiXSxbInJlZmxlY3R2ZWwiXSxbImJhZGJveHdhbGwiXSxbInBvcnRhbCIsWzAsMF1dLFsiYmFkYm94d2FsbCJdLFsicmVmbGVjdGhvciJdLFsibWlycm9yIiwibGVmdC11cCJdLFsicm90YXRlMTgwIl0sWyJib3h3YWxsIl1dLFtbIm1pcnJvciIsImxlZnQtdXAiXSxbImJveHdhbGwiXSxbImJhZGJveHdhbGwiXSxbInJvdGF0ZTE4MCJdLFsiYmFkYm94d2FsbCJdLFtudWxsXSxbImJhZGJveHdhbGwiXSxbInJvdGF0ZTE4MCJdLFsiYmFkYm94d2FsbCJdLFsiYm94d2FsbCJdLFsibGlnaHQiLCJkb3duIiwicmVkIl1dLFtbImxpZ2h0IiwidXAiLCJncmVlbiJdLFsibWlycm9yIiwicmlnaHQtdXAiXSxbImJveHdhbGwiXSxbImJveHdhbGwiXSxbImJveHdhbGwiXSxbbnVsbF0sWyJib3h3YWxsIl0sWyJib3h3YWxsIl0sWyJiYWRib3h3YWxsIl0sWyJsaWdodCIsImRvd24iLCJyZWQiXSxbImJveHdhbGwiXV0sW1sibWlycm9yIiwibGVmdC1kb3duIl0sWyJsaWdodCIsImxlZnQiLCJncmVlbiJdLFsiYm94d2FsbCJdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJiYWRib3h3YWxsIl0sWyJ5ZWxsb3dwYXNzIl0sWyJzdG9yZSIsbnVsbF1dLFtbbnVsbF0sW251bGxdLFsiYm94d2FsbCJdLFtudWxsXSxbbnVsbF0sWyJsb2NhdGlvbiJdLFtudWxsXSxbbnVsbF0sWyJiYWRib3h3YWxsIl0sWyJtaXJyb3IiLCJyaWdodC1kb3duIl0sW251bGxdXSxbWyJwb3J0YWwiLFswLDBdXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJzdW4iXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJwb3J0YWwiLFswLDBdXV0sW1tudWxsXSxbbnVsbF0sWyJib3h3YWxsIl0sW251bGxdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbImJveHdhbGwiXSxbIm1pcnJvciIsInJpZ2h0LXVwIl0sW251bGxdXSxbWyJtaXJyb3IiLCJsZWZ0LXVwIl0sWyJsaWdodCIsImxlZnQiLCJncmVlbiJdLFsiYm94d2FsbCJdLFtudWxsXSxbbnVsbF0sW251bGxdLFtudWxsXSxbbnVsbF0sWyJib3h3YWxsIl0sWyJ5ZWxsb3dwYXNzIl0sWyJzdG9yZSIsbnVsbF1dLFtbImxpZ2h0IiwiZG93biIsImdyZWVuIl0sWyJtaXJyb3IiLCJyaWdodC1kb3duIl0sWyJib3h3YWxsIl0sWyJib3h3YWxsIl0sWyJib3h3YWxsIl0sW251bGxdLFsiYm94d2FsbCJdLFsiYm94d2FsbCJdLFsiYm94d2FsbCJdLFsibGlnaHQiLCJ1cCIsInJlZCJdLFsiYm94d2FsbCJdXSxbWyJtaXJyb3IiLCJsZWZ0LWRvd24iXSxbImJveHdhbGwiXSxbInBvcnRhbCIsWzAsMF1dLFsicG9ydGFsIixbMCwwXV0sWyJib3h3YWxsIl0sW251bGxdLFsiYm94d2FsbCJdLFsiYmFkcG9ydGFsIl0sWyJiYWRwb3J0YWwiXSxbImJveHdhbGwiXSxbImxpZ2h0IiwidXAiLCJyZWQiXV0sW1siYm94d2FsbCJdLFsicG9ydGFsIixbMCwwXV0sWyJwb3J0YWwiLFswLDBdXSxbInBvcnRhbCIsWzAsMF1dLFsiYm94d2FsbCJdLFsicG9ydGFsIixbMCwwXV0sWyJib3h3YWxsIl0sWyJiYWRwb3J0YWwiXSxbImJhZHBvcnRhbCJdLFsiYmFkcG9ydGFsIl0sWyJib3h3YWxsIl1dXQ==',
+    string:'NohECMHsA8HcEMA2jQF0A0xQCdIBd48BTARgA4AGNTUAWwEttdtR0d6BzACzwFoBXAA7Us2IgDNERAMZ4AbkRQYs4eABMocJEpqDI2AikwV0FVMojrNCZCJwSpsrvrsMmLtlPF8hd3AWJyKgtrbTRlLDdmVlAvH2EQmBsdFSsksIt/QlJKO1UNdNtlADt+ZBC0rSKaLMDcioKqlIhC5sROHhi1SFhimLE1cMwsdu48GN82DjEiPosoj3YxgQSaUOqVVrytkrLERKbtw4b1to7xtm7e/qJBg+ShsAWWTwk+K7maUc7X7xjpoizI4PXblTClMHACH7cF7UEw1KNEE0ACeikQPUE8AAzti7Ni8PoiKxoeZhqTYZCWsdKQiKSNINJCPRIJ8oXDaScdjRnv1zrwPiJSRFQHoDEhWMATGZ4bLOfKsNj+Gz6aqOeyqWLDJLpeYImqqacheqDXSTerqcjIoxomxsPzfLKRbzfvE7N8LrE3v8ZmzLRkFaa5RqEf6NqA0chMTi8RYCUSSXCRR6uj0+lNfa4bYt7ctBfcA5saUWrfSw80jQXwym2JN7Hc1jtndmXl7vAK08DC6L9NrjKYyVgtRL+zLG8Wy5W1uphxWZ72JVWzmMJsI7bdHiXu7OdQOLDvR4Oe+KjFK9+Orce+2ex1vw/kdw1H9O1M+70pzEA===',
     perfect:NaN,
     index:2001
   }, /*
