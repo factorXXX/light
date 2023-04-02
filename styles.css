@@ -35,6 +35,7 @@
   content: "  ";
   position: absolute;
   border: 8px solid #aaa;
+  border-radius: 4px;
   z-index: -1;
 }
 td.void{
