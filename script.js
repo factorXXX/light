@@ -34,13 +34,25 @@ function music(x) {
     ".mp3?v=1671849935460"
   );
 }
+function isunlocked(c, d){
+  if ((c*3+d-3)==1) return true
+  let chapterlevels = Object.entries(level).filter((a)=>a[0]>((c*3+d-3)*12-24)&&a[0]<=((c*3+d-3)*12-12))
+  let beaten = 0 
+  for (let i=0; i<player.levelbeaten.length; i++){
+    if(chapterlevels.filter(((e)=>e[1].index==player.levelbeaten[i])).length!==0){
+      beaten++
+      if (beaten >= 9) return true
+    } 
+  }
+  return false
+}
 Vue.component("selectmenu", {
   template: `
   <table class="selectmenu">
   <tr v-for="c in 1" v-if="tmp.diff==0">
   <td v-for="d in 5" style="padding:0px">
     <table>
-      <div class="unlocked" v-if="(player.levelbeaten.filter(a=>a>((c*3+d-3)*12-24)&&a<=((c*3+d-3)*12-12)).length>=9)||((c*3+d-3)==1)">
+      <div class="unlocked" v-if="isunlocked(c, d)">
       <tr><td colspan="4" style='vertical-align: middle' @click='tmp.level="ch1";reset()'>Chapter {{c*3+d-3}}</td></tr>
       <tr v-for="a in 3">
         <td v-for="b in 4" 
