@@ -226,11 +226,16 @@
     player.editor.data[0].pop()
   }}
   function exportEditor(){
-   navigator.clipboard.writeText(btoa(JSON.stringify(player.editor.data)))
+   navigator.clipboard.writeText(LZString.compressToBase64(JSON.stringify(player.editor.data)))
   }
   function importEditor(imported = undefined) {
     if (imported === undefined) imported = prompt("paste your level here")
-    player.editor.data = JSON.parse(atob(imported))
+    let importedData = JSON.parse(atob(imported))
+    player.editor.data = importedData
     save()
-      
+      /*
+         if (imported === undefined) imported = prompt("paste your level here")
+    player.editor.data = JSON.parse(LZString.decompressFromoBase64(imported))
+    save()
+       */
   }

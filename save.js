@@ -1,3 +1,4 @@
+
 var player={
   levelbeaten:[],
   perfectbeaten:[],
@@ -30,10 +31,7 @@ function load() {
   
   
 }
-window.onload = () => { 
-  setTimeout(() => {
-  document.getElementById("remover").remove()
-  }, 1000);
+window.onload = () => {
   load()
   //removing changed levels from completed/beaten
   let levelsArr = Object.entries(level);
@@ -52,14 +50,13 @@ window.onload = () => {
 };
 
 function exportSave() {
-navigator.clipboard.writeText(btoa(JSON.stringify(player)))
+navigator.clipboard.writeText(LZString.compressToBase64(JSON.stringify(player)))
 let btn=document.getElementById("export")
   btn.style.background=("#449944")
     setTimeout(() => {
       btn.style.background=("")
     }, 600);
 }
-
 
 function importSave(imported = undefined) {
   if (imported === undefined) imported = prompt("paste your save here")

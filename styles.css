@@ -404,6 +404,7 @@ td div {
   margin-left: -3px;
   margin-top: -3px;
   z-index: -1 ;
+  border-radius: 5px;
 }
 #selectors td{
   display:inline-flex;
