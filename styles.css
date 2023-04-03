@@ -3,7 +3,6 @@
   user-select: none;
   margin: 0px;
   padding: 0px;
-  /*border: 3px solid #AAA;*/
   background: transparent;
   border-spacing: 0px;
   margin-left: auto;
@@ -30,16 +29,13 @@
   width: 70px;
 }
 .gamezone td::before {
-  width: 65px;
-  height: 65px;
-  content: "  ";
+  width: 70px;
+  height: 70px;
+  content: "";
   position: absolute;
-  border: 8px solid #aaa;
+  border: 5px solid #aaa;
   border-radius: 4px;
   z-index: -1;
-}
-td.void{
-  opacity: 0;
 }
 .gamezone tr:nth-child(even)  td:nth-child(odd), 
 .gamezone tr:nth-child(odd)  td:nth-child(even){
@@ -55,7 +51,7 @@ body {
   }
 table  {
     border-spacing: 0;
-    padding: 0%;
+    padding: 0px;
     margin: 0px auto;
   }
 .portalButton {
@@ -63,24 +59,22 @@ table  {
   font-family:Arial;
   width:160px;
   height:40px;
-  border-width:2px;
-  border-color:#333029;
+  border:none;
   font-weight:bold;
   border-radius: 6px;
 }
-
 .canportal {
-    color:#dfdfdf;
+  color:#dfdfdf;
   background:#444444;
+  cursor: pointer;
 }
 .cantportal {
-    color:#333333;
+  color:#333333;
   background:#aa5555;
 }
-.portalButton:hover {
+.canportal:hover {
   background:#565954;
 }
-
 .trans3 {
   transform: rotate(90deg);
 }
@@ -104,6 +98,7 @@ table  {
   justify-content: center;
 }
 .opts{
+  cursor: pointer;
   box-sizing: border-box;
   border-color:#aaaaaa;
   background: #333;
@@ -121,9 +116,6 @@ table  {
     border: solid 5px #aaaaaa;
   }
 }
-
-
-
 .selectmenu div {
   background:#333333; 
   margin:2px;
@@ -180,6 +172,8 @@ table  {
 .wide {
   width: 110px !important;
 }
+
+/*gaming*/
 .redCounter{
   float: right;
   color: #aa5555
@@ -211,7 +205,7 @@ table  {
   filter: invert(75%)
 }
 .yellowLaser{
-  z-index: 110 !important;
+  z-index: 15 !important;
 }
 .redLaser{
   z-index: 10;
@@ -222,11 +216,13 @@ table  {
   transform: rotate(180deg);}
 .deg270 div{
   transform: rotate(270deg);}
-.bluebox, .rotate180, .rotate90, .rotate270, .light, .sun, .reflecthor, .reflectvel {
+  /*blue box*/
+.rotate180, .rotate90, .rotate270, .light, .sun, .reflecthor, .reflectvel {
   background: #47AFE3;
   border: 4px solid #000;
   border-radius: 2px;
 }
+  /*green box*/
 .box,
 .badbox,
 .badboxwall,
@@ -237,19 +233,18 @@ table  {
   border: 4px solid #000;
   border-radius: 2px;
 }
-.redbox,
+  /*red box*/
 .redpass {
   background-color: #CC2218;
   border: 4px solid #000;
   border-radius: 2px;
 }
-.yellowbox,
+  /*yellow box*/
 .yellowpass {
   background-color: #EAFA35;
   border: 4px solid #000;
   border-radius: 2px;
 }
-.bluebox,
 .bluepass {
   background-color: #0999D5;
   border: 4px solid #000;
@@ -261,16 +256,13 @@ td div {
   min-height: 53px;
   height: 53px;
 }
-
-
 .gamezone td div:nth-child(n+2){
   position: absolute;
 }
 .light, .sun, .rotate90, .rotate180, .rotate270, .mirror, .box, .boxwall, .bomb{
-  z-index: 998 !important;
+  z-index: 20 !important;
 }
 .rotate90 div{
-  z-index: 998;
   background-image: url('./images/90cw.svg');
 }
 .rotate270 div{
@@ -304,40 +296,35 @@ td div {
   background-image: url('./images/mirror.svg');
 }
 .laser{
-  z-index: 15;
+  background-position: center;
+  background-size: cover;
+  z-index: 12;
   width: 70px;
   height: 70px;
   background-repeat:no-repeat;
   background-image: url('./images/laser.svg');
 }
 .reflecthor{
-  z-index: 998;
+  z-index: 20;
   background-image: url('./images/reflect.svg');
 }
 .reflectvel{
-  z-index: 998;
+  z-index: 20;
   transform: rotate(90deg);
   background-image: url('./images/reflect.svg');
 }
 .half {
+  background-size: cover;
   z-index: 5 !important;
   background-image: url('./images/laser-half.svg') !important;
 }
 .laser90{
+  background-size: cover;
   z-index: 10;
   width: 70px;
   height: 70px;
-  position: relative;
   background-repeat:no-repeat;
   background-image: url('./images/laser90.svg');
-}
-.laser-half{
-  z-index: 10;
-  width: 70px;
-  height: 70px;
-  position: relative;
-  background-repeat:no-repeat;
-  background-image: url('./images/laser-half.svg');
 }
 .greenpass , .yellowpass , .redpass , .bluepass {
   z-index: 11 !important;
@@ -359,16 +346,20 @@ td.verpass {
 td.verpass::before{
   width: 10px;
 }
+td.void{
+  opacity: 0;
+}
 .boxwall div, .badboxwall {
-  z-index: 998;
+  z-index: 20;
   background-image: url('./images/wall.svg');
 }
 .badbox div, .badboxwall div {
-  z-index: 998 !important;
+  z-index: 20 !important;
+  background-size: cover;
   background-image: url('./images/crack.svg');
 }
 .store div {
-  z-index: 998 !important;
+  z-index: 20 !important;
   width: 61px;
   height: 61px;
   background: url('./images/store-core.svg');
@@ -376,7 +367,7 @@ td.verpass::before{
   background-position: center;
 }
 .store {
-  z-index: 997 !important;
+  z-index: 19 !important;
   width: 61px;
   height: 61px;
   background-repeat:no-repeat;
@@ -404,18 +395,17 @@ td.verpass::before{
   background: url('images/player.gif') ;
   background-size: 120px;
   background-position: center;
-  z-index: 999;
+  z-index: 21;
 }
-.levelIcon{
+/*what even is this
+  .levelIcon{
   border-radius: 45%;
   display:flex;
   align-items: center;
   justify-content: center;
-  border-style: solid;
-  border-width: 2px;
-  border-color: #333;
+  border:2px solid #333;
   color:#000
-}
+}*/
 @keyframes rotation {
   from {
     transform: rotate(359deg);
@@ -459,7 +449,6 @@ td.verpass::before{
     background-position: center;
 }
 #selectors .tiePortals {
-  z-index: 1000 !important;
     width: 61px;
     height: 61px;
     background: url('./images/pointy_arrow.svg');
@@ -493,12 +482,4 @@ td.verpass::before{
   height: 45px;
   background: #222;
   border: 4px solid #aaa;
-}
-@keyframes rotation {
-  from {
-    transform: rotate(359deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
 }
