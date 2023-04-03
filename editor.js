@@ -129,10 +129,10 @@
           :class="{
             selected:tmp.editor.brush==brushes[i-1]
           }"
+          @click="tmp.editor.brush=brushes[i-1]" 
       >
         <div 
           :title="[brushes[i-1][0]]"
-        @click="tmp.editor.brush=brushes[i-1]" 
           :class="{
             [brushes[i-1][0]]:true,
             [brushes[i-1][1]]:['store','bomb'].includes(brushes[i-1][0]),
