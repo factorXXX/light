@@ -456,6 +456,8 @@ function calcolor() {
     if (a != undefined) {
       let color=[a[3],tmp.building[tmp.light[i][0]][tmp.light[i][1]][2]]
       if (color.includes('red')&&color.includes('green')) b.push("yellow")
+      else if (color.includes('yellow')&&color.includes('green')) b.push("yellow")
+      else if (color.includes('yellow')&&color.includes('red')) b.push("yellow")
       else if (color.includes('blue')&&color.includes('green')) b.push("lightBlue")
       else if (color.includes('blue')&&color.includes('red')) b.push("purple")
       else b.push(tmp.building[tmp.light[i][0]][tmp.light[i][1]][2]);
