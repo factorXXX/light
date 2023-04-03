@@ -380,6 +380,8 @@ function light(win = false, withlight = false, withM = false, final=false) {
           if (tmp.building[locat[0]][locat[1]][1] != null) {
             let colors=[tmp.building[locat[0]][locat[1]][1] ,color]
       if (colors.includes('red')&&colors.includes('green')) color="yellow"
+      else if (colors.includes('yellow')&&colors.includes('red')) color="yellow"
+      else if (colors.includes('yellow')&&colors.includes('green')) color="yellow"
       else if (colors.includes('blue')&&colors.includes('green')) color="lightBlue"
       else if (colors.includes('blue')&&colors.includes('red')) color="purple"
           }
