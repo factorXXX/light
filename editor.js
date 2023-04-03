@@ -30,6 +30,7 @@
     ['greenpass'],
     ['redpass'],
     ['yellowpass'],
+    ['bluepass'],
     ['store',null],
     ['store','green'],
     ['store','red'],
@@ -41,6 +42,7 @@
     ['reflectvel'],
     ['bomb','green'],
     ['bomb','red'],
+    ['bomb','blue'],
     ['bomb','yellow'],
   ]
   tmp.editor.brush = brushes[0]
