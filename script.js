@@ -34,20 +34,7 @@ function music(x) {
     ".mp3?v=1671849935460"
   );
 }
-function isunlocked(c, d, diff){
-  if ((c*3+d-3)==1) return true
-  let chapterlevels = Object.entries(level).filter((a)=>a[0]>((c*3+d-3)*12-24)&&a[0]<=((c*3+d-3)*12-12))
-  if (tmp.diff==1){chapterlevels = Object.entries(level).filter((a)=>a[0]>((c*3+d-3)*6+988)&&a<=((c*3+d-3)*6+994))}
-  let beaten = 0 
-  for (let i=0; i<player.levelbeaten.length; i++){
-    if(chapterlevels.filter(((e)=>e[1].index==player.levelbeaten[i])).length!==0){
-      beaten++
-      if (diff==1 && beaten >= 4) return true
-      else if (beaten >= 9) return true
-    } 
-  }
-  return false
-}
+
 Vue.component("selectmenu", {
   template: `
   <table class="selectmenu">
@@ -120,7 +107,10 @@ Vue.component("machine", {
   template: `
     <table class="gamezone" >
     <tr v-for="a in tmp.area[0]">
-    <td :class="{void:tmp.building[a-1][b-1][0]=='void'}" v-for="b in tmp.area[1]">
+    <td v-for="b in tmp.area[1]"
+    :class="{
+      [getclass(a-1, b-1, false)]:true
+    }" >
     <div :class="{player: tmp.location[0]==a-1 && tmp.location[1]==[b-1]}"><div></div></div>
     <div :class="{
       [getclass(a-1, b-1)]:true
@@ -262,8 +252,9 @@ function dedup(){ //if you have red/green and yellow edges overlaped it can caus
       }
   }}
 }
-function getclass(r,c){
+function getclass(r,c,h=true){
   let current = JSON.parse(JSON.stringify(tmp.building[r][c]))
+  if(h){
   if (['store', 'bomb'].includes(current[0])){
     return (current[0]+' '+current[1])
   }
@@ -298,8 +289,24 @@ function getclass(r,c){
   else {
     return current[0]
   }
+  } else {
+    if(['void','horpass','verpass'].includes(current[0])){return current[0]}
+  }
 }
-
+function isunlocked(c, d, diff){
+  if ((c*3+d-3)==1) return true
+  let chapterlevels = Object.entries(level).filter((a)=>a[0]>((c*3+d-3)*12-24)&&a[0]<=((c*3+d-3)*12-12))
+  if (tmp.diff==1){chapterlevels = Object.entries(level).filter((a)=>a[0]>((c*3+d-3)*6+988)&&a<=((c*3+d-3)*6+994))}
+  let beaten = 0 
+  for (let i=0; i<player.levelbeaten.length; i++){
+    if(chapterlevels.filter(((e)=>e[1].index==player.levelbeaten[i])).length!==0){
+      beaten++
+      if (diff==1 && beaten >= 4) return true
+      else if (beaten >= 9) return true
+    } 
+  }
+  return false
+}
 function getClassOfMenuCell(levelNum) {
   if (level[levelNum]){
     if (player.perfectbeaten.includes(level[levelNum].index)) return 'perfect'
@@ -366,30 +373,37 @@ function light(win = false, withlight = false, withM = false, final=false) {
           "redpass",
           "greenpass",
           "yellowpass",
+          "bluepass",
           "store",
+          "horpass",
+          "verpass"
         ].includes(build)
       ){pos = reverse(pos)
         if(final)tmp.where3.push([...locat, pos, color,'half']);
         break}
-
-        if (build=='store') {
+        if(build=='horpass'){
+          if (pos=='up'||pos=='down')break}
+        if(build=='verpass'){
+          if (pos=='right'||pos=='left')break}
+        else if (build=='store') {
           pos=reverse(pos)
           if(final)tmp.where3.push([...locat, pos, color,'half']);
           pos=reverse(pos)
 
           if (tmp.building[locat[0]][locat[1]][1] != null) {
             let colors=[tmp.building[locat[0]][locat[1]][1] ,color]
-      if (colors.includes('red')&&colors.includes('green')) color="yellow"
-      else if (colors.includes('yellow')&&colors.includes('red')) color="yellow"
+      if      (colors.includes('red')&&   colors.includes('green')) color="yellow"
+      else if (colors.includes('yellow')&&colors.includes('red'))   color="yellow"
       else if (colors.includes('yellow')&&colors.includes('green')) color="yellow"
-      else if (colors.includes('blue')&&colors.includes('green')) color="lightBlue"
-      else if (colors.includes('blue')&&colors.includes('red')) color="purple"
+      else if (colors.includes('blue')&&  colors.includes('green')) color="lightBlue" //you mean cyan?
+      else if (colors.includes('blue')&&  colors.includes('red'))   color="purple"
           }
           if(final)tmp.where3.push([...locat, pos, color,'half']);
         }
       if (build == "redpass" && color != "red") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
       if (build == "greenpass" && color != "green") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
       if (build == "yellowpass" && color != "yellow") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
+      if (build == "bluepass" && color != "blue") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
       if (JSON.stringify(tmp.location) == JSON.stringify(locat)) {
         pos = reverse(pos)
         if(final)tmp.where3.push([...locat, pos, color,'half'])  
@@ -503,7 +517,7 @@ function doSomething(a,b){ if (tmp.win == false&&tmp.page!==2) {
     Vue.set(tmp.location, 1, Math.max(locat[1] - 1, 0));
   else if (a === "KeyD" || a === "ArrowRight")
     Vue.set(tmp.location, 1, Math.min(tmp.area[1] - 1, locat[1] + 1));
-    if (["boxwall","redpass","yellowpass","greenpass","light","badboxwall","sun","void"].includes(tmp.building[tmp.location[0]][tmp.location[1]][0])){
+    if (["boxwall","redpass","yellowpass","greenpass","light","badboxwall","sun","void","horpass","verpass"].includes(tmp.building[tmp.location[0]][tmp.location[1]][0])){
       tmp.location[0] = locat[0]
       tmp.location[1] = locat[1]
     };

@@ -27,6 +27,8 @@
     ['light','right','blue'],
     ['portal',[0,0]],
     ['badportal'],
+    ['horpass'],
+    ['verpass'],
     ['greenpass'],
     ['redpass'],
     ['yellowpass'],
@@ -97,7 +99,10 @@
     template: `
     <table class="gamezone">
       <tr v-for="r in player.editor.data.length">
-      <td :class="{void:player.editor.data[r-1][c-1][0]=='void'}"  v-for="c in player.editor.data[0].length"
+      <td v-for="c in player.editor.data[0].length"
+          :class="{
+            [geteditorclass(r-1, c-1, false)]:true
+          }"  
           @click="setTo(r-1,c-1)">
           <span 
           style="position:absolute; width: 70px; height: 70px"
@@ -142,8 +147,9 @@
     </div>
     `
   })
-  function geteditorclass(r, c){
+  function geteditorclass(r, c, h=true){
     let current = player.editor.data[r][c]
+    if(h){
     if (current[0]=='location'){return 'player'}
     else if (current[0]=='mirror'){
       if(current[1]=='left-down'){
@@ -177,6 +183,9 @@
       return (current[0] +' '+ current[1])
     }
     else return (current[0]+' '+ current[1])
+  } else {
+    if(['void','horpass','verpass'].includes(current[0]))return current[0]
+  }
   }
   
   function addRow() {
