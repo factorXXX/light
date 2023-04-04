@@ -1,4 +1,4 @@
-function reset(manual=false){
+function reset(){
     if(!level[tmp.level]){
       tmp.page=2
       return save()
@@ -10,15 +10,8 @@ function reset(manual=false){
     if (tmp.store!==''&&tmp.level=='custom'){currentLevel = importL(tmp.store)}
     else {currentLevel = JSON.parse(JSON.stringify(level[tmp.level]))}
     let levelNumber = tmp.level
-    if (!!currentLevel.string){
       importL(currentLevel.string)
       tmp.level = levelNumber
-    } else  {
-    tmp.building=currentLevel.building
-    tmp.location=currentLevel.location
-    tmp.area = [currentLevel.building.length, currentLevel.building[0].length]
-    tmp.light = currentLevel.light
-    }
     calculation2()
     save()
     }
@@ -72,7 +65,7 @@ function reset(manual=false){
     index: 9
   },
   10: {
-    string: `N4IgNg9gxghgLgSwgOxALgNoCYA0BGAXRxABN4Z0MqQAjCADxCI2QFcwxm2Ov3PmMtBkxws+zEAFsEAJxkQZIYjIQBzABZwAtKwAOIsTwFDGvHqNowSdU6O79RgsGs1KQKjXDeqZAU1+oZpx24hbScgpuHppaJBAA7oEC9kESAM6sgSFGBAC+QA=`,
+    string: `N4IgJghgLhIFwG0kgG4HsCWYQF0A0CAdgK4A2p+RZFBJ5OlCqm2ldNTAthgE49o8QeEDwwBzABZQAtMQAOuWtQYEm6LIqr0CIAEYQwutAA9N7FclLipQkdai2xPAKbPCZ5Uu1de/QcNFJGTA0AHd3Cy0Ocx0AZ2IIrwoVEFI0AGNoDDR3RAAmPABGHABfIA=`,
     perfect:7,
     index: 10
   },
@@ -97,12 +90,12 @@ function reset(manual=false){
     index: 14
   },
   15: {
-    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEY10NP06O1sfMMYgDO1VC04MQABwgAnODDAh2AZhwAmfGIC2CKVOkKQUhAHMAFnAC0xCAHdh7VuvZ8ARhAAe1ufLGuPXkD7unnQB9qJhPE4O7CBaOnpEYACmAGYW1OKhfJIycgoYAIyqjnxxulL6hqbpmSKRlODGZvoZ+kZSSUl23FzRPXX06gC+QA`,
+    string:`N4IgJghgLhIFwG0kDsCuAbdBdANAtmu+G2eBpxhRCIAzqsiEeUSAA4D2ATjOiHgGYcAJiysAtgEsuXbvxBdJAcwAWUALRgOAd0bMSYvDQBuHSWCZ4Qp85ZNmL+wmQPUWVqTLk4Q6AKYAZhqobHbs3Lz8CACMIoY0nrJc8oqqwaFO2NS+ymryIfJKXH5+ei7OlBTulWK4vhwAxtCSHIyIAAw47VgAvkA=`,
     perfect:23,
     index: 15
   },
   16: {
-    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEbgIDmAFnCEcRAO6pHMATgFNhqBjToTa9HIwDO1cQwyTZjAA4RBcGGE4YAzHnwMQAWwSDB2zuGEAzOAFpqGkNKly1puYwBGEAAePHr6ZoEhYR7eMhHBoXQxAQnRvpQgWjp6BgCMOLnpPnIWVjaCdoIs7M7cfMnFqnEqjaXWtkRgji514rFeTQM+pgC+QA=`,
+    string:`N4IgJghgLhIFwG0kDsCuAbdBdANAk6AlgOYAWUIO4A9gO7KUjEBOApqw7gmplz9nhABnVJy7cMA/AAdqzGOkoIAzDgAMWLiAC2hZszmN0rAGZQAtKmkg+k273EgAbtUJgbgl248Ten1+5aXoGOsvIQingAjDhRmnj8Wrr6hlTMJOTmYHScCXZ5Dni+Ujp6BsxGphbZ9D6JBVKJ8QTUAMbQhNQMiGrqWAC+QA`,
     perfect:24,
     index: 16
   },
