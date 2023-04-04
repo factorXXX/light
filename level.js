@@ -274,7 +274,7 @@ function reset(manual=false){
   },
   51:{
     string:`N4IgNg9gxghgLgSwgOxALgNoCYA0AGAXRxABN4Z0MqQA3CBEkIjW+x51hpnFur55AFcwYAcNE8hIsdOYYpE+eI4AjCAFsVIYgHMATgFMDqGYoWnVEAB4B3GCO4sAzoJNzzk5T3AIdACzhtUggbVF1DY0cPFnUEPT0IPSC9XwCAWkEAByivXjZHTnZ3XJBY+MSgsAMAMzg0khCTT2lvMoSk4hT/OobQnJalAcKCviKeQcUQNVt7MAK2iuIq2ozsi2azEtGR/IJigeip6zsHdYmz4Y5tvfHou9z7g63d72u9gF8gA=`,
-  perfect:0,
+  perfect:119,
     index:51
       },
       52:{
