@@ -192,7 +192,7 @@ function reset(manual=false){
     index: 33
   },
   34: {
-    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEY10PgIDmAFnCEcRAO6oibAE4BTMahZh2XHiQFCQ44iBYA3CAlX4GjWvRwYQAIwgAPNUaaH9zawd1HjAWwQiREEfLBiAZnAAtNQADlbGAM5wXmI8NgzxDvZ29HqJKQmOSbasnNxEvgHyohJSaVnGmtrhIFU6RrVa9ZVNanogbh5ePv5BfILh6SAAnmJ0AiEwERE1EdRSDXVt+AC+QA`,
+    string:`N4IgJghgLhIFwG0kDsCuAbdBdANAtmuCI6AlgOYAWUIO4A9gO7K0jkBOAppy0SRdVZgmLOlzAg+AN3qkJWIvgzY8IAEb0AHpLwEVSwruUK8xALal27eu1bpOAMygBaVAAcdxAM5QbnWnpEgUaGxDJykorBBvrR0SAWVjas7AIu7pGm8eHyqlKc7G4QXl6eIDll+YXFpSYoxnmyueaW1rZ09k7OwsxllDZFJWWJbSlp3SKZSAmtyR2OLj28IfogAJ6cmEyDtar91UN8Xqi8JiT0AMbQpPQsiAAMOPdYAL5AA=`,
     perfect:11,
     index: '34v2'
   },
