@@ -109,10 +109,8 @@ function drawaline(a,b,destroy=false){
     let startCell = document.getElementById('cell'+(a.toString().concat(b))).getBoundingClientRect()
     let endBuildPos = tmp.building[a][b][1]
     let endCell = document.getElementById('cell'+(endBuildPos[0]).toString().concat(endBuildPos[1])).getBoundingClientRect()
-    let offsetx= endCell.left - startCell.left 
-    let offsety= endCell.top - startCell.top 
-    line.x2.baseVal.value = offsetx+35
-    line.y2.baseVal.value = offsety+35
+    line.x2.baseVal.value = endCell.left - startCell.left + 35
+    line.y2.baseVal.value = endCell.top - startCell.top + 35
     line.style.visibility = "visible"
     } else {
     line.style.visibility = "hidden"
@@ -168,15 +166,16 @@ Vue.component("machine", {
       unbeaten:!player.levelbeaten.includes(tmp.building[a-1][b-1][1]),
       levelIcon:true
     }" style="margin:0px auto" >{{tmp.building[a-1][b-1][1]}}</div>
-    <svg  
-    v-if="tmp.building[a-1][b-1][0]=='portal'"
+
+    <svg v-if="tmp.building[a-1][b-1][0]=='portal'"
     style="
     visibility: hidden;
     z-index: 25 !important;">
-    <line
-    :id="[(a-1).toString().concat(b-1)]"
-      x1="35" y1="35" x2="-200" y2="200" 
-    style="stroke:rgb(255,0,0);stroke-width:2" />
+    <line :id="[(a-1).toString().concat(b-1)]"
+      stroke-linecap="round"
+      stroke="red"
+      stroke-width="2"
+        x1="35" y1="35" x2="-200" y2="200"/>
     </svg>
     </td>
     </tr>

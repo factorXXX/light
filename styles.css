@@ -45,6 +45,12 @@
 .gamezone tr:nth-child(odd)  td:nth-child(odd){
   background: #555;
 }
+svg {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  overflow:visible;
+}
 body {
 touch-action:manipulation;
     background-color: #222222;
@@ -483,10 +489,4 @@ td.void{
   height: 45px;
   background: #222;
   border: 4px solid #aaa;
-}
-svg {
-  position: absolute;
-  width: 70px;
-  height: 70px;
-  overflow:visible;
 }
