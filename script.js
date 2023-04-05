@@ -102,34 +102,56 @@ Vue.component("selectmenu", {
 </table>
     `,
 });
-
+function drawaline(a,b,destroy=false){
+  if(tmp.building[a][b][0]=='portal'){
+    let line = document.getElementById(a.toString().concat(b))
+    if(!destroy){
+    let startCell = document.getElementById('cell'+(a.toString().concat(b))).getBoundingClientRect()
+    let endBuildPos = tmp.building[a][b][1]
+    let endCell = document.getElementById('cell'+(endBuildPos[0]).toString().concat(endBuildPos[1])).getBoundingClientRect()
+    let offsetx= endCell.left - startCell.left 
+    let offsety= endCell.top - startCell.top 
+    line.x2.baseVal.value = offsetx+35
+    line.y2.baseVal.value = offsety+35
+    line.style.visibility = "visible"
+    } else {
+    line.style.visibility = "hidden"
+    }
+}
+};
 Vue.component("machine", {
   template: `
     <table class="gamezone" >
     <tr v-for="a in tmp.area[0]">
     <td v-for="b in tmp.area[1]"
+    :id="'cell'+[(a-1).toString().concat(b-1)]"
+    @mouseover="drawaline(a-1,b-1)"
+    @mouseout="drawaline(a-1,b-1,true)"
     :class="{
       [getclass(a-1, b-1, false)]:true
     }" >
+
     <div :class="{player: tmp.location[0]==a-1 && tmp.location[1]==[b-1]}"><div></div></div>
     <div :class="{
       [getclass(a-1, b-1)]:true
     }"><div></div></div>
 
-    <div v-for="layer in tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length" :class="{
+    <div v-for="layer in tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length" 
+    :class="{
       [tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][3]+'Laser']:true,
       trans1:tmp.building[a-1][b-1][1]=='left-down'||
         ((tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
         (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'right')))||(tmp.building[a-1][b-1][0]=='reflectvel'),
-      trans2:tmp.building[a-1][b-1][1]=='right-down'||
+        trans2:tmp.building[a-1][b-1][1]=='right-down'||
         (tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
         (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'up')),
-      trans3:tmp.building[a-1][b-1][1]=='right-up'||
+        trans3:tmp.building[a-1][b-1][1]=='right-up'||
         (tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
         (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'left')),
-      laser:(tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0),
-      laser90:(tmp.building[a-1][b-1][0]=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0),
-    }"><div></div></div>
+        laser:(tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0),
+        laser90:(tmp.building[a-1][b-1][0]=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0),
+      }"><div></div></div>
+    
 
     <div v-for="layer in tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1).length" :class="{
       half:true,
@@ -146,7 +168,16 @@ Vue.component("machine", {
       unbeaten:!player.levelbeaten.includes(tmp.building[a-1][b-1][1]),
       levelIcon:true
     }" style="margin:0px auto" >{{tmp.building[a-1][b-1][1]}}</div>
-
+    <svg  
+    v-if="tmp.building[a-1][b-1][0]=='portal'"
+    style="
+    visibility: hidden;
+    z-index: 25 !important;">
+    <line
+    :id="[(a-1).toString().concat(b-1)]"
+      x1="35" y1="35" x2="-200" y2="200" 
+    style="stroke:rgb(255,0,0);stroke-width:2" />
+    </svg>
     </td>
     </tr>
     </table>
