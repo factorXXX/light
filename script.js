@@ -347,7 +347,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
         if (color==tmp.building[locat[0]][locat[1]][1]){
         for(let i=-1;i<=1;i++){
           for(let j=-1;j<=1;j++){
-            if((tmp.building[locat[0]+i]&&tmp.building[locat[0]+i][locat[1]+j])&&!(["portal","light","void"].includes(tmp.building[locat[0]+i][locat[1]+j][0])))tmp.building[locat[0]+i][locat[1]+j]=[null]
+            if((tmp.building[locat[0]+i]&&tmp.building[locat[0]+i][locat[1]+j])&&!(["portal","light","void","horpass","verpass"].includes(tmp.building[locat[0]+i][locat[1]+j][0])))tmp.building[locat[0]+i][locat[1]+j]=[null]
           }
      
         }
