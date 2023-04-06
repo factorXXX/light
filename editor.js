@@ -59,14 +59,14 @@
         </td>
         <td style="vertical-align: top;">
           <div style="width: max-content;">
-            <span >Rows:
+            <span >
               <button id="rmrow" class="trans2" @click="removeRow(true)"></button>
               <button id="addrow" class="trans2" @click="addRow(true)"></button>
                <span id="radd"> {{player.editor.data.length}} </span>
               <button id="addrow" @click="addRow()"></button>
               <button id="rmrow" @click="removeRow()"></button>
             </span><br>
-            <span>Columns:
+            <span>
               <button id="rmrow" class="trans3" @click="removeCol(true)"></button>
               <button id="addrow" class="trans3" @click="addCol(true)"></button>
               <span id="radd"> {{player.editor.data[0].length}} </span>
