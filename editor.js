@@ -52,23 +52,28 @@
   Vue.component('editor', {
     template: `
   <div>
-    <table>
+    <table id="editor">
       <tr>
         <td>
           <editor-field/>
         </td>
         <td style="vertical-align: top;">
           <div style="width: max-content;">
-            <span>Rows: 
-              <button @click="removeRow()">-</button>
+            <span>Rows:
+              <button @click="removeRow(true)">-</button>
+              <button @click="addRow(true)">+</button>
                 {{player.editor.data.length}}
               <button @click="addRow()">+</button>
+              <button @click="removeRow()">-</button>
             </span><br>
             <span>Columns:
-              <button @click="removeCol()">-</button>
+              <button @click="removeCol(true)">-</button>
+              <button @click="addCol(true)">+</button>
                 {{player.editor.data[0].length}}
               <button @click="addCol()">+</button>
-            </span><br>
+              <button @click="removeCol()">-</button>
+            </span>
+            <br><br>
             <span>
               <button @click="clearEditor()">Clear editor</button>
             </span><br>
@@ -83,7 +88,7 @@
               <button @click="importL(LZString.compressToBase64(JSON.stringify(player.editor))); tmp.editor.fromEditor=true">Playtest in the game</button>
             </span><br>
             <span>
-              <button @click="tmp.page=2">Back</button>
+              <button @click="tmp.page=2">Go to the menu</button>
             </span>
           </div>
         </td>
@@ -188,28 +193,53 @@
   }
   }
   
-  function addRow() {
+  function addRow(top=false) {
     if(player.editor.data.length < 25) {
-      player.editor.data.push([])
-      for(let i=0; i<player.editor.data[0].length; i++)
-      player.editor.data[player.editor.data.length -1].push([null])
-    }
-  }
-  function removeRow() {
-    if(player.editor.data.length > 2) player.editor.data.pop()
-  }
-  
-  function addCol() {
-    if(player.editor.data[0].length < 25) {
-      for (let i=0; i<player.editor.data.length; i++){
-        player.editor.data[i].push([null])
+      if (!top){
+        player.editor.data.push([])
+        for(let i=0; i<player.editor.data[0].length; i++)
+          player.editor.data[player.editor.data.length -1].push([null])
+      }else{
+        player.editor.data.unshift([])
+        player.editor.location[0]++
+        for(let i=0; i<player.editor.data[1].length; i++)
+          player.editor.data[0].push([null])
       }
     }
   }
-  function removeCol() {
+  function removeRow(top=false) {
+    if(player.editor.data.length > 2){
+      if (!top){
+        player.editor.data.pop()
+      } else {
+        player.editor.data.shift()
+    }
+    }
+  }
+  
+  function addCol(left=false) {
+    if(player.editor.data[0].length < 25) {
+      if(!left){
+      for (let i=0; i<player.editor.data.length; i++){
+          player.editor.data[i].push([null])
+        }
+      } else {
+      for (let i=0; i<player.editor.data.length; i++){
+          player.editor.data[i].unshift([null])
+        }
+      }
+  }
+  }
+  function removeCol(left=false) {
     if(player.editor.data[0].length > 2) {
+      if (!left){
       for (let i=0; i<player.editor.data.length; i++){
         player.editor.data[i].pop()
+      }
+      } else {
+      for (let i=0; i<player.editor.data.length; i++){
+        player.editor.data[i].shift()
+      }
       }
     }
   }

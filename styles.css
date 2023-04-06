@@ -423,6 +423,19 @@ td.void{
 }
 
 /*editor*/
+#editor {
+  border-spacing: 5px;
+}
+#editor button {
+  color:#ffffff;
+  background:#444444;
+  cursor: pointer;
+  height: 30px;
+  min-width: 25px;
+  border: 2px solid #f79595;
+  border-radius: 5px;
+  margin: 2px 0px 0px 0px;
+}
 #selectors tr td.selected::before {
   background-color: #cfb541;
   position: absolute;
