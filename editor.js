@@ -53,7 +53,7 @@
     template: `
   <div>
     <table class="editor">
-      <tr>
+      <tr style="min-height: 300px; height: 300px">
         <td>
           <editor-field/>
         </td>
@@ -206,15 +206,20 @@
           player.editor.data[0].push([null])
       }
     }
+  save()
   }
   function removeRow(top=false) {
     if(player.editor.data.length > 2){
       if (!top){
         player.editor.data.pop()
+        if (player.editor.location[0]>=player.editor.data.length) player.editor.location = [0,0]
       } else {
+        player.editor.location[0]--
         player.editor.data.shift()
+        if (player.editor.location[0]< 0) player.editor.location = [0,0]
+      }
     }
-    }
+  save()
   }
   
   function addCol(left=false) {
@@ -224,11 +229,13 @@
           player.editor.data[i].push([null])
         }
       } else {
+        player.editor.location[1]++
       for (let i=0; i<player.editor.data.length; i++){
           player.editor.data[i].unshift([null])
         }
       }
   }
+  save()
   }
   function removeCol(left=false) {
     if(player.editor.data[0].length > 2) {
@@ -236,12 +243,16 @@
       for (let i=0; i<player.editor.data.length; i++){
         player.editor.data[i].pop()
       }
+      if (player.editor.location[1]>=player.editor.data[0].length) player.editor.location = [0,0]
       } else {
+        player.editor.location[1]--
       for (let i=0; i<player.editor.data.length; i++){
         player.editor.data[i].shift()
       }
+      if (player.editor.location[1]< 0) player.editor.location = [0,0]
       }
     }
+  save()
   }
   function setTo(r, c) {
     let selected = JSON.parse(JSON.stringify(tmp.editor.brush))
