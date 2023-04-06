@@ -423,12 +423,12 @@ td.void{
 }
 
 /*editor*/
-#editor {
+.editor {
   border-spacing: 5px;
 }
-#editor button {
+.editor button {
   color:#ffffff;
-  background:#444444;
+  background: #444;
   cursor: pointer;
   height: 30px;
   min-width: 25px;
@@ -436,6 +436,23 @@ td.void{
   border-radius: 5px;
   margin: 2px 0px 0px 0px;
 }
+#radd {
+  font-size: 25px;
+}
+#rmrow,#addrow{
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+  background-size: cover;
+}
+#rmrow{
+  background:url('./images/icons/rm-row-icon.svg');
+}
+#addrow{
+  background:url('./images/icons/add-row-icon.svg');
+}
+
 #selectors tr td.selected::before {
   background-color: #cfb541;
   position: absolute;

@@ -52,26 +52,26 @@
   Vue.component('editor', {
     template: `
   <div>
-    <table id="editor">
+    <table class="editor">
       <tr>
         <td>
           <editor-field/>
         </td>
         <td style="vertical-align: top;">
           <div style="width: max-content;">
-            <span>Rows:
-              <button @click="removeRow(true)">-</button>
-              <button @click="addRow(true)">+</button>
-                {{player.editor.data.length}}
-              <button @click="addRow()">+</button>
-              <button @click="removeRow()">-</button>
+            <span >Rows:
+              <button id="rmrow" class="trans2" @click="removeRow(true)"></button>
+              <button id="addrow" class="trans2" @click="addRow(true)"></button>
+               <span id="radd"> {{player.editor.data.length}} </span>
+              <button id="addrow" @click="addRow()"></button>
+              <button id="rmrow" @click="removeRow()"></button>
             </span><br>
             <span>Columns:
-              <button @click="removeCol(true)">-</button>
-              <button @click="addCol(true)">+</button>
-                {{player.editor.data[0].length}}
-              <button @click="addCol()">+</button>
-              <button @click="removeCol()">-</button>
+              <button id="rmrow" class="trans3" @click="removeCol(true)"></button>
+              <button id="addrow" class="trans3" @click="addCol(true)"></button>
+              <span id="radd"> {{player.editor.data[0].length}} </span>
+              <button id="addrow" class="trans1" @click="addCol()"></button>
+              <button id="rmrow" class="trans1" @click="removeCol()"></button>
             </span>
             <br><br>
             <span>
