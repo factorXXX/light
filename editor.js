@@ -82,7 +82,7 @@
             </span><br>            
             <span>
               <button @click="importEditor()">Import</button>
-              <button @click="importEditorLegacy()">Import (legacy)</button>
+              <!--<button @click="importEditorLegacy()">Import (legacy)</button>-->
             </span><br>
             <span>
               <button @click="importL(LZString.compressToBase64(JSON.stringify(player.editor))); tmp.editor.fromEditor=true">Playtest in the game</button>
@@ -118,7 +118,7 @@
           }"><div></div>
           </span>
           
-          <p v-if="player.editor.data[r-1][c-1][0]=='portal'" style="position: absolute; font-weight: 900; color:white; margin-bottom:0px">{{player.editor.data[r-1][c-1][1]}}</p>
+          <p v-if="player.editor.data[r-1][c-1][0]=='portal'" style="position: absolute; font-weight: 900; color:white; margin-bottom:0px; min-width:max-content">{{player.editor.data[r-1][c-1][1]}}</p>
         </td>
       </tr>
     </table>
@@ -326,10 +326,10 @@
     player.editor.location = importedData.location
     save()
   }
-  function importEditorLegacy(imported = undefined){
+  /*function importEditorLegacy(imported = undefined){
     if (imported === undefined) imported = prompt("paste your level here")
     let importedData = JSON.parse(atob(imported))
     player.editor.data = importedData
     save()
   }
-  
+  */
