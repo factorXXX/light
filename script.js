@@ -515,10 +515,10 @@ document.addEventListener("keydown", (e) => {
   doSomething(e.code,isShift)
 
 });
-function doSomething(a,b){ if (tmp.win == false&&tmp.page!==2) {
-    if (a === "KeyR" && b) reset();
-  if (a === "KeyI" && b) importL();
-  if (a === "KeyU") {
+function doSomething(a,b){  
+  if (a === "KeyR" && b && tmp.page===1) reset();
+  if (a === "KeyI" && b && tmp.page===2) importL();
+  if (a === "KeyU" && tmp.page===1 && !tmp.win) {
     if (tmp.previous.length == 0) return;
     tmp.building = tmp.previous[tmp.previous.length - 1].building;
     tmp.location = tmp.previous[tmp.previous.length - 1].location;
@@ -529,7 +529,7 @@ function doSomething(a,b){ if (tmp.win == false&&tmp.page!==2) {
   tmp.previous.push([{}]);
   let locat = [parseInt(tmp.location[0]), parseInt(tmp.location[1])];
   if (
-   a === "KeyE" 
+   a === "KeyE" && tmp.page===1  && !tmp.win
   ) {
     enter();
     tmp.previous[tmp.previous.length - 1].location = locat;
@@ -539,13 +539,13 @@ function doSomething(a,b){ if (tmp.win == false&&tmp.page!==2) {
   }
 
 
-  if (a === "KeyW" || a === "ArrowUp")
+  if ((a === "KeyW" || a === "ArrowUp")&& tmp.page===1 && !tmp.win)
     Vue.set(tmp.location, 0, Math.max(locat[0] - 1, 0));
-  else if (a === "KeyS" || a === "ArrowDown")
+  else if ((a === "KeyS" || a === "ArrowDown")&& tmp.page===1 && !tmp.win)
     Vue.set(tmp.location, 0, Math.min(tmp.area[0] - 1, locat[0] + 1));
-  else if (a === "KeyA" || a === "ArrowLeft")
+  else if ((a === "KeyA" || a === "ArrowLeft")&& tmp.page===1 && !tmp.win)
     Vue.set(tmp.location, 1, Math.max(locat[1] - 1, 0));
-  else if (a === "KeyD" || a === "ArrowRight")
+  else if ((a === "KeyD" || a === "ArrowRight")&& tmp.page===1 && !tmp.win)
     Vue.set(tmp.location, 1, Math.min(tmp.area[1] - 1, locat[1] + 1));
     if (["boxwall","redpass","yellowpass","greenpass","light","badboxwall","sun","void","horpass","verpass"].includes(tmp.building[tmp.location[0]][tmp.location[1]][0])){
       tmp.location[0] = locat[0]
@@ -566,19 +566,19 @@ function doSomething(a,b){ if (tmp.win == false&&tmp.page!==2) {
     if (["box", "badbox", "mirror", "store","rotate180","rotate90","rotate270","reflecthor","reflectvel","bomb"].includes(buildtouch[0])) {
       let pos = [0, 0];
       let req = true;
-      if (a === "KeyD" || a === "ArrowRight") {
+      if ((a === "KeyD" || a === "ArrowRight")&& tmp.page===1 && !tmp.win) {
         pos[1] = 1;
         req = !(locat[1] + 1 >= tmp.area[1] - 1);
       }
-      if (a === "KeyS" || a === "ArrowDown") {
+      if ((a === "KeyS" || a === "ArrowDown")&& tmp.page===1 && !tmp.win) {
         pos[0] = 1;
         req = !(locat[0] + 1 >= tmp.area[0] - 1);
       }
-      if (a === "KeyA" || a === "ArrowLeft") {
+      if ((a === "KeyA" || a === "ArrowLeft")&& tmp.page===1 && !tmp.win) {
         pos[1] = -1;
         req = !(locat[1] - 1 == 0);
       }
-      if (a === "KeyW" || a === "ArrowUp") {
+      if ((a === "KeyW" || a === "ArrowUp")&& tmp.page===1 && !tmp.win) {
         pos[0] = -1;
         req = !(locat[0] - 1 == 0);
       }
@@ -683,7 +683,7 @@ else if((["mirror","light","rotate90","rotate180","rotate270"].includes(tmp.buil
     tmp.location = [...locat];
   }
   calculation2()
-}}
+}
 
 setInterval(function () {
   if (!tmp.b && tmp.win) { //this one can be moved to light() in  `if (build == "sun" && win) {tmp.win = true};`
