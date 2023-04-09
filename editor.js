@@ -204,6 +204,14 @@
         player.editor.location[0]++
         for(let i=0; i<player.editor.data[1].length; i++)
           player.editor.data[0].push([null])
+        
+        for (let i=0; i<player.editor.data.length; i++){
+          for (let c=0; c<player.editor.data[0].length; c++){
+            if (player.editor.data[i][c][0]=='portal'){
+              player.editor.data[i][c][1][0]++
+            }
+          }
+        }
       }
     }
   save()
@@ -217,6 +225,14 @@
         player.editor.location[0]--
         player.editor.data.shift()
         if (player.editor.location[0]< 0) player.editor.location = [0,0]
+
+        for (let i=0; i<player.editor.data.length; i++){
+          for (let c=0; c<player.editor.data[0].length; c++){
+            if (player.editor.data[i][c][0]=='portal'){
+              player.editor.data[i][c][1][0]--
+            }
+          }
+        }
       }
     }
   save()
@@ -232,6 +248,11 @@
         player.editor.location[1]++
       for (let i=0; i<player.editor.data.length; i++){
           player.editor.data[i].unshift([null])
+          for (let c=0; c<player.editor.data[0].length; c++){
+            if (player.editor.data[i][c][0]=='portal'){
+              player.editor.data[i][c][1][1]++
+            }
+          }
         }
       }
   }
@@ -248,7 +269,13 @@
         player.editor.location[1]--
       for (let i=0; i<player.editor.data.length; i++){
         player.editor.data[i].shift()
+        for (let c=0; c<player.editor.data[0].length; c++){
+          if (player.editor.data[i][c][0]=='portal'){
+            player.editor.data[i][c][1][1]--
+          }
+        }
       }
+      
       if (player.editor.location[1]< 0) player.editor.location = [0,0]
       }
     }
