@@ -1,5 +1,6 @@
 
 var player={
+  k:null, //on screen controls
   levelbeaten:[],
   perfectbeaten:[],
   version:1,
@@ -48,6 +49,14 @@ window.onload = () => {
       player.levelbeaten.splice(i, 1)
     }
   }
+  //check if user is on Android/IOS and set on screen controls accordingly. I wonder if there's people with some custom OS
+  if(navigator.userAgent.indexOf("Android")!==-1 || navigator.userAgent.indexOf("IOS")!==-1){
+    tmp.mobile=true
+    if (player.k===null){
+      player.k=true
+    }
+  } else { tmp.mobile=false }
+  if (player.k===null)player.k=false
 };
 
 function exportSave() {

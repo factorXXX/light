@@ -9,7 +9,6 @@ var tmp = {
   light:[[0,1]],
   level:1,
   previous:[1],
-  
   win: false,
   color: [],
   a: false,
@@ -189,6 +188,7 @@ Vue.component("options", {
       <td @click="tmp.page=2" class="opts">Back</td>
       <td @click="exportSave()" class="opts" id="export">Export</td>
       <td @click="importSave()" class="opts">Import</td>
+      <td @click="player.k=!player.k" class="opts">On-screen controls: {{player.k?"ON":"OFF"}}</td>
     </tr>
     <tr>
     <td></td>
@@ -219,6 +219,7 @@ Vue.component("level", {
         }">
       [{{tmp.previous.length}}/{{level[tmp.level].perfect}}]</span>
       <br><br>
+      <span v-if="tmp.mobile && !player.k">You can enable on-screen controls in options!<br></span>
       Arrows or WASD: Move the Character<br>
       <span v-if="(tmp.level>=13||tmp.level=='custom')">E: Enter the Portal if you can<br></span>
       Shift + R: Restart the Level<br>
@@ -246,7 +247,7 @@ Vue.component("level", {
 
 <tr>
 <td colspan="2">
-<table class="control">
+<table class="control" v-if="player.k">
   <tr>
   <td @click="doSomething('KeyU',false)">U</td>
   <td @click="doSomething('KeyW',false)">&#8593;</td>
