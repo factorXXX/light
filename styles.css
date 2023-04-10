@@ -335,7 +335,7 @@ td div {
 }
 .greenpass , .yellowpass , .redpass , .bluepass {
   z-index: 11 !important;
-  background-image: url('./images/cross2.svg');
+  background-image: url('./images/cross.svg');
 }
 td.horpass {
   max-height: 10px;

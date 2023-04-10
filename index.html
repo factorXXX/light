@@ -8,35 +8,38 @@
   
   <body>
   <div id="app">
-    
     <level v-if="tmp.page==1"></level>
     <selectmenu v-if="tmp.page==2"></selectmenu>
     <options v-if="tmp.page==3"></options>
     <editor v-if="tmp.page==4"></editor>
-</div>
-<div style="display: none">
-  <img src="./images/180.svg">
-  <img src="./images/90ccw.svg">
-  <img src="./images/90cw.svg">
-  <img src="./images/crack.svg">
-  <img src="./images/cross2.svg">
-  <img src="./images/laser-half.svg">
-  <img src="./images/laser.svg">
-  <img src="./images/laser90.svg">
-  <img src="./images/mirror.svg">
-  <img src="./images/portal.svg">
-  <img src="./images/source.svg">
-  <img src="./images/store-core.svg">
-  <img src="./images/store.svg">
-  <img src="./images/sun.svg">
-  <img src="./images/wall.svg">
-  <img src="./images/delete.svg">
-  <img src="./images/reflect.svg">
-  <img src="./images/bomb-base.svg">
-  <img src="./images/bomb-core.svg">
-</div>
+  </div>
+  <div style="position: absolute; width: 0px;height: 0px;overflow: hidden;">
+    <img src="./images/icons/add-row-icon.svg">
+    <img src="./images/icons/rm-row-icon.svg">
+    <img src="./images/90ccw.svg">
+    <img src="./images/90cw.svg">
+    <img src="./images/180.svg">
+    <img src="./images/bomb-base.svg">
+    <img src="./images/bomb-core.svg">
+    <img src="./images/crack.svg">
+    <img src="./images/cross.svg">
+    <img src="./images/delete.svg">
+    <img src="./images/laser-half.svg">
+    <img src="./images/laser.svg">
+    <img src="./images/laser90.svg">
+    <img src="./images/mirror.svg">
+
+    <img src="./images/pointy_arrow.svg">
+    <img src="./images/portal.svg">
+    <img src="./images/reflect.svg">
+    <img src="./images/source.svg">
+    <img src="./images/store-core.svg">
+    <img src="./images/store.svg">
+    <img src="./images/sun.svg">
+    <img src="./images/wall.svg">
+  </div>
   </body>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14" ></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
   <script src="lz-string.min.js" defer></script>
   <script src="script.js" defer></script>
   <script src="level.js" defer></script>

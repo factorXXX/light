@@ -283,7 +283,7 @@ function dedup(){ //if you have red/green and yellow edges overlaped it can caus
       }
   }}
 }
-function getclass(r,c,h=true){
+function getclass(r,c,h=true){ //!h means it's a class of a cell rather than a div inside of it
   let current = JSON.parse(JSON.stringify(tmp.building[r][c]))
   if(h){
   if (['store', 'bomb'].includes(current[0])){
