@@ -440,7 +440,12 @@ function light(win = false, withlight = false, withM = false, final=false) {
         if(final)tmp.where3.push([...locat, pos, color,'half'])  
         break
       };
-
+      //infinite loop prevention//
+      if(JSON.stringify(lightL).indexOf(JSON.stringify([...locat, pos, color]))>0){
+        pos=reverse(pos)
+        if(final)tmp.where3.push([...locat, pos, color,'half']);
+        break
+      }
       lightL.push([...locat, pos, color]);
       if (["light",  "store"].includes(build)){
         if(final)tmp.where3.push([...locat, pos, color,'half']);
