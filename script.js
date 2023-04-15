@@ -360,8 +360,8 @@ function light(win = false, withlight = false, withM = false, final=false) {
 
     while (true) {
       try1++;
-      if (tmp.building[locat[0]] == null) break;
-      if (tmp.building[locat[0]][locat[1]] == null) break;
+      //if (tmp.building[locat[0]] == null) break;
+      //if (tmp.building[locat[0]][locat[1]] == null) break;
       let build = tmp.building[locat[0]][locat[1]][0];
       if (build == "sun" && win) {tmp.win = true};
       if (!withlight) {
@@ -474,19 +474,21 @@ function light(win = false, withlight = false, withM = false, final=false) {
           break;
         }
       }
-      switch (pos) {
-        case "down":
-          locat[0] = locat[0] + 1;
-          break;
-        case "up":
-          locat[0] = locat[0] - 1;
-          break;
-        case "right":
-          locat[1] = locat[1] + 1;
-          break;
-        case "left":
-          locat[1] = locat[1] - 1;
-          break;
+      if (pos=="down") {
+        locat[0]++
+        if (locat[0]>=tmp.area[0]) break
+      }
+      else if (pos=="up")   {
+        locat[0]--
+        if (locat[0]<0) break
+      }
+      else if (pos=="right"){
+        locat[1]++
+        if (locat[1]>=tmp.area[1]) break
+      }
+      else if (pos=="left") {
+        locat[1]--
+        if (locat[1]<0) break
       }
     }
   }
@@ -494,7 +496,6 @@ function light(win = false, withlight = false, withM = false, final=false) {
 
   if(withlight)return tmp.where1=lightL;
   else if(withM)return tmp.where2=lightL;
-  //else return tmp.where=lightL;
 }
 function calcolor() {
   let b = [];

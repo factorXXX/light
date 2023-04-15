@@ -1,7 +1,8 @@
 function reset(){
+  save()
     if(!level[tmp.level]){
       tmp.page=2
-      return save()
+      return 
     } else {
     tmp.page=1;
     tmp.win=false
@@ -13,9 +14,7 @@ function reset(){
       importL(currentLevel.string)
       tmp.level = levelNumber
     calculation2()
-    save()
     }
-    save()
   }
 
   const level = {
