@@ -103,13 +103,13 @@ Vue.component("selectmenu", {
 });
 function drawaline(a,b,destroy=false){
   if(tmp.building[a][b][0]=='portal'){
-    let line = document.getElementById(a.toString().concat(b))
+    let line = document.getElementById(getcellid(a,b,false))
     if(!destroy){
-    let startCell = document.getElementById('cell'+(a.toString().concat(b))).getBoundingClientRect()
-    let endBuildPos = tmp.building[a][b][1]
-    let endCell = document.getElementById('cell'+(endBuildPos[0]).toString().concat(endBuildPos[1])).getBoundingClientRect()
-    line.x2.baseVal.value = endCell.left - startCell.left + 35
-    line.y2.baseVal.value = endCell.top - startCell.top + 35
+      let startCell = document.getElementById(getcellid(a,b)).getBoundingClientRect()
+      let endBuildPos = tmp.building[a][b][1]
+      let endCell = document.getElementById(getcellid(endBuildPos[0],endBuildPos[1])).getBoundingClientRect()
+      line.x2.baseVal.value = endCell.left - startCell.left + 35
+      line.y2.baseVal.value = endCell.top - startCell.top + 35
     line.style.visibility = "visible"
     } else {
     line.style.visibility = "hidden"
@@ -121,60 +121,45 @@ Vue.component("machine", {
     <table class="gamezone" >
     <tr v-for="a in tmp.area[0]">
     <td v-for="b in tmp.area[1]"
-    :id="'cell'+[(a-1).toString().concat(b-1)]"
+    :id="[getcellid(a-1, b-1)]"
     @mouseover="drawaline(a-1,b-1)"
     @mouseout="drawaline(a-1,b-1,true)"
     :class="{
       [getclass(a-1, b-1, false)]:true
     }" >
-
-    <div :class="{player: tmp.location[0]==a-1 && tmp.location[1]==[b-1]}"><div></div></div>
+    <!--player-->
+    <div v-if="tmp.location[0]==a-1 && tmp.location[1]==[b-1]" class="player"><div></div></div>
+    <!--buildings-->
     <div :class="{
       [getclass(a-1, b-1)]:true
     }"><div></div></div>
-
+    <!--laser and 90 deg leser-->
     <div v-for="layer in tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length" 
     :class="{
-      [tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][3]+'Laser']:true,
-      trans1:tmp.building[a-1][b-1][1]=='left-down'||
-        ((tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
-        (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'right')))||(tmp.building[a-1][b-1][0]=='reflectvel'),
-        trans2:tmp.building[a-1][b-1][1]=='right-down'||
-        (tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
-        (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'up')),
-        trans3:tmp.building[a-1][b-1][1]=='right-up'||
-        (tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0 && 
-        (tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'left')),
-        laser:(tmp.building[a-1][b-1][0]!=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0),
-        laser90:(tmp.building[a-1][b-1][0]=='mirror')&&(tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length!==0),
+      [getlaserclass(a-1,b-1,layer-1)]:true
       }"><div></div></div>
-    
-
+    <!--half-laser-->
     <div v-for="layer in tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1).length" :class="{
-      half:true,
-      [tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][3]+'Laser']:true,
-      trans1:tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'right',
-      trans2:tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'up',
-      trans3:tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1)[layer-1][2] == 'left',
-      laser:true,
+      [getlaserclass(a-1,b-1,layer-1,false)]:true
     }"><div></div></div>
-
+<!-- I don't know what it is and I don't think that it's used anywhere
     <div v-if="tmp.building[a-1][b-1][0]=='level'" :class="{
       perfect:player.perfectbeaten.includes(tmp.building[a-1][b-1][1]),
       beaten:player.levelbeaten.includes(tmp.building[a-1][b-1][1]),
       unbeaten:!player.levelbeaten.includes(tmp.building[a-1][b-1][1]),
       levelIcon:true
     }" style="margin:0px auto" >{{tmp.building[a-1][b-1][1]}}</div>
-
+-->
+    <!--line between portals-->
     <svg v-if="tmp.building[a-1][b-1][0]=='portal'"
     style="
     visibility: hidden;
     z-index: 25 !important;">
-    <line :id="[(a-1).toString().concat(b-1)]"
+    <line :id="[getcellid(a-1, b-1,false)]"
       stroke-linecap="round"
       stroke="red"
       stroke-width="2"
-        x1="35" y1="35" x2="-200" y2="200"/>
+        x1="35" y1="35" x2="0" y2="0"/>
     </svg>
     </td>
     </tr>
@@ -324,7 +309,44 @@ function getclass(r,c,h=true){ //!h means it's a class of a cell rather than a d
     if(['void','horpass','verpass'].includes(current[0])){return current[0]}
   }
 }
-function isunlocked(c, d, diff){
+function getlaserclass(r,c,l,h=true){ //h means that it's an edge from tmp.where3
+  let str = '' 
+  if(h){
+  let current = tmp.where2.filter((element) => element[0] == r && element[1] == c)[l]
+  let build = tmp.building[r][c]
+  if (build[0]=='mirror'){
+    str=str.concat(current[3])
+    str=str.concat("Laser laser90")
+    if (build[1]=='left-down')str=str.concat(" trans1")
+    else if (build[1]=='right-down')str=str.concat(" trans2")
+    else if (build[1]=='right-up')str=str.concat(" trans3")
+  } else {
+    str=str.concat(current[3])
+    str=str.concat("Laser laser")
+  if (current[2]=='right')str=str.concat(" trans1")
+  else if (current[2]=='up')str=str.concat(" trans2")
+  else if (current[2]=='left')str=str.concat(" trans3")
+  }
+  }else{
+    let current = tmp.where3.filter((element) => element[0] == r && element[1] == c)[l]
+    str=str.concat(current[3])
+    str=str.concat("Laser laser half")
+    if (current[2]=='right')str=str.concat(" trans1")
+    else if (current[2]=='up')str=str.concat(" trans2")
+    else if (current[2]=='left')str=str.concat(" trans3")
+  }
+  return str
+}
+function getcellid(a,b,c=true){ //c means that it's id of a cell, !c means that it's id of a line
+  let str = ''
+  if(c)str=str.concat('c')
+    if (a<=9)str=str.concat(0)
+    str=str.concat(a)
+    if (b<=9)str=str.concat(0)
+    str=str.concat(b)
+    return str
+}
+function isunlocked(c, d, diff){//for chapters in menu
   if ((c*3+d-3)==1) return true
   let chapterlevels = Object.entries(level).filter((a)=>a[0]>((c*3+d-3)*12-24)&&a[0]<=((c*3+d-3)*12-12))
   if (tmp.diff==1){chapterlevels = Object.entries(level).filter((a)=>a[0]>((c*3+d-3)*6+988)&&a<=((c*3+d-3)*6+994))}
