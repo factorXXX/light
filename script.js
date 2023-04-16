@@ -392,11 +392,10 @@ function light(win = false, withlight = false, withM = false, final=false) {
                 if(tmp.previous.length<=level[tmp.level].perfect&&!player.perfectbeaten.includes(level[tmp.level].index)){
                   player.perfectbeaten.push(level[tmp.level].index);
                 }
-            if (!(tmp.level / 12 == Math.floor(tmp.level / 12)))
-              tmp.level++;
-            else tmp.page = 2;
+            if (tmp.level%12==0)tmp.page = 2;
+            else {tmp.level++;reset()};
           }
-          reset();
+          else reset()
           tmp.b = false;
           tmp.previous = [];
         }, 1000);
