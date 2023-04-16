@@ -5,7 +5,7 @@ function reset(){
       return 
     } else {
     tmp.page=1;
-    tmp.win=false
+    tmp.b=false
     tmp.previous= [];
     currentLevel={}
     if (tmp.store!==''&&tmp.level=='custom'){currentLevel = importL(tmp.store)}

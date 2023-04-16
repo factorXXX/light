@@ -9,7 +9,6 @@ var tmp = {
   light:[[0,1]],
   level:1,
   previous:[1],
-  win: false,
   color: [],
   a: false,
   b: false,
@@ -372,20 +371,36 @@ function light(win = false, withlight = false, withM = false, final=false) {
   if(final)tmp.where3 = []
   for (let i = 0; i < tmp.light.length; i++) {
     let pos = tmp.building[tmp.light[i][0]][tmp.light[i][1]][1];
-
     let color = tmp.color[i];
     if(tmp.color[i]==undefined){
       color=tmp.building[tmp.light[i][0]][tmp.light[i][1]][2]
-    }
+    } //Find the color of light if tmp.color is undefined
+
     let locat = [...tmp.light[i]];
     let try1 = 0;
 
     while (true) {
-      try1++;
-      //if (tmp.building[locat[0]] == null) break;
-      //if (tmp.building[locat[0]][locat[1]] == null) break;
+      try1++
       let build = tmp.building[locat[0]][locat[1]][0];
-      if (build == "sun" && win) {tmp.win = true};
+      if (build == "sun" && win && !tmp.b){
+        tmp.b = true;
+        new Audio(music("win")).play();
+        setTimeout(function () {
+          if (tmp.level != "custom") {
+            if (!player.levelbeaten.includes(tmp.level))
+              player.levelbeaten.push(level[tmp.level].index);
+                if(tmp.previous.length<=level[tmp.level].perfect&&!player.perfectbeaten.includes(level[tmp.level].index)){
+                  player.perfectbeaten.push(level[tmp.level].index);
+                }
+            if (!(tmp.level / 12 == Math.floor(tmp.level / 12)))
+              tmp.level++;
+            else tmp.page = 2;
+          }
+          reset();
+          tmp.b = false;
+          tmp.previous = [];
+        }, 1000);
+      };
       if (!withlight) {
       if (["badbox", "badboxwall"].includes(build))
         {tmp.building[locat[0]][locat[1]] = [null];
@@ -545,9 +560,9 @@ document.addEventListener("keydown", (e) => {
 
 });
 function doSomething(a,b){  
-  if (a === "KeyR" && b && tmp.page===1) reset();
+  if (a === "KeyR" && b && tmp.page===1 && !tmp.b) reset();
   if (a === "KeyI" && b && tmp.page===2) importL();
-  if (a === "KeyU" && tmp.page===1 && !tmp.win) {
+  if (a === "KeyU" && tmp.page===1 && !tmp.b) {
     if (tmp.previous.length == 0) return;
     tmp.building = tmp.previous[tmp.previous.length - 1].building;
     tmp.location = tmp.previous[tmp.previous.length - 1].location;
@@ -558,7 +573,7 @@ function doSomething(a,b){
   tmp.previous.push([{}]);
   let locat = [parseInt(tmp.location[0]), parseInt(tmp.location[1])];
   if (
-   a === "KeyE" && tmp.page===1  && !tmp.win
+   a === "KeyE" && tmp.page===1  && !tmp.b
   ) {
     enter();
     tmp.previous[tmp.previous.length - 1].location = locat;
@@ -568,13 +583,13 @@ function doSomething(a,b){
   }
 
 
-  if ((a === "KeyW" || a === "ArrowUp")&& tmp.page===1 && !tmp.win)
+  if ((a === "KeyW" || a === "ArrowUp")&& tmp.page===1 && !tmp.b)
     Vue.set(tmp.location, 0, Math.max(locat[0] - 1, 0));
-  else if ((a === "KeyS" || a === "ArrowDown")&& tmp.page===1 && !tmp.win)
+  else if ((a === "KeyS" || a === "ArrowDown")&& tmp.page===1 && !tmp.b)
     Vue.set(tmp.location, 0, Math.min(tmp.area[0] - 1, locat[0] + 1));
-  else if ((a === "KeyA" || a === "ArrowLeft")&& tmp.page===1 && !tmp.win)
+  else if ((a === "KeyA" || a === "ArrowLeft")&& tmp.page===1 && !tmp.b)
     Vue.set(tmp.location, 1, Math.max(locat[1] - 1, 0));
-  else if ((a === "KeyD" || a === "ArrowRight")&& tmp.page===1 && !tmp.win)
+  else if ((a === "KeyD" || a === "ArrowRight")&& tmp.page===1 && !tmp.b)
     Vue.set(tmp.location, 1, Math.min(tmp.area[1] - 1, locat[1] + 1));
     if (["boxwall","redpass","yellowpass","greenpass","light","badboxwall","sun","void","horpass","verpass"].includes(tmp.building[tmp.location[0]][tmp.location[1]][0])){
       tmp.location[0] = locat[0]
@@ -595,19 +610,19 @@ function doSomething(a,b){
     if (["box", "badbox", "mirror", "store","rotate180","rotate90","rotate270","reflecthor","reflectvel","bomb"].includes(buildtouch[0])) {
       let pos = [0, 0];
       let req = true;
-      if ((a === "KeyD" || a === "ArrowRight")&& tmp.page===1 && !tmp.win) {
+      if ((a === "KeyD" || a === "ArrowRight")&& tmp.page===1 && !tmp.b) {
         pos[1] = 1;
         req = !(locat[1] + 1 >= tmp.area[1] - 1);
       }
-      if ((a === "KeyS" || a === "ArrowDown")&& tmp.page===1 && !tmp.win) {
+      if ((a === "KeyS" || a === "ArrowDown")&& tmp.page===1 && !tmp.b) {
         pos[0] = 1;
         req = !(locat[0] + 1 >= tmp.area[0] - 1);
       }
-      if ((a === "KeyA" || a === "ArrowLeft")&& tmp.page===1 && !tmp.win) {
+      if ((a === "KeyA" || a === "ArrowLeft")&& tmp.page===1 && !tmp.b) {
         pos[1] = -1;
         req = !(locat[1] - 1 == 0);
       }
-      if ((a === "KeyW" || a === "ArrowUp")&& tmp.page===1 && !tmp.win) {
+      if ((a === "KeyW" || a === "ArrowUp")&& tmp.page===1 && !tmp.b) {
         pos[0] = -1;
         req = !(locat[0] - 1 == 0);
       }
@@ -713,29 +728,6 @@ else if((["mirror","light","rotate90","rotate180","rotate270"].includes(tmp.buil
   }
   calculation2()
 }
-
-setInterval(function () {
-  if (!tmp.b && tmp.win) { //this one can be moved to light() in  `if (build == "sun" && win) {tmp.win = true};`
-    tmp.b = true;
-    new Audio(music("win")).play();
-    setTimeout(function () {
-      if (tmp.level !== "custom") {
-        if (!player.levelbeaten.includes(tmp.level))
-          player.levelbeaten.push(level[tmp.level].index);
-            if(tmp.previous.length<=level[tmp.level].perfect&&!player.perfectbeaten.includes(level[tmp.level].index)){
-              player.perfectbeaten.push(level[tmp.level].index);
-            }
-        if (!(tmp.level / 12 == Math.floor(tmp.level / 12)))
-          tmp.level++;
-        else tmp.page = 2;
-      }
-      reset();
-      tmp.b = false;
-      tmp.win = false
-      tmp.previous = [];
-    }, 1000);
-  }
-}, 50);
 
 function enter() {
   if (tmp.building[tmp.location[0]][tmp.location[1]][0] != "portal"&&tmp.building[tmp.location[0]][tmp.location[1]][0] != "level")
