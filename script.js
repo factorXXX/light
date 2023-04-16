@@ -381,7 +381,9 @@ function light(win = false, withlight = false, withM = false, final=false) {
 
     while (true) {
       try1++
-      let build = tmp.building[locat[0]][locat[1]][0];
+      
+      let buildDetail = tmp.building[locat[0]][locat[1]];
+      let build = buildDetail[0];
       if (build == "sun" && win && !tmp.b){
         tmp.b = true;
         new Audio(music("win")).play();
@@ -406,12 +408,12 @@ function light(win = false, withlight = false, withM = false, final=false) {
           build = null
         }
       if (build=='store') {
-        if (tmp.building[locat[0]][locat[1]][1] == null) {
+        if (buildDetail[1] == null) {
           tmp.building[locat[0]][locat[1]][1] = color;
         }
       }
       if (build=='bomb') {
-        if (color==tmp.building[locat[0]][locat[1]][1]){
+        if (color==buildDetail[1]){
         for(let i=-1;i<=1;i++){
           for(let j=-1;j<=1;j++){
             if((tmp.building[locat[0]+i]&&tmp.building[locat[0]+i][locat[1]+j])&&!(["portal","light","void","horpass","verpass"].includes(tmp.building[locat[0]+i][locat[1]+j][0])))tmp.building[locat[0]+i][locat[1]+j]=[null]
@@ -457,8 +459,8 @@ function light(win = false, withlight = false, withM = false, final=false) {
           if(final)tmp.where3.push([...locat, pos, color,'half']);
           pos=reverse(pos)
 
-          if (tmp.building[locat[0]][locat[1]][1] != null) {
-            let colors=[tmp.building[locat[0]][locat[1]][1] ,color]
+          if (buildDetail[1] != null) {
+            let colors=[buildDetail[1] ,color]
       if      (colors.includes('red')&&   colors.includes('green')) color="yellow"
       else if (colors.includes('yellow')&&colors.includes('red'))   color="yellow"
       else if (colors.includes('yellow')&&colors.includes('green')) color="yellow"
@@ -489,7 +491,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
       }
       if (build == "mirror") {
        if(!withM) lightL.pop();
-        let posamt = tmp.building[locat[0]][locat[1]][1].split("-");
+        let posamt = buildDetail[1].split("-");
 
         if (!posamt.includes(pos)) {
           pos = reverse(pos)
@@ -504,7 +506,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
         if(final)tmp.where3.push([...locat, pos, color,'half']);
         pos=reverse(pos)
         lightL.pop();
-        locat = [...tmp.building[locat[0]][locat[1]][1]];
+        locat = [...buildDetail[1]];
         if(final && !(JSON.stringify(tmp.location) == JSON.stringify(locat)))tmp.where3.push([...locat, pos, color,'half']);
         if (JSON.stringify(tmp.location) == JSON.stringify(locat)) {
           break;
