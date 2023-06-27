@@ -84,12 +84,9 @@ Vue.component("selectmenu", {
 
 
     <tr style="margin-top: 2px;">
-    <td style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;background-color:#aa6464"
+    <td colspan="2" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;background-color:#aa6464"
     @click="tmp.diff=(tmp.diff+1)%2"
     >{{tmp.diff==1?'Hard Mode':'Normal Mode'}}</td>
-    <td style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;background-color:#64aa64"
-    @click="tmp.level='lobby',reset()"
-    >Lobby</td>
 
     <td style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid"
     @click="tmp.page=3"
