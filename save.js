@@ -11,9 +11,11 @@ var player={
       [[null], [null]],
     ]
   },
+  cloudsaving:false,
 }
 function save() {
   localStorage.setItem('player', JSON.stringify(player));
+  cloudSave()
 }
 
 function load() {
@@ -49,6 +51,22 @@ window.onload = () => {
       player.levelbeaten.splice(i, 1)
     }
   }
+  /*load from galaxy if there's no save
+   thinking about it again I think it will lead to problems
+
+  if (player.levelbeaten == 0 && player.editor.data.length==2){
+    window.addEventListener("message", e => {
+      if (e.origin === "https://galaxy.click") {
+        if(e.data.content!==null){
+          importSave(e.data.content)
+        }
+      }
+    })};
+    window.top.postMessage({
+      action: "load",
+      slot: 0,
+    }, "https://galaxy.click");
+    */
   //check if user is on Android/iOS and set on screen controls accordingly. I wonder if there's people with some custom OS
   if(navigator.userAgent.indexOf("Android")!==-1 || navigator.userAgent.indexOf("iOS")!==-1){
     tmp.mobile=true
@@ -76,9 +94,34 @@ function importSave(imported = undefined) {
     
 }
 function hardReset(){
-  if(confirm("Are you sure??? It will reset EVERYTHING and you will not get any reward!!!")){
+  if(confirm("Are you sure? It will reset EVERYTHING and you will not get any reward!")){
 
     localStorage.removeItem('player');
     window.location.reload();
   }
 }
+
+
+/* galaxy cloud saving */
+function getlabel(){
+  return (player.levelbeaten.length + " beaten, " + player.perfectbeaten.length + " perfect")
+}
+//save
+function cloudSave(){
+if(tmp.cloudsaved==false && player.cloudsaving==true){
+  /*
+  I think cloud saving after every change 
+  is unreasonable so there's a 30s cooldown
+  */
+  tmp.cloudsaved=true
+  setTimeout(() => {
+    tmp.cloudsaved=false
+  }, 30000);
+  
+window.top.postMessage({
+  action: "save",
+  slot: 0,
+  label: getlabel(),
+  data: LZString.compressToBase64(JSON.stringify(player)),
+}, "https://galaxy.click");
+}}

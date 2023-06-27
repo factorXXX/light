@@ -23,7 +23,8 @@ var tmp = {
     fromEditor: false,
     brush: [null],
     selectedPortal: null,
-  }
+  },
+  cloudsaved:false
 };
 function music(x) {
   return (
@@ -175,6 +176,7 @@ Vue.component("options", {
     <td></td>
       <td style="background-color: #5865F2" @click="document.location.href = 'https://discord.gg/MXyXdXrC5H'" class="opts">Discord</td>
       <td style="background-color: #b44949" @click="hardReset()"  class="opts">Hard Reset</td>
+      <td style="background-color: #090417" @click="player.cloudsaving=!player.cloudsaving"  class="opts">Galaxy Cloud Saving:  {{player.cloudsaving?"ON":"OFF"}}</td>
     </tr>
     </table>
     `,
