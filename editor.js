@@ -301,7 +301,7 @@
     else if (selected == 'clear'){selected = [null]}
     player.editor.data[r][c] = selected
     player.editor.data[0].push([null])
-    player.editor.data[0].pop() //This is a piss tier solution but I give up I don't know how to make it auto update otherwice
+    player.editor.data[0].pop() //This is a piss tier solution but I give up I don't know how to make it auto update otherwice ~Wrab
     save()
   }
   function clearEditor(){
@@ -326,10 +326,3 @@
     player.editor.location = importedData.location
     save()
   }
-  /*function importEditorLegacy(imported = undefined){
-    if (imported === undefined) imported = prompt("paste your level here")
-    let importedData = JSON.parse(atob(imported))
-    player.editor.data = importedData
-    save()
-  }
-  */

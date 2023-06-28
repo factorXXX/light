@@ -12,16 +12,18 @@ var player={
     ]
   },
   cloudsaving:false,
+  lastsavetime:0,
 }
-function save() {
+function save(cloud=player.cloudsaving) {
+  player.lastsavetime=Date.now()
   localStorage.setItem('player', JSON.stringify(player));
-  cloudSave()
+  if(cloud)cloudSave()
 }
 
 function load() {
   if (!localStorage.getItem("player")) {
 
-    save()
+    save(false)
 
   }
   player = {...player, ...JSON.parse(localStorage.getItem('player'))} 
@@ -37,6 +39,31 @@ function load() {
 }
 window.onload = () => {
   load()
+  //check if there is a cloud save and if it's newer
+  window.addEventListener("message", e => {
+    if (e.origin === "https://galaxy.click") {
+      tmp.ongalaxy=true
+      if(e.data.content!==null){
+        const incloud = JSON.parse(LZString.decompressFromBase64(e.data.content))
+        if(incloud.lastsavetime > player.lastsavetime){
+          var locDate = new Date(player.lastsavetime);
+          var clDate = new Date(incloud.lastsavetime);
+          //need to somehow remove the timezone 
+          if(confirm(
+          "You have a newer save in Galaxy Cloud™. Do you want to use a save from Galaxy Cloud™?"+
+          "\nCloud save: "+ clDate +
+          "\nLocal save: "+ locDate
+          )){
+            importSave(e.data.content)
+          }
+        }
+      }
+      else {
+        player.cloudsaving=true
+      }
+    }
+  });
+
   //removing changed levels from completed/beaten
   let levelsArr = Object.entries(level);
   for(let i=0; i< player.perfectbeaten.length; i++){
@@ -51,22 +78,6 @@ window.onload = () => {
       player.levelbeaten.splice(i, 1)
     }
   }
-  /*load from galaxy if there's no save
-   thinking about it again I think it will lead to problems
-
-  if (player.levelbeaten == 0 && player.editor.data.length==2){
-    window.addEventListener("message", e => {
-      if (e.origin === "https://galaxy.click") {
-        if(e.data.content!==null){
-          importSave(e.data.content)
-        }
-      }
-    })};
-    window.top.postMessage({
-      action: "load",
-      slot: 0,
-    }, "https://galaxy.click");
-    */
   //check if user is on Android/iOS and set on screen controls accordingly. I wonder if there's people with some custom OS
   if(navigator.userAgent.indexOf("Android")!==-1 || navigator.userAgent.indexOf("iOS")!==-1){
     tmp.mobile=true
@@ -108,16 +119,12 @@ function getlabel(){
 }
 //save
 function cloudSave(){
-if(tmp.cloudsaved==false && player.cloudsaving==true){
+if(player.cloudsaving){
   /*
   I think cloud saving after every change 
-  is unreasonable so there's a 30s cooldown
+  is unreasonable so there's a 5s cooldown
+  edit: nevermind
   */
-  tmp.cloudsaved=true
-  setTimeout(() => {
-    tmp.cloudsaved=false
-  }, 30000);
-  
 window.top.postMessage({
   action: "save",
   slot: 0,
