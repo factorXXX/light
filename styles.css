@@ -52,15 +52,15 @@ svg {
   overflow:visible;
 }
 body {
-touch-action:manipulation;
+    touch-action: manipulation;
     background-color: #222222;
     color: #dfdfdf;
-  }
+}
 table  {
     border-spacing: 0;
     padding: 0px;
     margin: 0px auto;
-  }
+ }
 .portalButton {
   font-size:15px;
   font-family:Arial;
@@ -399,20 +399,38 @@ td.void{
   filter:invert(70%) drop-shadow(0px 0px 4px #000000) ;
 }
 .player{
-  background: url('images/player.gif') ;
-  background-size: 120px;
+  background: url('images/player/legless.svg') ;
+  background-size: 68px;
+  background-repeat: no-repeat;
+  background-position: 50% 20%;
+  z-index: 21;
+  position: absolute;
+}
+.player::after{
+  animation: player_legs 0.8s infinite linear;
+  content: "";
+  position: absolute;
+  margin-top: -50px;
+  margin-left: -7.5px;
+  width: 70px;
+  height: 70px;
+  background: url('images/player/legs.svg') ;
+  background-size: 60px;
   background-position: center;
+  background-repeat: no-repeat;
   z-index: 21;
 }
-/*what even is this
-  .levelIcon{
-  border-radius: 45%;
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  border:2px solid #333;
-  color:#000
-}*/
+@keyframes player_legs {
+  0% {
+    margin-top: -50px;
+  }
+  50% {
+    margin-top: -52px;
+  }
+  100% {
+    margin-top: -50px;
+  } 
+}
 @keyframes rotation {
   from {
     transform: rotate(359deg);
@@ -435,6 +453,11 @@ td.void{
   border: 2px solid #f79595;
   border-radius: 5px;
   margin: 2px 0px 0px 0px;
+}
+.editor .player::after{
+  animation: none;
+  margin-top: 5px;
+  margin-left: 0px;
 }
 #radd {
   font-size: 25px;
@@ -499,6 +522,9 @@ td.void{
   background-repeat: no-repeat;
   background-size: 30px;
   filter:  invert(17%) sepia(90%) saturate(3310%) hue-rotate(353deg) brightness(89%) contrast(94%) drop-shadow(0px 0px 4px #000000);
+}
+#selectors .player {
+  position: relative;
 }
 #selectors .void {
   width: 45px;

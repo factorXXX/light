@@ -11,15 +11,19 @@ var player={
       [[null], [null]],
     ]
   },
+  cloudsaving:false,
+  lastsavetime:0,
 }
-function save() {
+function save(cloud=player.cloudsaving) {
+  player.lastsavetime=Date.now()
   localStorage.setItem('player', JSON.stringify(player));
+  if(cloud)cloudSave()
 }
 
 function load() {
   if (!localStorage.getItem("player")) {
 
-    save()
+    save(false)
 
   }
   player = {...player, ...JSON.parse(localStorage.getItem('player'))} 
@@ -35,6 +39,31 @@ function load() {
 }
 window.onload = () => {
   load()
+  //check if there is a cloud save and if it's newer
+  window.addEventListener("message", e => {
+    if (e.origin === "https://galaxy.click") {
+      tmp.ongalaxy=true
+      if(e.data.content!==null){
+        const incloud = JSON.parse(LZString.decompressFromBase64(e.data.content))
+        if(incloud.lastsavetime > player.lastsavetime){
+          var locDate = new Date(player.lastsavetime);
+          var clDate = new Date(incloud.lastsavetime);
+          //need to somehow remove the timezone 
+          if(confirm(
+          "You have a newer save in Galaxy Cloud™. Do you want to use a save from Galaxy Cloud™?"+
+          "\nCloud save: "+ clDate +
+          "\nLocal save: "+ locDate
+          )){
+            importSave(e.data.content)
+          }
+        }
+      }
+      else {
+        player.cloudsaving=true
+      }
+    }
+  });
+
   //removing changed levels from completed/beaten
   let levelsArr = Object.entries(level);
   for(let i=0; i< player.perfectbeaten.length; i++){
@@ -76,9 +105,30 @@ function importSave(imported = undefined) {
     
 }
 function hardReset(){
-  if(confirm("Are you sure??? It will reset EVERYTHING and you will not get any reward!!!")){
+  if(confirm("Are you sure? It will reset EVERYTHING and you will not get any reward!")){
 
     localStorage.removeItem('player');
     window.location.reload();
   }
 }
+
+
+/* galaxy cloud saving */
+function getlabel(){
+  return (player.levelbeaten.length + " beaten, " + player.perfectbeaten.length + " perfect")
+}
+//save
+function cloudSave(){
+if(player.cloudsaving){
+  /*
+  I think cloud saving after every change 
+  is unreasonable so there's a 5s cooldown
+  edit: nevermind
+  */
+window.top.postMessage({
+  action: "save",
+  slot: 0,
+  label: getlabel(),
+  data: LZString.compressToBase64(JSON.stringify(player)),
+}, "https://galaxy.click");
+}}
