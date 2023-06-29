@@ -193,6 +193,9 @@ table  {
 .blue div, .blueLaser {
   filter: invert(44%) sepia(97%) saturate(2911%) hue-rotate(171deg) brightness(98%) contrast(93%);
 }
+.white div, .whiteLaser {
+  filter: invert(86%) sepia(98%) saturate(8%) hue-rotate(175deg) brightness(108%) contrast(73%);
+}
 .red div, .redLaser {
   filter: invert(17%) sepia(90%) saturate(3310%) hue-rotate(353deg) brightness(89%) contrast(94%);
 }
@@ -249,6 +252,11 @@ table  {
   /*yellow box*/
 .yellowpass {
   background-color: #EAFA35;
+  border: 4px solid #000;
+  border-radius: 2px;
+}
+.whitepass {
+  background-color: #dddddd;
   border: 4px solid #000;
   border-radius: 2px;
 }
@@ -333,7 +341,7 @@ td div {
   background-repeat:no-repeat;
   background-image: url('./images/laser90.svg');
 }
-.greenpass , .yellowpass , .redpass , .bluepass {
+.greenpass , .yellowpass , .redpass , .bluepass, .whitepass {
   z-index: 11 !important;
   background-image: url('./images/cross.svg');
 }

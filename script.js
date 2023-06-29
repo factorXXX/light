@@ -463,6 +463,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
       else if (colors.includes('yellow')&&colors.includes('green')) color="yellow"
       else if (colors.includes('blue')&&  colors.includes('green')) color="lightBlue" //you mean cyan?
       else if (colors.includes('blue')&&  colors.includes('red'))   color="purple"
+      else if (colors.includes('white')&&  colors.includes('green'))   color="white"
           }
           if(final)tmp.where3.push([...locat, pos, color,'half']);
         }
@@ -478,7 +479,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
       //infinite loop prevention//
       if(JSON.stringify(lightL).indexOf(JSON.stringify([...locat, pos, color]))>0){
         pos=reverse(pos)
-        if(final)tmp.where3.push([...locat, pos, color,'half']);
+        if(final)tmp.where3.push([...locat, pos, "white",'half']);
         break
       }
       lightL.push([...locat, pos, color]);
