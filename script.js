@@ -147,7 +147,8 @@ Vue.component("machine", {
     <svg v-if="tmp.building[a-1][b-1][0]==='portal'"
     style="
     visibility: hidden;
-    z-index: 25 !important;">
+    z-index: 25 !important;
+    filter: drop-shadow(0px 0px 2px #000000);">
     <line :id="[getcellid(a-1, b-1,false)]"
       stroke-linecap="round"
       stroke="red"
