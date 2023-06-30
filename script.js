@@ -24,7 +24,11 @@ var tmp = {
     brush: [null],
     selectedPortal: null,
   },
-  ongalaxy:false,
+  galaxy:{
+    ongalaxy:false,
+    loggedin:false,
+  }
+  
 };
 function music(x) {
   return (
@@ -168,7 +172,8 @@ Vue.component("options", {
     <td></td>
       <td style="background-color: #5865F2" @click="document.location.href = 'https://discord.gg/MXyXdXrC5H'" class="opts">Discord</td>
       <td style="background-color: #b44949" @click="hardReset()"  class="opts">Hard Reset</td>
-      <td v-if="tmp.ongalaxy" style="background-color: #090417" @click="player.cloudsaving=!player.cloudsaving"  class="opts">Galaxy Cloud Saving:  {{player.cloudsaving?"ON":"OFF"}}</td>
+      <td v-if="tmp.galaxy.ongalaxy && tmp.galaxy.loggedin" style="background-color: #090417" @click="player.cloudsaving=!player.cloudsaving"  class="opts">Galaxy Cloud Saving: {{player.cloudsaving?"ON":"OFF"}}</td>
+      <td v-if="tmp.galaxy.ongalaxy && !tmp.galaxy.loggedin"style="background-color: #090417" @click="player.cloudsaving=!player.cloudsaving"  class="opts">Login to Galaxy</td>
     </tr>
     </table>
     `,
@@ -380,7 +385,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
         new Audio(music("win")).play();
         setTimeout(function () {
           if (tmp.level !== "custom") {
-            if (!player.levelbeaten.includes(tmp.level))
+            if (!player.levelbeaten.includes(level[tmp.level].index))
               player.levelbeaten.push(level[tmp.level].index);
                 if(tmp.previous.length<=level[tmp.level].perfect&&!player.perfectbeaten.includes(level[tmp.level].index)){
                   player.perfectbeaten.push(level[tmp.level].index);
