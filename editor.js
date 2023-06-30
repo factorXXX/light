@@ -111,7 +111,7 @@
           @click="setTo(r-1,c-1)">
           <span 
           style="position:absolute; width: 70px; height: 70px"
-          :class="{player: player.editor.location[0]===r-1&&player.editor.location[1]===c-1}">
+          :class="{player: player.editor.location[0]==r-1&&player.editor.location[1]==c-1}">
           </span>
           <span :class="{
             [geteditorclass(r-1, c-1)]:true
@@ -283,7 +283,7 @@
   }
   function setTo(r, c) {
     let selected = JSON.parse(JSON.stringify(tmp.editor.brush))
-    if (selected==='tiePortals'){
+    if (selected[0]==='tiePortals'){
       if (player.editor.data[r][c][0]==='portal'&&tmp.editor.selectedPortal===null){
         tmp.editor.selectedPortal=[r,c]
       return
@@ -297,8 +297,8 @@
       save()
       return;
     }
-    else if (selected === 'player'){player.editor.location = [r,c];save(); return}
-    else if (selected === 'clear'){selected = [null]}
+    else if (selected[0] === 'player'){player.editor.location = [r,c];save(); return}
+    else if (selected[0] === 'clear'){selected = [null]}
     player.editor.data[r][c] = selected
     player.editor.data[0].push([null])
     player.editor.data[0].pop() //This is a piss tier solution but I give up I don't know how to make it auto update otherwice ~Wrab
