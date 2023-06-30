@@ -470,6 +470,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
       else if (colors.includes('blue')&&  colors.includes('green')) color="lightBlue" //you mean cyan?
       else if (colors.includes('blue')&&  colors.includes('red'))   color="purple"
           }
+         // if(color=="white") tmp.building[locat[0]][locat[1]][1] = null;
           if(final)tmp.where3.push([...locat, pos, color,'half']);
         }
       if (build == "redpass" && color != "red") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
