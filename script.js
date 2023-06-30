@@ -421,8 +421,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
     }
       if (build === "light" && try1 !== 1) {
         if (withlight) lightL.push([...locat, pos, color]);
-        pos=reverse(pos)
-        if(final)tmp.where3.push([...locat, pos, color,'half'])
+        if(final)tmp.where3.push([...locat, reverse(pos), color,'half'])
         break;
       }
 
@@ -440,17 +439,15 @@ function light(win = false, withlight = false, withM = false, final=false) {
           "horpass",
           "verpass"
         ].includes(build)
-      ){pos = reverse(pos)
-        if(final)tmp.where3.push([...locat, pos, color,'half']);
+      ){ 
+        if(final)tmp.where3.push([...locat, reverse(pos), color,'half']);
         break}
         if(build==='horpass'){
           if (pos==='up'||pos==='down')break}
         if(build==='verpass'){
           if (pos==='right'||pos==='left')break}
         else if (build==='store') {
-          if(final){pos=reverse(pos)
-          tmp.where3.push([...locat, pos, color,'half']);
-          pos=reverse(pos)}
+          if(final)tmp.where3.push([...locat, reverse(pos), color,'half']);
 
           if (buildDetail[1] !== null) {
             
@@ -467,21 +464,20 @@ function light(win = false, withlight = false, withM = false, final=false) {
           }
           if(final)tmp.where3.push([...locat, pos, color,'half']);
         }
-      if (build === "redpass" && color !== "red") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
-      if (build === "greenpass" && color !== "green") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
-      if (build === "yellowpass" && color !== "yellow") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
-      if (build === "bluepass" && color !== "blue") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
+      if (build === "redpass" && color !== "red") {if(final)tmp.where3.push([...locat, reverse(pos), color,'half']);break};
+      if (build === "greenpass" && color !== "green") {if(final)tmp.where3.push([...locat, reverse(pos), color,'half']);break};
+      if (build === "yellowpass" && color !== "yellow") {if(final)tmp.where3.push([...locat, reverse(pos), color,'half']);break};
+      if (build === "bluepass" && color !== "blue") {if(final)tmp.where3.push([...locat, reverse(pos), color,'half']);break};
       if (JSON.stringify(tmp.location) === JSON.stringify(locat)) {
-        pos = reverse(pos)
-        if(final)tmp.where3.push([...locat, pos, color,'half'])  
+        if(final)tmp.where3.push([...locat, reverse(pos), color,'half'])  
         break
       };
       //infinite loop then white//
       if(JSON.stringify(lightL).indexOf(JSON.stringify([...locat, pos, color]))>0){
        if(color==="white") break;
-
         color="white"
-        if(final)tmp.where3.push([...locat, pos, color])
+        //what does it do
+        //if(final)tmp.where3.push([...locat, pos, color])
       }
       lightL.push([...locat, pos, color]);
       if (["light",  "store"].includes(build)){
@@ -493,17 +489,14 @@ function light(win = false, withlight = false, withM = false, final=false) {
         let posamt = buildDetail[1].split("-");
 
         if (!posamt.includes(pos)) {
-          pos = reverse(pos)
-          tmp.where3.push([...locat, pos, color,'half'])
+          tmp.where3.push([...locat, reverse(pos), color,'half'])
           if(withM)lightL.pop();
           break;
         }
         if (pos === posamt[0]) pos = reverse(posamt[1]);
         else pos = reverse(posamt[0]);
       } else if (build === "portal") {
-        pos=reverse(pos)
-        if(final)tmp.where3.push([...locat, pos, color,'half']);
-        pos=reverse(pos)
+        if(final)tmp.where3.push([...locat, reverse(pos), color,'half']);
         lightL.pop();
         locat = [...buildDetail[1]];
         if(final && !(JSON.stringify(tmp.location) === JSON.stringify(locat)))tmp.where3.push([...locat, pos, color,'half']);
