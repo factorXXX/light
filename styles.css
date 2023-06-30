@@ -199,6 +199,9 @@ table  {
 .green div, .greenLaser{
   filter: invert(100%) sepia(22%) saturate(6052%) hue-rotate(20deg) brightness(99%) contrast(87%);
 }
+.white div, .whiteLaser{
+  filter: invert(98%) sepia(2%) saturate(186%) hue-rotate(267deg) brightness(117%) contrast(100%);
+}
 .yellow div, .yellowLaser{
   filter: invert(73%) sepia(100%) saturate(333%) hue-rotate(14deg) brightness(108%) contrast(100%);
 }
@@ -214,7 +217,13 @@ table  {
 .yellowLaser{
   z-index: 15 !important;
 }
+.whiteLaser{
+  z-index: 20 !important;
+}
 .redLaser{
+  z-index: 10;
+}
+.blueLaser{
   z-index: 10;
 }
 .deg90 div{
@@ -254,6 +263,11 @@ table  {
 }
 .bluepass {
   background-color: #0999D5;
+  border: 4px solid #000;
+  border-radius: 2px;
+}
+.whitepass {
+  background-color: #ffffff;
   border: 4px solid #000;
   border-radius: 2px;
 }
@@ -333,7 +347,7 @@ td div {
   background-repeat:no-repeat;
   background-image: url('./images/laser90.svg');
 }
-.greenpass , .yellowpass , .redpass , .bluepass {
+.greenpass , .yellowpass , .redpass , .bluepass, .whitepass {
   z-index: 11 !important;
   background-image: url('./images/cross.svg');
 }

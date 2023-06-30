@@ -407,7 +407,11 @@ function light(win = false, withlight = false, withM = false, final=false) {
           build = null
         }
       if (build=='store') {
-        if (buildDetail[1] == null) {
+        if(color=="white"){
+          tmp.building[locat[0]][locat[1]][1] = null;
+        }
+      
+        else if (buildDetail[1] == null) {
           tmp.building[locat[0]][locat[1]][1] = color;
         }
       }
@@ -477,11 +481,13 @@ function light(win = false, withlight = false, withM = false, final=false) {
         if(final)tmp.where3.push([...locat, pos, color,'half'])  
         break
       };
-      //infinite loop prevention//
+      //infinite loop then white//
       if(JSON.stringify(lightL).indexOf(JSON.stringify([...locat, pos, color]))>0){
-        pos=reverse(pos)
-        if(final)tmp.where3.push([...locat, pos, color,'half']);
-        break
+       if(color=="white") break;
+
+        color="white"
+        if(final)tmp.where3.push([...locat, pos, color])
+        if(final)break;
       }
       lightL.push([...locat, pos, color]);
       if (["light",  "store"].includes(build)){

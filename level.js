@@ -298,28 +298,5 @@ function reset(){
     string:'NohECMHsA8HcEMA2jQF0A0xQCdIBd48BTARgA4AGNTUAWwEttdtR0d6BzACzwFoBXAA7Us2IgDNERAMZ4AbkRQYs4eABMocJEpqDI2AikwV0FVMojrNCZCJwSpsrvrsMmLtlPF8hd3AWJyKgtrbTRlLDdmVlAvH2EQmBsdFSsksIt/QlJKO1UNdNtlADt+ZBC0rSKaLMDcioKqlIhC5sROHhi1SFhimLE1cMwsdu48GN82DjEiPosoj3YxgQSaUOqVVrytkrLERKbtw4b1to7xtm7e/qJBg+ShsAWWTwk+K7maUc7X7xjpoizI4PXblTClMHACH7cF7UEw1KNEE0ACeikQPUE8AAzti7Ni8PoiKxoeZhqTYZCWsdKQiKSNINJCPRIJ8oXDaScdjRnv1zrwPiJSRFQHoDEhWMATGZ4bLOfKsNj+Gz6aqOeyqWLDJLpeYImqqacheqDXSTerqcjIoxomxsPzfLKRbzfvE7N8LrE3v8ZmzLRkFaa5RqEf6NqA0chMTi8RYCUSSXCRR6uj0+lNfa4bYt7ctBfcA5saUWrfSw80jQXwym2JN7Hc1jtndmXl7vAK08DC6L9NrjKYyVgtRL+zLG8Wy5W1uphxWZ72JVWzmMJsI7bdHiXu7OdQOLDvR4Oe+KjFK9+Orce+2ex1vw/kdw1H9O1M+70pzEA===',
     perfect:NaN,
     index:2001
-  }, /*
-  'ch1': {
-
-    building: [
-      [[null], [null], [null], [null], [null], ["boxwall"], [null], [null], [null], [null], [null], [null], ["light",'down',"green"], [null], [null]],
-      [[null], [null], [null], [null], [null], ["boxwall"], [null], ["mirror","right-down"], [null], [null], [null], [null], [null], [null], [null]],
-      [[null], [null], [null], ["boxwall"], ["level",12], ["badboxwall"], [null], ["box"], ["badbox"], [null], [null], ["mirror","left-up"], [null], [null], [null]],
-      [[null], [null], [null], ["boxwall"], ["boxwall"], ["badboxwall"], ["level",6], [null], ["boxwall"], ["boxwall"], ["boxwall"], ["level",5], [null], [null], [null]],
-      [[null], [null], [null], [null], [null], [null], ["boxwall"], ["boxwall"], [null], [null], [null], ["mirror","right-down"], [null], [null], [null]],
-      [[null], [null], [null], [null], [null], [null], [null], [null], [null], ["box"], [null], ["boxwall"], ["boxwall"], [null], [null]],
-      [[null], [null], [null], [null], ["boxwall"], [null], [null], [null], ["boxwall"], [null], ["box"], ["level",4], ["boxwall"], [null], [null]],
-      [[null], [null], [null], [null], ["boxwall"], [null], ["level",2], ["boxwall"], ["level",3], [null], [null], ["boxwall"], [null], [null], [null]],
-      [[null], [null], [null], [null], ["boxwall"], [null], ["box"], [null], ["boxwall"], [null], ["boxwall"], [null], [null], [null], [null]],
-      [[null], [null], [null], [null], [null], ["boxwall"], [null], [null], ["boxwall"], [null], [null], [null], [null], [null], [null]],
-      [[null], [null], [null], [null], [null], ["boxwall"], ["level",1], ["boxwall"], [null], [null], [null], [null], [null], [null], [null]],
-      [[null], [null], [null], [null], [null], ["boxwall"], [null], ["boxwall"], [null], [null], [null], [null], [null], [null], [null]],
-      [[null], [null], [null], [null], [null], ["boxwall"], [null], ["boxwall"], [null], [null], [null], [null], [null], [null], [null]],
-    ],
-    location: [12, 6],
-      light: [[0,12]],
-
-
-  }
-  */
+  },
 }
