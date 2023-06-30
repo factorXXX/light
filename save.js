@@ -92,8 +92,10 @@ function exportSave() {
 navigator.clipboard.writeText(LZString.compressToBase64(JSON.stringify(player)))
 let btn=document.getElementById("export")
   btn.style.background=("#449944")
+  btn.innerHTML="Copied!"
     setTimeout(() => {
       btn.style.background=("")
+      btn.innerHTML="Export"
     }, 600);
 }
 

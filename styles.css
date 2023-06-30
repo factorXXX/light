@@ -457,11 +457,14 @@ td.void{
   color:#ffffff;
   background: #444;
   cursor: pointer;
-  height: 30px;
-  min-width: 25px;
+  height: 40px;
+  width: 100%;
   border: 2px solid #f79595;
   border-radius: 5px;
   margin: 2px 0px 0px 0px;
+}
+#editorControls button{
+  min-width: 80px;
 }
 .editor .player::after{
   animation: none;

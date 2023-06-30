@@ -74,22 +74,19 @@
               <button id="rmrow" class="trans1" @click="removeCol()"></button>
             </span>
             <br><br>
-            <span>
-              <button @click="clearEditor()">Clear editor</button>
-            </span><br>
-            <span>
-              <button @click="exportEditor()">Export to Clipboard</button>
-            </span><br>            
-            <span>
-              <button @click="importEditor()">Import</button>
-              <!--<button @click="importEditorLegacy()">Import (legacy)</button>-->
-            </span><br>
-            <span>
-              <button @click="importL(LZString.compressToBase64(JSON.stringify(player.editor))); tmp.editor.fromEditor=true">Playtest in the game</button>
-            </span><br>
-            <span>
-              <button @click="tmp.page=2">Go to the menu</button>
-            </span>
+            <table id="editorControls">
+              <tr>
+                <td colspan=2><button @click="clearEditor()">Clear editor</button></td>
+              </tr>
+              <tr>
+                <td><button id="edexpbtn" @click="exportEditor()">Export</button></td>
+                <td><button @click="importEditor()">Import</button></td>
+              </tr>
+              <tr>
+                <td><button @click="importL(LZString.compressToBase64(JSON.stringify(player.editor))); tmp.editor.fromEditor=true">Playtest</button></td>
+                <td><button @click="tmp.page=2">Exit</button></td>
+              </tr>
+            </table>
           </div>
         </td>
       </tr>
@@ -137,7 +134,7 @@
           @click="tmp.editor.brush=brushes[i-1]" 
       >
         <div 
-          :title="[brushes[i-1][0]]"
+          :title="brushes[i-1].toString().replace(/[,0]/g,' ')"
           :class="{
             [brushes[i-1][0]]:true,
             [brushes[i-1][1]]:['store','bomb'].includes(brushes[i-1][0]),
@@ -305,7 +302,7 @@
     save()
   }
   function clearEditor(){
-    if(confirm("Are you sure?")){
+    if(confirm("Are you sure you want to delete everything in the editor?")){
     for (let r=0; r<player.editor.data.length; r++){
       for (let c=0; c<player.editor.data[0].length; c++){
         player.editor.data[r][c]=[null]
@@ -313,11 +310,18 @@
     }
     player.editor.data[0].push(null)
     player.editor.data[0].pop()
+    player.editor.location=[0,0]
   }
-  player.editor.location=[0,0]
 }
   function exportEditor(){
    navigator.clipboard.writeText(LZString.compressToBase64(JSON.stringify(player.editor)))
+   let btn=document.getElementById("edexpbtn")
+   btn.style.background=("#449944")
+   btn.innerHTML="Copied!"
+   setTimeout(() => {
+     btn.style.background=("")
+     btn.innerHTML="Export"
+   }, 600);
   }
   function importEditor(imported = undefined) {
     if (imported === undefined) imported = prompt("paste your level here")
