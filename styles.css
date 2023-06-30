@@ -218,7 +218,7 @@ table  {
   z-index: 15 !important;
 }
 .whiteLaser{
-  z-index: 20 !important;
+  z-index: 18 !important;
 }
 .redLaser{
   z-index: 10;
@@ -263,11 +263,6 @@ table  {
 }
 .bluepass {
   background-color: #0999D5;
-  border: 4px solid #000;
-  border-radius: 2px;
-}
-.whitepass {
-  background-color: #ffffff;
   border: 4px solid #000;
   border-radius: 2px;
 }
@@ -347,7 +342,7 @@ td div {
   background-repeat:no-repeat;
   background-image: url('./images/laser90.svg');
 }
-.greenpass , .yellowpass , .redpass , .bluepass, .whitepass {
+.greenpass , .yellowpass , .redpass , .bluepass {
   z-index: 11 !important;
   background-image: url('./images/cross.svg');
 }

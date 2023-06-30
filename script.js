@@ -139,14 +139,6 @@ Vue.component("machine", {
     <div v-for="layer in tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1).length" :class="{
       [getlaserclass(a-1,b-1,layer-1,false)]:true
     }"><div></div></div>
-<!-- I don't know what it is and I don't think that it's used anywhere
-    <div v-if="tmp.building[a-1][b-1][0]=='level'" :class="{
-      perfect:player.perfectbeaten.includes(tmp.building[a-1][b-1][1]),
-      beaten:player.levelbeaten.includes(tmp.building[a-1][b-1][1]),
-      unbeaten:!player.levelbeaten.includes(tmp.building[a-1][b-1][1]),
-      levelIcon:true
-    }" style="margin:0px auto" >{{tmp.building[a-1][b-1][1]}}</div>
--->
     <!--line between portals-->
     <svg v-if="tmp.building[a-1][b-1][0]=='portal'"
     style="
@@ -407,13 +399,11 @@ function light(win = false, withlight = false, withM = false, final=false) {
           build = null
         }
       if (build=='store') {
-        if(color=="white"){
-          tmp.building[locat[0]][locat[1]][1] = null;
-        }
-      
-        else if (buildDetail[1] == null) {
+        if (buildDetail[1]===null)  {
           tmp.building[locat[0]][locat[1]][1] = color;
+          buildDetail[1] = color
         }
+
       }
       if (build=='bomb') {
         if (color==buildDetail[1]){
@@ -458,19 +448,23 @@ function light(win = false, withlight = false, withM = false, final=false) {
         if(build=='verpass'){
           if (pos=='right'||pos=='left')break}
         else if (build=='store') {
-          pos=reverse(pos)
-          if(final)tmp.where3.push([...locat, pos, color,'half']);
-          pos=reverse(pos)
+          if(final){pos=reverse(pos)
+          tmp.where3.push([...locat, pos, color,'half']);
+          pos=reverse(pos)}
 
           if (buildDetail[1] != null) {
-            let colors=[buildDetail[1] ,color]
-      if      (colors.includes('red')&&   colors.includes('green')) color="yellow"
+            
+      if (color==="white"){
+          tmp.building[locat[0]][locat[1]][1] = null;
+          buildDetail[1]=null
+      }
+      else {let colors=[buildDetail[1] ,color]
+      if (colors.includes('red')&&   colors.includes('green')) color="yellow"
       else if (colors.includes('yellow')&&colors.includes('red'))   color="yellow"
       else if (colors.includes('yellow')&&colors.includes('green')) color="yellow"
-      else if (colors.includes('blue')&&  colors.includes('green')) color="lightBlue" //you mean cyan?
-      else if (colors.includes('blue')&&  colors.includes('red'))   color="purple"
+      else if (colors.includes('blue')&&  colors.includes('green')) color="lightBlue"
+      else if (colors.includes('blue')&&  colors.includes('red'))   color="purple"}
           }
-         // if(color=="white") tmp.building[locat[0]][locat[1]][1] = null;
           if(final)tmp.where3.push([...locat, pos, color,'half']);
         }
       if (build == "redpass" && color != "red") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
@@ -488,12 +482,11 @@ function light(win = false, withlight = false, withM = false, final=false) {
 
         color="white"
         if(final)tmp.where3.push([...locat, pos, color])
-        if(final)break;
       }
       lightL.push([...locat, pos, color]);
       if (["light",  "store"].includes(build)){
         if(final)tmp.where3.push([...locat, pos, color,'half']);
-        lightL.pop();
+       lightL.pop();
       }
       if (build == "mirror") {
        if(!withM) lightL.pop();
