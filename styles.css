@@ -199,8 +199,8 @@ table  {
 .green div, .greenLaser{
   filter: invert(100%) sepia(22%) saturate(6052%) hue-rotate(20deg) brightness(99%) contrast(87%);
 }
-.white div, .whiteLaser{
-  filter: invert(98%) sepia(2%) saturate(186%) hue-rotate(267deg) brightness(117%) contrast(100%);
+.whiteLaser{
+  filter: invert(98%);
 }
 .yellow div, .yellowLaser{
   filter: invert(73%) sepia(100%) saturate(333%) hue-rotate(14deg) brightness(108%) contrast(100%);
