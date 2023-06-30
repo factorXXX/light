@@ -8,7 +8,7 @@ function reset(){
     tmp.b=false
     tmp.previous= [];
     currentLevel={}
-    if (tmp.store!==''&&tmp.level=='custom'){currentLevel = importL(tmp.store)}
+    if (tmp.store!==''&&tmp.level==='custom'){currentLevel = importL(tmp.store)}
     else {currentLevel = JSON.parse(JSON.stringify(level[tmp.level]))}
     let levelNumber = tmp.level
       importL(currentLevel.string)

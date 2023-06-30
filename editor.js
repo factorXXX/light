@@ -111,14 +111,14 @@
           @click="setTo(r-1,c-1)">
           <span 
           style="position:absolute; width: 70px; height: 70px"
-          :class="{player: player.editor.location[0]==r-1&&player.editor.location[1]==c-1}">
+          :class="{player: player.editor.location[0]===r-1&&player.editor.location[1]===c-1}">
           </span>
           <span :class="{
             [geteditorclass(r-1, c-1)]:true
           }"><div></div>
           </span>
           
-          <p v-if="player.editor.data[r-1][c-1][0]=='portal'" style="position: absolute; font-weight: 900; color:white; margin-bottom:0px; min-width:max-content">{{player.editor.data[r-1][c-1][1]}}</p>
+          <p v-if="player.editor.data[r-1][c-1][0]==='portal'" style="position: absolute; font-weight: 900; color:white; margin-bottom:0px; min-width:max-content">{{player.editor.data[r-1][c-1][1]}}</p>
         </td>
       </tr>
     </table>
@@ -132,7 +132,7 @@
     <tr >
       <td v-for="i in brushes.length" 
           :class="{
-            selected:tmp.editor.brush==brushes[i-1]
+            selected:tmp.editor.brush===brushes[i-1]
           }"
           @click="tmp.editor.brush=brushes[i-1]" 
       >
@@ -142,9 +142,9 @@
             [brushes[i-1][0]]:true,
             [brushes[i-1][1]]:['store','bomb'].includes(brushes[i-1][0]),
             [brushes[i-1][2]]:true,
-            trans1:brushes[i-1][1]=='right'||brushes[i-1][1]=='left-down'||brushes[i-1][0]=='reflectvel',
-            trans2:brushes[i-1][1]=='up'||brushes[i-1][1]=='right-down',
-            trans3:brushes[i-1][1]=='left'||brushes[i-1][1]=='right-up'
+            trans1:brushes[i-1][1]==='right'||brushes[i-1][1]==='left-down'||brushes[i-1][0]==='reflectvel',
+            trans2:brushes[i-1][1]==='up'||brushes[i-1][1]==='right-down',
+            trans3:brushes[i-1][1]==='left'||brushes[i-1][1]==='right-up'
           }"><div></div>
       </td>
     </tr>
@@ -155,32 +155,32 @@
   function geteditorclass(r, c, h=true){
     let current = player.editor.data[r][c]
     if(h){
-    if (current[0]=='location'){return 'player'}
-    else if (current[0]=='mirror'){
-      if(current[1]=='left-down'){
+    if (current[0]==='location'){return 'player'}
+    else if (current[0]==='mirror'){
+      if(current[1]==='left-down'){
         return ('mirror'+' '+'trans1')
       }
-      if(current[1]=='right-down'){
+      if(current[1]==='right-down'){
         return ('mirror'+' '+'trans2')
       }
-      if(current[1]=='right-up'){
+      if(current[1]==='right-up'){
         return ('mirror'+' '+'trans3')
       }
-      if(current[1]=='left-up'){
+      if(current[1]==='left-up'){
         return ('mirror')
       }
     }
-    else if (current[0]=='light'){
-      if(current[1]=='right'){
+    else if (current[0]==='light'){
+      if(current[1]==='right'){
         return ('light'+' '+'trans1'+' '+current[2])
       }
-      else if(current[1]=='up'){
+      else if(current[1]==='up'){
         return ('light'+' '+'trans2'+' '+current[2])
       }
-      else if(current[1]=='left'){
+      else if(current[1]==='left'){
         return ('light'+' '+'trans3'+' '+current[2])
       }
-      else if(current[1]=='down'){
+      else if(current[1]==='down'){
         return ('light'+' '+current[2])
       }
     }
@@ -207,7 +207,7 @@
         
         for (let i=0; i<player.editor.data.length; i++){
           for (let c=0; c<player.editor.data[0].length; c++){
-            if (player.editor.data[i][c][0]=='portal'){
+            if (player.editor.data[i][c][0]==='portal'){
               player.editor.data[i][c][1][0]++
             }
           }
@@ -228,7 +228,7 @@
 
         for (let i=0; i<player.editor.data.length; i++){
           for (let c=0; c<player.editor.data[0].length; c++){
-            if (player.editor.data[i][c][0]=='portal'){
+            if (player.editor.data[i][c][0]==='portal'){
               player.editor.data[i][c][1][0]--
             }
           }
@@ -249,7 +249,7 @@
       for (let i=0; i<player.editor.data.length; i++){
           player.editor.data[i].unshift([null])
           for (let c=0; c<player.editor.data[0].length; c++){
-            if (player.editor.data[i][c][0]=='portal'){
+            if (player.editor.data[i][c][0]==='portal'){
               player.editor.data[i][c][1][1]++
             }
           }
@@ -270,7 +270,7 @@
       for (let i=0; i<player.editor.data.length; i++){
         player.editor.data[i].shift()
         for (let c=0; c<player.editor.data[0].length; c++){
-          if (player.editor.data[i][c][0]=='portal'){
+          if (player.editor.data[i][c][0]==='portal'){
             player.editor.data[i][c][1][1]--
           }
         }
@@ -283,8 +283,8 @@
   }
   function setTo(r, c) {
     let selected = JSON.parse(JSON.stringify(tmp.editor.brush))
-    if (selected=='tiePortals'){
-      if (player.editor.data[r][c][0]=='portal'&&tmp.editor.selectedPortal==null){
+    if (selected==='tiePortals'){
+      if (player.editor.data[r][c][0]==='portal'&&tmp.editor.selectedPortal===null){
         tmp.editor.selectedPortal=[r,c]
       return
       }
@@ -297,8 +297,8 @@
       save()
       return;
     }
-    else if (selected == 'player'){player.editor.location = [r,c];save(); return}
-    else if (selected == 'clear'){selected = [null]}
+    else if (selected === 'player'){player.editor.location = [r,c];save(); return}
+    else if (selected === 'clear'){selected = [null]}
     player.editor.data[r][c] = selected
     player.editor.data[0].push([null])
     player.editor.data[0].pop() //This is a piss tier solution but I give up I don't know how to make it auto update otherwice ~Wrab

@@ -37,7 +37,7 @@ function music(x) {
 Vue.component("selectmenu", {
   template: `
   <table class="selectmenu">
-  <tr v-for="c in 1" v-if="tmp.diff==0">
+  <tr v-for="c in 1" v-if="tmp.diff===0">
   <td v-for="d in 5" style="padding:0px">
     <table>
       <div class="unlocked" v-if="isunlocked(c, d, tmp.diff)">
@@ -48,7 +48,7 @@ Vue.component("selectmenu", {
             [getClassOfMenuCell((c*3+d-3)*12+(a*4+b-4)-12)]:true,
           }"
           @click='tmp.level=((c*3+d-3)*12+(a*4+b-4)-12);reset()'>
-            {{level[(((c*3+d-3)*12+(a*4+b-4)-12))]==undefined?"wip":(a*4+b-4)}}
+            {{level[(((c*3+d-3)*12+(a*4+b-4)-12))]===undefined?"wip":(a*4+b-4)}}
         </td>
       </tr>
       </div>
@@ -60,7 +60,7 @@ Vue.component("selectmenu", {
   </td>
   </tr>
 
-  <tr v-for="c in 1" v-if="tmp.diff==1">
+  <tr v-for="c in 1" v-if="tmp.diff===1">
   <td v-for="d in 5">
   <table>
     <div v-if="isunlocked(c, d, tmp.diff)">
@@ -72,7 +72,7 @@ Vue.component("selectmenu", {
             [getClassOfMenuCell(((c*3+d-3)*6+(a*2+b-2)+994))]:true,
           }"
           @click="tmp.level=((c*3+d-3)*6+(a*2+b-2)+994);reset()">
-          {{level[(((c*3+d-3)*12+(a*4+b-4)-12))+1000]==undefined?"wip":(a*4+b-4)}}
+          {{level[(((c*3+d-3)*12+(a*4+b-4)-12))+1000]===undefined?"wip":(a*4+b-4)}}
         </td>
       </tr>
     </div>
@@ -87,7 +87,7 @@ Vue.component("selectmenu", {
     <tr style="margin-top: 2px;">
     <td colspan="2" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;background-color:#aa6464"
     @click="tmp.diff=(tmp.diff+1)%2"
-    >{{tmp.diff==1?'Hard Mode':'Normal Mode'}}</td>
+    >{{tmp.diff===1?'Hard Mode':'Normal Mode'}}</td>
 
     <td style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid"
     @click="tmp.page=3"
@@ -99,7 +99,7 @@ Vue.component("selectmenu", {
     `,
 });
 function drawaline(a,b,destroy=false){
-  if(tmp.building[a][b][0]=='portal'){
+  if(tmp.building[a][b][0]==='portal'){
     let line = document.getElementById(getcellid(a,b,false))
     if(!destroy){
       let startCell = document.getElementById(getcellid(a,b)).getBoundingClientRect()
@@ -125,22 +125,22 @@ Vue.component("machine", {
       [getclass(a-1, b-1, false)]:true
     }" >
     <!--player-->
-    <div v-if="tmp.location[0]==a-1 && tmp.location[1]==[b-1]" class="player"><div></div></div>
+    <div v-if="tmp.location[0]===a-1 && tmp.location[1]===b-1" class="player"><div></div></div>
     <!--buildings-->
     <div :class="{
       [getclass(a-1, b-1)]:true
     }"><div></div></div>
     <!--laser and 90 deg leser-->
-    <div v-for="layer in tmp.where2.filter((element) => element[0] == a-1 && element[1] == b-1).length" 
+    <div v-for="layer in tmp.where2.filter((element) => element[0] === a-1 && element[1] === b-1).length" 
     :class="{
       [getlaserclass(a-1,b-1,layer-1)]:true
       }"><div></div></div>
     <!--half-laser-->
-    <div v-for="layer in tmp.where3.filter((element) => element[0] == a-1 && element[1] == b-1).length" :class="{
+    <div v-for="layer in tmp.where3.filter((element) => element[0] === a-1 && element[1] === b-1).length" :class="{
       [getlaserclass(a-1,b-1,layer-1,false)]:true
     }"><div></div></div>
     <!--line between portals-->
-    <svg v-if="tmp.building[a-1][b-1][0]=='portal'"
+    <svg v-if="tmp.building[a-1][b-1][0]==='portal'"
     style="
     visibility: hidden;
     z-index: 25 !important;">
@@ -196,7 +196,7 @@ Vue.component("level", {
       <br><br>
       <span v-if="tmp.mobile && !player.k">You can enable on-screen controls in options!<br></span>
       Arrows or WASD: Move the Character<br>
-      <span v-if="(tmp.level>=13||tmp.level=='custom')">E: Enter the Portal if you can<br></span>
+      <span v-if="(tmp.level>=13||tmp.level==='custom')">E: Enter the Portal if you can<br></span>
       Shift + R: Restart the Level<br>
       U: Undo a move
     </td> 
@@ -214,8 +214,8 @@ Vue.component("level", {
     }">
         Go to the {{tmp.editor.fromEditor?'Editor':'Menu'}}
     </button><br><br>
-    <button v-if="(tmp.level>=13||tmp.level=='custom')" :class="{portalButton: true, canportal: tmp.building[tmp.location[0]][tmp.location[1]][0]=='portal'||tmp.building[tmp.location[0]][tmp.location[1]][0]=='level', cantportal: tmp.building[tmp.location[0]][tmp.location[1]][0]!='portal'&&tmp.building[tmp.location[0]][tmp.location[1]][0]!='level'}" @click="doSomething('KeyE',false)">
-        Enter the {{tmp.level>=13||tmp.level=='custom'?'portal':'level'}}
+    <button v-if="(tmp.level>=13||tmp.level==='custom')" :class="{portalButton: true, canportal: tmp.building[tmp.location[0]][tmp.location[1]][0]==='portal'||tmp.building[tmp.location[0]][tmp.location[1]][0]==='level', cantportal: tmp.building[tmp.location[0]][tmp.location[1]][0]!=='portal'&&tmp.building[tmp.location[0]][tmp.location[1]][0]!=='level'}" @click="doSomething('KeyE',false)">
+        Enter the {{tmp.level>=13||tmp.level==='custom'?'portal':'level'}}
     </button>
     </td>
   </tr><br><br>
@@ -226,7 +226,7 @@ Vue.component("level", {
   <tr>
   <td @click="doSomething('KeyU',false)">U</td>
   <td @click="doSomething('KeyW',false)">&#8593;</td>
-  <td v-if="(tmp.level>=13||tmp.level=='custom')" @click="doSomething('KeyE',false)">E</td>
+  <td v-if="(tmp.level>=13||tmp.level==='custom')" @click="doSomething('KeyE',false)">E</td>
   </tr>
   <tr>
     <td @click="doSomething('KeyA',false)">&#8592;</td>
@@ -251,10 +251,10 @@ function calculation2() {
 }
 function dedup(){ //if you have red/green and yellow edges overlaped it can cause yellow to not take priority
   for (let i = 0; i<tmp.where3.length; i++){
-    if (tmp.where3[i][3]=='yellow'){
+    if (tmp.where3[i][3]==='yellow'){
       let cur = tmp.where3[i]
-      if(tmp.where3.filter((e) => (e[0] == cur[0] && e[1] == cur[1] && e[2]==cur[2] && e[3]!==cur[3])).length!==0){  
-      tmp.where3.splice(tmp.where3.findIndex((e) => (e[0] == cur[0] && e[1] == cur[1] && e[2]==cur[2] && e[3]!==cur[3])),1)
+      if(tmp.where3.filter((e) => (e[0] === cur[0] && e[1] === cur[1] && e[2]===cur[2] && e[3]!==cur[3])).length!==0){  
+      tmp.where3.splice(tmp.where3.findIndex((e) => (e[0] === cur[0] && e[1] === cur[1] && e[2]===cur[2] && e[3]!==cur[3])),1)
       }
   }}
 }
@@ -264,31 +264,31 @@ function getclass(r,c,h=true){ //!h means it's a class of a cell rather than a d
   if (['store', 'bomb'].includes(current[0])){
     return (current[0]+' '+current[1])
   }
-  else if (current[0]=='mirror'){
-    if(current[1]=='left-down'){
+  else if (current[0]==='mirror'){
+    if(current[1]==='left-down'){
       return ('mirror'+' '+'trans1')
     }
-    if(current[1]=='right-down'){
+    if(current[1]==='right-down'){
       return ('mirror'+' '+'trans2')
     }
-    if(current[1]=='right-up'){
+    if(current[1]==='right-up'){
       return ('mirror'+' '+'trans3')
     }
-    if(current[1]=='left-up'){
+    if(current[1]==='left-up'){
       return ('mirror')
     }
   }
-  else if (current[0]=='light'){
-    if(current[1]=='right'){
+  else if (current[0]==='light'){
+    if(current[1]==='right'){
       return ('light'+' '+'trans1'+' '+current[2])
     }
-    else if(current[1]=='up'){
+    else if(current[1]==='up'){
       return ('light'+' '+'trans2'+' '+current[2])
     }
-    else if(current[1]=='left'){
+    else if(current[1]==='left'){
       return ('light'+' '+'trans3'+' '+current[2])
     }
-    else if(current[1]=='down'){
+    else if(current[1]==='down'){
       return ('light'+' '+current[2])
     }
   }
@@ -302,28 +302,28 @@ function getclass(r,c,h=true){ //!h means it's a class of a cell rather than a d
 function getlaserclass(r,c,l,h=true){ //h means that it's an edge from tmp.where3
   let str = '' 
   if(h){
-  let current = tmp.where2.filter((element) => element[0] == r && element[1] == c)[l]
+  let current = tmp.where2.filter((element) => element[0] === r && element[1] === c)[l]
   let build = tmp.building[r][c]
-  if (build[0]=='mirror'){
+  if (build[0]==='mirror'){
     str=str.concat(current[3])
     str=str.concat("Laser laser90")
-    if (build[1]=='left-down')str=str.concat(" trans1")
-    else if (build[1]=='right-down')str=str.concat(" trans2")
-    else if (build[1]=='right-up')str=str.concat(" trans3")
+    if (build[1]==='left-down')str=str.concat(" trans1")
+    else if (build[1]==='right-down')str=str.concat(" trans2")
+    else if (build[1]==='right-up')str=str.concat(" trans3")
   } else {
     str=str.concat(current[3])
     str=str.concat("Laser laser")
-  if (current[2]=='right')str=str.concat(" trans1")
-  else if (current[2]=='up')str=str.concat(" trans2")
-  else if (current[2]=='left')str=str.concat(" trans3")
+  if (current[2]==='right')str=str.concat(" trans1")
+  else if (current[2]==='up')str=str.concat(" trans2")
+  else if (current[2]==='left')str=str.concat(" trans3")
   }
   }else{
-    let current = tmp.where3.filter((element) => element[0] == r && element[1] == c)[l]
+    let current = tmp.where3.filter((element) => element[0] === r && element[1] === c)[l]
     str=str.concat(current[3])
     str=str.concat("Laser laser half")
-    if (current[2]=='right')str=str.concat(" trans1")
-    else if (current[2]=='up')str=str.concat(" trans2")
-    else if (current[2]=='left')str=str.concat(" trans3")
+    if (current[2]==='right')str=str.concat(" trans1")
+    else if (current[2]==='up')str=str.concat(" trans2")
+    else if (current[2]==='left')str=str.concat(" trans3")
   }
   return str
 }
@@ -337,14 +337,14 @@ function getcellid(a,b,c=true){ //c means that it's id of a cell, !c means that 
     return str
 }
 function isunlocked(c, d, diff){//for chapters in menu
-  if ((c*3+d-3)==1) return true
+  if ((c*3+d-3)===1) return true
   let chapterlevels = Object.entries(level).filter((a)=>a[0]>((c*3+d-3)*12-24)&&a[0]<=((c*3+d-3)*12-12))
-  if (tmp.diff==1){chapterlevels = Object.entries(level).filter((a)=>a[0]>((c*3+d-3)*6+988)&&a<=((c*3+d-3)*6+994))}
+  if (tmp.diff===1){chapterlevels = Object.entries(level).filter((a)=>a[0]>((c*3+d-3)*6+988)&&a<=((c*3+d-3)*6+994))}
   let beaten = 0 
   for (let i=0; i<player.levelbeaten.length; i++){
-    if(chapterlevels.filter(((e)=>e[1].index==player.levelbeaten[i])).length!==0){
+    if(chapterlevels.filter(((e)=>e[1].index===player.levelbeaten[i])).length!==0){
       beaten++
-      if (diff==1 && beaten >= 4) return true
+      if (diff===1 && beaten >= 4) return true
       else if (beaten >= 9) return true
     } 
   }
@@ -363,7 +363,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
   for (let i = 0; i < tmp.light.length; i++) {
     let pos = tmp.building[tmp.light[i][0]][tmp.light[i][1]][1];
     let color = tmp.color[i];
-    if(tmp.color[i]==undefined){
+    if(tmp.color[i]===undefined){
       color=tmp.building[tmp.light[i][0]][tmp.light[i][1]][2]
     } //Find the color of light if tmp.color is undefined
 
@@ -375,17 +375,17 @@ function light(win = false, withlight = false, withM = false, final=false) {
       
       let buildDetail = tmp.building[locat[0]][locat[1]];
       let build = buildDetail[0];
-      if (build == "sun" && win && !tmp.b){
+      if (build === "sun" && win && !tmp.b){
         tmp.b = true;
         new Audio(music("win")).play();
         setTimeout(function () {
-          if (tmp.level != "custom") {
+          if (tmp.level !== "custom") {
             if (!player.levelbeaten.includes(tmp.level))
               player.levelbeaten.push(level[tmp.level].index);
                 if(tmp.previous.length<=level[tmp.level].perfect&&!player.perfectbeaten.includes(level[tmp.level].index)){
                   player.perfectbeaten.push(level[tmp.level].index);
                 }
-            if (tmp.level%12==0)tmp.page = 2;
+            if (tmp.level%12===0)tmp.page = 2;
             else {tmp.level++;reset()};
           }
           else reset()
@@ -398,15 +398,15 @@ function light(win = false, withlight = false, withM = false, final=false) {
         {tmp.building[locat[0]][locat[1]] = [null];
           build = null
         }
-      if (build=='store') {
+      if (build==='store') {
         if (buildDetail[1]===null)  {
           tmp.building[locat[0]][locat[1]][1] = color;
           buildDetail[1] = color
         }
 
       }
-      if (build=='bomb') {
-        if (color==buildDetail[1]){
+      if (build==='bomb') {
+        if (color===buildDetail[1]){
         for(let i=-1;i<=1;i++){
           for(let j=-1;j<=1;j++){
             if((tmp.building[locat[0]+i]&&tmp.building[locat[0]+i][locat[1]+j])&&!(["portal","light","void","horpass","verpass"].includes(tmp.building[locat[0]+i][locat[1]+j][0])))tmp.building[locat[0]+i][locat[1]+j]=[null]
@@ -419,7 +419,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
         }
       }
     }
-      if (build == "light" && try1 != 1) {
+      if (build === "light" && try1 !== 1) {
         if (withlight) lightL.push([...locat, pos, color]);
         pos=reverse(pos)
         if(final)tmp.where3.push([...locat, pos, color,'half'])
@@ -443,16 +443,16 @@ function light(win = false, withlight = false, withM = false, final=false) {
       ){pos = reverse(pos)
         if(final)tmp.where3.push([...locat, pos, color,'half']);
         break}
-        if(build=='horpass'){
-          if (pos=='up'||pos=='down')break}
-        if(build=='verpass'){
-          if (pos=='right'||pos=='left')break}
-        else if (build=='store') {
+        if(build==='horpass'){
+          if (pos==='up'||pos==='down')break}
+        if(build==='verpass'){
+          if (pos==='right'||pos==='left')break}
+        else if (build==='store') {
           if(final){pos=reverse(pos)
           tmp.where3.push([...locat, pos, color,'half']);
           pos=reverse(pos)}
 
-          if (buildDetail[1] != null) {
+          if (buildDetail[1] !== null) {
             
       if (color==="white"){
           tmp.building[locat[0]][locat[1]][1] = null;
@@ -467,18 +467,18 @@ function light(win = false, withlight = false, withM = false, final=false) {
           }
           if(final)tmp.where3.push([...locat, pos, color,'half']);
         }
-      if (build == "redpass" && color != "red") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
-      if (build == "greenpass" && color != "green") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
-      if (build == "yellowpass" && color != "yellow") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
-      if (build == "bluepass" && color != "blue") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
-      if (JSON.stringify(tmp.location) == JSON.stringify(locat)) {
+      if (build === "redpass" && color !== "red") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
+      if (build === "greenpass" && color !== "green") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
+      if (build === "yellowpass" && color !== "yellow") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
+      if (build === "bluepass" && color !== "blue") {pos=reverse(pos);if(final)tmp.where3.push([...locat, pos, color,'half']);break};
+      if (JSON.stringify(tmp.location) === JSON.stringify(locat)) {
         pos = reverse(pos)
         if(final)tmp.where3.push([...locat, pos, color,'half'])  
         break
       };
       //infinite loop then white//
       if(JSON.stringify(lightL).indexOf(JSON.stringify([...locat, pos, color]))>0){
-       if(color=="white") break;
+       if(color==="white") break;
 
         color="white"
         if(final)tmp.where3.push([...locat, pos, color])
@@ -488,7 +488,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
         if(final)tmp.where3.push([...locat, pos, color,'half']);
        lightL.pop();
       }
-      if (build == "mirror") {
+      if (build === "mirror") {
        if(!withM) lightL.pop();
         let posamt = buildDetail[1].split("-");
 
@@ -498,32 +498,32 @@ function light(win = false, withlight = false, withM = false, final=false) {
           if(withM)lightL.pop();
           break;
         }
-        if (pos == posamt[0]) pos = reverse(posamt[1]);
+        if (pos === posamt[0]) pos = reverse(posamt[1]);
         else pos = reverse(posamt[0]);
-      } else if (build == "portal") {
+      } else if (build === "portal") {
         pos=reverse(pos)
         if(final)tmp.where3.push([...locat, pos, color,'half']);
         pos=reverse(pos)
         lightL.pop();
         locat = [...buildDetail[1]];
-        if(final && !(JSON.stringify(tmp.location) == JSON.stringify(locat)))tmp.where3.push([...locat, pos, color,'half']);
-        if (JSON.stringify(tmp.location) == JSON.stringify(locat)) {
+        if(final && !(JSON.stringify(tmp.location) === JSON.stringify(locat)))tmp.where3.push([...locat, pos, color,'half']);
+        if (JSON.stringify(tmp.location) === JSON.stringify(locat)) {
           break;
         }
       }
-      if (pos=="down") {
+      if (pos==="down") {
         locat[0]++
         if (locat[0]>=tmp.area[0]) break
       }
-      else if (pos=="up")   {
+      else if (pos==="up")   {
         locat[0]--
         if (locat[0]<0) break
       }
-      else if (pos=="right"){
+      else if (pos==="right"){
         locat[1]++
         if (locat[1]>=tmp.area[1]) break
       }
-      else if (pos=="left") {
+      else if (pos==="left") {
         locat[1]--
         if (locat[1]<0) break
       }
@@ -538,10 +538,10 @@ function calcolor() {
   let b = [];
   for (let i = 0; i <= tmp.light.length - 1; i++) {
     let a = tmp.where1.find(
-      (a) => a[0] == tmp.light[i][0] && a[1] == tmp.light[i][1]
+      (a) => a[0] === tmp.light[i][0] && a[1] === tmp.light[i][1]
     );
 
-    if (a != undefined) {
+    if (a !== undefined) {
       let color=[a[3],tmp.building[tmp.light[i][0]][tmp.light[i][1]][2]]
       if (color.includes('red')&&color.includes('green')) b.push("yellow")
       else if (color.includes('yellow')&&color.includes('green')) b.push("yellow")
@@ -563,7 +563,7 @@ function doSomething(a,b){
   if (a === "KeyR" && b && tmp.page===1 && !tmp.b) reset();
   if (a === "KeyI" && b && tmp.page===2) importL();
   if (a === "KeyU" && tmp.page===1 && !tmp.b) {
-    if (tmp.previous.length == 0) return;
+    if (tmp.previous.length === 0) return;
     tmp.building = tmp.previous[tmp.previous.length - 1].building;
     tmp.location = tmp.previous[tmp.previous.length - 1].location;
     tmp.previous.pop();
@@ -595,7 +595,7 @@ function doSomething(a,b){
       tmp.location[0] = locat[0]
       tmp.location[1] = locat[1]
     };
-  if (locat[0] == tmp.location[0] && locat[1] == tmp.location[1]) {
+  if (locat[0] === tmp.location[0] && locat[1] === tmp.location[1]) {
     tmp.previous.pop();
     return;
   }
@@ -605,7 +605,7 @@ function doSomething(a,b){
     JSON.stringify(tmp.building)
   );
 
-  if (tmp.building[tmp.location[0]][tmp.location[1]][0] != null) {
+  if (tmp.building[tmp.location[0]][tmp.location[1]][0] !== null) {
     let buildtouch = tmp.building[tmp.location[0]][tmp.location[1]];
     if (["box", "badbox", "mirror", "store","rotate180","rotate90","rotate270","reflecthor","reflectvel","bomb"].includes(buildtouch[0])) {
       let pos = [0, 0];
@@ -620,11 +620,11 @@ function doSomething(a,b){
       }
       if ((a === "KeyA" || a === "ArrowLeft")&& tmp.page===1 && !tmp.b) {
         pos[1] = -1;
-        req = !(locat[1] - 1 == 0);
+        req = !(locat[1] - 1 === 0);
       }
       if ((a === "KeyW" || a === "ArrowUp")&& tmp.page===1 && !tmp.b) {
         pos[0] = -1;
-        req = !(locat[0] - 1 == 0);
+        req = !(locat[0] - 1 === 0);
       }
       if (!req) {
         tmp.location = [locat[0], locat[1]];
@@ -632,32 +632,32 @@ function doSomething(a,b){
         calculation2()
         return;
       }
-      if ((tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] != null)&&buildtouch[0][0]!="r") {
+      if ((tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] !== null)&&buildtouch[0][0]!=="r") {
         tmp.location = [locat[0], locat[1]];
         tmp.previous.pop();
         calculation2()
         return;
       }
-      if ((["mirror","light","reflecthor","reflectvel"].includes(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0][0]+buildtouch[0][1]=="ro") {
+      if ((["mirror","light","reflecthor","reflectvel"].includes(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0][0]+buildtouch[0][1]==="ro") {
 
         let a=tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2]
-        if(a[0]=="light"){
+        if(a[0]==="light"){
           tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]= numToPos((posToNum(a[1])+buildtouch[0].split("rotate")[1]/90)%4)
         }
-        if(a[0]=="mirror"){
+        if(a[0]==="mirror"){
           let r=tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1].split("-")
           r[0]=numToPos((posToNum(r[0])+buildtouch[0].split("rotate")[1]/90)%4)
           r[1]=numToPos((posToNum(r[1])+buildtouch[0].split("rotate")[1]/90)%4)
-          if(posToNum(r[0])%2==0){
+          if(posToNum(r[0])%2===0){
             let tmp=r[0]
        r[0]=r[1]
        r[1]=tmp
           }
           tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]=r[0]+"-"+r[1]
         }
-        if(a[0][0]+a[0][1]=="re"){
-          if(buildtouch[0]!="rotate180"){
-            if(a[0]=="reflecthor")tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]="reflectvel"
+        if(a[0][0]+a[0][1]==="re"){
+          if(buildtouch[0]!=="rotate180"){
+            if(a[0]==="reflecthor")tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]="reflectvel"
             else tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]="reflecthor"
           }
         }
@@ -665,51 +665,51 @@ function doSomething(a,b){
         tmp.location = [locat[0] + pos[0], locat[1] + pos[1]];
         return calculation2();
       }
-      else if ((tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] != null)&&buildtouch[0][0]+buildtouch[0][1]=="ro") {
+      else if ((tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] !== null)&&buildtouch[0][0]+buildtouch[0][1]==="ro") {
         tmp.location = [locat[0], locat[1]];
         tmp.previous.pop();
         return calculation2();
       }
 
 
-      else if ((["mirror","light","rotate90","rotate180","rotate270"].includes(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0][0]+buildtouch[0][1]=="re"){
+      else if ((["mirror","light","rotate90","rotate180","rotate270"].includes(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0][0]+buildtouch[0][1]==="re"){
 
 
 let a=tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2]
-if((["mirror","light","rotate90","rotate180","rotate270"].includes(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0].split("reflect")[1]=="hor"){
-  if(a[0]=="light"){
+if((["mirror","light","rotate90","rotate180","rotate270"].includes(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0].split("reflect")[1]==="hor"){
+  if(a[0]==="light"){
 
-    if((posToNum(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1])%2)!=0)tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]= numToPos((posToNum(a[1])+2)%4)
+    if((posToNum(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1])%2)!==0)tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]= numToPos((posToNum(a[1])+2)%4)
   }
-  if(a[0]=="mirror"){
+  if(a[0]==="mirror"){
     let r=tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1].split("-")
     r[0]=numToPos((posToNum(r[0])+2)%4)
     tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]=r[0]+"-"+r[1]
   }
-  if(a[0]=="rotate90"){tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]="rotate270"}
+  if(a[0]==="rotate90"){tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]="rotate270"}
 
- else if(a[0]=="rotate270"){tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]="rotate90"}
+ else if(a[0]==="rotate270"){tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]="rotate90"}
 }
-else if((["mirror","light","rotate90","rotate180","rotate270"].includes(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0].split("reflect")[1]=="vel"){
-  if(a[0]=="light"){
+else if((["mirror","light","rotate90","rotate180","rotate270"].includes(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]))&&buildtouch[0].split("reflect")[1]==="vel"){
+  if(a[0]==="light"){
 
-    if((posToNum(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1])%2)!=1)tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]= numToPos((posToNum(a[1])+2)%4)
+    if((posToNum(tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1])%2)!==1)tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]= numToPos((posToNum(a[1])+2)%4)
   }
-  if(a[0]=="mirror"){
+  if(a[0]==="mirror"){
     let r=tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1].split("-")
     r[1]=numToPos((posToNum(r[1])+2)%4)
     tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][1]=r[0]+"-"+r[1]
   }
-  if(a[0]=="rotate90"){tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]="rotate270"}
+  if(a[0]==="rotate90"){tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]="rotate270"}
 
-  else if(a[0]=="rotate270"){tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]="rotate90"}
+  else if(a[0]==="rotate270"){tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0]="rotate90"}
 }
         tmp.building[locat[0] + pos[0]][locat[1] + pos[1]] = [null];
         tmp.location = [locat[0] + pos[0], locat[1] + pos[1]];
         return calculation2();
       }
       else {
-        if ((tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] != null)&&buildtouch[0][0]+buildtouch[0][1]=="re") {
+        if ((tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] !== null)&&buildtouch[0][0]+buildtouch[0][1]==="re") {
           tmp.location = [locat[0], locat[1]];
           tmp.previous.pop();
           return calculation2();
@@ -730,9 +730,9 @@ else if((["mirror","light","rotate90","rotate180","rotate270"].includes(tmp.buil
 }
 
 function enter() {
-  if (tmp.building[tmp.location[0]][tmp.location[1]][0] != "portal"&&tmp.building[tmp.location[0]][tmp.location[1]][0] != "level")
+  if (tmp.building[tmp.location[0]][tmp.location[1]][0] !== "portal"&&tmp.building[tmp.location[0]][tmp.location[1]][0] !== "level")
     return;
-    if(tmp.building[tmp.location[0]][tmp.location[1]][0]=='level'){
+    if(tmp.building[tmp.location[0]][tmp.location[1]][0]==='level'){
       tmp.level=tmp.building[tmp.location[0]][tmp.location[1]][1]
       reset()
     }
@@ -778,7 +778,7 @@ function importL(imported = undefined) {
   let light = [];
   for (let i = 0; i < tmp.area[0]; i++) {
     for (let j = 0; j < tmp.area[1]; j++) {
-      if (tmp.building[i][j][0] == "light") light.push([i, j]);
+      if (tmp.building[i][j][0] === "light") light.push([i, j]);
     }
   }
  

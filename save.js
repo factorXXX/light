@@ -67,13 +67,13 @@ window.onload = () => {
   //removing changed levels from completed/beaten
   let levelsArr = Object.entries(level);
   for(let i=0; i< player.perfectbeaten.length; i++){
-    if(levelsArr.filter((e)=>e[1].index==player.perfectbeaten[i]).length==0) {
+    if(levelsArr.filter((e)=>e[1].index===player.perfectbeaten[i]).length===0) {
       console.log('level with index ', player.perfectbeaten[i], ' doesnt exist anymore, removing this perfect completion from your save')
       player.perfectbeaten.splice(i, 1)
     }
   }
   for(let i=0; i< player.levelbeaten.length; i++){
-    if(levelsArr.filter((e)=>e[1].index==player.levelbeaten[i]).length==0) {
+    if(levelsArr.filter((e)=>e[1].index===player.levelbeaten[i]).length===0) {
       console.log('level with index ', player.levelbeaten[i], ' doesnt exist anymore, removing this completion from your save')
       player.levelbeaten.splice(i, 1)
     }
