@@ -6,6 +6,9 @@ Vue.component("main_tutorial", {
   </div>
   <div class="modal"
   >
+  <div style="width:0px;heigth:0px;overflow:hidden;position:absolute">
+    <img v-for="n in tmp.tutorial.images" :src=tmp.tutorial.images[n-1]>
+  </div>
     <table>
       <tr>
         <td colspan=3>
