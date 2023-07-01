@@ -51,6 +51,7 @@ Vue.component("tutorials_tab", {
   <div id="tutortab">
     <button @click="tmp.page=2" style="position:absolute; width:100px;height: 40px;margin: 0px;">Exit</button>
     <button @click="startTutorial(true, 1)"><h2>Basics</h2></button>
+    <button @click="startTutorial(true, 4)" v-if="player.tutorial[3]"><h2>Portals</h2></button>
     <button @click="startTutorial(true, 2)" v-if="player.tutorial[1]"><h2>Storage block</h2></button>
     <button @click="startTutorial(true, 3)" v-if="player.tutorial[2]"><h2>Infinite loop and white</h2></button>
   </div>
@@ -90,6 +91,15 @@ function startTutorial(forced=false, type=0){
       "When lasers are cycled, infinite loop occurs and the color of the lasers will become white.",
       "Storage will reset its color when it touches white."]
       tmp.tutorial.stage=0
+    tmp.modalvisible=true
+  }
+  if ((tmp.level===13||type===4)&&(!player.tutorial[3]||forced===true)){
+    tmp.tutorial.type=4
+    tmp.tutorial.title="Portals"
+    tmp.tutorial.images=["./images/tutorials/4-1.png"]
+    if(player.k)tmp.tutorial.text=["Tap on the portal to see where it leads to"]
+    else tmp.tutorial.text=["Hover over the portal to see where it leads to"]
+    tmp.tutorial.stage=0
     tmp.modalvisible=true
   }
 }
