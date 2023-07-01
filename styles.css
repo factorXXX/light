@@ -626,12 +626,8 @@ td.void{
   text-align: center;
 }
 .modalbtn button span{
-  margin-top: -10px;
   font-size: 50px;
   color: #dfdfdf;
   margin-left: auto;
   margin-right: auto;
-}
-#check{
-  margin-top: 0px !important;
 }
