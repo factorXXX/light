@@ -125,6 +125,9 @@ table  {
     border: solid 5px #aaaaaa;
   }
 }
+.selectmenu{
+  font-weight: 700;
+}
 .selectmenu div {
   background:#333333; 
   margin:2px;
