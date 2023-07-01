@@ -34,6 +34,7 @@ var tmp = {
     images:[],
     stage:0,
     text:[],
+    title:"",
   },
   
   

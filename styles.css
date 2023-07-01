@@ -569,15 +569,15 @@ td.void{
   border: 4px solid #aaa;
   border-radius: 10px;
   width:600px;
-  height:400px;
+  height:410px;
   margin-top: 50px;
   padding: 10px;
-  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 0 10px #00000080);
 }
 .modalbg{
   z-index: 149;
   position: absolute;
-  background-color: rgba(48, 48, 48, 0.644);
+  background-color: #303030a4;
   width: 100%;
   height: 100%;
   top: 0px;
@@ -587,6 +587,8 @@ td.void{
   margin: 0px;
   margin-bottom: 5px;
   padding: 0px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .modaltitle{
   height: 30px;
@@ -607,10 +609,27 @@ td.void{
   text-align: center;
 }
 .modalbtn{
-  width: 50px;
-  height: 50px;
+  width: 65px;
+  height: 60px;
+  min-height: 60px;
+  max-height: 60px !important;
 }
 .modalbtn button{
+  display: flex;
   width: 100%;
   height: 100%;
+  background-color: #444444;
+  border: 2px solid rgb(99, 99, 99);
+  border-radius: 8px;
+  text-align: center;
+}
+.modalbtn button span{
+  margin-top: -10px;
+  font-size: 50px;
+  color: #dfdfdf;
+  margin-left: auto;
+  margin-right: auto;
+}
+#check{
+  margin-top: 0px !important;
 }

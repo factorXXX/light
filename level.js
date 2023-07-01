@@ -305,9 +305,4 @@ function reset(){
     perfect:NaN,
     index:-1
   },
-  'lobby': {
-    string:'NohECMHsA8HcEMA2jQF0A0xQCdIBd48BTARgA4AGNTUAWwEttdtR0d6BzACzwFoBXAA7Us2IgDNERAMZ4AbkRQYs4eABMocJEpqDI2AikwV0FVMojrNCZCJwSpsrvrsMmLtlPF8hd3AWJyKgtrbTRlLDdmVlAvH2EQmBsdFSsksIt/QlJKO1UNdNtlADt+ZBC0rSKaLMDcioKqlIhC5sROHhi1SFhimLE1cMwsdu48GN82DjEiPosoj3YxgQSaUOqVVrytkrLERKbtw4b1to7xtm7e/qJBg+ShsAWWTwk+K7maUc7X7xjpoizI4PXblTClMHACH7cF7UEw1KNEE0ACeikQPUE8AAzti7Ni8PoiKxoeZhqTYZCWsdKQiKSNINJCPRIJ8oXDaScdjRnv1zrwPiJSRFQHoDEhWMATGZ4bLOfKsNj+Gz6aqOeyqWLDJLpeYImqqacheqDXSTerqcjIoxomxsPzfLKRbzfvE7N8LrE3v8ZmzLRkFaa5RqEf6NqA0chMTi8RYCUSSXCRR6uj0+lNfa4bYt7ctBfcA5saUWrfSw80jQXwym2JN7Hc1jtndmXl7vAK08DC6L9NrjKYyVgtRL+zLG8Wy5W1uphxWZ72JVWzmMJsI7bdHiXu7OdQOLDvR4Oe+KjFK9+Orce+2ex1vw/kdw1H9O1M+70pzEA===',
-    perfect:NaN,
-    index:2001
-  },
 }
