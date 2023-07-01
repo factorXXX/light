@@ -572,7 +572,7 @@ function doSomething(a,b){
     console.log(a)
     if ((a === "KeyA"||a==="ArrowLeft") && tmp.tutorial.stage>0) tmp.tutorial.stage--;
     if((a === "KeyD"||a==="ArrowRight"||a==="Enter")&&(tmp.tutorial.stage+1)===(tmp.tutorial.text.length)){exittutorial()}
-    if ((a === "KeyD"||a==="ArrowRight"||a==="Enter") && tmp.tutorial.stage<tmp.tutorial.text.length-1) tmp.tutorial.stage++;
+    if ((a === "KeyD"||a==="ArrowRight"||a==="Enter") && (tmp.tutorial.stage+1)<(tmp.tutorial.text.length)) tmp.tutorial.stage++;
   }
   else{
   if (a === "KeyR" && b && tmp.page===1 && !tmp.b) reset();
