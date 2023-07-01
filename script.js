@@ -568,6 +568,13 @@ document.addEventListener("keydown", (e) => {
 
 });
 function doSomething(a,b){  
+  if (tmp.modalvisible){
+    console.log(a)
+    if ((a === "KeyA"||a==="ArrowLeft") && tmp.tutorial.stage>0) tmp.tutorial.stage--;
+    if((a === "KeyD"||a==="ArrowRight"||a==="Enter")&&(tmp.tutorial.stage+1)===(tmp.tutorial.text.length)){exittutorial()}
+    if ((a === "KeyD"||a==="ArrowRight"||a==="Enter") && tmp.tutorial.stage<tmp.tutorial.text.length-1) tmp.tutorial.stage++;
+  }
+  else{
   if (a === "KeyR" && b && tmp.page===1 && !tmp.b) reset();
   if (a === "KeyI" && b && tmp.page===2) importL();
   if (a === "KeyU" && tmp.page===1 && !tmp.b) {
@@ -735,7 +742,7 @@ else if((["mirror","light","rotate90","rotate180","rotate270"].includes(tmp.buil
     tmp.location = [...locat];
   }
   calculation2()
-}
+}}
 
 function enter() {
   if (tmp.building[tmp.location[0]][tmp.location[1]][0] !== "portal"&&tmp.building[tmp.location[0]][tmp.location[1]][0] !== "level")
