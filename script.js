@@ -27,7 +27,15 @@ var tmp = {
   galaxy:{
     ongalaxy:false,
     loggedin:false,
-  }
+  },
+  modalvisible:false,
+  tutorial:{
+    type:0,
+    images:[],
+    stage:0,
+    text:[],
+  },
+  
   
 };
 function music(x) {

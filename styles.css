@@ -558,3 +558,59 @@ td.void{
   background: #222;
   border: 4px solid #aaa;
 }
+/*modals*/
+.modal{
+  z-index: 150;
+  background: #161616;
+  box-sizing: border-box;
+  position: absolute;
+  top: 50px;
+  left: calc(50vw - 300px);
+  border: 4px solid #aaa;
+  border-radius: 10px;
+  width:600px;
+  height:400px;
+  margin-top: 50px;
+  padding: 10px;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+}
+.modalbg{
+  z-index: 149;
+  position: absolute;
+  background-color: rgba(48, 48, 48, 0.644);
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+}
+.modal h1 {
+  margin: 0px;
+  margin-bottom: 5px;
+  padding: 0px;
+}
+.modaltitle{
+  height: 30px;
+  width: 500px;
+  text-align: center;
+}
+.modal tr:nth-child(2) td{
+  text-align: center;
+  margin: 5px;
+}
+.modalimg{
+  height: 260px;
+  margin-bottom: 5px;
+  border: 3px solid #aaa;
+  border-radius: 10px;
+}
+.modaltxt{
+  text-align: center;
+}
+.modalbtn{
+  width: 50px;
+  height: 50px;
+}
+.modalbtn button{
+  width: 100%;
+  height: 100%;
+}

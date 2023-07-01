@@ -14,6 +14,7 @@ function reset(){
       importL(currentLevel.string)
       tmp.level = levelNumber
     calculation2()
+    startTutorial()
     }
   }
 
@@ -283,6 +284,11 @@ function reset(){
     string:`N4IgJghgLhIFwG0kDsCuAbdBdANAtmu+G2eBpxheIAbgPYCWYIRIADnQE4zoh4AcOfliLlRJVvSYtqAZ1TIWRShRABbBp05c+IdAFMAZlAC0qNjITrN2zroPGzF1hq06ceo6fOWx1KcziVCpBFH4hyuHh7Fw8fAgADDgAbCJkEunBIAAWXGwQsrK+GVautvZeJmB0AO6KoawARnRqjboA5pz6+vWZ2JElINowUPoAjPwJlkN0I+OT08PQ81MN/oyBfS427kMM7dneztRlu5z7h07FwWIDNyVRD4MB12FP9x/9eFYvkhvTNH0nHyhQB/z+0ghmx+4PWkP8QJBRShAMRBWRylosJh8KssigXH0ui60KxuLJpN+W2pIRpt2+FLB5I43AgvDwACYcBy0jjKdjGWtSjs7B4HEdps1WroAJ76TC1RazZYTVbUZoADxqbN4vL5TP55Kp+pRQusblFnkcPlYLLieAA7NzeTM5qrXnrBXDDT6DX6zadLeKrmalqN3Q1McavSbvf640LougLlBdD4PJ1ur1aRFcHo6ABjaAMOiKRBcnkAXyAA=`,
     perfect:99,
     index:54
+  },
+  55:{
+    string:`N4IgJghgLhIFwG0kgG4HsCWYQF0A0CIANhgOYAWUIe4aA7gHbUikBOApu0/oelrgVSZsPEAFsMrVmlbMi7AGZQAtAFcADgMISpM5qzKU1m0SQpUaYekxptO3QXxE9ewranat1EAM4/3Tu5mlMxWjPrsIgQMqkREPDFxCbHx0Sk4LkL8oiie3n4BbslJaSUIianl6aXxLhWiAEZoYg0RUVVl9YINEGDqMjBEWl2ETQAew+mZgTl5vv45RTXFlSNrUwSu2Y5zBYvbhMEWIBptk53VHasbyDOC/ayD1AgAzHgALBmOS1vt4pLSWQ0eRKZRhBzaAF6GgGcxg6zuHyqCFZZz4YhoADG0AwaCYiDeAAYcABfIA`,
+    perfect:7,
+    index:55
   },
   56:{
     string:`N4IgNg9gxghgLgSwgOxALgNoEYA0WC6OIAJvDOhpSAG4QLEiEbICuYYTIAtggE68ReIImACmAMzgBaFgAdGOZmw6KQAC0GyYAZ20KMIAEYxiswXBhh96zTr2cNvLbus9+g4SF4IA5muly1mC+/p7EEADuqEQ+vKKiqJxmvBZWigDMOAAs+LmKSuxMrIWKxSoF5WVFypyGEFyGnnEM1SUVrZU1TO2q2nCCop6x8YmqbgJCIhLS4VHWjs72qgt2+lXLti4Om0sG4x5E3n4zkaMGAJ6i7JGL1nUAHhGWVnmU6z0GD0/s1rT01slUsIMAAGPAg17vGh0FqqP6wgzw6zaFhnaH/V6ImFBEJwJq4oZxBIA8yWYFggCsr3RCJpOOOnkCh1EtKRnDZcOx7K5nIxuQAvkA===`,

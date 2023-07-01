@@ -13,6 +13,7 @@
     <selectmenu v-if="tmp.page===2"></selectmenu>
     <options v-if="tmp.page===3"></options>
     <editor v-if="tmp.page===4"></editor>
+    <main_tutorial v-if="tmp.modalvisible"></main-tutorial>
   </div>
   <div style="position: absolute; width: 0px;height: 0px;overflow: hidden;">
     <img src="./images/icons/add-row-icon.svg">
@@ -46,4 +47,5 @@
   <script src="script.js" defer></script>
   <script src="level.js" defer></script>
   <script src="editor.js" defer></script>
+  <script src="tutorial.js" defer></script>
 </html> 

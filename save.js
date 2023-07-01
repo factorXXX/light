@@ -3,7 +3,9 @@ var player={
   k:null, //on screen controls
   levelbeaten:[],
   perfectbeaten:[],
-  version:1,
+  //version:1,
+  //first lvl, store block and infinite loop
+  tutorial:[false,false,false],
   editor:{
     location:[0,0],
     data: [
