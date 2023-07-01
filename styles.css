@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu');
+*{ font-family: 'Ubuntu', sans-serif !important;}
 .gamezone {
   box-sizing: border-box;
   user-select: none;
@@ -624,12 +626,8 @@ td.void{
   text-align: center;
 }
 .modalbtn button span{
-  margin-top: -10px;
   font-size: 50px;
   color: #dfdfdf;
   margin-left: auto;
   margin-right: auto;
-}
-#check{
-  margin-top: 0px !important;
 }

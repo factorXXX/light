@@ -36,7 +36,7 @@ Vue.component("main_tutorial", {
           ><span>&#8594;</span></button>
           <button v-else
           @click=exittutorial()
-          ><span id="check">&#10004;</span></button>
+          ><span>&#10004;</span></button>
         </td>
       </tr>
     </table>
