@@ -22,7 +22,7 @@ Vue.component("main_tutorial", {
         <td class="modalbtn">
           <button v-if="tmp.tutorial.stage!==0"
           @click=tmp.tutorial.stage--
-          ><span>←</span></button>
+          ><span>&#8592;</span></button>
         </td>
         <td class="modaltxt">
           <span>{{tmp.tutorial.text[tmp.tutorial.stage]}}</span>
@@ -30,7 +30,7 @@ Vue.component("main_tutorial", {
         <td class="modalbtn">
           <button v-if="tmp.tutorial.stage < tmp.tutorial.images.length-1"
           @click=tmp.tutorial.stage++
-          ><span>→</span></button>
+          ><span>&#8594;</span></button>
           <button v-else
           @click=exittutorial()
           ><span id="check">&#10004;</span></button>
@@ -47,7 +47,7 @@ function startTutorial(forced=true){
   //basic tutorial on lvl 1-1
   if (tmp.level===1&&(!player.tutorial[0]||forced===true)){
     tmp.tutorial.title="Basics"
-    tmp.tutorial.images=["images/tutorials/1-1.png","images/tutorials/1-2.png"]
+    tmp.tutorial.images=["./images/tutorials/1-1.png","./images/tutorials/1-2.png"]
     tmp.tutorial.text=[
       "Blocks with triangles output laser",
       "push boxes to connect one of the lasers with the sun"]
@@ -57,7 +57,7 @@ function startTutorial(forced=true){
   //store block explanation on lvl 3-9
   if (tmp.level===33&&(!player.tutorial[1]||forced===true)){
     tmp.tutorial.title="Storage block"
-    tmp.tutorial.images=["images/tutorials/2-1.png","images/tutorials/2-2.png","images/tutorials/2-3.png"]
+    tmp.tutorial.images=["./images/tutorials/2-1.png","./images/tutorials/2-2.png","./images/tutorials/2-3.png"]
     tmp.tutorial.text=[
       "Storage keeps the first color it interacted with",
       "Storage keeps the first color it interacted with",
