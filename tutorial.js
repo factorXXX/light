@@ -70,6 +70,12 @@ function startTutorial(forced=true){
   }
   //loop explanation on lvl 5-7
   if (tmp.level===55&&(!player.tutorial[2]||forced===true)){
+    tmp.tutorial.title="Infinite loop and white"
+    tmp.tutorial.images=["./images/tutorials/3-1.png","./images/tutorials/3-2.png"]
+    tmp.tutorial.text=[
+      "When lasers are cycled, infinite loop is occured and the color of the lasers will become white.",
+      "Storage will reset its color when it touches white."]
+      tmp.tutorial.stage=0
     tmp.modalvisible=true
   }
 }
