@@ -46,9 +46,21 @@ Vue.component("main_tutorial", {
     `,
 });
 
-function startTutorial(forced=true){
+Vue.component("tutorials_tab", {
+  template: `
+  <div id="tutortab">
+    <button @click="tmp.page=2" style="position:absolute; width:100px;height: 40px;margin: 0px;">Exit</button>
+    <button @click="startTutorial(true, 1)"><h2>Basics</h2></button>
+    <button @click="startTutorial(true, 2)" v-if="player.tutorial[1]"><h2>Storage block</h2></button>
+    <button @click="startTutorial(true, 3)" v-if="player.tutorial[2]"><h2>Infinite loop and white</h2></button>
+  </div>
+    `,
+});
+
+function startTutorial(forced=false, type=0){
   //basic tutorial on lvl 1-1
-  if (tmp.level===1&&(!player.tutorial[0]||forced===true)){
+  if ((tmp.level===1||type===1)&&(!player.tutorial[0]||forced===true)){
+    tmp.tutorial.type=1
     tmp.tutorial.title="Basics"
     tmp.tutorial.images=["./images/tutorials/1-1.png","./images/tutorials/1-2.png"]
     tmp.tutorial.text=[
@@ -58,7 +70,8 @@ function startTutorial(forced=true){
     tmp.modalvisible=true
   }
   //store block explanation on lvl 3-9
-  if (tmp.level===33&&(!player.tutorial[1]||forced===true)){
+  if ((tmp.level===33||type===2)&&(!player.tutorial[1]||forced===true)){
+    tmp.tutorial.type=2
     tmp.tutorial.title="Storage block"
     tmp.tutorial.images=["./images/tutorials/2-1.png","./images/tutorials/2-2.png","./images/tutorials/2-3.png"]
     tmp.tutorial.text=[
@@ -69,7 +82,8 @@ function startTutorial(forced=true){
     tmp.modalvisible=true
   }
   //loop explanation on lvl 5-7
-  if (tmp.level===55&&(!player.tutorial[2]||forced===true)){
+  if ((tmp.level===55||type===3)&&(!player.tutorial[2]||forced===true)){
+    tmp.tutorial.type=3
     tmp.tutorial.title="Infinite loop and white"
     tmp.tutorial.images=["./images/tutorials/3-1.png","./images/tutorials/3-2.png"]
     tmp.tutorial.text=[
@@ -81,8 +95,9 @@ function startTutorial(forced=true){
 }
 function exittutorial(){
   tmp.modalvisible=false
-  player.tutorial[tmp.intutorial-1]=true
+  player.tutorial[tmp.tutorial.type-1]=true
   tmp.tutorial.images=[]
   tmp.tutorial.text=[]
   tmp.tutorial.stage=0
+  tmp.tutorial.type=0
 }

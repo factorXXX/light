@@ -560,6 +560,7 @@ td.void{
   background: #222;
   border: 4px solid #aaa;
 }
+
 /*modals*/
 .modal{
   z-index: 150;
@@ -630,4 +631,25 @@ td.void{
   color: #dfdfdf;
   margin-left: auto;
   margin-right: auto;
+}
+/*tutorial tab*/
+#tutortab{
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#tutortab button{
+  display: block;
+  height: 65px;
+  width: 400px;
+  color: #dfdfdf;
+  background-color: #444444;
+  border: 2px solid rgb(99, 99, 99);
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 4px;
+  cursor: pointer;
+
 }

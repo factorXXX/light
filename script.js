@@ -98,10 +98,12 @@ Vue.component("selectmenu", {
 
 
     <tr style="margin-top: 2px;">
-    <td colspan="2" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;background-color:#aa6464"
+    <td colspan="1" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;background-color:#aa6464"
     @click="tmp.diff=(tmp.diff+1)%2"
     >{{tmp.diff===1?'Hard Mode':'Normal Mode'}}</td>
-
+    <td colspan="1" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;"
+    @click="tmp.page=5"
+    >Tutorials</td>
     <td style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid"
     @click="tmp.page=3"
     >Options</td><td colspan="2" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid"
@@ -569,7 +571,6 @@ document.addEventListener("keydown", (e) => {
 });
 function doSomething(a,b){  
   if (tmp.modalvisible){
-    console.log(a)
     if ((a === "KeyA"||a==="ArrowLeft") && tmp.tutorial.stage>0) tmp.tutorial.stage--;
     if((a === "KeyD"||a==="ArrowRight"||a==="Enter")&&(tmp.tutorial.stage+1)===(tmp.tutorial.text.length)){exittutorial()}
     if ((a === "KeyD"||a==="ArrowRight"||a==="Enter") && (tmp.tutorial.stage+1)<(tmp.tutorial.text.length)) tmp.tutorial.stage++;
