@@ -50,47 +50,46 @@ function music(x) {
 Vue.component("selectmenu", {
   template: `
   <table class="selectmenu">
-  <tr v-for="c in 1" v-if="tmp.diff===0">
+  <tr v-if="tmp.diff===0">
   <td v-for="d in 5" style="padding:0px">
     <table>
-      <div class="unlocked" v-if="isunlocked(c, d, tmp.diff)">
-      <tr><td colspan="4" style='vertical-align: middle' @click='tmp.level="ch1";reset()'>Chapter {{c*3+d-3}}</td></tr>
+      <div class="unlocked" v-if="isunlocked(1, d, tmp.diff)">
+      <tr><td colspan="4" style='vertical-align: middle'>Chapter {{d}}</td></tr>
       <tr v-for="a in 3">
         <td v-for="b in 4" 
           :class="{
-            [getClassOfMenuCell((c*3+d-3)*12+(a*4+b-4)-12)]:true,
+            [getClassOfMenuCell(d*12+(a*4+b-4)-12)]:true,
           }"
-          @click='tmp.level=((c*3+d-3)*12+(a*4+b-4)-12);reset()'>
-            {{level[(((c*3+d-3)*12+(a*4+b-4)-12))]===undefined?"wip":(a*4+b-4)}}
+          @click='tmp.level=(d*12+(a*4+b-4)-12);reset()'>
+            {{level[((d*12+(a*4+b-4)-12))]===undefined?"wip":(a*4+b-4)}}
         </td>
       </tr>
       </div>
       <div v-else class="locked">
-        Req<br><br>9 Levels beaten in Chapter {{c*3+d-4}} Normal Mode
+        Req<br><br>9 Levels beaten in Chapter {{d}} Normal Mode
       </div>
     </table>
  
   </td>
   </tr>
 
-  <tr v-for="c in 1" v-if="tmp.diff===1">
-  <td v-for="d in 5">
+  <tr v-if="tmp.diff===1">
+  <td v-for="d in 5" style="padding:0px">
   <table>
-    <div v-if="isunlocked(c, d, tmp.diff)">
-      <tr><td colspan="5" style='vertical-align: middle'>Chapter {{c*3+d-3}}</td></tr>
-      <tr v-for="a in 3">
-        <td v-for="b in 2"
-          :class="{
-            wide: true,
-            [getClassOfMenuCell(((c*3+d-3)*6+(a*2+b-2)+994))]:true,
-          }"
-          @click="tmp.level=((c*3+d-3)*6+(a*2+b-2)+994);reset()">
-          {{level[(((c*3+d-3)*12+(a*4+b-4)-12))+1000]===undefined?"wip":(a*4+b-4)}}
-        </td>
-      </tr>
+    <div class="unlocked" v-if="isunlocked(1, d, tmp.diff)">
+    <tr><td colspan="4" style='vertical-align: middle'>Chapter {{d+5}}</td></tr>
+    <tr v-for="a in 3">
+      <td v-for="b in 4" 
+        :class="{
+          [getClassOfMenuCell(d*12+(a*4+b-4)+988)]:true,
+        }"
+        @click='tmp.level=(d*12+(a*4+b-4)+988);reset()'>
+          {{level[((d*12+(a*4+b-4)+988))]===undefined?"wip":(a*4+b-4)}}
+      </td>
+    </tr>
     </div>
     <div v-else class="locked">
-      Req<br><br>4 Levels beaten in Chapter {{c*3+d-4}} Hard Mode
+      Req<br><br>{{d>1?'9 Levels beaten in Chapter '+(d+4)+' Normal Mode':'57 levels beaten in World 1'}}
     </div>
   </table>
   </td>
@@ -100,7 +99,7 @@ Vue.component("selectmenu", {
     <tr style="margin-top: 2px;">
     <td colspan="1" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;background-color:#aa6464"
     @click="tmp.diff=(tmp.diff+1)%2"
-    >{{tmp.diff===1?'Hard Mode':'Normal Mode'}}</td>
+    >{{tmp.diff===1?'World 2':'World 1'}}</td>
     <td colspan="1" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;"
     @click="tmp.page=5"
     >Tutorials</td>
@@ -206,7 +205,7 @@ Vue.component("level", {
    <tr>
      <td style="height: 32px;">
       <span v-if="tmp.level!=='custom'" style="font-size:20px; text-align:center">
-        {{tmp.level>=1001?"Hard Mode Level "+Math.floor((tmp.level-1001)/12+1).toString()+"-"+(tmp.level+8-Math.floor((tmp.level+7)/12)*12).toString():"Level "+Math.floor((tmp.level-1)/12+1).toString()+"-"+(tmp.level-Math.floor((tmp.level-1)/12)*12).toString()}}
+        {{tmp.level>=1001?"Level "+Math.floor((tmp.level-1001)/12+6).toString()+"-"+(tmp.level+8-Math.floor((tmp.level+7)/12)*12).toString():"Level "+Math.floor((tmp.level-1)/12+1).toString()+"-"+(tmp.level-Math.floor((tmp.level-1)/12)*12).toString()}}
       </span>        
       <span v-else style="font-size:20px; text-align:center">
         Custom Level
@@ -361,16 +360,25 @@ function getcellid(a,b,c=true){ //c means that it's id of a cell, !c means that 
     return str
 }
 function isunlocked(c, d, diff){//for chapters in menu
-  if ((c*3+d-3)===1) return true
+  if ((c*3+d-3)===1&&diff==0) return true
   let chapterlevels = Object.entries(level).filter((a)=>a[0]>((c*3+d-3)*12-24)&&a[0]<=((c*3+d-3)*12-12))
-  if (tmp.diff===1){chapterlevels = Object.entries(level).filter((a)=>a[0]>((c*3+d-3)*6+988)&&a<=((c*3+d-3)*6+994))}
+  if (tmp.diff===1){chapterlevels = Object.entries(level).filter((a)=>a[0]>((c*3+d-3)*12+988)&&a<=((c*3+d-3)*12+1000))}
+  if(tmp.diff===1&&d==1){chapterlevels = Object.entries(level).filter((a)=>a[0]>0&&a[0]<=60)}
   let beaten = 0 
   for (let i=0; i<player.levelbeaten.length; i++){
     if(chapterlevels.filter(((e)=>e[1].index===player.levelbeaten[i])).length!==0){
       beaten++
-      if (diff===1 && beaten >= 4) return true
-      else if (beaten >= 9) return true
+      if (d!=1&&beaten >= 9) return true
     } 
+  }
+  if(diff===1&&d==1){
+    beaten = 0 
+    for (let i=0; i<player.levelbeaten.length; i++){
+      if(chapterlevels.filter(((e)=>e[1].index===player.levelbeaten[i])).length!==0){
+        beaten++
+        if (beaten >= 57) return true
+      } 
+    }
   }
   return false
 }
