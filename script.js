@@ -53,7 +53,7 @@ Vue.component("selectmenu", {
   <tr v-if="tmp.diff===0">
   <td v-for="d in 5" style="padding:0px">
     <table>
-      <div class="unlocked" v-if="isunlocked(1, d, tmp.diff)">
+      <div class="unlocked" v-if="isunlocked(d, tmp.diff)">
       <tr><td colspan="4" style='vertical-align: middle'>Chapter {{d}}</td></tr>
       <tr v-for="a in 3">
         <td v-for="b in 4" 
@@ -76,7 +76,7 @@ Vue.component("selectmenu", {
   <tr v-if="tmp.diff===1">
   <td v-for="d in 5" style="padding:0px">
   <table>
-    <div class="unlocked" v-if="isunlocked(1, d, tmp.diff)">
+    <div class="unlocked" v-if="isunlocked(d, tmp.diff)">
     <tr><td colspan="4" style='vertical-align: middle'>Chapter {{d+5}}</td></tr>
     <tr v-for="a in 3">
       <td v-for="b in 4" 
@@ -359,10 +359,10 @@ function getcellid(a,b,c=true){ //c means that it's id of a cell, !c means that 
     str=str.concat(b)
     return str
 }
-function isunlocked(c, d, diff){//for chapters in menu
-  if ((c*3+d-3)===1&&diff==0) return true
-  let chapterlevels = Object.entries(level).filter((a)=>a[0]>((c*3+d-3)*12-24)&&a[0]<=((c*3+d-3)*12-12))
-  if (tmp.diff===1){chapterlevels = Object.entries(level).filter((a)=>a[0]>((c*3+d-3)*12+988)&&a<=((c*3+d-3)*12+1000))}
+function isunlocked(d, diff){//for chapters in menu
+  if ((d)===1&&diff==0) return true
+  let chapterlevels = Object.entries(level).filter((a)=>a[0]>((d)*12-24)&&a[0]<=((d)*12-12))
+  if (tmp.diff===1){chapterlevels = Object.entries(level).filter((a)=>a[0]>((d)*12+988)&&a<=((d)*12+1000))}
   if(tmp.diff===1&&d==1){chapterlevels = Object.entries(level).filter((a)=>a[0]>0&&a[0]<=60)}
   let beaten = 0 
   for (let i=0; i<player.levelbeaten.length; i++){
