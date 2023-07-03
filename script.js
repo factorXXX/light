@@ -409,6 +409,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
       let build = buildDetail[0];
       if (build === "sun" && win && !tmp.b){
         tmp.b = true;
+        if(tmp.level===60)startTutorial(false, 5, true)
         new Audio(music("win")).play();
         setTimeout(function () {
           if (tmp.level !== "custom") {
