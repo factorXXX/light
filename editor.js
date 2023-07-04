@@ -46,6 +46,10 @@
     ['bomb','red'],
     ['bomb','blue'],
     ['bomb','yellow'],
+    ['moving','down'],
+    ['moving','left'],
+    ['moving','up'],
+    ['moving','right'],
   ]
   tmp.editor.brush = brushes[0]
   
@@ -179,6 +183,20 @@
       }
       else if(current[1]==='down'){
         return ('light'+' '+current[2])
+      }
+    }
+    else if (current[0]==='moving'){
+      if(current[1]==='right'){
+        return ('moving'+' '+'trans1'+' '+current[2])
+      }
+      else if(current[1]==='up'){
+        return ('moving'+' '+'trans2'+' '+current[2])
+      }
+      else if(current[1]==='left'){
+        return ('moving'+' '+'trans3'+' '+current[2])
+      }
+      else if(current[1]==='down'){
+        return ('moving'+' '+current[2])
       }
     }
     else if (['store', 'bomb'].includes(current[0])){

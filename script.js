@@ -315,6 +315,20 @@ function getclass(r,c,h=true){ //!h means it's a class of a cell rather than a d
       return ('light'+' '+current[2])
     }
   }
+  else if (current[0]==='moving'){
+    if(current[1]==='right'){
+      return ('moving'+' '+'trans1'+' '+current[2])
+    }
+    else if(current[1]==='up'){
+      return ('moving'+' '+'trans2'+' '+current[2])
+    }
+    else if(current[1]==='left'){
+      return ('moving'+' '+'trans3'+' '+current[2])
+    }
+    else if(current[1]==='down'){
+      return ('moving'+' '+current[2])
+    }
+  }
   else {
     return current[0]
   }
