@@ -16,7 +16,6 @@ var tmp = {
   store: "",
   where:[],
   where1:[],
-  where3:[],
   diff:0,
   editor: {
     fromEditor: false,
@@ -278,27 +277,24 @@ function calculation2() {
         tmp.halflaserwhere[i].push([])
       }
     }
-  //calcolor()
+
   light(false, true);
   calcolor();
   light(false, false, true);
-  //light(true);
-  //calcolor();
-  //light()
   light(true, false, true, true);
-  dedup()
 }
-function dedup(){ //if you have red/green and yellow edges overlaped it can cause yellow to not take priority
-  for (let i = 0; i<tmp.where3.length; i++){
-    if (tmp.where3[i][3]==='yellow'){
-      let cur = tmp.where3[i]
-      if(tmp.where3.filter((e) => (e[0] === cur[0] && e[1] === cur[1] && e[2]===cur[2] && e[3]!==cur[3] && e[3]!=='white')).length!==0){  
-      tmp.where3.splice(tmp.where3.findIndex((e) => (e[0] === cur[0] && e[1] === cur[1] && e[2]===cur[2] && e[3]!==cur[3])),1)
+function pushingEdges(rev=false,lo1,lo2,pos,color){
+    tmp.halflaserwhere[lo1][lo2].push([(rev?reverse(pos):pos),color])
+
+    if(tmp.halflaserwhere[lo1][lo2].length>=2){
+      for(let i=0;i<(tmp.halflaserwhere[lo1][lo2].length-1);i++){
+         if(tmp.halflaserwhere[lo1][lo2][i][1]=="yellow"&&tmp.halflaserwhere[lo1][lo2][tmp.halflaserwhere[lo1][lo2].length-1][1]!="white"){
+         tmp.halflaserwhere[lo1][lo2].pop()
+         }
       }
-  }}
-  
- // tmp.where3.forEach(laserposition=>tmp.halflaserwhere[laserposition[0]][laserposition[1]].push([laserposition[2],laserposition[3]]))
+    }
 }
+
 function getclass(r,c,h=true){ //!h means it's a class of a cell rather than a div inside of it
   let current = JSON.parse(JSON.stringify(tmp.building[r][c]))
   if(h){
@@ -354,7 +350,7 @@ function getclass(r,c,h=true){ //!h means it's a class of a cell rather than a d
     if(['void','horpass','verpass'].includes(current[0])){return current[0]}
   }
 }
-function getlaserclass(r,c,l,h=true){ //h means that it's an edge from tmp.where3
+function getlaserclass(r,c,l,h=true){
   let str = '' 
   if(h){
   let current = tmp.laserwhere[r][c][l]
@@ -424,7 +420,6 @@ function getClassOfMenuCell(levelNum) {
 }
 function light(win = false, withlight = false, withM = false, final=false) {
   let lightL = [];
-  if(final)tmp.where3 = []
   for (let i = 0; i < tmp.light.length; i++) {
     let pos = tmp.building[tmp.light[i][0]][tmp.light[i][1]][1];
     let color = tmp.color[i];
@@ -488,8 +483,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
       if (build === "light" && try1 !== 1) {
         if (withlight) lightL.push([...locat, pos, color]);
         if(final){
-          tmp.where3.push([...locat, reverse(pos), color,'half'])
-          tmp.halflaserwhere[locat[0]][locat[1]].push([reverse(pos),color])
+          pushingEdges(true,locat[0],locat[1],pos,color)
         }
         break;
       }
@@ -510,8 +504,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
         ].includes(build)
       ){ 
         if(final){
-          tmp.where3.push([...locat, reverse(pos), color,'half'])
-          tmp.halflaserwhere[locat[0]][locat[1]].push([reverse(pos),color])
+          pushingEdges(true,locat[0],locat[1],pos,color)
         }
         break}
         if(build==='horpass'){
@@ -520,8 +513,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
           if (pos==='right'||pos==='left')break}
         else if (build==='store') {
           if(final){
-            tmp.where3.push([...locat, reverse(pos), color,'half'])
-            tmp.halflaserwhere[locat[0]][locat[1]].push([reverse(pos),color])
+            pushingEdges(true,locat[0],locat[1],pos,color)
           }
 
           if (buildDetail[1] !== null) {
@@ -538,42 +530,36 @@ function light(win = false, withlight = false, withM = false, final=false) {
       else if (colors.includes('blue')&&  colors.includes('red'))   color="purple"}
           }
           if(final){
-            tmp.where3.push([...locat, pos, color,'half'])
-            tmp.halflaserwhere[locat[0]][locat[1]].push([pos,color])
+            pushingEdges(false,locat[0],locat[1],pos,color)
           }
         }
       if (build === "redpass" && color !== "red") {
         if(final){
-        tmp.where3.push([...locat, reverse(pos), color,'half'])
-        tmp.halflaserwhere[locat[0]][locat[1]].push([reverse(pos),color])
+          pushingEdges(true,locat[0],locat[1],pos,color)
       }
       break;
     };
       if (build === "greenpass" && color !== "green") {
         if(final){
-        tmp.where3.push([...locat, reverse(pos), color,'half'])
-        tmp.halflaserwhere[locat[0]][locat[1]].push([reverse(pos),color])
+          pushingEdges(true,locat[0],locat[1],pos,color)
       }
       break;
     };
       if (build === "yellowpass" && color !== "yellow") {
         if(final){
-        tmp.where3.push([...locat, reverse(pos), color,'half'])
-        tmp.halflaserwhere[locat[0]][locat[1]].push([reverse(pos),color])
+          pushingEdges(true,locat[0],locat[1],pos,color)
       }
       break;
     };
       if (build === "bluepass" && color !== "blue") {
         if(final){
-        tmp.where3.push([...locat, reverse(pos), color,'half'])
-        tmp.halflaserwhere[locat[0]][locat[1]].push([reverse(pos),color])
+          pushingEdges(true,locat[0],locat[1],pos,color)
       }
       break;
     };
       if (JSON.stringify(tmp.location) === JSON.stringify(locat)) {
         if(final){
-        tmp.where3.push([...locat, reverse(pos), color,'half'])
-        tmp.halflaserwhere[locat[0]][locat[1]].push([reverse(pos),color])
+          pushingEdges(true,locat[0],locat[1],pos,color)
       }
       break;
     };
@@ -584,8 +570,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
       lightL.push([...locat, pos, color]);
       if (["light",  "store"].includes(build)){
         if(final){
-          tmp.where3.push([...locat, pos, color,'half'])
-          tmp.halflaserwhere[locat[0]][locat[1]].push([pos,color])
+          pushingEdges(false,locat[0],locat[1],pos,color)
         }
        lightL.pop();
       }
@@ -594,22 +579,19 @@ function light(win = false, withlight = false, withM = false, final=false) {
         let posamt = buildDetail[1].split("-");
 
         if (!posamt.includes(pos)) {
-          tmp.where3.push([...locat, reverse(pos), color,'half'])
-          tmp.halflaserwhere[locat[0]][locat[1]].push([reverse(pos),color])
+          pushingEdges(true,locat[0],locat[1],pos,color)
           if(withM)lightL.pop();
           break;
         }
         if (pos === posamt[0]) pos = reverse(posamt[1]);
         else pos = reverse(posamt[0]);
       } else if (build === "portal") {
-        if(final){tmp.where3.push([...locat, reverse(pos), color,'half'])
-        tmp.halflaserwhere[locat[0]][locat[1]].push([reverse(pos),color])
+        if(final){pushingEdges(true,locat[0],locat[1],pos,color)
       }
         lightL.pop();
         locat = [...buildDetail[1]];
         if(final && !(JSON.stringify(tmp.location) === JSON.stringify(locat))){
-          tmp.where3.push([...locat, pos, color,'half'])
-          tmp.halflaserwhere[locat[0]][locat[1]].push([pos,color])
+          pushingEdges(false,locat[0],locat[1],pos)
         }
         if (JSON.stringify(tmp.location) === JSON.stringify(locat)) {
           break;
