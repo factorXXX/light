@@ -185,8 +185,8 @@ Vue.component("options", {
     <td style="width=200px"></td>
       <td style="background-color: #5865F2" @click="document.location.href = 'https://discord.gg/nXgBxd7PyS'" class="opts">Discord</td>
       <td style="background-color: #b44949" @click="hardReset()"  class="opts">Hard Reset</td>
-      <td v-if="tmp.galaxy.ongalaxy && tmp.galaxy.loggedin" style="background-color: #090417" @click="player.cloudsaving=!player.cloudsaving"  class="opts">Galaxy Cloud Saving: {{player.cloudsaving?"ON":"OFF"}}</td>
-      <td v-if="tmp.galaxy.ongalaxy && !tmp.galaxy.loggedin"style="background-color: #090417" @click="player.cloudsaving=!player.cloudsaving"  class="opts">Login to Galaxy</td>
+      <td v-if="tmp.galaxy.ongalaxy && tmp.galaxy.loggedin" style="background-color: #090417" @click="player.cloudsaving=!player.cloudsaving;save()"  class="opts">Galaxy Cloud Saving: {{player.cloudsaving?"ON":"OFF"}}</td>
+      <td v-if="tmp.galaxy.ongalaxy && !tmp.galaxy.loggedin"style="background-color: #090417" @click="player.cloudsaving=!player.cloudsaving;save()"  class="opts">Login to Galaxy</td>
       <td style="width=200px"></td>
     </tr>
     <tr>
