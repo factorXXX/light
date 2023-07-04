@@ -103,7 +103,7 @@ Vue.component("selectmenu", {
     <td colspan="1" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;"
     @click="tmp.page=5"
     >Tutorials</td>
-    <td colspan="1" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid"
+    <td style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid"
     @click="tmp.page=3"
     >Options</td><td colspan="2" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid"
     @click="tmp.page=4"
