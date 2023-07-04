@@ -86,7 +86,10 @@ window.onload = () => {
         player.galaxy.cloudsaving=true
       }
   }}});
-
+  window.top.postMessage({
+    action: "load",
+    slot: 0,
+  }, "https://galaxy.click");
   //removing changed levels from completed/beaten
   let levelsArr = Object.entries(level);
   for(let i=0; i< player.perfectbeaten.length; i++){
