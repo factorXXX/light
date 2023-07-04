@@ -58,9 +58,18 @@ Vue.component("tutorials_tab", {
     `,
 });
 
-function startTutorial(forced=false, type=0){
+function startTutorial(forced=false, type=0, end=false){
+  if (end){
+    tmp.tutorial.type=5
+    tmp.tutorial.title="You Won!"
+    tmp.tutorial.images=["./images/tutorials/thanks.jpg"]
+    tmp.tutorial.text=[
+      ""]
+    tmp.tutorial.stage=0
+    tmp.modalvisible=true
+  }
   //basic tutorial on lvl 1-1
-  if ((tmp.level===1||type===1)&&(!player.tutorial[0]||forced===true)){
+  else if ((tmp.level===1||type===1)&&(!player.tutorial[0]||forced===true)){
     tmp.tutorial.type=1
     tmp.tutorial.title="Basics"
     tmp.tutorial.images=["./images/tutorials/1-1.png","./images/tutorials/1-2.png"]
@@ -71,7 +80,7 @@ function startTutorial(forced=false, type=0){
     tmp.modalvisible=true
   }
   //store block explanation on lvl 3-9
-  if ((tmp.level===33||type===2)&&(!player.tutorial[1]||forced===true)){
+  else if ((tmp.level===33||type===2)&&(!player.tutorial[1]||forced===true)){
     tmp.tutorial.type=2
     tmp.tutorial.title="Storage block"
     tmp.tutorial.images=["./images/tutorials/2-1.png","./images/tutorials/2-2.png","./images/tutorials/2-3.png"]
@@ -83,7 +92,7 @@ function startTutorial(forced=false, type=0){
     tmp.modalvisible=true
   }
   //loop explanation on lvl 5-7
-  if ((tmp.level===55||type===3)&&(!player.tutorial[2]||forced===true)){
+  else if ((tmp.level===55||type===3)&&(!player.tutorial[2]||forced===true)){
     tmp.tutorial.type=3
     tmp.tutorial.title="Infinite loop and white"
     tmp.tutorial.images=["./images/tutorials/3-1.png","./images/tutorials/3-2.png"]
@@ -93,7 +102,7 @@ function startTutorial(forced=false, type=0){
       tmp.tutorial.stage=0
     tmp.modalvisible=true
   }
-  if ((tmp.level===13||type===4)&&(!player.tutorial[3]||forced===true)){
+  else if ((tmp.level===13||type===4)&&(!player.tutorial[3]||forced===true)){
     tmp.tutorial.type=4
     tmp.tutorial.title="Portals"
     tmp.tutorial.images=["./images/tutorials/4-1.png"]

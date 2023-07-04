@@ -276,7 +276,7 @@ function dedup(){ //if you have red/green and yellow edges overlaped it can caus
   for (let i = 0; i<tmp.where3.length; i++){
     if (tmp.where3[i][3]==='yellow'){
       let cur = tmp.where3[i]
-      if(tmp.where3.filter((e) => (e[0] === cur[0] && e[1] === cur[1] && e[2]===cur[2] && e[3]!==cur[3])).length!==0){  
+      if(tmp.where3.filter((e) => (e[0] === cur[0] && e[1] === cur[1] && e[2]===cur[2] && e[3]!==cur[3] && e[3]!=='white')).length!==0){  
       tmp.where3.splice(tmp.where3.findIndex((e) => (e[0] === cur[0] && e[1] === cur[1] && e[2]===cur[2] && e[3]!==cur[3])),1)
       }
   }}
@@ -409,6 +409,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
       let build = buildDetail[0];
       if (build === "sun" && win && !tmp.b){
         tmp.b = true;
+        if(tmp.level===60)startTutorial(false, 5, true)
         new Audio(music("win")).play();
         setTimeout(function () {
           if (tmp.level !== "custom") {
