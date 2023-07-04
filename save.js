@@ -18,6 +18,25 @@ var player={
     lastsavetime:0,
   }
 }
+const baseplayer={
+  k:null, //on screen controls
+  levelbeaten:[],
+  perfectbeaten:[],
+  //version:1,
+  //first lvl, store block and infinite loop
+  tutorial:[false,false,false,false,false],
+  editor:{
+    location:[0,0],
+    data: [
+      [[null], [null]],
+      [[null], [null]],
+    ]
+  },
+  galaxy:{
+    cloudsaving:false,
+    lastsavetime:0,
+  }
+}
 function save(loading=false) {
   if(!loading)player.galaxy.lastsavetime=Date.now()
   localStorage.setItem('player', JSON.stringify(player));
@@ -42,13 +61,19 @@ function load() {
   
 }
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+let t   = undefined
+let hrs = undefined
+let min = undefined
+let day = undefined
+let mon = undefined
+let yer = undefined
 function getTimestr(x){
-  let t = new Date(x)
-  let hrs = t.getHours()
-  let min = t.getMinutes()
-  let day = t.getDate()
-  let mon = months[t.getMonth()]
-  let yer = t.getFullYear()
+  t = new Date(x)
+  hrs = t.getHours()
+  min = t.getMinutes()
+  day = t.getDate()
+  mon = months[t.getMonth()]
+  yer = t.getFullYear()
   return(((hrs<10)?"0":"")+hrs+":"+((min<10)?"0":"")+min+" "+mon+" "+day+", "+yer)
 }
 
@@ -136,6 +161,8 @@ function hardReset(){
   if(confirm("Are you sure? It will reset EVERYTHING and you will not get any reward!")){
 
     localStorage.removeItem('player');
+    player=JSON.parse(JSON.stringify(baseplayer));
+    save()
     window.location.reload();
   }
 }
