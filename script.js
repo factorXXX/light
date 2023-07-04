@@ -183,14 +183,14 @@ Vue.component("options", {
     </tr>
     <tr>
     <td style="width=200px"></td>
-      <td style="background-color: #5865F2" @click="document.location.href = 'https://discord.gg/MXyXdXrC5H'" class="opts">Discord</td>
+      <td style="background-color: #5865F2" @click="document.location.href = 'https://discord.gg/nXgBxd7PyS'" class="opts">Discord</td>
       <td style="background-color: #b44949" @click="hardReset()"  class="opts">Hard Reset</td>
       <td v-if="tmp.galaxy.ongalaxy && tmp.galaxy.loggedin" style="background-color: #090417" @click="player.cloudsaving=!player.cloudsaving"  class="opts">Galaxy Cloud Saving: {{player.cloudsaving?"ON":"OFF"}}</td>
       <td v-if="tmp.galaxy.ongalaxy && !tmp.galaxy.loggedin"style="background-color: #090417" @click="player.cloudsaving=!player.cloudsaving"  class="opts">Login to Galaxy</td>
       <td style="width=200px"></td>
     </tr>
     <tr>
-    <td colspan=6><br><br><br><br><br><br>Coder: 3^3=7 (Discord: 3pow3equals7) and wrab (Discord: wrab)<br><br>Level Creator: 3^3=7, wrab, yyyy7089 (Discord: yyyy7089) and Onionoi (Discord: onionboii)
+    <td colspan=6><br><br><br><br><br><br>Coder: 3^3=7 (Discord: 3^3=7#4019) and wrab (Discord: wrab)<br><br>Level Creator: 3^3=7, wrab, yyyy7089 (Discord: yyyy7089) and Onionoi (Discord: onionboii)
       </td>
     </tr>
     </table>

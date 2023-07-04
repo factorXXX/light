@@ -320,11 +320,6 @@ function reset(){
     index:59,
     perfect:257,
   },
-  1001: {
-    string:`N4IgNg9gxghgLgSwgOxALgNoEYA0BmAXRxABN4Z0MqQAjCADxCI1oaZw2QFcwxnve/Hnw4CRnYc1aMpdGcxZz2EwaMlrVLMAgDmACzghiJCAHdUxHQCcApjdRDNYx+OlMFzja6Wy2L3zIcbv5eBB7qKt5+oUE+MYrRkf7hThGeCYFJsYnpuZIp4unB8cVZGcp5ggUh5QEVEaWllXwKTWntmiAAzlwO8c11YRy12ZkD/R1RmcFhAL5AA=`,
-    perfect:25,
-    index: 1001
-  },
   'custom': {
     string:tmp.store,
     perfect:NaN,
