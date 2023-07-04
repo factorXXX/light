@@ -60,6 +60,7 @@ function load() {
   
   
 }
+/*this was used to display save timestamp during cloud loading but it didn't work
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 let t   = undefined
 let hrs = undefined
@@ -76,7 +77,7 @@ function getTimestr(x){
   yer = t.getFullYear()
   return(((hrs<10)?"0":"")+hrs+":"+((min<10)?"0":"")+min+" "+mon+" "+day+", "+yer)
 }
-
+*/
 window.onload = () => {
   load()
   //check if there is a cloud save and if it's newer
@@ -93,8 +94,8 @@ window.onload = () => {
           //confirm loading if there is a save
           else if(confirm(
           "You have a newer save in Galaxy Cloud™. Do you want to use a save from Galaxy Cloud™?"+
-          "\nCloud save: "+e.data.label +", made on "+ getTimestr(incloud.lastsavetime) +
-          "\nLocal save: "+ getlabel() +", made on "+ getTimestr(player.lastsavetime)
+          "\nCloud save: "+e.data.label +/*", made on "+ getTimestr(incloud.lastsavetime) +*/
+          "\nLocal save: "+ getlabel() /*+", made on "+ getTimestr(player.lastsavetime)*/
           )){
             importSave(e.data.content)
           }
