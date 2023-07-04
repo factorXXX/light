@@ -16,7 +16,6 @@ var tmp = {
   store: "",
   where:[],
   where1:[],
-  where2:[],
   where3:[],
   diff:0,
   editor: {
@@ -36,7 +35,8 @@ var tmp = {
     text:[],
     title:"",
   },
-  
+  laserwhere:[],
+  halflaserwhere:[]
   
 };
 function music(x) {
@@ -145,7 +145,7 @@ Vue.component("machine", {
       [getclass(a-1, b-1)]:true
     }"><div></div></div>
     <!--laser and 90 deg leser-->
-    <div v-for="layer in tmp.where2.filter((element) => element[0] === a-1 && element[1] === b-1).length" 
+    <div v-for="layer in tmp.laserwhere[a-1][b-1].length" 
     :class="{
       [getlaserclass(a-1,b-1,layer-1)]:true
       }"><div></div></div>
@@ -262,6 +262,14 @@ Vue.component("level", {
     `,
 });
 function calculation2() {
+  
+    tmp.laserwhere=[]
+    for (let i = 0; i < tmp.area[0]; i++) {
+      tmp.laserwhere.push([])
+      for (let j = 0; j < tmp.area[1]; j++) {
+        tmp.laserwhere[i].push([])
+      }
+    }
   //calcolor()
   light(false, true);
   calcolor();
@@ -339,20 +347,20 @@ function getclass(r,c,h=true){ //!h means it's a class of a cell rather than a d
 function getlaserclass(r,c,l,h=true){ //h means that it's an edge from tmp.where3
   let str = '' 
   if(h){
-  let current = tmp.where2.filter((element) => element[0] === r && element[1] === c)[l]
+  let current = tmp.laserwhere[r][c][l]
   let build = tmp.building[r][c]
   if (build[0]==='mirror'){
-    str=str.concat(current[3])
+    str=str.concat(current[1])
     str=str.concat("Laser laser90")
     if (build[1]==='left-down')str=str.concat(" trans1")
     else if (build[1]==='right-down')str=str.concat(" trans2")
     else if (build[1]==='right-up')str=str.concat(" trans3")
   } else {
-    str=str.concat(current[3])
+    str=str.concat(current[1])
     str=str.concat("Laser laser")
-  if (current[2]==='right')str=str.concat(" trans1")
-  else if (current[2]==='up')str=str.concat(" trans2")
-  else if (current[2]==='left')str=str.concat(" trans3")
+  if (current[0]==='right')str=str.concat(" trans1")
+  else if (current[0]==='up')str=str.concat(" trans2")
+  else if (current[0]==='left')str=str.concat(" trans3")
   }
   }else{
     let current = tmp.where3.filter((element) => element[0] === r && element[1] === c)[l]
@@ -572,7 +580,9 @@ function light(win = false, withlight = false, withM = false, final=false) {
   if (win) return false;
 
   if(withlight)return tmp.where1=lightL;
-  else if(withM)return tmp.where2=lightL;
+  else if(withM){
+    return lightL.forEach(laserposition=>tmp.laserwhere[laserposition[0]][laserposition[1]].push([laserposition[2],laserposition[3]]))
+  };
 }
 function calcolor() {
   let b = [];
@@ -827,7 +837,13 @@ function importL(imported = undefined) {
       if (tmp.building[i][j][0] === "light") light.push([i, j]);
     }
   }
- 
+  tmp.laserwhere=[]
+  for (let i = 0; i < tmp.area[0]; i++) {
+    tmp.laserwhere.push([])
+    for (let j = 0; j < tmp.area[1]; j++) {
+      tmp.laserwhere[i].push([])
+    }
+  }
  tmp.light = light;
 
   tmp.page = 1;
