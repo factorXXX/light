@@ -185,8 +185,8 @@ Vue.component("options", {
     <td style="width=200px"></td>
       <td style="background-color: #5865F2" @click="document.location.href = 'https://discord.gg/nXgBxd7PyS'" class="opts">Discord</td>
       <td style="background-color: #b44949" @click="hardReset()"  class="opts">Hard Reset</td>
-      <td v-if="tmp.galaxy.ongalaxy && tmp.galaxy.loggedin" style="background-color: #090417" @click="player.cloudsaving=!player.cloudsaving;save()"  class="opts">Galaxy Cloud Saving: {{player.cloudsaving?"ON":"OFF"}}</td>
-      <td v-if="tmp.galaxy.ongalaxy && !tmp.galaxy.loggedin"style="background-color: #090417" @click="player.cloudsaving=!player.cloudsaving;save()"  class="opts">Login to Galaxy</td>
+      <td v-if="tmp.galaxy.ongalaxy && tmp.galaxy.loggedin" style="background-color: #090417" @click="player.cloudsaving=!player.cloudsaving"  class="opts">Galaxy Cloud Saving: {{player.cloudsaving?"ON":"OFF"}}</td>
+      <td v-if="tmp.galaxy.ongalaxy && !tmp.galaxy.loggedin"style="background-color: #090417" class="opts">Login to Galaxy</td>
       <td style="width=200px"></td>
     </tr>
     <tr>
@@ -418,6 +418,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
                 if(tmp.previous.length<=level[tmp.level].perfect&&!player.perfectbeaten.includes(level[tmp.level].index)){
                   player.perfectbeaten.push(level[tmp.level].index);
                 }
+              save()
             if (tmp.level%12===0)tmp.page = 2;
             else {tmp.level++;reset()};
           }
