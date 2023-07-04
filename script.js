@@ -14,7 +14,6 @@ var tmp = {
   b: false,
   page: 2,
   store: "",
-  where:[],
   where1:[],
   diff:0,
   editor: {
