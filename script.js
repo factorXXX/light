@@ -270,6 +270,14 @@ function calculation2() {
         tmp.laserwhere[i].push([])
       }
     }
+
+    tmp.halflaserwhere=[]
+    for (let i = 0; i < tmp.area[0]; i++) {
+      tmp.halflaserwhere.push([])
+      for (let j = 0; j < tmp.area[1]; j++) {
+        tmp.halflaserwhere[i].push([])
+      }
+    }
   //calcolor()
   light(false, true);
   calcolor();
@@ -288,6 +296,8 @@ function dedup(){ //if you have red/green and yellow edges overlaped it can caus
       tmp.where3.splice(tmp.where3.findIndex((e) => (e[0] === cur[0] && e[1] === cur[1] && e[2]===cur[2] && e[3]!==cur[3])),1)
       }
   }}
+  
+ // tmp.where3.forEach(laserposition=>tmp.halflaserwhere[laserposition[0]][laserposition[1]].push([laserposition[2],laserposition[3]]))
 }
 function getclass(r,c,h=true){ //!h means it's a class of a cell rather than a div inside of it
   let current = JSON.parse(JSON.stringify(tmp.building[r][c]))
