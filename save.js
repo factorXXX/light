@@ -58,7 +58,8 @@ window.onload = () => {
   window.addEventListener("message", e => {
     if (e.origin === "https://galaxy.click") {
       tmp.galaxy.ongalaxy=true
-      if(e.data.content!==null){
+      if(e.data){
+      if(e.data.content && e.data.content!==null){
         tmp.galaxy.loggedin=true
         const incloud = JSON.parse(LZString.decompressFromBase64(e.data.content))
         if(incloud.galaxy.lastsavetime > player.galaxy.lastsavetime){
@@ -84,8 +85,7 @@ window.onload = () => {
         tmp.galaxy.loggedin=true
         player.galaxy.cloudsaving=true
       }
-    }
-  });
+  }}});
 
   //removing changed levels from completed/beaten
   let levelsArr = Object.entries(level);
