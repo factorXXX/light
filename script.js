@@ -262,22 +262,21 @@ Vue.component("level", {
     `,
 });
 function calculation2() {
-  
-    tmp.laserwhere=[]
-    for (let i = 0; i < tmp.area[0]; i++) {
-      tmp.laserwhere.push([])
-      for (let j = 0; j < tmp.area[1]; j++) {
-        tmp.laserwhere[i].push([])
-      }
-    }
 
-    tmp.halflaserwhere=[]
-    for (let i = 0; i < tmp.area[0]; i++) {
-      tmp.halflaserwhere.push([])
-      for (let j = 0; j < tmp.area[1]; j++) {
-        tmp.halflaserwhere[i].push([])
-      }
+   tmp.laserwhere=[]
+  for (let i = 0; i < tmp.area[0]; i++) {
+    tmp.laserwhere.push([])
+    for (let j = 0; j < tmp.area[1]; j++) {
+      tmp.laserwhere[i].push([])
     }
+  }
+  tmp.halflaserwhere=[]
+  for (let i = 0; i < tmp.area[0]; i++) {
+    tmp.halflaserwhere.push([])
+    for (let j = 0; j < tmp.area[1]; j++) {
+      tmp.halflaserwhere[i].push([])
+    }
+  }
 
   light(false, true);
   calcolor();
@@ -718,7 +717,7 @@ function doSomething(a,b){
     Vue.set(tmp.location, 1, Math.max(locat[1] - 1, 0));
   else if ((a === "KeyD" || a === "ArrowRight")&& tmp.page===1 && !tmp.b)
     Vue.set(tmp.location, 1, Math.min(tmp.area[1] - 1, locat[1] + 1));
-    if (["boxwall","redpass","yellowpass","greenpass","light","badboxwall","sun","void","horpass","verpass"].includes(tmp.building[tmp.location[0]][tmp.location[1]][0])){
+    if (["boxwall","redpass","yellowpass","greenpass","light","badboxwall","sun","void","horpass","verpass",'moving'].includes(tmp.building[tmp.location[0]][tmp.location[1]][0])){
       tmp.location[0] = locat[0]
       tmp.location[1] = locat[1]
     };
@@ -924,7 +923,6 @@ function importL(imported = undefined) {
       tmp.laserwhere[i].push([])
     }
   }
-
   tmp.halflaserwhere=[]
   for (let i = 0; i < tmp.area[0]; i++) {
     tmp.halflaserwhere.push([])
