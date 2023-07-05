@@ -429,6 +429,10 @@ td.void{
   z-index: 21;
   position: absolute;
 }
+#player {
+  margin-left: 8.5px;
+  margin-top: 5px;
+}
 .player::after{
   animation: player_legs 0.8s infinite linear;
   content: "";
