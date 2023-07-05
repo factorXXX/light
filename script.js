@@ -89,7 +89,7 @@ Vue.component("selectmenu", {
     </tr>
     </div>
     <div v-else class="locked">
-    Req<br><br>{{d>1?'9 Levels beaten in Chapter '+(d+4):'57 levels beaten in World 1'}}
+      Req<br><br>{{d>1?'9 Levels beaten in Chapter '+(d+4):'57 levels beaten in World 1'}}
     </div>
   </table>
   </td>
@@ -225,11 +225,12 @@ Vue.component("level", {
     </td> 
 
     <td style="text-align: right; width:180px"><br>
-    <button :class="{portalButton: true, canportal: true}" @click="reset()">
+    <button :class="{portalButton: true, canportal: true}" @click="tmp.b=false; reset()">
         Reset
     </button><br><br>
     <button :class="{portalButton: true, canportal: true}" 
     @click="{
+      tmp.b=false;
       if(tmp.editor.fromEditor){
         tmp.page=4 
         tmp.editor.fromEditor=false
@@ -473,20 +474,25 @@ function light(win = false, withlight = false, withM = false, final=false) {
         tmp.b = true;
         if(tmp.level===60)startTutorial(false, 5, true)
         new Audio(music("win")).play();
+        //give completion
+        if (tmp.level !== "custom") {
+          if (!player.levelbeaten.includes(level[tmp.level].index)) 
+            player.levelbeaten.push(level[tmp.level].index);
+        //give perfect completion
+          if(tmp.previous.length<=level[tmp.level].perfect&&!player.perfectbeaten.includes(level[tmp.level].index)) 
+            player.perfectbeaten.push(level[tmp.level].index); 
+            save()
+        }
         setTimeout(function () {
-          if (tmp.level !== "custom") {
-            if (!player.levelbeaten.includes(level[tmp.level].index))
-              player.levelbeaten.push(level[tmp.level].index);
-                if(tmp.previous.length<=level[tmp.level].perfect&&!player.perfectbeaten.includes(level[tmp.level].index)){
-                  player.perfectbeaten.push(level[tmp.level].index);
-                }
-              save()
+          if(tmp.b){
+            tmp.previous = [];
+            if (tmp.level !== "custom") {
             if (tmp.level%12===0)tmp.page = 2;
-            else {tmp.level++;reset()};
+            else {tmp.level++};
+            }
+          reset()
           }
-          else reset()
           tmp.b = false;
-          tmp.previous = [];
         }, 1000);
       };
       if (!withlight) {

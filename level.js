@@ -1,4 +1,6 @@
 function reset(){
+    tmp.previous = [];
+    tmp.b=false
     if(!level[tmp.level]){
       tmp.page=2
       return 
