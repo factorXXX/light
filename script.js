@@ -66,7 +66,7 @@ Vue.component("selectmenu", {
       </tr>
       </div>
       <div v-else class="locked">
-        Req<br><br>9 Levels beaten in Chapter {{d}} Normal Mode
+        Req<br><br>9 Levels beaten in Chapter {{d-1}} Normal Mode
       </div>
     </table>
  
