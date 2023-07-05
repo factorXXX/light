@@ -34,7 +34,9 @@ var tmp = {
     title:"",
   },
   laserwhere:[],
-  halflaserwhere:[]
+  halflaserwhere:[],
+  counterforTest:0
+
   
 };
 function music(x) {
@@ -295,6 +297,7 @@ function pushingEdges(rev=false,lo1,lo2,pos,color){
 }
 
 function getclass(r,c,h=true){ //!h means it's a class of a cell rather than a div inside of it
+  
   let current = JSON.parse(JSON.stringify(tmp.building[r][c]))
   if(h){
   if (['store', 'bomb'].includes(current[0])){
@@ -350,6 +353,7 @@ function getclass(r,c,h=true){ //!h means it's a class of a cell rather than a d
   }
 }
 function getlaserclass(r,c,l,h=true){
+  //tmp.counterforTest++
   let str = '' 
   if(h){
   let current = tmp.laserwhere[r][c][l]
@@ -418,6 +422,7 @@ function getClassOfMenuCell(levelNum) {
   return 'unbeaten'
 }
 function light(win = false, withlight = false, withM = false, final=false) {
+  
   let lightL = [];
   for (let i = 0; i < tmp.light.length; i++) {
     let pos = tmp.building[tmp.light[i][0]][tmp.light[i][1]][1];
