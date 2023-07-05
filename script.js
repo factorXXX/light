@@ -285,6 +285,8 @@ function calculation2() {
 }
 
 function moveMoving(){
+  tmp.previous[tmp.previous.length - 1].move = tmp.move;
+  
 let truemove=tmp.move
 tmp.move=[]
   for(let i=0;i<truemove.length;i++){
@@ -692,6 +694,7 @@ function doSomething(a,b){
     if (tmp.previous.length === 0) return;
     tmp.building = tmp.previous[tmp.previous.length - 1].building;
     tmp.location = tmp.previous[tmp.previous.length - 1].location;
+    tmp.move = tmp.previous[tmp.previous.length - 1].move;
     tmp.previous.pop();
     calculation2()
     return;
@@ -703,7 +706,6 @@ function doSomething(a,b){
   ) {
     enter();
     tmp.previous[tmp.previous.length - 1].location = locat;
-
     tmp.previous[tmp.previous.length - 1].building = JSON.parse(
       JSON.stringify(tmp.building))
   }
