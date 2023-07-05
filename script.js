@@ -130,6 +130,10 @@ function drawaline(a,b,destroy=false){
 Vue.component("machine", {
   template: `
     <table class="gamezone" >
+    <!--player-->
+    <div id="player" class="player"
+    ><div></div></div>
+    <!--rest of the table-->
     <tr v-for="a in tmp.area[0]">
     <td v-for="b in tmp.area[1]"
     :id="[getcellid(a-1, b-1)]"
@@ -138,8 +142,6 @@ Vue.component("machine", {
     :class="{
       [getclass(a-1, b-1, false)]:true
     }" >
-    <!--player-->
-    <div v-if="tmp.location[0]===a-1 && tmp.location[1]===b-1" class="player"><div></div></div>
     <!--buildings-->
     <div :class="{
       [getclass(a-1, b-1)]:true
@@ -277,7 +279,7 @@ function calculation2() {
       tmp.halflaserwhere[i].push([])
     }
   }
-
+  playermargin()
   light(false, true);
   calcolor();
   light(false, false, true);
@@ -909,6 +911,11 @@ function numToPos(x){
     case 3:
       return "left";
   }
+}
+function playermargin(){
+  let pla=document.getElementById("player")
+  pla.style.marginTop=(tmp.location[0]*70)+5+"px"
+  pla.style.marginLeft=(tmp.location[1]*70)+8.5+"px"
 }
 function importL(imported = undefined) {
   if (imported === undefined) imported = prompt("paste your save here");
