@@ -263,7 +263,6 @@ Vue.component("level", {
     `,
 });
 function calculation2() {
-
    tmp.laserwhere=[]
   for (let i = 0; i < tmp.area[0]; i++) {
     tmp.laserwhere.push([])
@@ -381,6 +380,7 @@ function getclass(r,c,h=true){ //!h means it's a class of a cell rather than a d
   }
   } else {
     if(['void','horpass','verpass'].includes(current[0])){return current[0]}
+    else return("")
   }
 }
 function getlaserclass(r,c,l,h=true){
