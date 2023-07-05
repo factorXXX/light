@@ -286,7 +286,7 @@ td div {
 .gamezone td div:nth-child(n+2){
   position: absolute;
 }
-.light, .sun, .rotate90, .rotate180, .rotate270, .mirror, .box, .boxwall, .bomb{
+.light, .sun, .rotate90, .rotate180, .rotate270, .mirror, .box, .boxwall, .bomb, .moving{
   z-index: 20 !important;
 }
 .rotate90 div{

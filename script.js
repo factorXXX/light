@@ -35,8 +35,8 @@ var tmp = {
   },
   laserwhere:[],
   halflaserwhere:[],
-  counterforTest:0
-
+  counterforTest:0,
+  move:[],
   
 };
 function music(x) {
@@ -283,6 +283,35 @@ function calculation2() {
   calcolor();
   light(false, false, true);
   light(true, false, true, true);
+}
+
+function moveMoving(){
+let truemove=tmp.move
+tmp.move=[]
+  for(let i=0;i<truemove.length;i++){
+        let bD=tmp.building[truemove[i][0]][truemove[i][1]]
+        if(bD[1]=='up'){
+          if((truemove[i][0]-1)<0){tmp.building[truemove[i][0]][truemove[i][1]][1]="down";tmp.move.push([truemove[i][0],truemove[i][1]])}
+          else if(tmp.building[truemove[i][0]-1][truemove[i][1]][0]!=null||((tmp.location[0]==truemove[i][0]-1)&&(tmp.location[1]==truemove[i][1]))){tmp.building[truemove[i][0]][truemove[i][1]][1]="down";tmp.move.push([truemove[i][0],truemove[i][1]])}
+          else {tmp.building[truemove[i][0]-1][truemove[i][1]]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0]-1,truemove[i][1]])}
+        }
+        else if(bD[1]=='down'){
+          if((truemove[i][0]+1)>=tmp.area[0]){tmp.building[truemove[i][0]][truemove[i][1]][1]="up";tmp.move.push([truemove[i][0],truemove[i][1]])}
+          else if(tmp.building[truemove[i][0]+1][truemove[i][1]][0]!=null||((tmp.location[0]==truemove[i][0]+1)&&(tmp.location[1]==truemove[i][1]))){tmp.building[truemove[i][0]][truemove[i][1]][1]="up";tmp.move.push([truemove[i][0],truemove[i][1]])}
+          else {tmp.building[truemove[i][0]+1][truemove[i][1]]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0]+1,truemove[i][1]])}
+        }
+        else if(bD[1]=='left'){
+          if((truemove[i][1]-1)<0){tmp.building[truemove[i][0]][truemove[i][1]][1]="right";tmp.move.push([truemove[i][0],truemove[i][1]])}
+          else if(tmp.building[truemove[i][0]][truemove[i][1]-1][0]!=null||((tmp.location[0]==truemove[i][0])&&(tmp.location[1]==truemove[i][1]-1))){tmp.building[truemove[i][0]][truemove[i][1]][1]="right";tmp.move.push([truemove[i][0],truemove[i][1]])}
+          else {tmp.building[truemove[i][0]][truemove[i][1]-1]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0],truemove[i][1]-1])}
+        }
+        else if(bD[1]=='right'){
+          if((truemove[i][1]+1)>=tmp.area[1]){tmp.building[truemove[i][0]][truemove[i][1]][1]="left";tmp.move.push([truemove[i][0],truemove[i][1]])}
+          else if(tmp.building[truemove[i][0]][truemove[i][1]+1][0]!=null||((tmp.location[0]==truemove[i][0])&&(tmp.location[1]==truemove[i][1]+1))){tmp.building[truemove[i][0]][truemove[i][1]][1]="left";tmp.move.push([truemove[i][0],truemove[i][1]])}
+          else {tmp.building[truemove[i][0]][truemove[i][1]+1]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0],truemove[i][1]+1])}
+        }
+  }
+  calculation2()
 }
 function pushingEdges(rev=false,lo1,lo2,pos,color){
     tmp.halflaserwhere[lo1][lo2].push([(rev?reverse(pos):pos),color])
@@ -760,8 +789,10 @@ function doSomething(a,b){
           }
         }
         tmp.building[locat[0] + pos[0]][locat[1] + pos[1]] = [null];
-        tmp.location = [locat[0] + pos[0], locat[1] + pos[1]];
-        return calculation2();
+        tmp.location = [locat[0] + pos[0], locat[1] + pos[1]];     
+          moveMoving()
+          calculation2()
+          return;
       }
       else if ((tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] !== null)&&buildtouch[0][0]+buildtouch[0][1]==="ro") {
         tmp.location = [locat[0], locat[1]];
@@ -804,7 +835,9 @@ else if((["mirror","light","rotate90","rotate180","rotate270"].includes(tmp.buil
 }
         tmp.building[locat[0] + pos[0]][locat[1] + pos[1]] = [null];
         tmp.location = [locat[0] + pos[0], locat[1] + pos[1]];
-        return calculation2();
+        moveMoving()
+          calculation2()
+          return;
       }
       else {
         if ((tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] !== null)&&buildtouch[0][0]+buildtouch[0][1]==="re") {
@@ -817,13 +850,16 @@ else if((["mirror","light","rotate90","rotate180","rotate270"].includes(tmp.buil
       tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2] =
         buildtouch;
       tmp.location = [locat[0] + pos[0], locat[1] + pos[1]];
+      moveMoving()
       calculation2()
       return;
     }
+    
     calculation2()
-    if (["portal", "badportal", "level"].includes(buildtouch[0])) return;
+    if (["portal", "badportal"].includes(buildtouch[0])) return moveMoving();
     tmp.location = [...locat];
   }
+  moveMoving()
   calculation2()
 }}
 
@@ -874,9 +910,11 @@ function importL(imported = undefined) {
   tmp.location = decomp.location;
   tmp.area = [tmp.building.length, tmp.building[0].length];
   let light = [];
+  let move = [];
   for (let i = 0; i < tmp.area[0]; i++) {
     for (let j = 0; j < tmp.area[1]; j++) {
       if (tmp.building[i][j][0] === "light") light.push([i, j]);
+      if (tmp.building[i][j][0] === "moving") move.push([i, j]);
     }
   }
   tmp.laserwhere=[]
@@ -895,7 +933,7 @@ function importL(imported = undefined) {
     }
   }
  tmp.light = light;
-
+ tmp.move = move;
   tmp.page = 1;
   tmp.level = "custom";
   tmp.store = imported;
