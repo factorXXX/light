@@ -321,6 +321,7 @@ function getclass(r,c,h=true){ //!h means it's a class of a cell rather than a d
   }
   } else {
     if(['void','horpass','verpass'].includes(current[0])){return current[0]}
+    else return("")
   }
 }
 function getlaserclass(r,c,l,h=true){ //h means that it's an edge from tmp.where3
@@ -425,10 +426,10 @@ function light(win = false, withlight = false, withM = false, final=false) {
           if(tmp.b){
             tmp.previous = [];
             if (tmp.level !== "custom") {
-            if (tmp.level%12===0)tmp.page = 2;
+            if (tmp.level%12===0){tmp.b=false; tmp.page = 2;}
             else {tmp.level++};
             }
-          reset()
+          if(tmp.b)reset()
           }
           tmp.b = false;
         }, 1000);
