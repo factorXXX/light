@@ -14,9 +14,10 @@ function reset(){
     let levelNumber = tmp.level
       importL(currentLevel.string)
       tmp.level = levelNumber
+    startMachine()
     calculation2()
     startTutorial()
-    }
+  }
   }
 
   const level = {

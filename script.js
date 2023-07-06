@@ -202,7 +202,7 @@ Vue.component("level", {
   template: `
         <table>
       <tr>
-        <td colspan="2"><machine></machine></td><br>
+ <!--       <td colspan="2"><machine></machine></td><br>-->
       </tr>
    <tr>
      <td style="height: 32px;">
@@ -279,7 +279,6 @@ function calculation2() {
       tmp.halflaserwhere[i].push([])
     }
   }
-  playermargin()
   light(false, true);
   calcolor();
   light(false, false, true);
@@ -287,6 +286,7 @@ function calculation2() {
 }
 
 function moveMoving(){
+  playermargin()
   tmp.previous[tmp.previous.length - 1].move = tmp.move;
   
 let truemove=tmp.move
@@ -751,15 +751,15 @@ function doSomething(a,b){
         pos[1] = 1;
         req = !(locat[1] + 1 >= tmp.area[1] - 1);
       }
-      if ((a === "KeyS" || a === "ArrowDown")&& tmp.page===1 && !tmp.b) {
+      else if ((a === "KeyS" || a === "ArrowDown")&& tmp.page===1 && !tmp.b) {
         pos[0] = 1;
         req = !(locat[0] + 1 >= tmp.area[0] - 1);
       }
-      if ((a === "KeyA" || a === "ArrowLeft")&& tmp.page===1 && !tmp.b) {
+      else if ((a === "KeyA" || a === "ArrowLeft")&& tmp.page===1 && !tmp.b) {
         pos[1] = -1;
         req = !(locat[1] - 1 === 0);
       }
-      if ((a === "KeyW" || a === "ArrowUp")&& tmp.page===1 && !tmp.b) {
+      else if ((a === "KeyW" || a === "ArrowUp")&& tmp.page===1 && !tmp.b) {
         pos[0] = -1;
         req = !(locat[0] - 1 === 0);
       }

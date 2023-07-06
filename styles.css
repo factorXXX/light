@@ -421,6 +421,12 @@ td.void{
   background-size: 55px;
   filter:invert(70%) drop-shadow(0px 0px 4px #000000) ;
 }
+
+#machine{
+  width: min-content;
+  margin-left: auto;
+  margin-right: auto;
+}
 .player{
   background: url('images/player/legless.svg') ;
   background-size: 68px;
@@ -428,6 +434,8 @@ td.void{
   background-position: 50% 20%;
   z-index: 21;
   position: absolute;
+  width: 53px;
+  height: 53px;
 }
 #player {
   margin-left: 8.5px;
@@ -437,7 +445,6 @@ td.void{
   animation: player_legs 0.8s infinite linear;
   content: "";
   position: absolute;
-  margin-top: -50px;
   margin-left: -7.5px;
   width: 70px;
   height: 70px;
@@ -449,13 +456,13 @@ td.void{
 }
 @keyframes player_legs {
   0% {
-    margin-top: -50px;
+    margin-top: 0px;
   }
   50% {
-    margin-top: -52px;
+    margin-top: 2px;
   }
   100% {
-    margin-top: -50px;
+    margin-top: 0px;
   } 
 }
 @keyframes rotation {
