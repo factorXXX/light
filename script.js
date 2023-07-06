@@ -914,6 +914,7 @@ function numToPos(x){
 }
 function playermargin(){
   let pla=document.getElementById("player")
+  if(pla==null) return window.setTimeout(playermargin, 50)
   pla.style.marginTop=(tmp.location[0]*70)+5+"px"
   pla.style.marginLeft=(tmp.location[1]*70)+8.5+"px"
 }
