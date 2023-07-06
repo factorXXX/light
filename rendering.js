@@ -1,4 +1,9 @@
 const machine=document.getElementById("machine")
+function playermargin(){
+  let pla=document.getElementById("player")
+  pla.style.marginTop=(tmp.location[0]*70)+5+"px"
+  pla.style.marginLeft=(tmp.location[1]*70)+8.5+"px"
+}
 function startMachine(){
   let inhtm = ""
   inhtm+=('<div id="player" class="player"><div></div></div>')
@@ -12,7 +17,7 @@ function startMachine(){
           inhtm+=('onmouseover="drawaline('+r+','+c+')" onmouseout="drawaline('+r+','+c+',true)"')
         }
       //buildings build
-      inhtm+=('"><div class="'+getclass(r, c)+'"><div></div></div>')
+      inhtm+=('"><div id="'+getcellid(r, c, true, "b")+'" class="'+getclass(r, c)+'"><div></div></div>')
       //laser and 90deg laser
       for(layer in tmp.laserwhere[r][c]){
         inhtm+=('<div class="'+getlaserclass(r,c,layer)+'"><div></div></div>')
@@ -31,8 +36,39 @@ function startMachine(){
   }
   inhtm+=("</tbody></table>")
   machine.innerHTML=inhtm
+  playermargin()
 }
 
-function renderDamage(){
-  
+function renderBuildingDamage(){
+  let d=document
+  for(i in tmp.rendering.buildingDamage){
+    let x=tmp.rendering.buildingDamage[i]
+    d.getElementById(getcellid(x[0], x[1], true, "b")).classList=getclass(x[0], x[1])
+  }
+  tmp.rendering.buildingDamage=[]
+}
+
+function renderLaserDamage(){
+  tmp.rendering.laserDamage[0]=tmp.rendering.laserDamage[0].concat(tmp.rendering.laserDamage[1])
+  let d=document
+  for(i in tmp.rendering.laserDamage[0]){
+    let chtm=""
+    //theory - tmp.rendering.laserDamage[i]=[1,1] and without duplicates
+    let x=tmp.rendering.laserDamage[0][i]
+    //preserving building
+    let el=d.getElementById(getcellid(x[0], x[1]))
+    chtm+=el.firstChild.outerHTML
+    //laser and 90 deg laser
+    for(layer in tmp.laserwhere[x[0]][x[1]]){
+      chtm+=('<div class="'+getlaserclass(x[0],x[1],layer)+'"><div></div></div>')
+    }
+    //half laser
+    for(layer in tmp.halflaserwhere[x[0]][x[1]]){
+      chtm+=('<div class="'+getlaserclass(x[0],x[1],layer,false)+'"><div></div></div>')
+    }
+    
+    el.innerHTML=chtm
+  }
+  tmp.rendering.laserDamage[0]=tmp.rendering.laserDamage[1]
+  tmp.rendering.laserDamage[1]=[]
 }

@@ -25,7 +25,6 @@ var tmp = {
     ongalaxy:false,
     loggedin:false,
   },
-  modalvisible:false,
   tutorial:{
     type:0,
     images:[],
@@ -33,11 +32,16 @@ var tmp = {
     text:[],
     title:"",
   },
+  modalvisible:false,
+  rendering:{
+    buildingDamage:[],
+    laserDamage:[[],[]]
+  },
   laserwhere:[],
   halflaserwhere:[],
   counterforTest:0,
   move:[],
-  
+  buildingdamage:[]
 };
 function music(x) {
   return (
@@ -265,7 +269,7 @@ Vue.component("level", {
     `,
 });
 function calculation2() {
-   tmp.laserwhere=[]
+  tmp.laserwhere=[]
   for (let i = 0; i < tmp.area[0]; i++) {
     tmp.laserwhere.push([])
     for (let j = 0; j < tmp.area[1]; j++) {
@@ -283,6 +287,9 @@ function calculation2() {
   calcolor();
   light(false, false, true);
   light(true, false, true, true);
+  playermargin()
+  renderBuildingDamage()
+  renderLaserDamage()
 }
 
 function moveMoving(){
@@ -415,9 +422,9 @@ function getlaserclass(r,c,l,h=true){
   }
   return str
 }
-function getcellid(a,b,c=true){ //c means that it's id of a cell, !c means that it's id of a line
+function getcellid(a,b,c=true,d="c"){ //c means that it's id of a cell, !c means that it's id of a line
   let str = ''
-  if(c)str=str.concat('c')
+  if(c)str+=(d)
     if (a<=9)str=str.concat(0)
     str=str.concat(a)
     if (b<=9)str=str.concat(0)
@@ -611,9 +618,11 @@ function light(win = false, withlight = false, withM = false, final=false) {
         color="white"
       }
       lightL.push([...locat, pos, color]);
+      if(final)tmp.rendering.laserDamage[1].push([locat[0],locat[1]])
       if (["light",  "store"].includes(build)){
         if(final){
           pushingEdges(false,locat[0],locat[1],pos,color)
+          tmp.rendering.laserDamage[1].pop()
         }
        lightL.pop();
       }
@@ -706,6 +715,7 @@ function doSomething(a,b){
     tmp.move = tmp.previous[tmp.previous.length - 1].move;
     tmp.previous.pop();
     calculation2()
+    startMachine()
     return;
   }
   tmp.previous.push([{}]);
@@ -745,6 +755,7 @@ function doSomething(a,b){
   if (tmp.building[tmp.location[0]][tmp.location[1]][0] !== null) {
     let buildtouch = tmp.building[tmp.location[0]][tmp.location[1]];
     if (["box", "badbox", "mirror", "store","rotate180","rotate90","rotate270","reflecthor","reflectvel","bomb"].includes(buildtouch[0])) {
+      tmp.rendering.buildingDamage.push([tmp.location[0],tmp.location[1]])
       let pos = [0, 0];
       let req = true;
       if ((a === "KeyD" || a === "ArrowRight")&& tmp.page===1 && !tmp.b) {
@@ -769,6 +780,7 @@ function doSomething(a,b){
         calculation2()
         return;
       }
+      tmp.rendering.buildingDamage.push([(locat[0]+pos[0]*2),(locat[1]+pos[1]*2)])
       if ((tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] !== null)&&buildtouch[0][0]!=="r") {
         tmp.location = [locat[0], locat[1]];
         tmp.previous.pop();
@@ -912,12 +924,6 @@ function numToPos(x){
       return "left";
   }
 }
-function playermargin(){
-  let pla=document.getElementById("player")
-  if(pla==null) return window.setTimeout(playermargin, 50)
-  pla.style.marginTop=(tmp.location[0]*70)+5+"px"
-  pla.style.marginLeft=(tmp.location[1]*70)+8.5+"px"
-}
 function importL(imported = undefined) {
   if (imported === undefined) imported = prompt("paste your save here");
   tmp.previous=[]
@@ -952,5 +958,6 @@ function importL(imported = undefined) {
   tmp.page = 1;
   tmp.level = "custom";
   tmp.store = imported;
+  startMachine();
   calculation2()
 }
