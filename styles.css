@@ -305,7 +305,7 @@ td div {
   background-image: url('./images/source.svg');
 }
 .moving div {
-  background-image: url('./images/source.svg');
+  background-image: url('./images/moving_block.svg');
 }
 .bomb {
   width: 61px;
