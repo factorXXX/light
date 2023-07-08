@@ -33,7 +33,7 @@
     ['redpass'],
     ['yellowpass'],
     ['bluepass'],
-    ['store',null],
+    ['store','null'],
     ['store','green'],
     ['store','red'],
     ['store','yellow'],

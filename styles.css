@@ -84,13 +84,16 @@ table  {
 .canportal:hover {
   background:#565954;
 }
-.trans3 {
+/*.trans3*/
+.trans3, .right-up, .light.left, .moving.left {
   transform: rotate(90deg);
 }
-.trans2 {
+/*.trans2*/
+.trans2,.right-down, .light.up, .moving.up {
   transform: rotate(180deg);
 }
-.trans1 {
+/*.trans1*/
+.trans1, .left-down, .light.right, .moving.right {
   transform: rotate(270deg);
 }
 .control td{

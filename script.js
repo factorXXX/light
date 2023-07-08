@@ -42,7 +42,6 @@ var tmp = {
   halflaserwhere:[],
   counterforTest:0,
   move:[],
-  buildingdamage:[]
 };
 function music(x) {
   return (
@@ -117,21 +116,6 @@ Vue.component("selectmenu", {
 </table>
     `,
 });
-function drawaline(a,b,destroy=false){
-  if(tmp.building[a][b][0]==='portal'){
-    let line = document.getElementById(getcellid(a,b,false))
-    if(!destroy){
-      let startCell = document.getElementById(getcellid(a,b)).getBoundingClientRect()
-      let endBuildPos = tmp.building[a][b][1]
-      let endCell = document.getElementById(getcellid(endBuildPos[0],endBuildPos[1])).getBoundingClientRect()
-      line.x2.baseVal.value = endCell.left - startCell.left + 35
-      line.y2.baseVal.value = endCell.top - startCell.top + 35
-    line.style.visibility = "visible"
-    } else {
-    line.style.visibility = "hidden"
-    }
-}
-};
 Vue.component("machine", {
   template: `
     <table class="gamezone" >
@@ -336,111 +320,15 @@ tmp.move=[]
 }
 function pushingEdges(rev=false,lo1,lo2,pos,color){
     tmp.halflaserwhere[lo1][lo2].push([(rev?reverse(pos):pos),color])
-
-    if(tmp.halflaserwhere[lo1][lo2].length>=2){
-      for(let i=0;i<(tmp.halflaserwhere[lo1][lo2].length-1);i++){
-         if(tmp.halflaserwhere[lo1][lo2][i][1]=="yellow"&&tmp.halflaserwhere[lo1][lo2][tmp.halflaserwhere[lo1][lo2].length-1][1]!="white"){
-         tmp.halflaserwhere[lo1][lo2].pop()
+    let x = tmp.halflaserwhere[lo1][lo2]
+    tmp.rendering.laserDamage.add(JSON.stringify([lo1, lo2, pos, color]))
+    if(x.length>=2){
+      for(let i=0;i<(x.length-1);i++){
+         if(x[i][1]=="yellow" && x[x.length-1][1]!="white"){
+          tmp.halflaserwhere[lo1][lo2].pop()
          }
       }
     }
-}
-
-function getclass(r,c,h=true){ //!h means it's a class of a cell rather than a div inside of it
-  
-  let current = JSON.parse(JSON.stringify(tmp.building[r][c]))
-  if(h){
-  if (['store', 'bomb'].includes(current[0])){
-    return (current[0]+' '+current[1])
-  }
-  else if (current[0]==='mirror'){
-    if(current[1]==='left-down'){
-      return ('mirror'+' '+'trans1')
-    }
-    if(current[1]==='right-down'){
-      return ('mirror'+' '+'trans2')
-    }
-    if(current[1]==='right-up'){
-      return ('mirror'+' '+'trans3')
-    }
-    if(current[1]==='left-up'){
-      return ('mirror')
-    }
-  }
-  else if (current[0]==='light'){
-    if(current[1]==='right'){
-      return ('light'+' '+'trans1'+' '+current[2])
-    }
-    else if(current[1]==='up'){
-      return ('light'+' '+'trans2'+' '+current[2])
-    }
-    else if(current[1]==='left'){
-      return ('light'+' '+'trans3'+' '+current[2])
-    }
-    else if(current[1]==='down'){
-      return ('light'+' '+current[2])
-    }
-  }
-  else if (current[0]==='moving'){
-    if(current[1]==='right'){
-      return ('moving'+' '+'trans1'+' '+current[2])
-    }
-    else if(current[1]==='up'){
-      return ('moving'+' '+'trans2'+' '+current[2])
-    }
-    else if(current[1]==='left'){
-      return ('moving'+' '+'trans3'+' '+current[2])
-    }
-    else if(current[1]==='down'){
-      return ('moving'+' '+current[2])
-    }
-  }
-  else {
-    return current[0]
-  }
-  } else {
-    if(['void','horpass','verpass'].includes(current[0])){return current[0]}
-    else return("")
-  }
-}
-function getlaserclass(r,c,l,h=true){
-  //tmp.counterforTest++
-  let str = '' 
-  if(h){
-  let current = tmp.laserwhere[r][c][l]
-  let build = tmp.building[r][c]
-  if (build[0]==='mirror'){
-    str=str.concat(current[1])
-    str=str.concat("Laser laser90")
-    if (build[1]==='left-down')str=str.concat(" trans1")
-    else if (build[1]==='right-down')str=str.concat(" trans2")
-    else if (build[1]==='right-up')str=str.concat(" trans3")
-  } else {
-    str=str.concat(current[1])
-    str=str.concat("Laser laser")
-  if (current[0]==='right')str=str.concat(" trans1")
-  else if (current[0]==='up')str=str.concat(" trans2")
-  else if (current[0]==='left')str=str.concat(" trans3")
-  }
-  }else{
-    
-    let current = tmp.halflaserwhere[r][c][l]
-    str=str.concat(current[1])
-    str=str.concat("Laser laser half")
-    if (current[0]==='right')str=str.concat(" trans1")
-    else if (current[0]==='up')str=str.concat(" trans2")
-    else if (current[0]==='left')str=str.concat(" trans3")
-  }
-  return str
-}
-function getcellid(a,b,c=true,d="c"){ //c means that it's id of a cell, !c means that it's id of a line
-  let str = ''
-  if(c)str+=(d)
-    if (a<=9)str=str.concat(0)
-    str=str.concat(a)
-    if (b<=9)str=str.concat(0)
-    str=str.concat(b)
-    return str
 }
 function isunlocked(d, diff){//for chapters in menu
   if ((d)===1&&diff==0) return true
@@ -522,7 +410,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
           tmp.rendering.buildingDamage.add([locat[0],locat[1]])
         }
       if (build==='store') {
-        if (buildDetail[1]===null)  {
+        if (buildDetail[1]==='null')  {
           tmp.building[locat[0]][locat[1]][1] = color;
           buildDetail[1] = color
           tmp.rendering.buildingDamage.add([locat[0],locat[1]])
@@ -582,11 +470,11 @@ function light(win = false, withlight = false, withM = false, final=false) {
             pushingEdges(true,locat[0],locat[1],pos,color)
           }
 
-          if (buildDetail[1] !== null) {
+          if (buildDetail[1] !== 'null') {
             
       if (color==="white"){
-          tmp.building[locat[0]][locat[1]][1] = null;
-          buildDetail[1]=null
+          tmp.building[locat[0]][locat[1]][1] = 'null';
+          buildDetail[1]='null'
       }
       else {let colors=[buildDetail[1] ,color]
       if (colors.includes('red')&&   colors.includes('green')) color="yellow"
@@ -795,6 +683,7 @@ function doSomething(a,b){
         return;
       }
       tmp.rendering.buildingDamage.add([(locat[0]+pos[0]*2),(locat[1]+pos[1]*2)])
+      if(buildtouch[0]==="mirror")tmp.rendering.laserDamage.add(JSON.stringify([(locat[0]+pos[0]*2),(locat[1]+pos[1]*2)]))
       if ((tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] !== null)&&buildtouch[0][0]!=="r") {
         tmp.location = [locat[0], locat[1]];
         tmp.previous.pop();
