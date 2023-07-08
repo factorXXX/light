@@ -321,7 +321,6 @@ tmp.move=[]
 function pushingEdges(rev=false,lo1,lo2,pos,color){
     tmp.halflaserwhere[lo1][lo2].push([(rev?reverse(pos):pos),color])
     let x = tmp.halflaserwhere[lo1][lo2]
-    tmp.rendering.laserDamage.add(JSON.stringify([lo1, lo2, pos, color]))
     if(x.length>=2){
       for(let i=0;i<(x.length-1);i++){
          if(x[i][1]=="yellow" && x[x.length-1][1]!="white"){
@@ -375,9 +374,9 @@ function light(win = false, withlight = false, withM = false, final=false) {
 
     while (true) {
       try1++
-      tmp.rendering.laserDamage.add(JSON.stringify([locat[0],locat[1],color,pos]))
       let buildDetail = tmp.building[locat[0]][locat[1]];
       let build = buildDetail[0];
+      tmp.rendering.laserDamage.add(JSON.stringify([locat[0],locat[1],pos,color,buildDetail[0],(JSON.stringify(tmp.location) === JSON.stringify(locat))]))
       if (build === "sun" && win && !tmp.b){
         tmp.b = true;
         if(tmp.level===60)startTutorial(false, 5, true)
