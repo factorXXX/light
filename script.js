@@ -212,7 +212,7 @@ Vue.component("level", {
       Arrows or WASD: Move the Character<br>
       <span v-if="(tmp.level>=13||tmp.level==='custom')">E: Enter the Portal if you can<br></span>
       Shift + R: Restart the Level<br>
-      U: Undo a move
+      Q: Undo a move
     </td> 
 
     <td style="text-align: right; width:180px"><br>
@@ -240,7 +240,7 @@ Vue.component("level", {
 <td colspan="2">
 <table class="control" v-if="player.k">
   <tr>
-  <td @click="doSomething('KeyU',false)">U</td>
+  <td @click="doSomething('KeyQ',false)">Q</td>
   <td @click="doSomething('KeyW',false)">&#8593;</td>
   <td v-if="(tmp.level>=13||tmp.level==='custom')" @click="doSomething('KeyE',false)">E</td>
   </tr>
@@ -610,7 +610,7 @@ function doSomething(a,b){
   else{
   if (a === "KeyR" && b && tmp.page===1 && !tmp.b) reset();
   if (a === "KeyI" && b && tmp.page===2) importL();
-  if (a === "KeyU" && tmp.page===1 && !tmp.b) {
+  if (a === "KeyQ" && tmp.page===1 && !tmp.b) {
     if (tmp.previous.length === 0) return;
     tmp.building = tmp.previous[tmp.previous.length - 1].building;
     tmp.location = tmp.previous[tmp.previous.length - 1].location;
