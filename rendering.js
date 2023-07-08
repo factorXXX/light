@@ -53,17 +53,16 @@ function cacheElements(){
   for(let r=0;r<tmp.area[0];r++){
     for(let c=0;c<tmp.area[1];c++){
       let x = getcellnum(r,c)
-      console.log(x)
       let b = "b"+x
       let las = "las"+x
-      cached_buildings[x.toString()]=d.getElementById("b"+x)
-      cached_laser[x.toString()]=d.getElementById("las"+x)
+      cached_buildings["#".concat(x)]=d.getElementById("b"+x)
+      cached_laser["#".concat(x)]=d.getElementById("las"+x)
     }
   }
 }
 function renderBuildingDamage(){
   for(const x of tmp.rendering.buildingDamage){
-    cached_buildings[getcellnum(x[0], x[1])].classList=getclass(x[0], x[1])
+    cached_buildings["#".concat(getcellnum(x[0], x[1]))].classList=getclass(x[0], x[1])
   }
   tmp.rendering.buildingDamage.clear()
 }
