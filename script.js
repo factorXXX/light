@@ -293,32 +293,41 @@ function calculation2() {
 }
 
 function moveMoving(){
-  playermargin()
   tmp.previous[tmp.previous.length - 1].move = tmp.move;
   
 let truemove=tmp.move
 tmp.move=[]
   for(let i=0;i<truemove.length;i++){
+    tmp.rendering.buildingDamage.push([truemove[i][0],truemove[i][1]])
         let bD=tmp.building[truemove[i][0]][truemove[i][1]]
         if(bD[1]=='up'){
-          if((truemove[i][0]-1)<0){tmp.building[truemove[i][0]][truemove[i][1]][1]="down";tmp.move.push([truemove[i][0],truemove[i][1]])}
-          else if(tmp.building[truemove[i][0]-1][truemove[i][1]][0]!=null||((tmp.location[0]==truemove[i][0]-1)&&(tmp.location[1]==truemove[i][1]))){tmp.building[truemove[i][0]][truemove[i][1]][1]="down";tmp.move.push([truemove[i][0],truemove[i][1]])}
-          else {tmp.building[truemove[i][0]-1][truemove[i][1]]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0]-1,truemove[i][1]])}
+          if((truemove[i][0]-1)<0){
+            tmp.building[truemove[i][0]][truemove[i][1]][1]="down";tmp.move.push([truemove[i][0],truemove[i][1]])}
+          else if(tmp.building[truemove[i][0]-1][truemove[i][1]][0]!=null||((tmp.location[0]==truemove[i][0]-1)&&(tmp.location[1]==truemove[i][1]))){tmp.building[truemove[i][0]][truemove[i][1]][1]="down";
+            tmp.move.push([truemove[i][0],truemove[i][1]])
+          }
+          else {
+            tmp.building[truemove[i][0]-1][truemove[i][1]]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0]-1,truemove[i][1]])
+            tmp.rendering.buildingDamage.push(tmp.move[tmp.move.length-1])
+          }
         }
         else if(bD[1]=='down'){
           if((truemove[i][0]+1)>=tmp.area[0]){tmp.building[truemove[i][0]][truemove[i][1]][1]="up";tmp.move.push([truemove[i][0],truemove[i][1]])}
           else if(tmp.building[truemove[i][0]+1][truemove[i][1]][0]!=null||((tmp.location[0]==truemove[i][0]+1)&&(tmp.location[1]==truemove[i][1]))){tmp.building[truemove[i][0]][truemove[i][1]][1]="up";tmp.move.push([truemove[i][0],truemove[i][1]])}
-          else {tmp.building[truemove[i][0]+1][truemove[i][1]]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0]+1,truemove[i][1]])}
+          else {tmp.building[truemove[i][0]+1][truemove[i][1]]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0]+1,truemove[i][1]])
+            tmp.rendering.buildingDamage.push(tmp.move[tmp.move.length-1])}
         }
         else if(bD[1]=='left'){
           if((truemove[i][1]-1)<0){tmp.building[truemove[i][0]][truemove[i][1]][1]="right";tmp.move.push([truemove[i][0],truemove[i][1]])}
           else if(tmp.building[truemove[i][0]][truemove[i][1]-1][0]!=null||((tmp.location[0]==truemove[i][0])&&(tmp.location[1]==truemove[i][1]-1))){tmp.building[truemove[i][0]][truemove[i][1]][1]="right";tmp.move.push([truemove[i][0],truemove[i][1]])}
-          else {tmp.building[truemove[i][0]][truemove[i][1]-1]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0],truemove[i][1]-1])}
+          else {tmp.building[truemove[i][0]][truemove[i][1]-1]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0],truemove[i][1]-1])
+            tmp.rendering.buildingDamage.push(tmp.move[tmp.move.length-1])}
         }
         else if(bD[1]=='right'){
           if((truemove[i][1]+1)>=tmp.area[1]){tmp.building[truemove[i][0]][truemove[i][1]][1]="left";tmp.move.push([truemove[i][0],truemove[i][1]])}
           else if(tmp.building[truemove[i][0]][truemove[i][1]+1][0]!=null||((tmp.location[0]==truemove[i][0])&&(tmp.location[1]==truemove[i][1]+1))){tmp.building[truemove[i][0]][truemove[i][1]][1]="left";tmp.move.push([truemove[i][0],truemove[i][1]])}
-          else {tmp.building[truemove[i][0]][truemove[i][1]+1]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0],truemove[i][1]+1])}
+          else {tmp.building[truemove[i][0]][truemove[i][1]+1]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0],truemove[i][1]+1])
+            tmp.rendering.buildingDamage.push(tmp.move[tmp.move.length-1])}
         }
   }
   calculation2()
@@ -508,11 +517,13 @@ function light(win = false, withlight = false, withM = false, final=false) {
       if (["badbox", "badboxwall"].includes(build))
         {tmp.building[locat[0]][locat[1]] = [null];
           build = null
+          tmp.rendering.buildingDamage.push([locat[0],locat[1]])
         }
       if (build==='store') {
         if (buildDetail[1]===null)  {
           tmp.building[locat[0]][locat[1]][1] = color;
           buildDetail[1] = color
+          tmp.rendering.buildingDamage.push([locat[0],locat[1]])
         }
 
       }
@@ -520,7 +531,10 @@ function light(win = false, withlight = false, withM = false, final=false) {
         if (color===buildDetail[1]){
         for(let i=-1;i<=1;i++){
           for(let j=-1;j<=1;j++){
-            if((tmp.building[locat[0]+i]&&tmp.building[locat[0]+i][locat[1]+j])&&!(["portal","light","void","horpass","verpass"].includes(tmp.building[locat[0]+i][locat[1]+j][0])))tmp.building[locat[0]+i][locat[1]+j]=[null]
+            if((tmp.building[locat[0]+i]&&tmp.building[locat[0]+i][locat[1]+j])&&!(["portal","light","void","horpass","verpass",null].includes(tmp.building[locat[0]+i][locat[1]+j][0])))
+            { tmp.building[locat[0]+i][locat[1]+j]=[null]
+              if(!!(i||j))tmp.rendering.buildingDamage.push([locat[0]+i,locat[1]+j])
+            }
           }
      
         }
