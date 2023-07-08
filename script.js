@@ -544,7 +544,8 @@ function light(win = false, withlight = false, withM = false, final=false) {
         lightL.pop();
         locat = [...buildDetail[1]];
         if(final && !(JSON.stringify(tmp.location) === JSON.stringify(locat))){
-          pushingEdges(false,locat[0],locat[1],pos)
+          pushingEdges(false,locat[0],locat[1],pos,color)
+          tmp.rendering.laserDamage.add(JSON.stringify([locat[0],locat[1]]))
         }
         if (JSON.stringify(tmp.location) === JSON.stringify(locat)) {
           break;
