@@ -18,14 +18,17 @@ function startMachine(){
         }
       //buildings build
       inhtm+=('"><div id="'+getcellid(r, c, true, "b")+'" class="'+getclass(r, c)+'"><div></div></div>')
-      //laser and 90deg laser
-      for(layer in tmp.laserwhere[r][c]){
-        inhtm+=('<div class="'+getlaserclass(r,c,layer)+'"><div></div></div>')
-      }
-      //half laser
-      for(layer in tmp.halflaserwhere[r][c]){
-        inhtm+=('<div class="'+getlaserclass(r,c,layer,false)+'"><div></div></div>')
-      }
+      //laser container
+      inhtm+=('<div class="laserContainer" id="'+getcellid(r, c, true, "las")+'">')
+        //laser and 90deg laser
+          for(layer in tmp.laserwhere[r][c]){
+            inhtm+=('<div class="'+getlaserclass(r,c,layer)+'"><div></div></div>')
+          }
+        //half laser
+          for(layer in tmp.halflaserwhere[r][c]){
+            inhtm+=('<div class="'+getlaserclass(r,c,layer,false)+'"><div></div></div>')
+          }
+      inhtm+=('</div>')
       //line beetween portals
       if(tmp.building[r][c][0]==="portal"){
         inhtm+=('<svg style="visibility: hidden; z-index: 25 !important; filter: drop-shadow(0px 0px 2px #000000);"><line id="'+getcellid(r, c,false)+'"stroke-linecap="round" stroke="red" stroke-width="2" x1="35" y1="35" x2="0" y2="0"/></svg>'
@@ -37,17 +40,35 @@ function startMachine(){
   inhtm+=("</tbody></table>")
   machine.innerHTML=inhtm
   playermargin()
+  cacheElements()
 }
-
+function getcellnum(r,c){
+  return (((r<10)?"0":"")+r+((c<10)?"0":"")+c)
+}
+let cached_buildings=[]
+let cached_laser=[]
+let d=document
+function cacheElements(){
+  cached_buildings=[]
+  for(let r=0;r<tmp.area[0];r++){
+    for(let c=0;c<tmp.area[1];c++){
+      let x = getcellnum(r,c)
+      console.log(x)
+      let b = "b"+x
+      let las = "las"+x
+      cached_buildings[x.toString()]=d.getElementById("b"+x)
+      cached_laser[x.toString()]=d.getElementById("las"+x)
+    }
+  }
+}
 function renderBuildingDamage(){
-  let d=document
   for(const x of tmp.rendering.buildingDamage){
-    d.getElementById(getcellid(x[0], x[1], true, "b")).classList=getclass(x[0], x[1])
+    cached_buildings[getcellnum(x[0], x[1])].classList=getclass(x[0], x[1])
   }
   tmp.rendering.buildingDamage.clear()
 }
 
-function renderLaserDamage(){
+function renderLaserDamage(){/*
   tmp.rendering.laserDamage[0]=tmp.rendering.laserDamage[0].concat(tmp.rendering.laserDamage[1])
   let d=document
   for(i in tmp.rendering.laserDamage[0]){
@@ -70,4 +91,5 @@ function renderLaserDamage(){
   }
   tmp.rendering.laserDamage[0]=tmp.rendering.laserDamage[1]
   tmp.rendering.laserDamage[1]=[]
+  */
 }
