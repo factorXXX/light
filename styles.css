@@ -574,6 +574,10 @@ td.void{
 #selectors .player {
   position: relative;
 }
+#selectors .player::after {
+  animation: none !important;
+  margin-top: -50px;
+}
 #selectors .void {
   width: 45px;
   height: 45px;
