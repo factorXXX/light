@@ -41,11 +41,10 @@ function startMachine(){
 
 function renderBuildingDamage(){
   let d=document
-  for(i in tmp.rendering.buildingDamage){
-    let x=tmp.rendering.buildingDamage[i]
+  for(const x of tmp.rendering.buildingDamage){
     d.getElementById(getcellid(x[0], x[1], true, "b")).classList=getclass(x[0], x[1])
   }
-  tmp.rendering.buildingDamage=[]
+  tmp.rendering.buildingDamage.clear()
 }
 
 function renderLaserDamage(){
