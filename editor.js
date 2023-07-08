@@ -64,18 +64,18 @@
         <td style="vertical-align: top;">
           <div style="width: max-content;">
             <span >
-              <button id="rmrow" class="trans2" @click="removeRow(true)"></button>
-              <button id="addrow" class="trans2" @click="addRow(true)"></button>
+              <button id="rmrow" class="up" @click="removeRow(true)"></button>
+              <button id="addrow" class="up" @click="addRow(true)"></button>
                <span id="radd"> {{player.editor.data.length}} </span>
               <button id="addrow" @click="addRow()"></button>
               <button id="rmrow" @click="removeRow()"></button>
             </span><br>
             <span>
-              <button id="rmrow" class="trans3" @click="removeCol(true)"></button>
-              <button id="addrow" class="trans3" @click="addCol(true)"></button>
+              <button id="rmrow" class="left" @click="removeCol(true)"></button>
+              <button id="addrow" class="left" @click="addCol(true)"></button>
               <span id="radd"> {{player.editor.data[0].length}} </span>
-              <button id="addrow" class="trans1" @click="addCol()"></button>
-              <button id="rmrow" class="trans1" @click="removeCol()"></button>
+              <button id="addrow" class="right" @click="addCol()"></button>
+              <button id="rmrow" class="right" @click="removeCol()"></button>
             </span>
             <br><br>
             <table id="editorControls">
@@ -141,11 +141,8 @@
           :title="brushes[i-1].toString().replace(/[,0]/g,' ')"
           :class="{
             [brushes[i-1][0]]:true,
-            [brushes[i-1][1]]:['store','bomb'].includes(brushes[i-1][0]),
+            [brushes[i-1][1]]:true,
             [brushes[i-1][2]]:true,
-            trans1:brushes[i-1][1]==='right'||brushes[i-1][1]==='left-down'||brushes[i-1][0]==='reflectvel',
-            trans2:brushes[i-1][1]==='up'||brushes[i-1][1]==='right-down',
-            trans3:brushes[i-1][1]==='left'||brushes[i-1][1]==='right-up'
           }"><div></div>
       </td>
     </tr>
@@ -157,52 +154,9 @@
     let current = player.editor.data[r][c]
     if(h){
     if (current[0]==='location'){return 'player'}
-    else if (current[0]==='mirror'){
-      if(current[1]==='left-down'){
-        return ('mirror'+' '+'trans1')
-      }
-      if(current[1]==='right-down'){
-        return ('mirror'+' '+'trans2')
-      }
-      if(current[1]==='right-up'){
-        return ('mirror'+' '+'trans3')
-      }
-      if(current[1]==='left-up'){
-        return ('mirror')
-      }
+    else {
+        return (current[0]+' '+(current[1]?current[1]:"")+' '+(current[2]?current[2]:""))
     }
-    else if (current[0]==='light'){
-      if(current[1]==='right'){
-        return ('light'+' '+'trans1'+' '+current[2])
-      }
-      else if(current[1]==='up'){
-        return ('light'+' '+'trans2'+' '+current[2])
-      }
-      else if(current[1]==='left'){
-        return ('light'+' '+'trans3'+' '+current[2])
-      }
-      else if(current[1]==='down'){
-        return ('light'+' '+current[2])
-      }
-    }
-    else if (current[0]==='moving'){
-      if(current[1]==='right'){
-        return ('moving'+' '+'trans1'+' '+current[2])
-      }
-      else if(current[1]==='up'){
-        return ('moving'+' '+'trans2'+' '+current[2])
-      }
-      else if(current[1]==='left'){
-        return ('moving'+' '+'trans3'+' '+current[2])
-      }
-      else if(current[1]==='down'){
-        return ('moving'+' '+current[2])
-      }
-    }
-    else if (['store', 'bomb'].includes(current[0])){
-      return (current[0] +' '+ current[1])
-    }
-    else return (current[0]+' '+ current[1])
   } else {
     if(['void','horpass','verpass'].includes(current[0]))return current[0]
   }
