@@ -291,6 +291,9 @@ td div {
   height: 70px;
   width: 70px;
 }
+.laserContainer div{
+  position: absolute;
+}
 .light, .sun, .rotate90, .rotate180, .rotate270, .mirror, .box, .boxwall, .bomb, .moving{
   z-index: 20 !important;
 }

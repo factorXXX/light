@@ -59,6 +59,8 @@ function cacheElements(){
       cached_laser["#".concat(x)]=d.getElementById("las"+x)
     }
   }
+  tmp.rendering.laserDamage.clear()
+  tmp.rendering.laserDamagePrev.clear()
 }
 function renderBuildingDamage(){
   for(const x of tmp.rendering.buildingDamage){
@@ -67,28 +69,29 @@ function renderBuildingDamage(){
   tmp.rendering.buildingDamage.clear()
 }
 
-function renderLaserDamage(){/*
-  tmp.rendering.laserDamage[0]=tmp.rendering.laserDamage[0].concat(tmp.rendering.laserDamage[1])
-  let d=document
-  for(i in tmp.rendering.laserDamage[0]){
+function renderLaserDamage(){
+  //find difference
+  let diff = new Set(tmp.rendering.laserDamage)
+  for (const elem of tmp.rendering.laserDamagePrev) {
+    const operation = (diff.has(elem)) ? 'delete' : 'add';
+    diff[operation](elem);
+  }
+  for(const x of diff){
+    i = JSON.parse(x)
     let chtm=""
-    //theory - tmp.rendering.laserDamage[i]=[1,1] and without duplicates
-    let x=tmp.rendering.laserDamage[0][i]
-    //preserving building
-    let el=d.getElementById(getcellid(x[0], x[1]))
-    chtm+=el.firstChild.outerHTML
     //laser and 90 deg laser
-    for(layer in tmp.laserwhere[x[0]][x[1]]){
-      chtm+=('<div class="'+getlaserclass(x[0],x[1],layer)+'"><div></div></div>')
+    for(layer in tmp.laserwhere[i[0]][i[1]]){
+      chtm+=('<div class="'+getlaserclass(i[0],i[1],layer)+'"><div></div></div>')
     }
     //half laser
-    for(layer in tmp.halflaserwhere[x[0]][x[1]]){
-      chtm+=('<div class="'+getlaserclass(x[0],x[1],layer,false)+'"><div></div></div>')
+    for(layer in tmp.halflaserwhere[i[0]][i[1]]){
+      chtm+=('<div class="'+getlaserclass(i[0],i[1],layer,false)+'"><div></div></div>')
     }
     
-    el.innerHTML=chtm
+    cached_laser["#".concat(getcellnum(i[0], i[1]))].innerHTML=chtm
   }
-  tmp.rendering.laserDamage[0]=tmp.rendering.laserDamage[1]
-  tmp.rendering.laserDamage[1]=[]
-  */
+  console.log("prev:    ",tmp.rendering.laserDamagePrev," \ncurrent: ",tmp.rendering.laserDamage, "\ndiff:    ",diff)
+  tmp.rendering.laserDamagePrev=new Set(Array.from(tmp.rendering.laserDamage))
+  console.log(tmp.location)
+  tmp.rendering.laserDamage.clear()
 }

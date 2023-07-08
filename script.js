@@ -35,7 +35,8 @@ var tmp = {
   modalvisible:false,
   rendering:{
     buildingDamage:new Set(),
-    laserDamage:[[],[]]
+    laserDamage:new Set(),
+    laserDamagePrev:new Set()
   },
   laserwhere:[],
   halflaserwhere:[],
@@ -331,7 +332,7 @@ tmp.move=[]
             tmp.rendering.buildingDamage.add(tmp.move[tmp.move.length-1])}
         }
   }
-  calculation2()
+//  calculation2()
 }
 function pushingEdges(rev=false,lo1,lo2,pos,color){
     tmp.halflaserwhere[lo1][lo2].push([(rev?reverse(pos):pos),color])
@@ -486,7 +487,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
 
     while (true) {
       try1++
-      
+      tmp.rendering.laserDamage.add(JSON.stringify([locat[0],locat[1],color,pos]))
       let buildDetail = tmp.building[locat[0]][locat[1]];
       let build = buildDetail[0];
       if (build === "sun" && win && !tmp.b){
@@ -633,11 +634,9 @@ function light(win = false, withlight = false, withM = false, final=false) {
         color="white"
       }
       lightL.push([...locat, pos, color]);
-      if(final)tmp.rendering.laserDamage[1].push([locat[0],locat[1]])
       if (["light",  "store"].includes(build)){
         if(final){
           pushingEdges(false,locat[0],locat[1],pos,color)
-          tmp.rendering.laserDamage[1].pop()
         }
        lightL.pop();
       }
