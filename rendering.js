@@ -106,30 +106,21 @@ function getclass(r,c,h=true){
 }
 function getlaserclass(r,c,l,h=true){
   let str = '' 
-  if(h){
+  if(h){ 
   let current = tmp.laserwhere[r][c][l]
   let build = tmp.building[r][c]
-  if (build[0]==='mirror'){
+  if (build[0]==='mirror'){//laser90
     str=str.concat(current[1])
-    str=str.concat("Laser laser90")
-    if (build[1]==='left-down')str=str.concat(" trans1")
-    else if (build[1]==='right-down')str=str.concat(" trans2")
-    else if (build[1]==='right-up')str=str.concat(" trans3")
-  } else {
+    str=str.concat("Laser laser90 "+build[1])
+  } else {//laser
     str=str.concat(current[1])
-    str=str.concat("Laser laser")
-  if (current[0]==='right')str=str.concat(" trans1")
-  else if (current[0]==='up')str=str.concat(" trans2")
-  else if (current[0]==='left')str=str.concat(" trans3")
+    str=str.concat("Laser laser "+current[0])
   }
-  }else{
-    
+  }
+  else{ //half lasers
     let current = tmp.halflaserwhere[r][c][l]
     str=str.concat(current[1])
-    str=str.concat("Laser laser half")
-    if (current[0]==='right')str=str.concat(" trans1")
-    else if (current[0]==='up')str=str.concat(" trans2")
-    else if (current[0]==='left')str=str.concat(" trans3")
+    str=str.concat("Laser laser half "+current[0])
   }
   return str
 }
