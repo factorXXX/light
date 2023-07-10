@@ -320,6 +320,7 @@ tmp.move=[]
 }
 function pushingEdges(rev=false,lo1,lo2,pos,color){
     tmp.halflaserwhere[lo1][lo2].push([(rev?reverse(pos):pos),color])
+    tmp.rendering.laserDamage.add(JSON.stringify([lo1,lo2]))
     let x = tmp.halflaserwhere[lo1][lo2]
     if(x.length>=2){
       for(let i=0;i<(x.length-1);i++){
@@ -616,8 +617,9 @@ function doSomething(a,b){
     tmp.location = tmp.previous[tmp.previous.length - 1].location;
     tmp.move = tmp.previous[tmp.previous.length - 1].move;
     tmp.previous.pop();
-    calculation2()
+    tmp.rendering.laserDamagePrev.clear()
     startMachine()
+    calculation2()
     return;
   }
   tmp.previous.push([{}]);

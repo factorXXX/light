@@ -59,8 +59,8 @@ function cacheElements(){
       cached_laser["#".concat(x)]=d.getElementById(las)
     }
   }
-  tmp.rendering.laserDamage.clear()
   tmp.rendering.laserDamagePrev.clear()
+  tmp.rendering.laserDamage.clear()
 }
 function renderBuildingDamage(){
   for(const x of tmp.rendering.buildingDamage){
@@ -68,14 +68,29 @@ function renderBuildingDamage(){
   }
   tmp.rendering.buildingDamage.clear()
 }
-
+function getPosition(string, index) {
+  return string.split(',', index).join(',').length;
+}
 function renderLaserDamage(){
   //find difference
-  let diff = new Set(tmp.rendering.laserDamage)
-  for (const elem of tmp.rendering.laserDamagePrev) {
-    const operation = (diff.has(elem)) ? 'delete' : 'add';
-    diff[operation](elem);
+  let diff = new Set()
+  for(const elem of tmp.rendering.laserDamage){
+    if(!tmp.rendering.laserDamagePrev.has(elem)){
+      x=elem.substring(0,getPosition(elem, 2))+"]"
+      if(x.includes("]]"))x=x.slice(0,-1)
+      diff.add(x);
+    }
   }
+
+  for (const elem of tmp.rendering.laserDamagePrev) {
+    if(!tmp.rendering.laserDamage.has(elem)){
+      x=elem.substring(0,getPosition(elem, 2))+"]"
+      if(x.includes("]]"))x=x.slice(0,-1)
+      diff.add(x);
+    }
+  }
+
+  console.log("diff: ",diff,"\nprev: ",tmp.rendering.laserDamagePrev,"\ncurr: ",tmp.rendering.laserDamage)
   for(const x of diff){
     i = JSON.parse(x)
     let chtm=""

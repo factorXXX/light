@@ -96,9 +96,6 @@ table  {
 .left-down, .right {
   transform: rotate(270deg);
 }
-.control {
-  
-}
 .control td{
   width:60px;
   height:60px;

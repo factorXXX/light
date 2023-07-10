@@ -16,9 +16,9 @@ function reset(){
     let levelNumber = tmp.level
       importL(currentLevel.string)
       tmp.level = levelNumber
-    calculation2()
-    startTutorial()
-    startMachine()
+      startTutorial()
+      startMachine()
+      calculation2()
   }
   }
 
