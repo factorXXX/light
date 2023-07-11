@@ -129,7 +129,7 @@ Vue.component("options", {
       <td style="width=200px"></td>
     </tr>
     <tr>
-    <td colspan=6><br><br><br><br><br><br>Coder: 3^3=7 (Discord: 3^3=7#4019) and wrab (Discord: wrab)<br><br>Level Creator: 3^3=7, wrab, yyyy7089 (Discord: yyyy7089) and Onionoi (Discord: onionboii)
+    <td colspan=6><br><br><br><br><br><br>Developers: 3^3=7 (Discord: 3^3=7#4019) and Wrab (Discord: wrab)<br><br>Level Makers: 3^3=7, Wrab, yyyy7089 (Discord: yyyy7089) and Onionoi (Discord: onionboii)
       </td>
     </tr>
     </table>
