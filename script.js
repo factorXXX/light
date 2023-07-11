@@ -34,6 +34,7 @@ var tmp = {
   },
   modalvisible:false,
   rendering:{
+    buildingDamageHistory:[],
     buildingDamage:new Set(),
     laserDamage:new Set(),
     laserDamagePrev:new Set()
@@ -561,8 +562,9 @@ function doSomething(a,b){
     tmp.location = tmp.previous[tmp.previous.length - 1].location;
     tmp.move = tmp.previous[tmp.previous.length - 1].move;
     tmp.previous.pop();
-    tmp.rendering.laserDamagePrev.clear()
-    startMachine()
+    tmp.rendering.buildingDamage=new Set(Array.from(tmp.rendering.buildingDamageHistory[tmp.rendering.buildingDamageHistory.length-1]))
+    tmp.rendering.buildingDamageHistory.pop()
+    tmp.rendering.buildingDamageHistory.pop()
     calculation2()
     return;
   }

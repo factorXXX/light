@@ -8,6 +8,7 @@ function reset(){
     tmp.page=1;
     tmp.b=false
     tmp.previous= [];
+    tmp.rendering.buildingDamageHistory=[]
     let currentLevel={}
     if (tmp.store!==''&&tmp.level==='custom'){
       currentLevel.string = tmp.store

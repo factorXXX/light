@@ -69,6 +69,7 @@ function renderBuildingDamage(){
   for(const x of tmp.rendering.buildingDamage){
     cached_buildings["#".concat(getcellnum(x[0], x[1]))].classList=getclass(x[0], x[1])
   }
+  tmp.rendering.buildingDamageHistory.push(Array.from(tmp.rendering.buildingDamage))
   tmp.rendering.buildingDamage.clear()
 }
 function getPosition(string, index) {
