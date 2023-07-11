@@ -77,7 +77,7 @@ Vue.component("selectmenu", {
       <!--if chapter is locked-->
       <div v-if="d<6 && !(isunlocked(d, tmp.diff))">
         <table class="menuLocked"><tbody><tr><td>
-          <span>Requires 9 Levels beaten in Chapter {{d+tmp.diff*5-1}}</span>
+          <span>{{((d+(tmp.diff*5))%6===0)?("Requires 57 levels beaten in World 1"):("Requires 9 Levels beaten in Chapter "+ (d+tmp.diff*5-1))}}</span>
         </td></tr></tbody></table>
       </div>
       <!--options if screen is too thin-->
