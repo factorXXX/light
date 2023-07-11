@@ -53,112 +53,59 @@ function music(x) {
 
 Vue.component("selectmenu", {
   template: `
-  <table class="selectmenu">
-  <tr v-if="tmp.diff===0">
-  <td v-for="d in 5" style="padding:0px">
-    <table>
-      <div class="unlocked" v-if="isunlocked(d, tmp.diff)">
-      <tr><td colspan="4" style='vertical-align: middle'>Chapter {{d}}</td></tr>
-      <tr v-for="a in 3">
-        <td v-for="b in 4" 
-          :class="{
-            [getClassOfMenuCell(d*12+(a*4+b-4)-12)]:true,
-          }"
-          @click='tmp.level=(d*12+(a*4+b-4)-12);reset()'>
-            {{level[((d*12+(a*4+b-4)-12))]===undefined?"wip":(a*4+b-4)}}
-        </td>
-      </tr>
+  <div id=mainmenu>
+    <!--World 1-->
+    <div v-for="d in (window.innerWidth < 1136)?6:5" class="menuCard">
+      <!--if chapter is unlocked-->
+      <div v-if="d<6&&(isunlocked(d, tmp.diff))">
+        <table>
+          <tbody>
+            <tr><td colspan="4"><h1 class="menuCardTitle">Chapter {{(d+(tmp.diff*5))}}</h1></td></tr>
+              <tr v-for="a in 3" class="menuLevels">
+                <td v-for="b in 4"
+                  :class="{[getClassOfMenuCell((d+(tmp.diff*5))*12+(a*4+b-4)-12)]:true,}"
+                  @click='tmp.level=((d+(tmp.diff*5))*12+(a*4+b-4)-12);reset()'>
+                  <span>
+                    {{level[(((d+(tmp.diff*5))*12+(a*4+b-4)-12))]===undefined?"wip":(a*4+b-4)}}
+                  </span>
+                </td>
+              </tr>
+          </tbody>
+        </table>
       </div>
-      <div v-else class="locked">
-        Req<br><br>9 Levels beaten in Chapter {{d-1}}
+      <!--if chapter is locked-->
+      <div v-if="d<6 && !(isunlocked(d, tmp.diff))">
+        <table class="menuLocked"><tbody><tr><td>
+          <span>Requires 9 Levels beaten in Chapter {{d-1}}</span>
+        </td></tr></tbody></table>
       </div>
-    </table>
- 
-  </td>
-  </tr>
-
-  <tr v-if="tmp.diff===1">
-  <td v-for="d in 5" style="padding:0px">
-  <table>
-    <div class="unlocked" v-if="isunlocked(d, tmp.diff)">
-    <tr><td colspan="4" style='vertical-align: middle'>Chapter {{d+5}}</td></tr>
-    <tr v-for="a in 3">
-      <td v-for="b in 4" 
-        :class="{
-          [getClassOfMenuCell(d*12+(a*4+b-4)+988)]:true,
-        }"
-        @click='tmp.level=(d*12+(a*4+b-4)+988);reset()'>
-          {{level[((d*12+(a*4+b-4)+988))]===undefined?"wip":(a*4+b-4)}}
-      </td>
-    </tr>
+      <!--options if screen is too thin-->
+      <div v-if="d===6 && window.innerWidth < 1136">
+        <table class="optsCard">
+          <tbody>
+          <tr>
+            <td @click="tmp.diff=(tmp.diff+1)%2"><span>{{tmp.diff===1?'World 2':'World 1'}}</span></td>
+            <td @click="tmp.page=5"><span>Tutorials</span></td>
+          </tr>
+          <tr>
+            <td @click="tmp.page=3"><span>Options</span></td>
+            <td @click="tmp.page=4"><span>Level Editor</span></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div v-else class="locked">
-      Req<br><br>{{d>1?'9 Levels beaten in Chapter '+(d+4):'57 levels beaten in World 1'}}
+
+    <!--options if screen is normal width-->
+    <div v-if="(window.innerWidth > 1136)" class="wideopts">
+      <table><tbody><tr>
+      <td @click="tmp.diff=(tmp.diff+1)%2"><span>{{tmp.diff===1?'World 2':'World 1'}}</span></td>
+      <td @click="tmp.page=5"><span>Tutorials</span></td>
+      <td @click="tmp.page=3"><span>Options</span></td>
+      <td @click="tmp.page=4"><span>Level Editor</span></td>
+      </tr></tbody></table>
     </div>
-  </table>
-  </td>
-  </tr>
-
-
-    <tr style="margin-top: 2px;">
-    <td colspan="1" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;background-color:#aa6464"
-    @click="tmp.diff=(tmp.diff+1)%2"
-    >{{tmp.diff===1?'World 2':'World 1'}}</td>
-    <td colspan="1" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid;"
-    @click="tmp.page=5"
-    >Tutorials</td>
-    <td style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid"
-    @click="tmp.page=3"
-    >Options</td><td colspan="2" style="height:50px;border-color:#aaaaaa;text-align:center;border-style:solid"
-    @click="tmp.page=4"
-    >Level Editor</td>
-    </tr>
-</table>
-    `,
-});
-Vue.component("machine", {
-  template: `
-    <table class="gamezone" >
-    <!--player-->
-    <div id="player" class="player"
-    ><div></div></div>
-    <!--rest of the table-->
-    <tr v-for="a in tmp.area[0]">
-    <td v-for="b in tmp.area[1]"
-    :id="[getcellid(a-1, b-1)]"
-    @mouseover="drawaline(a-1,b-1)"
-    @mouseout="drawaline(a-1,b-1,true)"
-    :class="{
-      [getclass(a-1, b-1, false)]:true
-    }" >
-    <!--buildings-->
-    <div :class="{
-      [getclass(a-1, b-1)]:true
-    }"><div></div></div>
-    <!--laser and 90 deg leser-->
-    <div v-for="layer in tmp.laserwhere[a-1][b-1].length" 
-    :class="{
-      [getlaserclass(a-1,b-1,layer-1)]:true
-      }"><div></div></div>
-    <!--half-laser-->
-    <div v-for="layer in tmp.halflaserwhere[a-1][b-1].length" :class="{
-      [getlaserclass(a-1,b-1,layer-1,false)]:true
-    }"><div></div></div>
-    <!--line between portals-->
-    <svg v-if="tmp.building[a-1][b-1][0]==='portal'"
-    style="
-    visibility: hidden;
-    z-index: 25 !important;
-    filter: drop-shadow(0px 0px 2px #000000);">
-    <line :id="[getcellid(a-1, b-1,false)]"
-      stroke-linecap="round"
-      stroke="red"
-      stroke-width="2"
-        x1="35" y1="35" x2="0" y2="0"/>
-    </svg>
-    </td>
-    </tr>
-    </table>
+  </div>
     `,
 });
 Vue.component("options", {
@@ -190,10 +137,7 @@ Vue.component("options", {
 Vue.component("level", {
   template: `
         <table>
-      <tr>
- <!--       <td colspan="2"><machine></machine></td><br>-->
-      </tr>
-   <tr>
+    <tr>
      <td style="height: 32px;">
       <span v-if="tmp.level!=='custom'" style="font-size:20px; text-align:center">
         {{tmp.level>=1001?"Level "+Math.floor((tmp.level-1001)/12+6).toString()+"-"+(tmp.level+8-Math.floor((tmp.level+7)/12)*12).toString():"Level "+Math.floor((tmp.level-1)/12+1).toString()+"-"+(tmp.level-Math.floor((tmp.level-1)/12)*12).toString()}}
