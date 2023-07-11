@@ -184,7 +184,7 @@ function reset(){
     index: `32v2`
   },
   33: {
-    string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEY10PgIDmAFnCEcRAO6oibAE4BTMahZh2XHiQFCQ44iHwNGtejk3MdTbbvoaDLAM5wI4nqf1aGpjSABuEBKpav3au3qPqdDBc3Dx1g7wd7MIBPMToBAAcYMzM1Jy9QoIyffzCzail1AF8gA===`,
+    string:`N4IgJghgLhIFwG0kDsCuAbdBdANAtmuCI6AlgOYAWUIO4A9gO7K0jkBOAppy0SRdVZgmLOlzAgsRfBmx4CcmYXmypeJYpABnKPS6sFklco1qkIAG71SEvlZtHTx7NMvXbeNw6IK+AT05MJgAHCC0tSVd7D2Jox19PLVReNRJ6AGNoUnoWRAAGHDysAF8gA==`,
     perfect:4,
     index: 33
   },
@@ -226,7 +226,7 @@ function reset(){
   },
   41:{
     string:`N4IgNg9gxghgLgSwgOxALgNoAYA0WC6OIAJvDOhpcgK5hiEY10NP06O1sfPsgCeAUzoQA7gAcYAZ0kgGISdVT4G3LqxacNPVVq78hkcVJnL2O9ut4BbBACdbEWyCJgBAMzgBaamNm8HcPACAJxYfhggNvaOzuDuXj7hljoq4AgA5gAWcLG2Gdmx6bYCAkoWmv4QgXAhYXIARjDEYo6BYOEgAUEATADsdbxg+Tku8bkCxB0ttm3OGADMOPPKKsnJkXYOTqMe3r5yXTV9AxFRW7Guu4m6N6sVEYcCAIwAHCdr9+uPr++ad9ofAGfYFA5jKAC+QA===`,
-    perfect: 45,
+    perfect:45,
     index: 41
   },
   42: {

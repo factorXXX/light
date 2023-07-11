@@ -1,8 +1,10 @@
 const machine=document.getElementById("machine")
+
 function playermargin(){
+  let mul=window.getComputedStyle(document.documentElement).getPropertyValue('--mul')
   let pla=document.getElementById("player")
-  pla.style.marginTop=(tmp.location[0]*70)+5+"px"
-  pla.style.marginLeft=(tmp.location[1]*70)+8.5+"px"
+  pla.style.marginTop=(tmp.location[0]*70*mul)+(5*mul)+"px"
+  pla.style.marginLeft=(tmp.location[1]*70*mul)+(8.5*mul)+"px"
 }
 function startMachine(){
   let inhtm = ""
@@ -41,6 +43,7 @@ function startMachine(){
   machine.innerHTML=inhtm
   playermargin()
   cacheElements()
+  document.documentElement.style.setProperty("--mul", Math.min(1, (window.innerWidth/70/1.05/tmp.building[0].length)))
 }
 function getcellnum(r,c){
   return (((r<10)?"0":"")+r+((c<10)?"0":"")+c)
@@ -89,8 +92,8 @@ function renderLaserDamage(){
       diff.add(x);
     }
   }
-
-  console.log("diff: ",diff,"\nprev: ",tmp.rendering.laserDamagePrev,"\ncurr: ",tmp.rendering.laserDamage)
+  //log current prev and diff
+  //console.log("diff: ",diff,"\nprev: ",tmp.rendering.laserDamagePrev,"\ncurr: ",tmp.rendering.laserDamage)
   for(const x of diff){
     i = JSON.parse(x)
     let chtm=""

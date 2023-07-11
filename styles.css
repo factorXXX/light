@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu');
 *{ font-family: 'Ubuntu', sans-serif !important;}
+:root{
+  --mul: 1
+}
 .gamezone {
   box-sizing: border-box;
   user-select: none;
@@ -14,8 +17,8 @@
   margin: 0px;
   padding: 0px;
   border: none;
-  height: 70px;
-  max-height: 70px;
+  height: calc(70px* var(--mul));
+  max-height: calc(70px*var(--mul));
 }
 .gamezone tr{
   display: flex;
@@ -28,15 +31,15 @@
   margin-right: auto;
   margin-top: auto;
   margin-bottom: auto;
-  width: 70px;
+  width: calc(70px*var(--mul));
 }
 .gamezone td::before {
-  width: 70px;
-  height: 70px;
+  width: calc(70px*var(--mul));
+  height: calc(70px*var(--mul));
   content: "";
   position: absolute;
-  border: 5px solid #aaa;
-  border-radius: 4px;
+  border: calc(5px*var(--mul)) solid #aaa;
+  border-radius: calc(4px*var(--mul));
   z-index: -1;
 }
 .gamezone tr:nth-child(even)  td:nth-child(odd), 
@@ -49,8 +52,8 @@
 }
 svg {
   position: absolute;
-  width: 70px;
-  height: 70px;
+  width: calc(70px*--mul);
+  height: calc(70px*--mul);
   overflow:visible;
 }
 body {
@@ -242,14 +245,14 @@ table  {
   /*blue box*/
 .rotate180, .rotate90, .rotate270, .light, .sun, .reflecthor, .reflectvel {
   background: #47AFE3;
-  border: 4px solid #000;
-  border-radius: 2px;
+  border: calc(4px*var(--mul)) solid #000;
+  border-radius: calc(2px*var(--mul));
 }
 /*grey box*/
 .moving {
   background: #768492;
-  border: 4px solid #000;
-  border-radius: 2px;
+  border: calc(4px*var(--mul)) solid #000;
+  border-radius: calc(2px*var(--mul));
 }
   /*green box*/
 .box,
@@ -259,39 +262,39 @@ table  {
 .badbox,
 .greenpass {
   background-color: #b4eb46;
-  border: 4px solid #000;
-  border-radius: 2px;
+  border: calc(4px*var(--mul)) solid #000;
+  border-radius: calc(2px*var(--mul));
 }
   /*red box*/
 .redpass {
   background-color: #CC2218;
-  border: 4px solid #000;
-  border-radius: 2px;
+  border: calc(4px*var(--mul)) solid #000;
+  border-radius: calc(2px*var(--mul));
 }
   /*yellow box*/
 .yellowpass {
   background-color: #EAFA35;
-  border: 4px solid #000;
-  border-radius: 2px;
+  border: calc(4px*var(--mul)) solid #000;
+  border-radius: calc(2px*var(--mul));
 }
 .bluepass {
   background-color: #0999D5;
-  border: 4px solid #000;
-  border-radius: 2px;
+  border: calc(4px*var(--mul)) solid #000;
+  border-radius: calc(2px*var(--mul));
 }
 td div {
-  min-width: 53px;
-  width: 53px;
-  min-height: 53px;
-  height: 53px;
+  min-width: calc(53px*var(--mul));
+  width: calc(53px*var(--mul));
+  min-height: calc(53px*var(--mul));
+  height: calc(53px*var(--mul));
 }
 .gamezone td div:nth-child(n+2){
   position: absolute;
 }
 .laserContainer{
   position: absolute;
-  height: 70px;
-  width: 70px;
+  height: calc(70px*var(--mul));
+  width: calc(70px*var(--mul));
 }
 .laserContainer div{
   position: absolute;
@@ -318,20 +321,20 @@ td div {
   background-image: url('./images/moving_block.svg');
 }
 .bomb {
-  width: 61px;
-  height: 61px;
+  width: calc(61px*var(--mul));;
+  height: calc(61px*var(--mul));;
   background-position: center;
   background-image: url('./images/bomb-base.svg');
 }
 .bomb div {
-  width: 61px;
-  height: 61px;
+  width: calc(61px*var(--mul));;
+  height: calc(61px*var(--mul));;
   background-position: center;
   background-image: url('./images/bomb-core.svg');
 }
 .mirror{
-  width: 61px;
-  height: 61px;
+  width: calc(61px*var(--mul));
+  height: calc(61px*var(--mul));;
   background-repeat:no-repeat;
   background-image: url('./images/mirror.svg');
 }
@@ -339,8 +342,8 @@ td div {
   background-position: center;
   background-size: cover;
   z-index: 12;
-  width: 70px;
-  height: 70px;
+  width: calc(70px*var(--mul));
+  height: calc(70px*var(--mul));
   background-repeat:no-repeat;
   background-image: url('./images/laser.svg');
 }
@@ -361,8 +364,8 @@ td div {
 .laser90{
   background-size: cover;
   z-index: 10;
-  width: 70px;
-  height: 70px;
+  width: calc(70px*var(--mul));
+  height: calc(70px*var(--mul));
   background-repeat:no-repeat;
   background-image: url('./images/laser90.svg');
 }
@@ -371,20 +374,20 @@ td div {
   background-image: url('./images/cross.svg');
 }
 td.horpass {
-  max-height: 10px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  max-height: calc(10px*var(--mul));
+  margin-top: calc(30px*var(--mul));
+  margin-bottom: calc(30px*var(--mul));
 }
 td.horpass::before {
-  height: 10px;
+  height: calc(10px*var(--mul));
 }
 td.verpass {
-  max-width: 10px;
-  margin-left: 30px;
-  margin-right: 30px;
+  max-width: calc(10px*var(--mul));
+  margin-left: calc(30px*var(--mul));
+  margin-right: calc(30px*var(--mul));
 }
 td.verpass::before{
-  width: 10px;
+  width: calc(10px*var(--mul));
 }
 td.void{
   opacity: 0;
@@ -400,16 +403,17 @@ td.void{
 }
 .store div {
   z-index: 20 !important;
-  width: 61px;
-  height: 61px;
+  width: calc(61px*var(--mul));
+  height: calc(61px*var(--mul));
+  background-size: calc(61px*var(--mul));
   background: url('./images/store-core.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
 .store {
   z-index: 19 !important;
-  width: 61px;
-  height: 61px;
+  width: calc(61px*var(--mul));
+  height: calc(61px*var(--mul));
   background-repeat:no-repeat;
   background: url('images/store.svg') ;
 }
@@ -419,7 +423,7 @@ td.void{
   background: url('images/portal.svg') ;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 55px;
+  background-size: calc(55px*var(--mul));
   filter:  invert(17%) sepia(90%) saturate(3310%) hue-rotate(353deg) brightness(89%) contrast(94%) drop-shadow(0px 0px 4px #000000);
 }
 .badportal div {
@@ -428,7 +432,7 @@ td.void{
   background: url('images/portal.svg') ;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 55px;
+  background-size: calc(55px*var(--mul));
   filter:invert(70%) drop-shadow(0px 0px 4px #000000) ;
 }
 
@@ -439,27 +443,27 @@ td.void{
 }
 .player{
   background: url('images/player/legless.svg') ;
-  background-size: 68px;
+  background-size: calc(68px*var(--mul));
   background-repeat: no-repeat;
   background-position: 50% 20%;
   z-index: 21;
   position: absolute;
-  width: 53px;
-  height: 53px;
+  width: calc(53px*var(--mul));
+  height: calc(53px*var(--mul));
 }
 #player {
-  margin-left: 8.5px;
-  margin-top: 5px;
+  margin-left: calc(8.5px*var(--mul));
+  margin-top: calc(5px*var(--mul));
 }
 .player::after{
   animation: player_legs 0.8s infinite linear;
   content: "";
   position: absolute;
-  margin-left: -7.5px;
-  width: 70px;
-  height: 70px;
+  margin-left: calc(-7.5px*var(--mul));
+  width: calc(70px*var(--mul));
+  height: calc(70px*var(--mul));
   background: url('images/player/legs.svg') ;
-  background-size: 60px;
+  background-size: calc(60px*var(--mul));
   background-position: center;
   background-repeat: no-repeat;
   z-index: 21;
