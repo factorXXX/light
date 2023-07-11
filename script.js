@@ -170,6 +170,7 @@ Vue.component("level", {
       tmp.b=false;
       if(tmp.editor.fromEditor){
         tmp.page=4 
+        document.documentElement.style.setProperty('--mul',1)
         tmp.editor.fromEditor=false
       }else{tmp.page=2}
     }">

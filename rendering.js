@@ -43,6 +43,7 @@ function startMachine(){
   machine.innerHTML=inhtm
   playermargin()
   cacheElements()
+  //scale to fit the screen
   document.documentElement.style.setProperty("--mul", Math.min(1, (window.innerWidth/70/1.05/tmp.building[0].length)))
 }
 function getcellnum(r,c){
