@@ -1,5 +1,5 @@
 const machine=document.getElementById("machine")
-
+var mul = 1
 function playermargin(){
   let mul=window.getComputedStyle(document.documentElement).getPropertyValue('--mul')
   let pla=document.getElementById("player")
@@ -7,6 +7,7 @@ function playermargin(){
   pla.style.marginLeft=(tmp.location[1]*70*mul)+(8.5*mul)+"px"
 }
 function startMachine(){
+  mul = Math.round((Math.min(1, window.innerWidth/73/1.07/tmp.area[0]))*100)/100
   let inhtm = ""
   inhtm+=('<div id="player" class="player"><div></div></div>')
   inhtm+=('<table class="gamezone" ><tbody>')
@@ -21,19 +22,10 @@ function startMachine(){
       //buildings build
       inhtm+=('"><div id="b'+getcellnum(r, c)+'" class="'+getclass(r, c)+'"><div></div></div>')
       //laser container
-      inhtm+=('<div class="laserContainer" id="las'+getcellnum(r, c)+'">')
-        //laser and 90deg laser
-          for(layer in tmp.laserwhere[r][c]){
-            inhtm+=('<div class="'+getlaserclass(r,c,layer)+'"><div></div></div>')
-          }
-        //half laser
-          for(layer in tmp.halflaserwhere[r][c]){
-            inhtm+=('<div class="'+getlaserclass(r,c,layer,false)+'"><div></div></div>')
-          }
-      inhtm+=('</div>')
+      inhtm+=('<div class="laserContainer" id="las'+getcellnum(r, c)+'"></div>')
       //line beetween portals
       if(tmp.building[r][c][0]==="portal"){
-        inhtm+=('<svg style="visibility: hidden; z-index: 25 !important; filter: drop-shadow(0px 0px 2px #000000);"><line id="l'+getcellnum(r, c)+'"stroke-linecap="round" stroke="red" stroke-width="2" x1="35" y1="35" x2="0" y2="0"/></svg>'
+        inhtm+=('<svg style="visibility: hidden; z-index: 25 !important; filter: drop-shadow(0px 0px 2px #000000);"><line id="l'+getcellnum(r, c)+'"stroke-linecap="round" stroke="red" stroke-width="2" x1="'+(35*mul)+'" y1="'+(35*mul)+'" x2="0" y2="0"/></svg>'
       )}
       inhtm+=("</td>")
     }
@@ -44,23 +36,23 @@ function startMachine(){
   playermargin()
   cacheElements()
   //scale to fit the screen
-  document.documentElement.style.setProperty("--mul", Math.min(1, (window.innerWidth/70/1.05/tmp.building[0].length)))
+  document.documentElement.style.setProperty("--mul", mul)
 }
 function getcellnum(r,c){
   return (((r<10)?"0":"")+r+((c<10)?"0":"")+c)
 }
 let cached_buildings=[]
-let cached_laser=[]
+//let cached_laser=[]
 let d=document
 function cacheElements(){
   cached_buildings=[]
   for(let r=0;r<tmp.area[0];r++){
     for(let c=0;c<tmp.area[1];c++){
       let x = getcellnum(r,c)
-      let b = "b".concat(x)
-      let las = "las".concat(x)
-      cached_buildings["#".concat(x)]=d.getElementById(b)
-      cached_laser["#".concat(x)]=d.getElementById(las)
+      let b = "b"+(x)
+      let las = "las"+(x)
+      cached_buildings["#"+(x)]=d.getElementById(b)
+      //cached_laser["#"+(x)]=d.getElementById(las)
     }
   }
   tmp.rendering.laserDamagePrev.clear()
@@ -68,7 +60,7 @@ function cacheElements(){
 }
 function renderBuildingDamage(){
   for(const x of tmp.rendering.buildingDamage){
-    cached_buildings["#".concat(getcellnum(x[0], x[1]))].classList=getclass(x[0], x[1])
+    cached_buildings["#"+(getcellnum(x[0], x[1]))].classList=getclass(x[0], x[1])
   }
   tmp.rendering.buildingDamageHistory.push(Array.from(tmp.rendering.buildingDamage))
   tmp.rendering.buildingDamage.clear()
@@ -107,8 +99,9 @@ function renderLaserDamage(){
     for(layer in tmp.halflaserwhere[i[0]][i[1]]){
       chtm+=('<div class="'+getlaserclass(i[0],i[1],layer,false)+'"><div></div></div>')
     }
-    
-    cached_laser["#".concat(getcellnum(i[0], i[1]))].innerHTML=chtm
+    //cached_laser["#"+(getcellnum(i[0], i[1]))].innerHTML = chtm
+    let el = document.getElementById("las"+(getcellnum(i[0], i[1])))
+    el = replaceHtml(el,chtm)
   }
   tmp.rendering.laserDamagePrev=new Set(Array.from(tmp.rendering.laserDamage))
   tmp.rendering.laserDamage.clear()
@@ -130,17 +123,17 @@ function getlaserclass(r,c,l,h=true){
   let current = tmp.laserwhere[r][c][l]
   let build = tmp.building[r][c]
   if (build[0]==='mirror'){//laser90
-    str=str.concat(current[1])
-    str=str.concat("Laser laser90 "+build[1])
+    str=str+(current[1])
+    str=str+("Laser laser90 "+build[1])
   } else {//laser
-    str=str.concat(current[1])
-    str=str.concat("Laser laser "+current[0])
+    str=str+(current[1])
+    str=str+("Laser laser "+current[0])
   }
   }
   else{ //half lasers
     let current = tmp.halflaserwhere[r][c][l]
-    str=str.concat(current[1])
-    str=str.concat("Laser laser half "+current[0])
+    str=str+(current[1])
+    str=str+("Laser laser half "+current[0])
   }
   return str
 }
@@ -151,11 +144,18 @@ function drawaline(a,b,destroy=false){
       let startCell = document.getElementById("c"+getcellnum(a,b)).getBoundingClientRect()
       let endBuildPos = tmp.building[a][b][1]
       let endCell = document.getElementById("c"+getcellnum(endBuildPos[0],endBuildPos[1])).getBoundingClientRect()
-      line.x2.baseVal.value = endCell.left - startCell.left + 35
-      line.y2.baseVal.value = endCell.top - startCell.top + 35
+      line.x2.baseVal.value = endCell.left - startCell.left + (35*mul)
+      line.y2.baseVal.value = endCell.top - startCell.top + (35*mul)
     line.style.visibility = "visible"
     } else {
     line.style.visibility = "hidden"
     }
 }
+};
+
+function replaceHtml(el, html) {
+	var newEl = el.cloneNode(false);
+	newEl.innerHTML = html;
+	el.parentNode.replaceChild(newEl, el);
+	return newEl;
 };
