@@ -22,7 +22,7 @@ function startMachine(){
       //buildings build
       inhtm+=('"><div id="b'+getcellnum(r, c)+'" class="'+getclass(r, c)+'"><div></div></div>')
       //laser container
-      inhtm+=('<div class="laserContainer" id="las'+getcellnum(r, c)+'"></div>')
+      inhtm+=('<div class="laserContainer" id="las'+getcellnum(r, c)+'"><div></div><div></div><div></div><div></div></div>')
       //line beetween portals
       if(tmp.building[r][c][0]==="portal"){
         inhtm+=('<svg style="visibility: hidden; z-index: 25 !important; filter: drop-shadow(0px 0px 2px #000000);"><line id="l'+getcellnum(r, c)+'"stroke-linecap="round" stroke="red" stroke-width="2" x1="'+(35*mul)+'" y1="'+(35*mul)+'" x2="0" y2="0"/></svg>'
@@ -42,7 +42,7 @@ function getcellnum(r,c){
   return (((r<10)?"0":"")+r+((c<10)?"0":"")+c)
 }
 let cached_buildings=[]
-//let cached_laser=[]
+let cached_laser=[]
 let d=document
 function cacheElements(){
   cached_buildings=[]
@@ -52,7 +52,7 @@ function cacheElements(){
       let b = "b"+(x)
       let las = "las"+(x)
       cached_buildings["#"+(x)]=d.getElementById(b)
-      //cached_laser["#"+(x)]=d.getElementById(las)
+      cached_laser["#"+(x)]=d.getElementById(las)
     }
   }
   tmp.rendering.laserDamagePrev.clear()
@@ -90,18 +90,22 @@ function renderLaserDamage(){
   //console.log("diff: ",diff,"\nprev: ",tmp.rendering.laserDamagePrev,"\ncurr: ",tmp.rendering.laserDamage)
   for(const x of diff){
     i = JSON.parse(x)
-    let chtm=""
+    let laserContainer = cached_laser["#"+(getcellnum(i[0], i[1]))]
+    let l=0
     //laser and 90 deg laser
     for(layer in tmp.laserwhere[i[0]][i[1]]){
-      chtm+=('<div class="'+getlaserclass(i[0],i[1],layer)+'"><div></div></div>')
+      laserContainer.children[l].classList=getlaserclass(i[0],i[1],layer)
+      l++
     }
     //half laser
     for(layer in tmp.halflaserwhere[i[0]][i[1]]){
-      chtm+=('<div class="'+getlaserclass(i[0],i[1],layer,false)+'"><div></div></div>')
+      laserContainer.children[l].classList=getlaserclass(i[0],i[1],layer,false)
+      l++
     }
-    //cached_laser["#"+(getcellnum(i[0], i[1]))].innerHTML = chtm
-    let el = document.getElementById("las"+(getcellnum(i[0], i[1])))
-    el = replaceHtml(el,chtm)
+    while(l<4){
+      laserContainer.children[l].classList=""
+      l++
+    }
   }
   tmp.rendering.laserDamagePrev=new Set(Array.from(tmp.rendering.laserDamage))
   tmp.rendering.laserDamage.clear()
