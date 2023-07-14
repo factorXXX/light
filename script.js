@@ -308,7 +308,14 @@ function getClassOfMenuCell(levelNum) {
 }
 function light(win = false, withlight = false, withM = false, final=false) {
   
-  let lightL = [];
+  //let lightL = [];
+  let lightL=[]
+  for(let r=0; r<tmp.area[0]; r++){
+    lightL.push([])
+    for(let c=0; c<tmp.area[1]; c++){
+      lightL[r].push([])
+    }
+  }
   for (let i = 0; i < tmp.light.length; i++) {
     let pos = tmp.building[tmp.light[i][0]][tmp.light[i][1]][1];
     let color = tmp.color[i];
@@ -323,7 +330,8 @@ function light(win = false, withlight = false, withM = false, final=false) {
       try1++
       let buildDetail = tmp.building[locat[0]][locat[1]];
       let build = buildDetail[0];
-      tmp.rendering.laserDamage.add(JSON.stringify([locat[0],locat[1],pos,color,buildDetail[0],(JSON.stringify(tmp.location) === JSON.stringify(locat))]))
+      tmp.rendering.laserDamage.add(JSON.stringify([locat[0],locat[1],pos,color,buildDetail[0],((tmp.location[0]) === (locat[0])&&(tmp.location[1]) === (locat[1]))]))
+      
       if (build === "sun" && win && !tmp.b){
         tmp.b = true;
         if(tmp.level===60)startTutorial(false, 5, true)
@@ -349,12 +357,14 @@ function light(win = false, withlight = false, withM = false, final=false) {
           tmp.b = false;
         }, 1000);
       };
+
       if (!withlight) {
       if (["badbox", "badboxwall"].includes(build))
         {tmp.building[locat[0]][locat[1]] = [null];
           build = null
           tmp.rendering.buildingDamage.add([locat[0],locat[1]])
         }
+  
       if (build==='store') {
         if (buildDetail[1]==='null')  {
           tmp.building[locat[0]][locat[1]][1] = color;
@@ -381,7 +391,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
       }
     }
       if (build === "light" && try1 !== 1) {
-        if (withlight) lightL.push([...locat, pos, color]);
+        if (withlight) lightL[locat[0]][locat[1]].push([pos, color]);
         if(final){
           pushingEdges(true,locat[0],locat[1],pos,color)
         }
@@ -457,30 +467,30 @@ function light(win = false, withlight = false, withM = false, final=false) {
       }
       break;
     };
-      if (JSON.stringify(tmp.location) === JSON.stringify(locat)) {
+      if ((tmp.location[0]) === (locat[0])&&(tmp.location[1]) === (locat[1])) {
         if(final){
           pushingEdges(true,locat[0],locat[1],pos,color)
       }
       break;
     };
-      if(JSON.stringify(lightL).indexOf(JSON.stringify([...locat, pos, color]))>0){
+    if(lightL[locat[0]][locat[1]].filter((a)=>a[0]===pos&&a[1]===color).length!==0){
        if(color==="white") break;
         color="white"
       }
-      lightL.push([...locat, pos, color]);
+      lightL[locat[0]][locat[1]].push([pos, color]);
       if (["light",  "store"].includes(build)){
         if(final){
           pushingEdges(false,locat[0],locat[1],pos,color)
         }
-       lightL.pop();
+        lightL[locat[0]][locat[1]].pop();
       }
       if (build === "mirror") {
-       if(!withM) lightL.pop();
+       if(!withM) lightL[locat[0]][locat[1]].pop();
         let posamt = buildDetail[1].split("-");
 
         if (!posamt.includes(pos)) {
           pushingEdges(true,locat[0],locat[1],pos,color)
-          if(withM)lightL.pop();
+          if(withM)lightL[locat[0]][locat[1]].pop();
           break;
         }
         if (pos === posamt[0]) pos = reverse(posamt[1]);
@@ -488,13 +498,13 @@ function light(win = false, withlight = false, withM = false, final=false) {
       } else if (build === "portal") {
         if(final){pushingEdges(true,locat[0],locat[1],pos,color)
       }
-        lightL.pop();
+        lightL[locat[0]][locat[1]].pop();
         locat = [...buildDetail[1]];
-        if(final && !(JSON.stringify(tmp.location) === JSON.stringify(locat))){
+        if(final && !(((tmp.location[0]) === (locat[0])&&(tmp.location[1]) === (locat[1])))){
           pushingEdges(false,locat[0],locat[1],pos,color)
           tmp.rendering.laserDamage.add(JSON.stringify([locat[0],locat[1]]))
         }
-        if (JSON.stringify(tmp.location) === JSON.stringify(locat)) {
+        if (((tmp.location[0]) === (locat[0])&&(tmp.location[1]) === (locat[1]))) {
           break;
         }
       }
@@ -520,7 +530,8 @@ function light(win = false, withlight = false, withM = false, final=false) {
 
   if(withlight)return tmp.where1=lightL;
   else if(withM){
-    return lightL.forEach(laserposition=>tmp.laserwhere[laserposition[0]][laserposition[1]].push([laserposition[2],laserposition[3]]))
+    return tmp.laserwhere=JSON.parse(JSON.stringify(lightL))
+    //return lightL.forEach(laserposition=>tmp.laserwhere[laserposition[0]][laserposition[1]].push([laserposition[2],laserposition[3]]))
   };
 }
 function calcolor() {
