@@ -266,7 +266,7 @@ tmp.move=[]
 }
 function pushingEdges(rev=false,lo1,lo2,pos,color){
     tmp.halflaserwhere[lo1][lo2].push([(rev?reverse(pos):pos),color])
-    tmp.rendering.laserDamage.add(JSON.stringify([lo1,lo2]))
+    tmp.rendering.laserDamage.add(JSON.stringify([lo1,lo2,pos,color]))
     let x = tmp.halflaserwhere[lo1][lo2]
     if(x.length>=2){
       for(let i=0;i<(x.length-1);i++){
@@ -330,7 +330,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
       try1++
       let buildDetail = tmp.building[locat[0]][locat[1]];
       let build = buildDetail[0];
-      tmp.rendering.laserDamage.add(JSON.stringify([locat[0],locat[1],pos,color,buildDetail[0],((tmp.location[0]) === (locat[0])&&(tmp.location[1]) === (locat[1]))]))
+      if(final)tmp.rendering.laserDamage.add(JSON.stringify([locat[0],locat[1],pos,color,buildDetail[0],((tmp.location[0]) === (locat[0])&&(tmp.location[1]) === (locat[1]))]))
       
       if (build === "sun" && win && !tmp.b){
         tmp.b = true;
@@ -473,9 +473,10 @@ function light(win = false, withlight = false, withM = false, final=false) {
       }
       break;
     };
-    if(lightL[locat[0]][locat[1]].filter((a)=>a[0]===pos&&a[1]===color).length!==0){
-       if(color==="white") break;
-        color="white"
+    if(lightL[locat[0]][locat[1]].filter((a)=>a[0]===pos&&a[1]===color).length!==0){ 
+      if(color==="white") break
+      lightL[locat[0]][locat[1]].splice(1)
+      color="white"
       }
       lightL[locat[0]][locat[1]].push([pos, color]);
       if (["light",  "store"].includes(build)){
@@ -528,27 +529,26 @@ function light(win = false, withlight = false, withM = false, final=false) {
   }
   if (win) return false;
 
-  if(withlight)return tmp.where1=lightL;
+  if(withlight)return tmp.where1=JSON.parse(JSON.stringify(lightL));
   else if(withM){
     return tmp.laserwhere=JSON.parse(JSON.stringify(lightL))
-    //return lightL.forEach(laserposition=>tmp.laserwhere[laserposition[0]][laserposition[1]].push([laserposition[2],laserposition[3]]))
   };
 }
 function calcolor() {
   let b = [];
   for (let i = 0; i <= tmp.light.length - 1; i++) {
-    let a = tmp.where1.find(
-      (a) => a[0] === tmp.light[i][0] && a[1] === tmp.light[i][1]
-    );
-
-    if (a !== undefined) {
-      let color=[a[3],tmp.building[tmp.light[i][0]][tmp.light[i][1]][2]]
+    let a = tmp.where1[tmp.light[i][0]][tmp.light[i][1]]
+    let x = []
+    for(let i=0; i<a.length; i++){
+      x.push(a[i][1])
+    }
+    if (x !== undefined) {
+      let color=x.concat(tmp.building[tmp.light[i][0]][tmp.light[i][1]][2])
       if (color.includes('red')&&color.includes('green')) b.push("yellow")
-      else if (color.includes('yellow')&&color.includes('green')) b.push("yellow")
-      else if (color.includes('yellow')&&color.includes('red')) b.push("yellow")
-      else if (color.includes('blue')&&color.includes('green')) b.push("lightBlue")
+      else if (color.includes('yellow')) b.push("yellow")
+/*    else if (color.includes('blue')&&color.includes('green')) b.push("lightBlue")
       else if (color.includes('blue')&&color.includes('red')) b.push("purple")
-      else b.push(tmp.building[tmp.light[i][0]][tmp.light[i][1]][2]);
+*/    else b.push(tmp.building[tmp.light[i][0]][tmp.light[i][1]][2]);
     } else b.push(tmp.building[tmp.light[i][0]][tmp.light[i][1]][2]);
   }
 

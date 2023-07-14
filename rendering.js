@@ -94,16 +94,16 @@ function renderLaserDamage(){
     let l=0
     //laser and 90 deg laser
     for(layer in tmp.laserwhere[i[0]][i[1]]){
-      laserContainer.children[l].classList=getlaserclass(i[0],i[1],layer)
+      laserContainer.children[l].setAttribute("class",getlaserclass(i[0],i[1],layer));
       l++
     }
     //half laser
     for(layer in tmp.halflaserwhere[i[0]][i[1]]){
-      laserContainer.children[l].classList=getlaserclass(i[0],i[1],layer,false)
+      laserContainer.children[l].setAttribute("class",getlaserclass(i[0],i[1],layer,false));
       l++
     }
     while(l<4){
-      laserContainer.children[l].classList=""
+      laserContainer.children[l].removeAttribute("class")
       l++
     }
   }
@@ -155,11 +155,4 @@ function drawaline(a,b,destroy=false){
     line.style.visibility = "hidden"
     }
 }
-};
-
-function replaceHtml(el, html) {
-	var newEl = el.cloneNode(false);
-	newEl.innerHTML = html;
-	el.parentNode.replaceChild(newEl, el);
-	return newEl;
 };
