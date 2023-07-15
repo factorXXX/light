@@ -7,7 +7,7 @@ function playermargin(){
   pla.style.marginLeft=(tmp.location[1]*70*mul)+(8.5*mul)+"px"
 }
 function startMachine(){
-  mul = Math.round((Math.min(1, window.innerWidth/73/1.07/tmp.area[0]))*100)/100
+  mul = Math.round((Math.min(Math.min(1, window.innerHeight/70/1.3/(tmp.area[0])), window.innerWidth/73/(tmp.area[1])))*100)/100
   let inhtm = ""
   inhtm+=('<div id="player" class="player"><div></div></div>')
   inhtm+=('<table class="gamezone" ><tbody>')
