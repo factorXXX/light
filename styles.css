@@ -301,7 +301,8 @@ td div {
   z-index: 10;
   pointer-events: none;
   image-rendering:pixelated;
-  transform:scale(var(--mul));
+  transform: scale(var(--mul));
+  transform-origin: top left;
 }
 .light, .sun, .rotate90, .rotate180, .rotate270, .mirror, .box, .boxwall, .bomb, .moving{
   z-index: 20 !important;
