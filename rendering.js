@@ -151,7 +151,8 @@ function updatecanvas(){
               b=corY+5
             }
             else if (layer[0]==="left"){
-              b=corX+5
+              a=corX+5
+              b=corY+35
             }
             else if (layer[0]==="right"){
               a=corX+65
