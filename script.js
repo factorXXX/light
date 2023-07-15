@@ -168,9 +168,9 @@ Vue.component("level", {
     @click="{
       document.getElementById('machine').innerHTML=''
       tmp.b=false;
+      document.documentElement.style.setProperty('--mul',1)
       if(tmp.editor.fromEditor){
         tmp.page=4 
-        document.documentElement.style.setProperty('--mul',1)
         tmp.editor.fromEditor=false
       }else{tmp.page=2}
     }">

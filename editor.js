@@ -80,14 +80,14 @@
             <br><br>
             <table id="editorControls">
               <tr>
-                <td colspan=2><button @click="clearEditor()">Clear editor</button></td>
+                <td colspan=2><button @click="importL(LZString.compressToBase64(JSON.stringify(player.editor))); tmp.editor.fromEditor=true">Playtest</button></td>
               </tr>
               <tr>
                 <td><button id="edexpbtn" @click="exportEditor()">Export</button></td>
                 <td><button @click="importEditor()">Import</button></td>
               </tr>
               <tr>
-                <td><button @click="importL(LZString.compressToBase64(JSON.stringify(player.editor))); tmp.editor.fromEditor=true">Playtest</button></td>
+                <td><button @click="clearEditor()">Clear editor</button></td>
                 <td><button @click="tmp.page=2">Exit</button></td>
               </tr>
             </table>
