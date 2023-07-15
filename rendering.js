@@ -140,7 +140,27 @@ function updatecanvas(){
     for(const layer of tmp.halflaserwhere[i[0]][i[1]]){
       ctx.beginPath();
         moveonCanvas(corY, corX, reverse(layer[0]))
-        ctx.lineTo(corX+35,corY+35)
+        if(["redpass","greenpass","yellowpass"].includes(build[0])){
+          if (layer[1]!==(build[0].substring(0,build[0].length-4))){
+            if (layer[0]==="down"){
+              a=corX+35
+              b=corY+65
+            }
+            else if (layer[0]==="up"){
+              a=corX+35
+              b=corY+5
+            }
+            else if (layer[0]==="left"){
+              b=corX+5
+            }
+            else if (layer[0]==="right"){
+              a=corX+65
+              b=corY+35
+            }
+            ctx.lineTo(a,b)
+          }
+        }
+        else ctx.lineTo(corX+35,corY+35)
         ctx.strokeStyle = coloures[layer[1]]
         ctx.stroke();
       ctx.closePath()
@@ -149,7 +169,7 @@ function updatecanvas(){
     for(const layer of tmp.laserwhere[i[0]][i[1]]){
       ctx.beginPath();
         moveonCanvas(corY, corX, layer[0])
-        drawline(corY, corX, layer[0],build)
+        drawline(corY, corX, layer[0],build,layer[1])
         ctx.strokeStyle = coloures[layer[1]]
         ctx.stroke();
       ctx.closePath()
@@ -179,7 +199,7 @@ function moveonCanvas(y,x,p){
   ctx.moveTo(x,y)
 }
 
-function drawline(y,x,p,build){
+function drawline(y,x,p,build,color){
   if(build[0]!=="mirror"){
   if (p==="down"){
     x=x+35
@@ -251,7 +271,5 @@ function drawline(y,x,p,build){
         curx+=30
         ctx.lineTo(curx,cury)
       }
-  
-    
     }
 }
