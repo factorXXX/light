@@ -1,5 +1,13 @@
 const machine=document.getElementById("machine")
+let canvas 
+let ctx 
 var mul = 1
+let coloures = {
+  green:"#B4EB46",
+  red:"#CC2218",
+  yellow:"#FFC500",
+  white:"#fff",
+}
 function playermargin(){
   let mul=window.getComputedStyle(document.documentElement).getPropertyValue('--mul')
   let pla=document.getElementById("player")
@@ -9,6 +17,7 @@ function playermargin(){
 function startMachine(){
   mul = Math.round((Math.min(Math.min(1, window.innerHeight/70/1.3/(tmp.area[0])), window.innerWidth/73/(tmp.area[1])))*100)/100
   let inhtm = ""
+  inhtm+=('<canvas width="900" height="900" id="laserCanvas"></canvas>')
   inhtm+=('<div id="player" class="player"><div></div></div>')
   inhtm+=('<table class="gamezone" ><tbody>')
   for(let r=0;r<tmp.area[0];r++){
@@ -21,8 +30,6 @@ function startMachine(){
         }
       //buildings build
       inhtm+=('"><div id="b'+getcellnum(r, c)+'" class="'+getclass(r, c)+'"><div></div></div>')
-      //laser container
-      inhtm+=('<div class="laserContainer" id="las'+getcellnum(r, c)+'"><div></div><div></div><div></div><div></div></div>')
       //line beetween portals
       if(tmp.building[r][c][0]==="portal"){
         inhtm+=('<svg style="visibility: hidden; z-index: 25 !important; filter: drop-shadow(0px 0px 2px #000000);"><line id="l'+getcellnum(r, c)+'"stroke-linecap="round" stroke="red" stroke-width="2" x1="'+(35*mul)+'" y1="'+(35*mul)+'" x2="0" y2="0"/></svg>'
@@ -33,6 +40,11 @@ function startMachine(){
   }
   inhtm+=("</tbody></table>")
   machine.innerHTML=inhtm
+  canvas =document.getElementById("laserCanvas");
+  canvas.height = tmp.building.length*70
+  canvas.width = tmp.building[0].length*70
+  ctx    =canvas.getContext("2d");
+  ctx.lineWidth = 4;
   playermargin()
   cacheElements()
   //scale to fit the screen
@@ -42,7 +54,7 @@ function getcellnum(r,c){
   return (((r<10)?"0":"")+r+((c<10)?"0":"")+c)
 }
 let cached_buildings=[]
-let cached_laser=[]
+//let cached_laser=[]
 let d=document
 function cacheElements(){
   cached_buildings=[]
@@ -52,7 +64,7 @@ function cacheElements(){
       let b = "b"+(x)
       let las = "las"+(x)
       cached_buildings["#"+(x)]=d.getElementById(b)
-      cached_laser["#"+(x)]=d.getElementById(las)
+      //cached_laser["#"+(x)]=d.getElementById(las)
     }
   }
   tmp.rendering.laserDamagePrev.clear()
@@ -68,8 +80,38 @@ function renderBuildingDamage(){
 function getPosition(string, index) {
   return string.split(',', index).join(',').length;
 }
-function renderLaserDamage(){
-  //find difference
+
+function getclass(r,c,h=true){
+  let current = [].concat(tmp.building[r][c])
+  if(h){
+    return(current[0]+' '+(current[1]?current[1]:"")+' '+(current[2]?current[2]:""))
+  } 
+  else {
+  if(['void','horpass','verpass'].includes(current[0])){
+    return current[0]
+  } else return("") }
+}
+
+function drawaline(a,b,destroy=false){
+  if(tmp.building[a][b][0]==='portal'){
+    let line = document.getElementById("l"+getcellnum(a,b))
+    if(!destroy){
+      let startCell = document.getElementById("c"+getcellnum(a,b)).getBoundingClientRect()
+      let endBuildPos = tmp.building[a][b][1]
+      let endCell = document.getElementById("c"+getcellnum(endBuildPos[0],endBuildPos[1])).getBoundingClientRect()
+      line.x2.baseVal.value = endCell.left - startCell.left + (35*mul)
+      line.y2.baseVal.value = endCell.top - startCell.top + (35*mul)
+    line.style.visibility = "visible"
+    } else {
+    line.style.visibility = "hidden"
+    }
+}
+};
+
+
+
+function updatecanvas(){
+  //find what to update
   let diff = new Set()
   for(const elem of tmp.rendering.laserDamage){
     if(!tmp.rendering.laserDamagePrev.has(elem)){
@@ -86,73 +128,132 @@ function renderLaserDamage(){
       diff.add(x);
     }
   }
-  //log current prev and diff
-  //console.log("diff: ",diff,"\nprev: ",tmp.rendering.laserDamagePrev,"\ncurr: ",tmp.rendering.laserDamage)
+  //loop through what we have found
   for(const x of diff){
     i = JSON.parse(x)
-    let laserContainer = cached_laser["#"+(getcellnum(i[0], i[1]))]
-    let l=0
-    //laser and 90 deg laser
-    for(layer in tmp.laserwhere[i[0]][i[1]]){
-      laserContainer.children[l].setAttribute("class",getlaserclass(i[0],i[1],layer));
-      l++
+    ctx.clearRect(i[1]*70, i[0]*70, 70, 70)
+    build = tmp.building[i[0]][i[1]]
+    corX=i[1]*70
+    corY=i[0]*70
+    //halves first because they can be overdrawn
+    for(const layer of tmp.halflaserwhere[i[0]][i[1]]){
+      console.log(tmp.halflaserwhere[i[0]][i[1]])
+      ctx.beginPath();
+        moveonCanvas(corY, corX, reverse(layer[0]))
+        ctx.lineTo(corX+35,corY+35)
+        ctx.strokeStyle = coloures[layer[1]]
+        ctx.stroke();
+      ctx.closePath()
     }
-    //half laser
-    for(layer in tmp.halflaserwhere[i[0]][i[1]]){
-      laserContainer.children[l].setAttribute("class",getlaserclass(i[0],i[1],layer,false));
-      l++
+
+    for(const layer of tmp.laserwhere[i[0]][i[1]]){
+      ctx.beginPath();
+        moveonCanvas(corY, corX, layer[0])
+        drawline(corY, corX, layer[0],build)
+        ctx.strokeStyle = coloures[layer[1]]
+        ctx.stroke();
+      ctx.closePath()
     }
-    while(l<4){
-      laserContainer.children[l].removeAttribute("class")
-      l++
-    }
+
   }
   tmp.rendering.laserDamagePrev=new Set(Array.from(tmp.rendering.laserDamage))
   tmp.rendering.laserDamage.clear()
 }
 
-function getclass(r,c,h=true){
-  let current = [].concat(tmp.building[r][c])
-  if(h){
-    return(current[0]+' '+(current[1]?current[1]:"")+' '+(current[2]?current[2]:""))
-  } 
-  else {
-  if(['void','horpass','verpass'].includes(current[0])){
-    return current[0]
-  } else return("") }
+
+
+function moveonCanvas(y,x,p){
+  if (p==="down"){
+    x=x+35
+  }
+  else if (p==="up"){
+    x=x+35
+    y=y+70
+  }
+  else if (p==="left"){
+    x=x+70
+    y=y+35
+  }
+  else if (p==="right"){
+    x=x
+    y=y+35
+  }
+  ctx.moveTo(x,y)
 }
-function getlaserclass(r,c,l,h=true){
-  let str = '' 
-  if(h){ 
-  let current = tmp.laserwhere[r][c][l]
-  let build = tmp.building[r][c]
-  if (build[0]==='mirror'){//laser90
-    str=str+(current[1])
-    str=str+("Laser laser90 "+build[1])
-  } else {//laser
-    str=str+(current[1])
-    str=str+("Laser laser "+current[0])
+
+function drawline(y,x,p,build){
+  if(build[0]!=="mirror"){
+  if (p==="down"){
+    x=x+35
+    y=y+70
   }
+  else if (p==="up"){
+    x=x+35
   }
-  else{ //half lasers
-    let current = tmp.halflaserwhere[r][c][l]
-    str=str+(current[1])
-    str=str+("Laser laser half "+current[0])
+  else if (p==="left"){
+    y=y+35
   }
-  return str
-}
-function drawaline(a,b,destroy=false){
-  if(tmp.building[a][b][0]==='portal'){
-    let line = document.getElementById("l"+getcellnum(a,b))
-    if(!destroy){
-      let startCell = document.getElementById("c"+getcellnum(a,b)).getBoundingClientRect()
-      let endBuildPos = tmp.building[a][b][1]
-      let endCell = document.getElementById("c"+getcellnum(endBuildPos[0],endBuildPos[1])).getBoundingClientRect()
-      line.x2.baseVal.value = endCell.left - startCell.left + (35*mul)
-      line.y2.baseVal.value = endCell.top - startCell.top + (35*mul)
-    line.style.visibility = "visible"
-    } else {
-    line.style.visibility = "hidden"
+  else if (p==="right"){
+    x=x+70
+    y=y+35
+  }
+  ctx.lineTo(x,y)
+  }
+  let curx=0
+  let cury=0
+  if(build[0]==="mirror"){
+    if (p==="down"){
+      curx=x+35
+      cury=y+30
+    }
+    else if (p==="up"){
+      cury=y+40
+      curx=x+35
+    }
+    else if (p==="left"){
+      curx=x+40
+      cury=y+35
+    }
+    else if (p==="right"){
+      curx=x+30
+      cury=y+35
+    }
+
+    ctx.lineTo(curx,cury)
+
+    let builder = build[1].split("-")
+    builder.splice(builder.indexOf(p),1)
+    builder=(reverse(builder[0]))
+
+      if (builder==="down"){
+        curx=x+35
+        cury=y+40
+        ctx.lineTo(curx,cury)
+        cury+=30
+        ctx.lineTo(curx,cury)
+      }
+      else if (builder==="up"){
+        cury=y+30
+        curx=x+35
+        ctx.lineTo(curx,cury)
+        cury=y
+        ctx.lineTo(curx,cury)
+      }
+      else if (builder==="left"){
+        curx=x+30
+        cury=y+35
+        ctx.lineTo(curx,cury)
+        curx=x
+        ctx.lineTo(curx,cury)
+      }
+      else if (builder==="right"){
+        curx=x+40
+        cury=y+35
+        ctx.lineTo(curx,cury)
+        curx+=30
+        ctx.lineTo(curx,cury)
+      }
+  
+    
     }
 }
-};

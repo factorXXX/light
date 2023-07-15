@@ -221,7 +221,7 @@ function calculation2() {
   light(true, false, true, true);
   playermargin()
   renderBuildingDamage()
-  renderLaserDamage()
+  updatecanvas()
 }
 
 function moveMoving(){

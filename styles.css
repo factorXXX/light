@@ -193,6 +193,7 @@ table  {
   background:#CCA43D;
 }
 .wideopts td{
+  cursor: pointer;
   box-sizing: border-box;
   border: 2px solid #aaa;
   width: 220px;
@@ -226,9 +227,6 @@ table  {
 .green div, .greenLaser{
   filter: invert(100%) sepia(22%) saturate(6000%) hue-rotate(20deg)
 }
-.whiteLaser{
-  filter: invert(100%);
-}
 .yellow div, .yellowLaser{
   
   filter: invert(86%) sepia(50%) saturate(6000%) 
@@ -241,15 +239,6 @@ table  {
 }*/
 .null div{
   filter: invert(75%)
-}
-.yellowLaser{
-  z-index: 15 !important;
-}
-.whiteLaser{
-  z-index: 18 !important;
-}
-.redLaser{
-  z-index: 10;
 }/*
 .blueLaser{
   z-index: 10;
@@ -307,13 +296,12 @@ td div {
 .gamezone td div:nth-child(n+2){
   position: absolute;
 }
-.laserContainer{
+#laserCanvas{
   position: absolute;
-  height: var(--cell-size-70);
-  width: var(--cell-size-70);
-}
-.laserContainer div{
-  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+  image-rendering:pixelated;
+  transform:scale(var(--mul));
 }
 .light, .sun, .rotate90, .rotate180, .rotate270, .mirror, .box, .boxwall, .bomb, .moving{
   z-index: 20 !important;
@@ -354,15 +342,6 @@ td div {
   background-repeat:no-repeat;
   background-image: url('./images/mirror.svg');
 }
-.laser{
-  background-position: center;
-  background-size: cover;
-  z-index: 12;
-  width: var(--cell-size-70);
-  height: var(--cell-size-70);
-  background-repeat:no-repeat;
-  background-image: url('./images/laser.svg');
-}
 .reflecthor{
   z-index: 20;
   background-image: url('./images/reflect.svg');
@@ -371,19 +350,6 @@ td div {
   z-index: 20;
   transform: rotate(90deg);
   background-image: url('./images/reflect.svg');
-}
-.half {
-  background-size: cover;
-  z-index: 5 !important;
-  background-image: url('./images/laser-half.svg') !important;
-}
-.laser90{
-  background-size: cover;
-  z-index: 10;
-  width: var(--cell-size-70);
-  height: var(--cell-size-70);
-  background-repeat:no-repeat;
-  background-image: url('./images/laser90.svg');
 }
 .greenpass , .yellowpass , .redpass , .bluepass {
   z-index: 11 !important;
