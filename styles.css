@@ -298,7 +298,7 @@ td div {
 }
 #laserCanvas{
   position: absolute;
-  z-index: 10;
+  z-index: 12;
   pointer-events: none;
   image-rendering:pixelated;
   transform: scale(var(--mul));

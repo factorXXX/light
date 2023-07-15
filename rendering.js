@@ -136,8 +136,8 @@ function updatecanvas(){
     corX=i[1]*70
     corY=i[0]*70
     //halves first because they can be overdrawn
+    if(build[0]!=="void"){
     for(const layer of tmp.halflaserwhere[i[0]][i[1]]){
-      console.log(tmp.halflaserwhere[i[0]][i[1]])
       ctx.beginPath();
         moveonCanvas(corY, corX, reverse(layer[0]))
         ctx.lineTo(corX+35,corY+35)
@@ -153,9 +153,7 @@ function updatecanvas(){
         ctx.strokeStyle = coloures[layer[1]]
         ctx.stroke();
       ctx.closePath()
-    }
-
-  }
+    }}}
   tmp.rendering.laserDamagePrev=new Set(Array.from(tmp.rendering.laserDamage))
   tmp.rendering.laserDamage.clear()
 }
