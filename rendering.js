@@ -1,21 +1,28 @@
 const machine=document.getElementById("machine")
 let canvas 
 let ctx 
-var mul = 1
-let coloures = {
-  green:"#B4EB46",
-  red:"#CC2218",
-  yellow:"#FFC500",
-  white:"#fff",
+let pla
+let rendering={
+  mul: 1,
+  buildingDamageHistory:[],
+  buildingDamage:new Set(),
+  laserDamage:new Set(),
+  laserDamagePrev:new Set(),
+  laserwhere:[],
+  halflaserwhere:[],
+  colors: {
+    green:"#B4EB46",
+    red:"#CC2218",
+    yellow:"#FFC500",
+    white:"#fff",
+  },
 }
 function playermargin(){
-  let mul=window.getComputedStyle(document.documentElement).getPropertyValue('--mul')
-  let pla=document.getElementById("player")
-  pla.style.marginTop=(tmp.location[0]*70*mul)+(5*mul)+"px"
-  pla.style.marginLeft=(tmp.location[1]*70*mul)+(8.5*mul)+"px"
+  pla.style.marginTop=((tmp.location[0]*70+8.5)*rendering.mul)+"px"
+  pla.style.marginLeft=((tmp.location[1]*70+8.5)*rendering.mul)+"px"
 }
 function startMachine(){
-  mul = Math.round((Math.min(Math.min(1, window.innerHeight/70/1.3/(tmp.area[0])), window.innerWidth/73/(tmp.area[1])))*100)/100
+  rendering.mul = Math.round((Math.min(Math.min(1, window.innerHeight/70/1.3/(tmp.area[0])), window.innerWidth/73/(tmp.area[1])))*100)/100
   let inhtm = ""
   inhtm+=('<canvas width="900" height="900" id="laserCanvas"></canvas>')
   inhtm+=('<div id="player" class="player"><div></div></div>')
@@ -32,7 +39,7 @@ function startMachine(){
       inhtm+=('"><div id="b'+getcellnum(r, c)+'" class="'+getclass(r, c)+'"><div></div></div>')
       //line beetween portals
       if(tmp.building[r][c][0]==="portal"){
-        inhtm+=('<svg style="visibility: hidden; z-index: 25 !important; filter: drop-shadow(0px 0px 2px #000000);"><line id="l'+getcellnum(r, c)+'"stroke-linecap="round" stroke="red" stroke-width="2" x1="'+(35*mul)+'" y1="'+(35*mul)+'" x2="0" y2="0"/></svg>'
+        inhtm+=('<svg style="visibility: hidden; z-index: 25 !important; filter: drop-shadow(0px 0px 2px #000000);"><line id="l'+getcellnum(r, c)+'"stroke-linecap="round" stroke="red" stroke-width="2" x1="'+(35*rendering.mul)+'" y1="'+(35*rendering.mul)+'" x2="0" y2="0"/></svg>'
       )}
       inhtm+=("</td>")
     }
@@ -40,6 +47,9 @@ function startMachine(){
   }
   inhtm+=("</tbody></table>")
   machine.innerHTML=inhtm
+
+
+  pla=document.getElementById("player")
   canvas =document.getElementById("laserCanvas");
   canvas.height = tmp.building.length*70
   canvas.width = tmp.building[0].length*70
@@ -48,13 +58,12 @@ function startMachine(){
   playermargin()
   cacheElements()
   //scale to fit the screen
-  document.documentElement.style.setProperty("--mul", mul)
+  document.documentElement.style.setProperty("--mul", rendering.mul)
 }
 function getcellnum(r,c){
   return (((r<10)?"0":"")+r+((c<10)?"0":"")+c)
 }
 let cached_buildings=[]
-//let cached_laser=[]
 let d=document
 function cacheElements(){
   cached_buildings=[]
@@ -62,20 +71,18 @@ function cacheElements(){
     for(let c=0;c<tmp.area[1];c++){
       let x = getcellnum(r,c)
       let b = "b"+(x)
-      let las = "las"+(x)
       cached_buildings["#"+(x)]=d.getElementById(b)
-      //cached_laser["#"+(x)]=d.getElementById(las)
     }
   }
-  tmp.rendering.laserDamagePrev.clear()
-  tmp.rendering.laserDamage.clear()
+  rendering.laserDamagePrev.clear()
+  rendering.laserDamage.clear()
 }
 function renderBuildingDamage(){
-  for(const x of tmp.rendering.buildingDamage){
+  for(const x of rendering.buildingDamage){
     cached_buildings["#"+(getcellnum(x[0], x[1]))].classList=getclass(x[0], x[1])
   }
-  tmp.rendering.buildingDamageHistory.push(Array.from(tmp.rendering.buildingDamage))
-  tmp.rendering.buildingDamage.clear()
+  rendering.buildingDamageHistory.push(Array.from(rendering.buildingDamage))
+  rendering.buildingDamage.clear()
 }
 function getPosition(string, index) {
   return string.split(',', index).join(',').length;
@@ -99,8 +106,8 @@ function drawaline(a,b,destroy=false){
       let startCell = document.getElementById("c"+getcellnum(a,b)).getBoundingClientRect()
       let endBuildPos = tmp.building[a][b][1]
       let endCell = document.getElementById("c"+getcellnum(endBuildPos[0],endBuildPos[1])).getBoundingClientRect()
-      line.x2.baseVal.value = endCell.left - startCell.left + (35*mul)
-      line.y2.baseVal.value = endCell.top - startCell.top + (35*mul)
+      line.x2.baseVal.value = endCell.left - startCell.left + (35*rendering.mul)
+      line.y2.baseVal.value = endCell.top - startCell.top + (35*rendering.mul)
     line.style.visibility = "visible"
     } else {
     line.style.visibility = "hidden"
@@ -113,16 +120,16 @@ function drawaline(a,b,destroy=false){
 function updatecanvas(){
   //find what to update
   let diff = new Set()
-  for(const elem of tmp.rendering.laserDamage){
-    if(!tmp.rendering.laserDamagePrev.has(elem)){
+  for(const elem of rendering.laserDamage){
+    if(!rendering.laserDamagePrev.has(elem)){
       x=elem.substring(0,getPosition(elem, 2))+"]"
       if(x.includes("]]"))x=x.slice(0,-1)
       diff.add(x);
     }
   }
 
-  for (const elem of tmp.rendering.laserDamagePrev) {
-    if(!tmp.rendering.laserDamage.has(elem)){
+  for (const elem of rendering.laserDamagePrev) {
+    if(!rendering.laserDamage.has(elem)){
       x=elem.substring(0,getPosition(elem, 2))+"]"
       if(x.includes("]]"))x=x.slice(0,-1)
       diff.add(x);
@@ -131,13 +138,45 @@ function updatecanvas(){
   //loop through what we have found
   for(const x of diff){
     i = JSON.parse(x)
+    let corHalf = rendering.halflaserwhere[i[0]][i[1]]
+    let corLas = rendering.laserwhere[i[0]][i[1]]
     ctx.clearRect(i[1]*70, i[0]*70, 70, 70)
     build = tmp.building[i[0]][i[1]]
     corX=i[1]*70
     corY=i[0]*70
-    //halves first because they can be overdrawn
+
+    //make white last and yellow before it
+    let a1=[] //yellows
+    let b1=[] //whites
+    for(a2 in corHalf){
+      if(corHalf[a2][1]==="yellow"){
+        a1.push(corHalf[a2])
+        corHalf = corHalf.splice(a2 ,1)
+      }
+      else if(corHalf[a2][1]==="white"){
+        b1.push(corHalf[a2])
+        corHalf = corHalf.splice(a2 ,1)
+      }
+    }
+    corHalf = corHalf.concat(a1).concat(b1)
+
+    a1=[] //yellows
+    b1=[] //whites
+    for(a2 in corLas){
+      if(corLas[a2][1]==="yellow"){
+        a1.push(corLas[a2])
+        corLas = corLas.splice(a2 ,1)
+      }
+      else if(corLas[a2][1]==="white"){
+        b1.push(corLas[a2])
+        corLas = corLas.splice(a2 ,1)
+      }
+    }
+    corLas = corLas.concat(a1).concat(b1)
+
     if(build[0]!=="void"){
-    for(const layer of tmp.halflaserwhere[i[0]][i[1]]){
+    //halves first because they can be overdrawn
+    for(const layer of corHalf){
       ctx.beginPath();
         moveonCanvas(corY, corX, reverse(layer[0]))
         if(["redpass","greenpass","yellowpass"].includes(build[0])){
@@ -162,21 +201,21 @@ function updatecanvas(){
           }
         }
         else ctx.lineTo(corX+35,corY+35)
-        ctx.strokeStyle = coloures[layer[1]]
+        ctx.strokeStyle = rendering.colors[layer[1]]
         ctx.stroke();
       ctx.closePath()
     }
 
-    for(const layer of tmp.laserwhere[i[0]][i[1]]){
+    for(const layer of corLas){
       ctx.beginPath();
         moveonCanvas(corY, corX, layer[0])
         drawline(corY, corX, layer[0],build,layer[1])
-        ctx.strokeStyle = coloures[layer[1]]
+        ctx.strokeStyle = rendering.colors[layer[1]]
         ctx.stroke();
       ctx.closePath()
     }}}
-  tmp.rendering.laserDamagePrev=new Set(Array.from(tmp.rendering.laserDamage))
-  tmp.rendering.laserDamage.clear()
+  rendering.laserDamagePrev=new Set(Array.from(rendering.laserDamage))
+  rendering.laserDamage.clear()
 }
 
 

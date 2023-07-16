@@ -9,8 +9,9 @@
   --border-radius: calc(2px*var(--mul));
 }
 .gamezone {
-  box-sizing: border-box;
+  -webkit-user-drag: none;
   user-select: none;
+  box-sizing: border-box;
   margin: 0px;
   padding: 0px;
   background: transparent;
@@ -170,6 +171,9 @@ table  {
   cursor: pointer;
   width: 50%;
   max-width: 50%;
+}
+.menuLevels{
+  user-select: none;
 }
 .menuLevels td:hover {
   cursor: pointer;
@@ -425,6 +429,7 @@ td.void{
   margin-right: auto;
 }
 .player{
+  pointer-events: none;
   background: url('images/player/legless.svg') ;
   background-size: calc(68px*var(--mul));
   background-repeat: no-repeat;
@@ -471,6 +476,7 @@ td.void{
 
 /*editor*/
 .editor {
+  user-select: none;
   border-spacing: 5px;
 }
 .editor button {

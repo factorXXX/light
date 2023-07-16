@@ -33,15 +33,6 @@ var tmp = {
     title:"",
   },
   modalvisible:false,
-  rendering:{
-    buildingDamageHistory:[],
-    buildingDamage:new Set(),
-    laserDamage:new Set(),
-    laserDamagePrev:new Set()
-  },
-  laserwhere:[],
-  halflaserwhere:[],
-  counterforTest:0,
   move:[],
 };
 function music(x) {
@@ -201,18 +192,18 @@ Vue.component("level", {
     `,
 });
 function calculation2() {
-  tmp.laserwhere=[]
+  rendering.laserwhere=[]
   for (let i = 0; i < tmp.area[0]; i++) {
-    tmp.laserwhere.push([])
+    rendering.laserwhere.push([])
     for (let j = 0; j < tmp.area[1]; j++) {
-      tmp.laserwhere[i].push([])
+      rendering.laserwhere[i].push([])
     }
   }
-  tmp.halflaserwhere=[]
+  rendering.halflaserwhere=[]
   for (let i = 0; i < tmp.area[0]; i++) {
-    tmp.halflaserwhere.push([])
+    rendering.halflaserwhere.push([])
     for (let j = 0; j < tmp.area[1]; j++) {
-      tmp.halflaserwhere[i].push([])
+      rendering.halflaserwhere[i].push([])
     }
   }
   light(false, true);
@@ -230,7 +221,7 @@ function moveMoving(){
 let truemove=tmp.move
 tmp.move=[]
   for(let i=0;i<truemove.length;i++){
-    tmp.rendering.buildingDamage.add([truemove[i][0],truemove[i][1]])
+    rendering.buildingDamage.add([truemove[i][0],truemove[i][1]])
         let bD=tmp.building[truemove[i][0]][truemove[i][1]]
         if(bD[1]=='up'){
           if((truemove[i][0]-1)<0){
@@ -240,41 +231,33 @@ tmp.move=[]
           }
           else {
             tmp.building[truemove[i][0]-1][truemove[i][1]]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0]-1,truemove[i][1]])
-            tmp.rendering.buildingDamage.add(tmp.move[tmp.move.length-1])
+            rendering.buildingDamage.add(tmp.move[tmp.move.length-1])
           }
         }
         else if(bD[1]=='down'){
           if((truemove[i][0]+1)>=tmp.area[0]){tmp.building[truemove[i][0]][truemove[i][1]][1]="up";tmp.move.push([truemove[i][0],truemove[i][1]])}
           else if(tmp.building[truemove[i][0]+1][truemove[i][1]][0]!=null||((tmp.location[0]==truemove[i][0]+1)&&(tmp.location[1]==truemove[i][1]))){tmp.building[truemove[i][0]][truemove[i][1]][1]="up";tmp.move.push([truemove[i][0],truemove[i][1]])}
           else {tmp.building[truemove[i][0]+1][truemove[i][1]]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0]+1,truemove[i][1]])
-            tmp.rendering.buildingDamage.add(tmp.move[tmp.move.length-1])}
+            rendering.buildingDamage.add(tmp.move[tmp.move.length-1])}
         }
         else if(bD[1]=='left'){
           if((truemove[i][1]-1)<0){tmp.building[truemove[i][0]][truemove[i][1]][1]="right";tmp.move.push([truemove[i][0],truemove[i][1]])}
           else if(tmp.building[truemove[i][0]][truemove[i][1]-1][0]!=null||((tmp.location[0]==truemove[i][0])&&(tmp.location[1]==truemove[i][1]-1))){tmp.building[truemove[i][0]][truemove[i][1]][1]="right";tmp.move.push([truemove[i][0],truemove[i][1]])}
           else {tmp.building[truemove[i][0]][truemove[i][1]-1]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0],truemove[i][1]-1])
-            tmp.rendering.buildingDamage.add(tmp.move[tmp.move.length-1])}
+            rendering.buildingDamage.add(tmp.move[tmp.move.length-1])}
         }
         else if(bD[1]=='right'){
           if((truemove[i][1]+1)>=tmp.area[1]){tmp.building[truemove[i][0]][truemove[i][1]][1]="left";tmp.move.push([truemove[i][0],truemove[i][1]])}
           else if(tmp.building[truemove[i][0]][truemove[i][1]+1][0]!=null||((tmp.location[0]==truemove[i][0])&&(tmp.location[1]==truemove[i][1]+1))){tmp.building[truemove[i][0]][truemove[i][1]][1]="left";tmp.move.push([truemove[i][0],truemove[i][1]])}
           else {tmp.building[truemove[i][0]][truemove[i][1]+1]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0],truemove[i][1]+1])
-            tmp.rendering.buildingDamage.add(tmp.move[tmp.move.length-1])}
+            rendering.buildingDamage.add(tmp.move[tmp.move.length-1])}
         }
   }
 //  calculation2()
 }
 function pushingEdges(rev=false,lo1,lo2,pos,color){
-    tmp.halflaserwhere[lo1][lo2].push([(rev?reverse(pos):pos),color])
-    tmp.rendering.laserDamage.add(JSON.stringify([lo1,lo2,pos,color]))
-    let x = tmp.halflaserwhere[lo1][lo2]
-    if(x.length>=2){
-      for(let i=0;i<(x.length-1);i++){
-         if(x[i][1]=="yellow" && x[x.length-1][1]!="white"){
-          tmp.halflaserwhere[lo1][lo2].pop()
-         }
-      }
-    }
+    rendering.halflaserwhere[lo1][lo2].push([(rev?reverse(pos):pos),color])
+    rendering.laserDamage.add(JSON.stringify([lo1,lo2,pos,color]))
 }
 function isunlocked(d, diff){//for chapters in menu
   if ((d)===1&&diff==0) return true
@@ -330,7 +313,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
       try1++
       let buildDetail = tmp.building[locat[0]][locat[1]];
       let build = buildDetail[0];
-      if(final)tmp.rendering.laserDamage.add(JSON.stringify([locat[0],locat[1],pos,color,buildDetail[0],((tmp.location[0]) === (locat[0])&&(tmp.location[1]) === (locat[1]))]))
+      if(final)rendering.laserDamage.add(JSON.stringify([locat[0],locat[1],pos,color,buildDetail[0],((tmp.location[0]) === (locat[0])&&(tmp.location[1]) === (locat[1]))]))
       
       if (build === "sun" && win && !tmp.b){
         tmp.b = true;
@@ -362,14 +345,14 @@ function light(win = false, withlight = false, withM = false, final=false) {
       if (["badbox", "badboxwall"].includes(build))
         {tmp.building[locat[0]][locat[1]] = [null];
           build = null
-          tmp.rendering.buildingDamage.add([locat[0],locat[1]])
+          rendering.buildingDamage.add([locat[0],locat[1]])
         }
   
       if (build==='store') {
         if (buildDetail[1]==='null')  {
           tmp.building[locat[0]][locat[1]][1] = color;
           buildDetail[1] = color
-          tmp.rendering.buildingDamage.add([locat[0],locat[1]])
+          rendering.buildingDamage.add([locat[0],locat[1]])
         }
 
       }
@@ -379,7 +362,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
           for(let j=-1;j<=1;j++){
             if((tmp.building[locat[0]+i]&&tmp.building[locat[0]+i][locat[1]+j])&&!(["portal","light","void","horpass","verpass",null].includes(tmp.building[locat[0]+i][locat[1]+j][0])))
             { tmp.building[locat[0]+i][locat[1]+j]=[null]
-              tmp.rendering.buildingDamage.add([locat[0]+i,locat[1]+j])
+              rendering.buildingDamage.add([locat[0]+i,locat[1]+j])
             }
           }
      
@@ -503,7 +486,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
         locat = [...buildDetail[1]];
         if(final && !(((tmp.location[0]) === (locat[0])&&(tmp.location[1]) === (locat[1])))){
           pushingEdges(false,locat[0],locat[1],pos,color)
-          tmp.rendering.laserDamage.add(JSON.stringify([locat[0],locat[1]]))
+          rendering.laserDamage.add(JSON.stringify([locat[0],locat[1]]))
         }
         if (((tmp.location[0]) === (locat[0])&&(tmp.location[1]) === (locat[1]))) {
           break;
@@ -531,7 +514,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
 
   if(withlight)return tmp.where1=JSON.parse(JSON.stringify(lightL));
   else if(withM){
-    return tmp.laserwhere=JSON.parse(JSON.stringify(lightL))
+    return rendering.laserwhere=JSON.parse(JSON.stringify(lightL))
   };
 }
 function calcolor() {
@@ -574,9 +557,9 @@ function doSomething(a,b){
     tmp.location = tmp.previous[tmp.previous.length - 1].location;
     tmp.move = tmp.previous[tmp.previous.length - 1].move;
     tmp.previous.pop();
-    tmp.rendering.buildingDamage=new Set(Array.from(tmp.rendering.buildingDamageHistory[tmp.rendering.buildingDamageHistory.length-1]))
-    tmp.rendering.buildingDamageHistory.pop()
-    tmp.rendering.buildingDamageHistory.pop()
+    rendering.buildingDamage=new Set(Array.from(rendering.buildingDamageHistory[rendering.buildingDamageHistory.length-1]))
+    rendering.buildingDamageHistory.pop()
+    rendering.buildingDamageHistory.pop()
     calculation2()
     return;
   }
@@ -617,7 +600,7 @@ function doSomething(a,b){
   if (tmp.building[tmp.location[0]][tmp.location[1]][0] !== null) {
     let buildtouch = tmp.building[tmp.location[0]][tmp.location[1]];
     if (["box", "badbox", "mirror", "store","rotate180","rotate90","rotate270","reflecthor","reflectvel","bomb"].includes(buildtouch[0])) {
-      tmp.rendering.buildingDamage.add([tmp.location[0],tmp.location[1]])
+      rendering.buildingDamage.add([tmp.location[0],tmp.location[1]])
       let pos = [0, 0];
       let req = true;
       if ((a === "KeyD" || a === "ArrowRight")&& tmp.page===1 && !tmp.b) {
@@ -642,8 +625,8 @@ function doSomething(a,b){
         calculation2()
         return;
       }
-      tmp.rendering.buildingDamage.add([(locat[0]+pos[0]*2),(locat[1]+pos[1]*2)])
-      if(buildtouch[0]==="mirror")tmp.rendering.laserDamage.add(JSON.stringify([(locat[0]+pos[0]*2),(locat[1]+pos[1]*2)]))
+      rendering.buildingDamage.add([(locat[0]+pos[0]*2),(locat[1]+pos[1]*2)])
+      if(buildtouch[0]==="mirror")rendering.laserDamage.add(JSON.stringify([(locat[0]+pos[0]*2),(locat[1]+pos[1]*2)]))
       if ((tmp.building[locat[0] + pos[0] * 2][locat[1] + pos[1] * 2][0] !== null)&&buildtouch[0][0]!=="r") {
         tmp.location = [locat[0], locat[1]];
         tmp.previous.pop();
@@ -802,18 +785,18 @@ function importL(imported = undefined) {
       if (tmp.building[i][j][0] === "moving") move.push([i, j]);
     }
   }
-  tmp.laserwhere=[]
+  rendering.laserwhere=[]
   for (let i = 0; i < tmp.area[0]; i++) {
-    tmp.laserwhere.push([])
+    rendering.laserwhere.push([])
     for (let j = 0; j < tmp.area[1]; j++) {
-      tmp.laserwhere[i].push([])
+      rendering.laserwhere[i].push([])
     }
   }
-  tmp.halflaserwhere=[]
+  rendering.halflaserwhere=[]
   for (let i = 0; i < tmp.area[0]; i++) {
-    tmp.halflaserwhere.push([])
+    rendering.halflaserwhere.push([])
     for (let j = 0; j < tmp.area[1]; j++) {
-      tmp.halflaserwhere[i].push([])
+      rendering.halflaserwhere[i].push([])
     }
   }
  tmp.light = light;
