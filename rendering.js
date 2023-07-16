@@ -140,6 +140,8 @@ function updatecanvas(){
     i = JSON.parse(x)
     let corHalf = rendering.halflaserwhere[i[0]][i[1]]
     let corLas = rendering.laserwhere[i[0]][i[1]]
+    corLas2=JSON.parse(JSON.stringify(corLas))
+    corHalf2= JSON.parse(JSON.stringify(corHalf))
     ctx.clearRect(i[1]*70, i[0]*70, 70, 70)
     build = tmp.building[i[0]][i[1]]
     corX=i[1]*70
@@ -151,29 +153,28 @@ function updatecanvas(){
     for(a2 in corHalf){
       if(corHalf[a2][1]==="yellow"){
         a1.push(corHalf[a2])
-        corHalf = corHalf.splice(a2 ,1)
+        corHalf2 = corHalf2.splice(a2 ,1)
       }
       else if(corHalf[a2][1]==="white"){
         b1.push(corHalf[a2])
-        corHalf = corHalf.splice(a2 ,1)
+        corHalf2 = corHalf2.splice(a2 ,1)
       }
     }
-    corHalf = corHalf.concat(a1).concat(b1)
-
+    corHalf = corHalf2.concat(a1).concat(b1)
     a1=[] //yellows
     b1=[] //whites
     for(a2 in corLas){
       if(corLas[a2][1]==="yellow"){
         a1.push(corLas[a2])
-        corLas = corLas.splice(a2 ,1)
+        corLas2 = corLas2.splice(a2 ,1)
       }
-      else if(corLas[a2][1]==="white"){
+      if(corLas[a2][1]==="white"){
         b1.push(corLas[a2])
-        corLas = corLas.splice(a2 ,1)
+        corLas2 = corLas2.splice(a2 ,1)
       }
     }
-    corLas = corLas.concat(a1).concat(b1)
-
+    corLas = corLas2.concat(a1).concat(b1)
+    
     if(build[0]!=="void"){
     //halves first because they can be overdrawn
     for(const layer of corHalf){
