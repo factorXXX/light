@@ -193,17 +193,13 @@ Vue.component("level", {
 });
 function calculation2() {
   rendering.laserwhere=[]
-  for (let i = 0; i < tmp.area[0]; i++) {
-    rendering.laserwhere.push([])
-    for (let j = 0; j < tmp.area[1]; j++) {
-      rendering.laserwhere[i].push([])
-    }
-  }
   rendering.halflaserwhere=[]
   for (let i = 0; i < tmp.area[0]; i++) {
-    rendering.halflaserwhere.push([])
+    rendering.laserwhere.push([]);
+    rendering.halflaserwhere.push([]);
     for (let j = 0; j < tmp.area[1]; j++) {
-      rendering.halflaserwhere[i].push([])
+      rendering.laserwhere[i].push([]);
+      rendering.halflaserwhere[i].push([]);
     }
   }
   light(false, true);
@@ -257,7 +253,7 @@ tmp.move=[]
 }
 function pushingEdges(rev=false,lo1,lo2,pos,color){
     rendering.halflaserwhere[lo1][lo2].push([(rev?reverse(pos):pos),color])
-    rendering.laserDamage.add(JSON.stringify([lo1,lo2,pos,color]))
+    rendering.laserDamage.add(""+([lo1,lo2,pos,color]))
 }
 function isunlocked(d, diff){//for chapters in menu
   if ((d)===1&&diff==0) return true
@@ -313,7 +309,7 @@ function light(win = false, withlight = false, withM = false, final=false) {
       try1++
       let buildDetail = tmp.building[locat[0]][locat[1]];
       let build = buildDetail[0];
-      if(final)rendering.laserDamage.add(JSON.stringify([locat[0],locat[1],pos,color,buildDetail[0],((tmp.location[0]) === (locat[0])&&(tmp.location[1]) === (locat[1]))]))
+      if(final)rendering.laserDamage.add(""+([locat[0],locat[1],pos,color,buildDetail[0],((tmp.location[0]) === (locat[0])&&(tmp.location[1]) === (locat[1]))]))
       
       if (build === "sun" && win && !tmp.b){
         tmp.b = true;
@@ -512,9 +508,9 @@ function light(win = false, withlight = false, withM = false, final=false) {
   }
   if (win) return false;
 
-  if(withlight)return tmp.where1=JSON.parse(JSON.stringify(lightL));
+  if(withlight)return tmp.where1=[].concat(lightL);
   else if(withM){
-    return rendering.laserwhere=JSON.parse(JSON.stringify(lightL))
+    return rendering.laserwhere=[].concat(lightL)
   };
 }
 function calcolor() {
@@ -570,8 +566,8 @@ function doSomething(a,b){
   ) {
     enter();
     tmp.previous[tmp.previous.length - 1].location = locat;
-    tmp.previous[tmp.previous.length - 1].building = JSON.parse(
-      JSON.stringify(tmp.building))
+    tmp.previous[tmp.previous.length - 1].building = 
+      [].concat(tmp.building)
   }
 
 
@@ -593,9 +589,7 @@ function doSomething(a,b){
   }
   tmp.previous[tmp.previous.length - 1].location = locat;
 
-  tmp.previous[tmp.previous.length - 1].building = JSON.parse(
-    JSON.stringify(tmp.building)
-  );
+  tmp.previous[tmp.previous.length - 1].building = [].concat(tmp.building);
 
   if (tmp.building[tmp.location[0]][tmp.location[1]][0] !== null) {
     let buildtouch = tmp.building[tmp.location[0]][tmp.location[1]];
@@ -779,24 +773,16 @@ function importL(imported = undefined) {
   tmp.area = [tmp.building.length, tmp.building[0].length];
   let light = [];
   let move = [];
-  for (let i = 0; i < tmp.area[0]; i++) {
-    for (let j = 0; j < tmp.area[1]; j++) {
-      if (tmp.building[i][j][0] === "light") light.push([i, j]);
-      if (tmp.building[i][j][0] === "moving") move.push([i, j]);
-    }
-  }
   rendering.laserwhere=[]
-  for (let i = 0; i < tmp.area[0]; i++) {
-    rendering.laserwhere.push([])
-    for (let j = 0; j < tmp.area[1]; j++) {
-      rendering.laserwhere[i].push([])
-    }
-  }
   rendering.halflaserwhere=[]
   for (let i = 0; i < tmp.area[0]; i++) {
-    rendering.halflaserwhere.push([])
+    rendering.laserwhere.push([]);
+    rendering.halflaserwhere.push([]);
     for (let j = 0; j < tmp.area[1]; j++) {
-      rendering.halflaserwhere[i].push([])
+      rendering.laserwhere[i].push([]);
+      rendering.halflaserwhere[i].push([]);
+      if (tmp.building[i][j][0] === "light") light.push([i, j]);
+      if (tmp.building[i][j][0] === "moving") move.push([i, j]);
     }
   }
  tmp.light = light;

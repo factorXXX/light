@@ -122,26 +122,26 @@ function updatecanvas(){
   let diff = new Set()
   for(const elem of rendering.laserDamage){
     if(!rendering.laserDamagePrev.has(elem)){
-      x=elem.substring(0,getPosition(elem, 2))+"]"
-      if(x.includes("]]"))x=x.slice(0,-1)
+      x=elem.substring(0,getPosition(elem, 2))
+      x=x.replace(/\[|\]/g, '')
       diff.add(x);
     }
   }
 
   for (const elem of rendering.laserDamagePrev) {
     if(!rendering.laserDamage.has(elem)){
-      x=elem.substring(0,getPosition(elem, 2))+"]"
-      if(x.includes("]]"))x=x.slice(0,-1)
+      x=elem.substring(0,getPosition(elem, 2))
+      x=x.replace(/\[|\]/g, '')
       diff.add(x);
     }
   }
   //loop through what we have found
   for(const x of diff){
-    i = JSON.parse(x)
+    i = (x).split(",")
     let corHalf = rendering.halflaserwhere[i[0]][i[1]]
     let corLas = rendering.laserwhere[i[0]][i[1]]
-    corLas2=JSON.parse(JSON.stringify(corLas))
-    corHalf2= JSON.parse(JSON.stringify(corHalf))
+    corLas2=[].concat(corLas)
+    corHalf2= [].concat(corHalf)
     ctx.clearRect(i[1]*70, i[0]*70, 70, 70)
     build = tmp.building[i[0]][i[1]]
     corX=i[1]*70
