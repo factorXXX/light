@@ -46,11 +46,11 @@ onmessage = (evt) => {
       for(a2 in corLas){
         if(corLas[a2][1]==="yellow"){
           a1.push(corLas[a2])
-          corLas2 = corLas2.splice(a2 ,1)
+          corLas2.splice(a2 ,1)
         }
-        if(corLas[a2][1]==="white"){
+        else if(corLas[a2][1]==="white"){
           b1.push(corLas[a2])
-          corLas2 = corLas2.splice(a2 ,1)
+          corLas2.splice(a2 ,1)
         }
       }
       corLas = corLas2.concat(a1).concat(b1)
