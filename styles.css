@@ -221,26 +221,17 @@ table  {
 .greenCounter{
   float: right;
   color: #449944;
-}/*
-.blue div, .blueLaser {
-  filter: invert(44%) sepia(97%) saturate(2911%) hue-rotate(171deg) brightness(98%) contrast(93%);
-}*/
-.red div, .redLaser {
+}
+.red div  {
   filter: invert(17%) sepia(90%) saturate(3310%);
 }
-.green div, .greenLaser{
+.green div{
   filter: invert(100%) sepia(22%) saturate(6000%) hue-rotate(20deg)
 }
-.yellow div, .yellowLaser{
+.yellow div{
   
   filter: invert(86%) sepia(50%) saturate(6000%) 
 }
-/*.lightBlue, .lightBlueLaser{
-  filter: invert(63%) sepia(50%) saturate(4082%) hue-rotate(138deg) brightness(104%) contrast(87%);
-}
-.purple, .purpleLaser{
-  filter: invert(20%) sepia(70%) saturate(3864%) hue-rotate(290deg) brightness(102%) contrast(93%);
-}*/
 .null div{
   filter: invert(75%)
 }/*
@@ -288,11 +279,6 @@ table  {
   border: var(--border-width) solid #000;
   border-radius: var(--border-width);
 }
-.bluepass {
-  background-color: #0999D5;
-  border: var(--border-width) solid #000;
-  border-radius: var(--border-width);
-}
 td div {
   width: var(--cell-div-53);
   height: var(--cell-div-53);
@@ -304,7 +290,13 @@ td div {
   position: absolute;
   z-index: 12;
   pointer-events: none;
-  image-rendering:pixelated;
+  transform: scale(var(--mul));
+  transform-origin: top left;
+}
+#buildingsCanvas{
+  position: absolute;
+  z-index: 130;
+  pointer-events: none;
   transform: scale(var(--mul));
   transform-origin: top left;
 }

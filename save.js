@@ -1,5 +1,5 @@
 
-var player={
+let player={
   k:null, //on screen controls
   levelbeaten:[],
   perfectbeaten:[],
@@ -37,6 +37,8 @@ const baseplayer={
     lastsavetime:0,
   }
 }
+const buildWorker = new Worker("drawBuild.js");
+const laserWorker = new Worker("drawLaser.js");
 function save(loading=false) {
   if(!loading)player.galaxy.lastsavetime=Date.now()
   localStorage.setItem('player', JSON.stringify(player));
@@ -50,7 +52,7 @@ function load() {
     save(true)
   }
   player = {...player, ...JSON.parse(localStorage.getItem('player'))} 
-  var app = new Vue({
+  const app = new Vue({
       el: "#app",
       data: {
         player,
@@ -60,7 +62,12 @@ function load() {
   
   
 }
-/*this was used to display save timestamp during cloud loading but it didn't work
+/*
+vvvvvv
+Hi 3^3 can you make it work if not delete it and 2 related comments below
+^^^^^^
+
+this was used to display save timestamp during cloud loading but it didn't work
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 let t   = undefined
 let hrs = undefined
