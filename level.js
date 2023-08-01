@@ -3,6 +3,7 @@ function reset(){
     tmp.b=false
     if(!level[tmp.level]){
       tmp.page=2
+      document.getElementById('machine').innerHTML=''
       return 
     } else {
     tmp.page=1;
