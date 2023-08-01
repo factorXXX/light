@@ -215,6 +215,18 @@ function moveMoving(){
   tmp.previous[tmp.previous.length - 1].move = tmp.move;
   
 let truemove=tmp.move
+let num_array=[]
+let ordered=[]
+for(let i=0;i<truemove.length;i++){
+  num_array.push(truemove[i][0]*1000+truemove[i][1])
+}
+num_array.sort((a,b) => a-b)
+for(let i=0;i<truemove.length;i++){
+  let remainder=num_array[i]%1000
+  ordered.push([(num_array[i]-remainder)/1000,remainder])
+
+}
+truemove=ordered
 tmp.move=[]
   for(let i=0;i<truemove.length;i++){
         let bD=tmp.building[truemove[i][0]][truemove[i][1]]
@@ -228,25 +240,28 @@ tmp.move=[]
             tmp.building[truemove[i][0]-1][truemove[i][1]]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0]-1,truemove[i][1]])
           }
         }
-        else if(bD[1]=='down'){
-          if((truemove[i][0]+1)>=tmp.area[0]){tmp.building[truemove[i][0]][truemove[i][1]][1]="up";tmp.move.push([truemove[i][0],truemove[i][1]])}
-          else if(tmp.building[truemove[i][0]+1][truemove[i][1]][0]!=null||((tmp.location[0]==truemove[i][0]+1)&&(tmp.location[1]==truemove[i][1]))){tmp.building[truemove[i][0]][truemove[i][1]][1]="up";tmp.move.push([truemove[i][0],truemove[i][1]])}
-          else {tmp.building[truemove[i][0]+1][truemove[i][1]]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0]+1,truemove[i][1]])
-          }
-        }
         else if(bD[1]=='left'){
           if((truemove[i][1]-1)<0){tmp.building[truemove[i][0]][truemove[i][1]][1]="right";tmp.move.push([truemove[i][0],truemove[i][1]])}
           else if(tmp.building[truemove[i][0]][truemove[i][1]-1][0]!=null||((tmp.location[0]==truemove[i][0])&&(tmp.location[1]==truemove[i][1]-1))){tmp.building[truemove[i][0]][truemove[i][1]][1]="right";tmp.move.push([truemove[i][0],truemove[i][1]])}
           else {tmp.building[truemove[i][0]][truemove[i][1]-1]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0],truemove[i][1]-1])
           }
         }
-        else if(bD[1]=='right'){
-          if((truemove[i][1]+1)>=tmp.area[1]){tmp.building[truemove[i][0]][truemove[i][1]][1]="left";tmp.move.push([truemove[i][0],truemove[i][1]])}
-          else if(tmp.building[truemove[i][0]][truemove[i][1]+1][0]!=null||((tmp.location[0]==truemove[i][0])&&(tmp.location[1]==truemove[i][1]+1))){tmp.building[truemove[i][0]][truemove[i][1]][1]="left";tmp.move.push([truemove[i][0],truemove[i][1]])}
-          else {tmp.building[truemove[i][0]][truemove[i][1]+1]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0],truemove[i][1]+1])
-          }
-        }
   }
+  for(let i=truemove.length-1;i>=0;i--){
+    let bD=tmp.building[truemove[i][0]][truemove[i][1]]
+    if(bD[1]=='down'){
+      if((truemove[i][0]+1)>=tmp.area[0]){tmp.building[truemove[i][0]][truemove[i][1]][1]="up";tmp.move.push([truemove[i][0],truemove[i][1]])}
+      else if(tmp.building[truemove[i][0]+1][truemove[i][1]][0]!=null||((tmp.location[0]==truemove[i][0]+1)&&(tmp.location[1]==truemove[i][1]))){tmp.building[truemove[i][0]][truemove[i][1]][1]="up";tmp.move.push([truemove[i][0],truemove[i][1]])}
+      else {tmp.building[truemove[i][0]+1][truemove[i][1]]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0]+1,truemove[i][1]])
+      }
+    }
+    else if(bD[1]=='right'){
+      if((truemove[i][1]+1)>=tmp.area[1]){tmp.building[truemove[i][0]][truemove[i][1]][1]="left";tmp.move.push([truemove[i][0],truemove[i][1]])}
+      else if(tmp.building[truemove[i][0]][truemove[i][1]+1][0]!=null||((tmp.location[0]==truemove[i][0])&&(tmp.location[1]==truemove[i][1]+1))){tmp.building[truemove[i][0]][truemove[i][1]][1]="left";tmp.move.push([truemove[i][0],truemove[i][1]])}
+      else {tmp.building[truemove[i][0]][truemove[i][1]+1]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0],truemove[i][1]+1])
+      }
+    }
+}
 //  calculation2()
 }
 function pushingEdges(rev=false,lo1,lo2,pos,color){
