@@ -232,12 +232,16 @@ tmp.move=[]
         let bD=tmp.building[truemove[i][0]][truemove[i][1]]
         if(bD[1]=='up'){
           if((truemove[i][0]-1)<0){
-            tmp.building[truemove[i][0]][truemove[i][1]][1]="down";tmp.move.push([truemove[i][0],truemove[i][1]])}
-          else if(tmp.building[truemove[i][0]-1][truemove[i][1]][0]!=null||((tmp.location[0]==truemove[i][0]-1)&&(tmp.location[1]==truemove[i][1]))){tmp.building[truemove[i][0]][truemove[i][1]][1]="down";
+            tmp.building[truemove[i][0]][truemove[i][1]][1]="down";
+            tmp.move.push([truemove[i][0],truemove[i][1]])}
+          else if(tmp.building[truemove[i][0]-1][truemove[i][1]][0]!=null||((tmp.location[0]==truemove[i][0]-1)&&(tmp.location[1]==truemove[i][1]))){
+            tmp.building[truemove[i][0]][truemove[i][1]][1]="down";
             tmp.move.push([truemove[i][0],truemove[i][1]])
           }
           else {
-            tmp.building[truemove[i][0]-1][truemove[i][1]]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null];tmp.move.push([truemove[i][0]-1,truemove[i][1]])
+            tmp.building[truemove[i][0]-1][truemove[i][1]]=tmp.building[truemove[i][0]][truemove[i][1]];
+            tmp.building[truemove[i][0]][truemove[i][1]]=[null];
+            tmp.move.push([truemove[i][0]-1,truemove[i][1]])
           }
         }
         else if(bD[1]=='left'){

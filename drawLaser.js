@@ -59,6 +59,8 @@ onmessage = (evt) => {
         if(["redpass","greenpass","yellowpass"].includes(currentBuilding[0])){
           //get color of pass
           passcol=currentBuilding[0].substring(0, currentBuilding[0].length - 4);
+          ctx.lineJoin = "round";
+          ctx.lineCap = "round";
           ctx.strokeStyle="black"
           ctx.fillStyle=colors[passcol]
           //draw box
@@ -78,6 +80,8 @@ onmessage = (evt) => {
           ctx.rect(x+6,y+30.5,58,8)
           ctx.closePath()
           ctx.fill()
+          ctx.lineJoin = "miter";
+          ctx.lineCap = "miter";
 
 
           //done with the build now draw full lasers
