@@ -329,7 +329,7 @@ function reset(){
   61:{
     string:`N4IgNg9gxghgLgSwgOxALgNoGYA0AWAXRxABN4Z0MrkBXMMIjW+xkANwgRJEeYZyZ0GjQSwF9WHLj3FDeckSADONVKwBGEAB4yMIALYQ2CZAHMQxEhADua2WL1gEpgBZwL4AKYAzd8VMATp6eaiIS9vyikeFRBGFyEZKc3PIOEnEAvkA`,
     index:61,
-    perfect:8,
+    perfect:9,
   },
   'custom': {
     string:tmp.store,
