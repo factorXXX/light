@@ -287,6 +287,7 @@ td div {
   position: absolute;
 }
 #laserCanvas{
+  image-rendering: pixelated;
   position: absolute;
   z-index: 12;
   pointer-events: none;
@@ -294,6 +295,7 @@ td div {
   transform-origin: top left;
 }
 #buildingsCanvas{
+  image-rendering: pixelated;
   position: absolute;
   z-index: 130;
   pointer-events: none;

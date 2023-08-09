@@ -719,7 +719,10 @@ else if((["mirror","light","rotate90","rotate180","rotate270"].includes(tmp.buil
     }
     
     calculation2()
-    if (["portal", "badportal"].includes(buildtouch[0])) return moveMoving();
+    if (["portal", "badportal"].includes(buildtouch[0])) {
+      moveMoving()
+      return calculation2()
+    };
     tmp.location = [...locat];
   }
   moveMoving()
