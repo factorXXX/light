@@ -232,50 +232,22 @@ tmp.move=[]
         let bD=tmp.building[truemove[i][0]][truemove[i][1]]
         if(bD[1]=='up'){
           if((truemove[i][0]-1)<0){
-            tmp.building[truemove[i][0]][truemove[i][1]][1]="down"
+            tmp.building[truemove[i][0]][truemove[i][1]][1]="down";tmp.move.push([truemove[i][0],truemove[i][1]]);truemove[i]=['moved']}
+          else if(tmp.building[truemove[i][0]-1][truemove[i][1]][0]!=null||((tmp.location[0]==truemove[i][0]-1)&&(tmp.location[1]==truemove[i][1]))){tmp.building[truemove[i][0]][truemove[i][1]][1]="down";
             tmp.move.push([truemove[i][0],truemove[i][1]]);truemove[i]=['moved']
-          }
-          else if(tmp.building[truemove[i][0]-1][truemove[i][1]][0]=='moving'&&tmp.building[truemove[i][0]-1][truemove[i][1]][1]=='down'){
-            tmp.building[truemove[i][0]-1][truemove[i][1]][1]='up';
-            tmp.building[truemove[i][0]][truemove[i][1]][1]='down';
-            tmp.move.push([truemove[i][0],truemove[i][1]])
-            tmp.move.push([truemove[i][0]-1,truemove[i][1]])
-            truemove[i]=['moved']
-          }
-          else if(tmp.building[truemove[i][0]-1][truemove[i][1]][0]!=null||((tmp.location[0]==truemove[i][0]-1)&&(tmp.location[1]==truemove[i][1]))){
-            tmp.building[truemove[i][0]][truemove[i][1]][1]="down";
-            tmp.move.push([truemove[i][0],truemove[i][1]])
-            truemove[i]=['moved']
           }
           else {
             tmp.building[truemove[i][0]-1][truemove[i][1]]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null]
-            tmp.move.push([truemove[i][0]-1,truemove[i][1]])
-            truemove[i]=['moved']
+            tmp.move.push([truemove[i][0]-1,truemove[i][1]]);truemove[i]=['moved']
           }
         }
-
         else if(bD[1]=='left'){
           if((truemove[i][1]-1)<0){
-            tmp.building[truemove[i][0]][truemove[i][1]][1]="right"
-            tmp.move.push([truemove[i][0],truemove[i][1]])
-            truemove[i]=['moved']
-          }
-          else if(tmp.building[truemove[i][0]][truemove[i][1]-1][0]=='moving'&&tmp.building[truemove[i][0]][truemove[i][1]-1][1]=='right'){
-            tmp.building[truemove[i][0]][truemove[i][1]-1][1]='left';
-            tmp.building[truemove[i][0]][truemove[i][1]][1]='right';
-            tmp.move.push([truemove[i][0],truemove[i][1]])
-            tmp.move.push([truemove[i][0],truemove[i][1]-1])
-            truemove[i]=['moved']
-          }
-          else if(tmp.building[truemove[i][0]][truemove[i][1]-1][0]!=null||((tmp.location[0]==truemove[i][0])&&(tmp.location[1]==truemove[i][1]-1))){
-          tmp.building[truemove[i][0]][truemove[i][1]][1]="right"
-          tmp.move.push([truemove[i][0],truemove[i][1]])
-          truemove[i]=['moved']
-          }
-          else {
-            tmp.building[truemove[i][0]][truemove[i][1]-1]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null]
-            tmp.move.push([truemove[i][0],truemove[i][1]-1])
-            truemove[i]=['moved']
+            tmp.building[truemove[i][0]][truemove[i][1]][1]="right";tmp.move.push([truemove[i][0],truemove[i][1]]);truemove[i]=['moved']}
+          else if(tmp.building[truemove[i][0]][truemove[i][1]-1][0]!=null||((tmp.location[0]==truemove[i][0])&&(tmp.location[1]==truemove[i][1]-1))){tmp.building[truemove[i][0]][truemove[i][1]][1]="right"
+          tmp.move.push([truemove[i][0],truemove[i][1]]);truemove[i]=['moved']}
+          else {tmp.building[truemove[i][0]][truemove[i][1]-1]=tmp.building[truemove[i][0]][truemove[i][1]];tmp.building[truemove[i][0]][truemove[i][1]]=[null]
+            tmp.move.push([truemove[i][0],truemove[i][1]-1]);truemove[i]=['moved']
           }
         }
   }
