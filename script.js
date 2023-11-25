@@ -50,7 +50,7 @@ Vue.component("selectmenu", {
     <div v-for="d in (window.innerWidth < 1136)?6:5" class="menuCard">
       <!--if chapter is unlocked-->
       <div v-if="d<6&&(isunlocked(d, tmp.diff))">
-        <table>
+        <table class="menuCardTable">
           <tbody>
             <tr><td colspan="4"><h1 class="menuCardTitle">Chapter {{(d+(tmp.diff*5))}}</h1></td></tr>
               <tr v-for="a in 3" class="menuLevels">

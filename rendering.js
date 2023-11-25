@@ -16,8 +16,11 @@ function playermargin(){
   pla.style.marginLeft=((tmp.location[1]*70+8.5)*rendering.mul)+"px"
 }
 function startMachine(){
-  rendering.mul = Math.round((Math.min(Math.min(1, window.innerHeight/70/1.3/(tmp.area[0])), window.innerWidth/73/(tmp.area[1])))*100)/100
-  let inhtm = ""
+	//if mobile controls enabled level should take up to 40% of vertical space (looks fine on phones, didn't test on tablets), 
+	//otherwice 70% on desktops (should also be fine assuming 16:9 aspect ratio)
+	if(player.k) rendering.mul = Math.round((Math.min(Math.min(1, window.innerHeight*0.4/70/(tmp.area[0])), window.innerWidth/73/(tmp.area[1])))*100)/100
+  else rendering.mul = Math.round((Math.min(Math.min(1, window.innerHeight*0.7/70/(tmp.area[0])), window.innerWidth/73/(tmp.area[1])))*100)/100
+	let inhtm = ""
   inhtm+=('<canvas  id="buildingsCanvas"></canvas>')
   inhtm+=('<canvas  id="laserCanvas"></canvas>')
   inhtm+=('<div id="player" class="player"><div></div></div>')

@@ -125,10 +125,13 @@ table  {
   height: 90px;
   width: 90px;
 }
-@media (pointer:none), (pointer:coarse){
+/*increase size of on-screen controls if player taps on screen to use the device*/
+@media (hover: none) and (pointer:coarse){
   .control td{
     width: 22vw;
+		max-width: 22vh;
     height: 20vw;
+		max-height: 10vh;
     font-size: 70px;
     border: solid 5px #aaaaaa;
   }
@@ -139,18 +142,20 @@ table  {
   margin-left: auto;
   margin-right: auto;
   width: fit-content;
-  align-items: center;
 }
 .menuCard {
   display: inline-block;
   margin: 2px;
   background-color: #333333;
 }
+.menuCardTable{
+	display: table;
+	width: 100%;
+}
 .menuCard td {
   box-sizing: border-box;
   height: 55px;
-  width: 55px;
-  min-width: 25%;
+  width: 25%;
   text-align: center;
   border: 2px solid #aaa;
   font-weight: 900;
@@ -158,9 +163,8 @@ table  {
 }
 .menuLocked,.optsCard,.menuCard{
   width:220px;
-  height: 220px;
   max-width: 45vw;
-  max-height: 220px;
+  height: 220px;
 }
 .optsCard tr{
   height: 50%;
@@ -234,17 +238,14 @@ table  {
 }
 .null div{
   filter: invert(75%)
-}/*
-.blueLaser{
-  z-index: 10;
-}*/
+}
 .deg90 div{
   transform: rotate(90deg);}
 .deg180 div{
   transform: rotate(180deg);}
 .deg270 div{
   transform: rotate(270deg);}
-  /*blue box*/
+/*blue box*/
 .rotate180, .rotate90, .rotate270, .light, .sun, .reflecthor, .reflectvel {
   background: #47AFE3;
   border: var(--border-width) solid #000;
@@ -256,7 +257,7 @@ table  {
   border: var(--border-width) solid #000;
   border-radius: var(--border-width);
 }
-  /*green box*/
+/*green box*/
 .box,
 .badbox,
 .badboxwall,
@@ -267,13 +268,13 @@ table  {
   border: var(--border-width) solid #000;
   border-radius: var(--border-width);
 }
-  /*red box*/
+/*red box*/
 .redpass {
   background-color: #CC2218;
   border: var(--border-width) solid #000;
   border-radius: var(--border-width);
 }
-  /*yellow box*/
+/*yellow box*/
 .yellowpass {
   background-color: #FFC500;
   border: var(--border-width) solid #000;
@@ -297,7 +298,7 @@ td div {
 #buildingsCanvas{
   image-rendering: pixelated;
   position: absolute;
-  z-index: 130;
+  z-index: 13;
   pointer-events: none;
   transform: scale(var(--mul));
   transform-origin: top left;
@@ -584,20 +585,14 @@ td.void{
 }
 
 /*modals*/
-.modal{
-  z-index: 150;
-  background: #161616;
-  box-sizing: border-box;
-  position: absolute;
-  top: 50px;
-  left: calc(50vw - 300px);
-  border: 4px solid #aaa;
-  border-radius: 10px;
-  width:600px;
-  height:410px;
-  margin-top: 50px;
-  padding: 10px;
-  filter: drop-shadow(0 0 10px #00000080);
+.modalContainer {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	width: 100vw;
+	height: 100vh;
+	top: 0px;
+	left: 0px;
 }
 .modalbg{
   z-index: 149;
@@ -608,16 +603,29 @@ td.void{
   top: 0px;
   left: 0px;
 }
-.modal h1 {
+.modal{
+  position: absolute;
+  box-sizing: border-box;
+	z-index: 150;
+	width:600px;
+	max-width: 95vw;
+  border-radius: 10px;
+  margin-top: 100px;
+  margin-left: auto; 
+  margin-right: auto;
+  padding: 10px;
+  background: #161616;
+  border: 4px solid #aaa;
+  filter: drop-shadow(0 0 10px #00000080);
+}
+.modaltitle{
   margin: 0px;
   margin-bottom: 5px;
   padding: 0px;
   margin-left: auto;
   margin-right: auto;
-}
-.modaltitle{
-  height: 30px;
-  width: 500px;
+	height: 30px;
+  width: 100%;
   text-align: center;
 }
 .modal tr:nth-child(2) td{
@@ -625,24 +633,29 @@ td.void{
   margin: 5px;
 }
 .modalimg{
-  height: 260px;
+	display: block;
+  max-height: 260px;
+	max-width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+	
   margin-bottom: 5px;
   border: 3px solid #aaa;
   border-radius: 10px;
 }
 .modaltxt{
   text-align: center;
+	width: 100%;
 }
 .modalbtn{
+	display: block;
   width: 65px;
-  height: 60px;
-  min-height: 60px;
-  max-height: 60px !important;
 }
 .modalbtn button{
   display: flex;
+	align-items: end;
   width: 100%;
-  height: 100%;
+  height: 60px;
   background-color: #444444;
   border: 2px solid rgb(99, 99, 99);
   border-radius: 8px;
@@ -656,7 +669,7 @@ td.void{
 }
 /*tutorial tab*/
 #tutortab{
-  max-width: 800px;
+  max-width: 400px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -668,10 +681,8 @@ td.void{
   background-color: #444444;
   border: 2px solid rgb(99, 99, 99);
   margin-top: 5px;
-  margin-bottom: 5px;
   margin-left: auto;
   margin-right: auto;
   border-radius: 4px;
   cursor: pointer;
-
 }

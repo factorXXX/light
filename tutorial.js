@@ -1,6 +1,6 @@
 Vue.component("main_tutorial", {
   template: `
-  <div>
+  <div class="modalContainer">
   <div class="modalbg"
   @click="exittutorial()">
   </div>
@@ -49,7 +49,7 @@ Vue.component("main_tutorial", {
 Vue.component("tutorials_tab", {
   template: `
   <div id="tutortab">
-    <button @click="tmp.page=2" style="position:absolute; width:100px;height: 40px;margin: 0px;">Exit</button>
+    <button @click="tmp.page=2" style="width:100px;height: 40px;margin: 0px;">Back</button>
     <button @click="startTutorial(true, 1)"><h2>Basics</h2></button>
     <button @click="startTutorial(true, 4)" v-if="player.tutorial[3]"><h2>Portals</h2></button>
     <button @click="startTutorial(true, 2)" v-if="player.tutorial[1]"><h2>Storage block</h2></button>
@@ -69,7 +69,7 @@ function startTutorial(forced=false, type=0, end=false){
     tmp.modalvisible=true
   }
   //basic tutorial on lvl 1-1
-  else if ((tmp.level===1||type===1)&&(!player.tutorial[0]||forced===true)){
+  else if ((tmp.level===1||type===1)&&(!player.tutorial[0]||(forced===true&&type===1))){
     tmp.tutorial.type=1
     tmp.tutorial.title="Basics"
     tmp.tutorial.images=["./images/tutorials/1-1.png","./images/tutorials/1-2.png"]
@@ -80,7 +80,7 @@ function startTutorial(forced=false, type=0, end=false){
     tmp.modalvisible=true
   }
   //store block explanation on lvl 3-9
-  else if ((tmp.level===33||type===2)&&(!player.tutorial[1]||forced===true)){
+  else if ((tmp.level===33||type===2)&&(!player.tutorial[1]||(forced===true&&type===2))){
     tmp.tutorial.type=2
     tmp.tutorial.title="Storage block"
     tmp.tutorial.images=["./images/tutorials/2-1.png","./images/tutorials/2-2.png","./images/tutorials/2-3.png"]
@@ -92,7 +92,7 @@ function startTutorial(forced=false, type=0, end=false){
     tmp.modalvisible=true
   }
   //loop explanation on lvl 5-7
-  else if ((tmp.level===55||type===3)&&(!player.tutorial[2]||forced===true)){
+  else if ((tmp.level===55||type===3)&&(!player.tutorial[2]||(forced===true&&type===3))){
     tmp.tutorial.type=3
     tmp.tutorial.title="Infinite loop and white"
     tmp.tutorial.images=["./images/tutorials/3-1.png","./images/tutorials/3-2.png"]
@@ -102,7 +102,7 @@ function startTutorial(forced=false, type=0, end=false){
       tmp.tutorial.stage=0
     tmp.modalvisible=true
   }
-  else if ((tmp.level===13||type===4)&&(!player.tutorial[3]||forced===true)){
+  else if ((tmp.level===13||type===4)&&(!player.tutorial[3]||(forced===true&&type===4))){
     tmp.tutorial.type=4
     tmp.tutorial.title="Portals"
     tmp.tutorial.images=["./images/tutorials/4-1.png"]

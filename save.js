@@ -62,35 +62,18 @@ function load() {
   
   
 }
-/*
-vvvvvv
-Hi 3^3 can you make it work if not delete it and 2 related comments below
-^^^^^^
 
-this was used to display save timestamp during cloud loading but it didn't work
-const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-let t   = undefined
-let hrs = undefined
-let min = undefined
-let day = undefined
-let mon = undefined
-let yer = undefined
-function getTimestr(x){
-  t = new Date(x)
-  hrs = t.getHours()
-  min = t.getMinutes()
-  day = t.getDate()
-  mon = months[t.getMonth()]
-  yer = t.getFullYear()
-  return(((hrs<10)?"0":"")+hrs+":"+((min<10)?"0":"")+min+" "+mon+" "+day+", "+yer)
-}
-*/
 window.onload = () => {
   load()
   //check if there is a cloud save and if it's newer
   window.addEventListener("message", e => {
     if (e.origin === "https://galaxy.click") {
       tmp.galaxy.ongalaxy=true
+  		window.top.postMessage({
+    		action: "load",
+    		slot: 0,
+  		}, "https://galaxy.click");
+
       if(e.data){
       if(e.data.content && e.data.content!==null){
         tmp.galaxy.loggedin=true
@@ -101,8 +84,8 @@ window.onload = () => {
           //confirm loading if there is a save
           else if(confirm(
           "You have a newer save in Galaxy Cloud™. Do you want to use a save from Galaxy Cloud™?"+
-          "\nCloud save: "+e.data.label +/*", made on "+ getTimestr(incloud.lastsavetime) +*/
-          "\nLocal save: "+ getlabel() /*+", made on "+ getTimestr(player.lastsavetime)*/
+          "\nCloud save: "+e.data.label +
+          "\nLocal save: "+ getlabel() 
           )){
             importSave(e.data.content)
           }
@@ -119,10 +102,6 @@ window.onload = () => {
         player.galaxy.cloudsaving=true
       }
   }}});
-  window.top.postMessage({
-    action: "load",
-    slot: 0,
-  }, "https://galaxy.click");
   //removing changed levels from completed/beaten
   let levelsArr = Object.entries(level);
   for(let i=0; i< player.perfectbeaten.length; i++){
@@ -137,14 +116,14 @@ window.onload = () => {
       player.levelbeaten.splice(i, 1)
     }
   }
-  //check if user is on Android/iOS and set on screen controls accordingly. I wonder if there's people with some custom OS
-  if(navigator.userAgent.indexOf("Android")!==-1 || navigator.userAgent.indexOf("iOS")!==-1){
+  //check if user is on iPhone/iPad/iPod/Android and set on screen controls accordingly on a new save
+  if(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)){
     tmp.mobile=true
     if (player.k===null){
       player.k=true
     }
   } else { tmp.mobile=false }
-  if (player.k===null)player.k=false
+  if (player.k===null) player.k=false
 };
 
 function exportSave() {
